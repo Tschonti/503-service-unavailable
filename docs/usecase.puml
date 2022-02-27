@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+(Lépés) as (lep)
+(Genetikai kód megismerése) as (gen)
+(Ágens készítés) as (cr_ag)
+(Ágens alkalmazása) as (use_ag)
+(Anyag felvétele) as (pu_mat)
+(Védőfelszerelés felvétele) as (pu_eq)
+(Másik játékos meglopása) as (steal)
+(Idő múlása) as (time)
+
+actor Játékos as j1
+actor Kontroller as k
+k --> time
+j1 --> lep
+j1 --> gen
+j1 --> cr_ag
+j1 --> use_ag
+j1 --> pu_mat
+j1 --> pu_eq
+j1 --> steal
+@enduml
