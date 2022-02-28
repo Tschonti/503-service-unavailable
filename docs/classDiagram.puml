@@ -1,0 +1,123 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+together {
+    class ResourceAmount {
+        #amount: int
+
+    }
+    class CappedResourceAmount extends ResourceAmount {
+        -maxAmount: int
+    }
+    enum Resource {
+        AminoAcid
+        Nucleotide
+    }
+    'class AminoAcid extends ResourceAmount {
+'
+    '}
+    'class Nucleotide extends ResourceAmount {
+'
+    '}
+
+
+}
+
+together {
+    abstract class Agent implements Effect{
+
+    }
+    class AmnesiaVirus extends Agent{
+
+    }
+
+    class StunVirus extends Agent{
+
+    }
+    class VitusDanceVirus extends Agent{
+
+    }
+    class Vaccine extends Agent{
+
+    }
+}
+
+class Virologist {
+
+}
+
+class Inventory {
+
+}
+Virologist *-- "-inventory, 1" Inventory
+Virologist <-- "-learntCodes, 0..*" GeneticCode
+Virologist <-- "-activeEffects, 0..*" Effect
+
+
+together {
+    interface Effect {
+
+    }
+
+    abstract class Equipment implements Effect {
+
+    }
+    class ProtectiveCloak extends Equipment {
+
+    }
+
+    class Bag extends Equipment{
+
+    }
+    class Glove extends Equipment {
+
+    }
+}
+
+together {
+    abstract class Tile {
+        +Collect()
+
+    }
+    class Laboratory extends Tile {
+
+    }
+
+    class Safehouse extends Tile {
+
+    }
+    class Warehouse extends Tile {
+
+    }
+    class EmptyTile extends Tile {
+
+    }
+
+    class Map {
+
+    }
+}
+
+class GeneticCode {
+
+}
+Laboratory *-- "-code, 1" GeneticCode
+Safehouse *-- "-equipment, 1" Equipment
+GeneticCode *-- "-agent, 1" Agent
+Warehouse *-- "toPickUp, 1" ResourceAmount
+
+Inventory *-- "-resources, N" CappedResourceAmount
+ResourceAmount --> "resourceType, 1" Resource
+GeneticCode *-- "-requirements , N" ResourceAmount
+
+Map  *-- "tiles" Tile
+Tile <-- "neighbours" Tile
+
+class Controller {
+
+}
+Controller *-- "-map, 1" Map
+Controller *-- "-players, 2..M" Virologist
+
+@enduml
