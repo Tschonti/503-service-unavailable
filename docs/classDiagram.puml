@@ -3,29 +3,27 @@
 skinparam classAttributeIconSize 0
 
 together {
-    class ResourceAmount {
-        #amount: int
+    class Resource {
+        -amount: int
+    }
 
-    }
-    class CappedResourceAmount extends ResourceAmount {
-        -maxAmount: int
-    }
-    enum Resource {
+    enum ResourceType {
         AminoAcid
         Nucleotide
     }
-    'class AminoAcid extends ResourceAmount {
+    'class AminoAcid extends Resource {
 '
     '}
-    'class Nucleotide extends ResourceAmount {
+    'class Nucleotide extends Resource {
 '
     '}
-
+    Resource *-- "-type, 1" ResourceType
 
 }
 
 together {
     abstract class Agent implements Effect{
+    {static} create(): Agent
 
     }
     class AmnesiaVirus extends Agent{
@@ -42,24 +40,35 @@ together {
 
     }
 }
-
-class Virologist {
-
-}
-
-class Inventory {
-
-}
-Virologist *-- "-inventory, 1" Inventory
-Virologist <-- "-learntCodes, 0..*" GeneticCode
-Virologist <-- "-activeEffects, 0..*" Effect
-
-
 together {
-    interface Effect {
+
+    class Virologist {
 
     }
 
+    class Inventory {
+
+    }
+    interface Effect {
+
+    }
+    class GeneticCode {
+
+    }
+
+    Virologist *-- "-inventory, 1" Inventory
+    Virologist *-- "-learntCodes, 0..*" GeneticCode
+    Virologist <-- "-activeEffects, 0..*" Effect
+
+    Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
+    Inventory *-- "-craftedAgents, 0..*" Agent
+    Inventory *-- "-resources, N" Resource
+
+    GeneticCode *-- "-requirements ,N" Resource
+    GeneticCode *-- "-agent, 1" Agent
+}
+
+together {
     abstract class Equipment implements Effect {
 
     }
@@ -77,6 +86,7 @@ together {
 
 together {
     abstract class Tile {
+        #id: int
         +Collect()
 
     }
@@ -97,27 +107,19 @@ together {
     class Map {
 
     }
+    Laboratory *-- "-code, 1" GeneticCode
+    Safehouse *-- "-equipment, 1" Equipment
+    Warehouse *-- "-collectable, 1" Resource
+
+    Map  *-- "-tiles, L" Tile
+    Tile <-- "-neighbours, 1..K" Tile
 }
-
-class GeneticCode {
-
-}
-Laboratory *-- "-code, 1" GeneticCode
-Safehouse *-- "-equipment, 1" Equipment
-GeneticCode *-- "-agent, 1" Agent
-Warehouse *-- "toPickUp, 1" ResourceAmount
-
-Inventory *-- "-resources, N" CappedResourceAmount
-ResourceAmount --> "resourceType, 1" Resource
-GeneticCode *-- "-requirements , N" ResourceAmount
-
-Map  *-- "tiles" Tile
-Tile <-- "neighbours" Tile
 
 class Controller {
 
 }
 Controller *-- "-map, 1" Map
 Controller *-- "-players, 2..M" Virologist
+Controller *-- "-codes, J" GeneticCode
 
 @enduml
