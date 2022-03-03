@@ -18,30 +18,32 @@ enum ResourceType {
 '}
 Resource *-- "-type, 1" ResourceType
 
-abstract class Agent implements Effect, Collectable{
-{static} {abstract} +create(player: Virologist): Agent
-    -createPrice: Resource
+abstract class Agent implements Effect, Collectable {
+    {static} {abstract} +create(): Agent
+    {abstract} +impact()
+    {abstract} +collect(): Collectable
 }
+
 class AmnesiaVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(player: Virologist)
+    +collect(): Collectable
 }
 
 class StunVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(player: Virologist)
+    +collect(): Collectable
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(player: Virologist)
+    +collect(): Collectable
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(player: Virologist)
+    +collect(): Collectable
 }
 
 class Virologist {
@@ -54,24 +56,28 @@ class Virologist {
 class Inventory {
     +addCollectable(newGeneticCode: GeneticCode)
     +addCollectable(newEquipment: Equipment)
-    +addCollectable(agent: Agent)
+    +addCollectable(newAgent: Agent)
     +addCollectable(newResource: Resource)
+    +removeCollectable(removedGeneticCode: GeneticCode)
+    +removeCollectable(removedEquipment: Equipment)
+    +removeCollectable(removedAgent: Agent)
+    +removeCollectable(removedResource: Resource)
 }
 interface Effect {
     +impact()
 }
-class GeneticCode implements Collectable{
+class GeneticCode implements Collectable {
     +collect(player: Virologist)
 }
 
 interface Collectable {
-    +collect(player: Virologist)
+    +collect(): Collectable
 }
 
 Virologist *-- "-inventory, 1" Inventory
-Virologist *-- "-learntCodes, 0..*" GeneticCode
-Virologist <-- "-activeEffects, 0..*" Effect
+Virologist --> "-activeEffects, 0..*" Effect
 
+Inventory *-- "-learntCodes, 0..*" GeneticCode
 Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
@@ -82,6 +88,8 @@ GeneticCode *-- "-agent, 1" Agent
 Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
+    {abstract} +impact()
+    {abstract} +collect(player: Virologist)
 
 }
 class ProtectiveCloak extends Equipment {
@@ -101,7 +109,8 @@ class Glove extends Equipment {
 'There is Collectable getter because EmptyTile must have a getter either
 abstract class Tile {
     #id: int
-    {abstract}+collectItem(player: Virologist)
+    #name: string
+    {abstract} +collectItem(player: Virologist)
     {abstract} +getCollectableItem(): Collectable
 }
 class Laboratory extends Tile {
