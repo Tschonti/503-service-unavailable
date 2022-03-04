@@ -3,24 +3,22 @@
 skinparam classAttributeIconSize 0
 class Resource implements Collectable {
     -amount: int
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
+    {static} getResourceByType(resources: Resource[], type: ResourceType): Resource
 }
 
 enum ResourceType {
     AminoAcid
     Nucleotide
 }
-'class AminoAcid extends Resource {
-'
-'}
-'class Nucleotide extends Resource {
-'
-'}
 Resource *-- "-type, 1" ResourceType
 
 abstract class Agent implements Effect, Collectable {
+    #roundsLeft: int
+    #active: bool
     {static} {abstract} +create(): Agent
     {abstract} +impact()
+    'Lehet nem is kell
     {abstract} +collect(inv: Inventory)
 }
 
@@ -47,25 +45,35 @@ class Vaccine extends Agent{
 }
 
 class Virologist {
+    -actionsLeft: int
     +moveTo(id: int)
     +getCollectedItems(): Collectable[]
+    'az alap useCase-ek:
+    +pickUp()
+    +craft(code: GeneticCode)
+    +useAgent(agent: Agent)
+    +steal(Virologist v)
+    +pass()
 }
 
 class Inventory {
-    +addCollectable(newGeneticCode: GeneticCode)
-    +addCollectable(newEquipment: Equipment)
-    +addCollectable(newAgent: Agent)
-    +addCollectable(newResource: Resource)
-    +removeCollectable(removedGeneticCode: GeneticCode)
-    +removeCollectable(removedEquipment: Equipment)
-    +removeCollectable(removedAgent: Agent)
-    +removeCollectable(removedResource: Resource)
+    -maxResourceAmount: int
+    +addGeneticCode(newGeneticCode: GeneticCode)
+    +addEquipment(newEquipment: Equipment)
+    +addCraftedAgent(newAgent: Agent)
+    +addResource(newResource: Resource)
+    +removeGeneticCode(removedGeneticCode: GeneticCode)
+    +removeEquipment(removedEquipment: Equipment)
+    +removeCraftedAgent(removedAgent: Agent)
+    +removeResource(removedResource: Resource)
 }
 interface Effect {
     +impact()
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory)
+    +isCraftable(resources: Resource[]): boolean
+    +craft(inv: Inventory)
 }
 
 interface Collectable {
@@ -80,7 +88,7 @@ Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
 
-GeneticCode *-- "-requirements ,N" Resource
+GeneticCode *-- "-price ,N" Resource
 GeneticCode *-- "-agent, 1" Agent
 
 Virologist "-players 0..*" - "-activeTile, 1" Tile
@@ -108,24 +116,24 @@ class Glove extends Equipment {
 abstract class Tile {
     #id: int
     #name: string
-    {abstract} +collectItem(player: Virologist)
+    {abstract} +collectItem(inv: Inventory)
     {abstract} +getCollectableItem(): Collectable
 }
 class Laboratory extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 
 class Safehouse extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 class Warehouse extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 class EmptyTile extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 
