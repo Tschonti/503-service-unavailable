@@ -1,122 +1,150 @@
 @startuml
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
+class Resource implements Collectable {
+    -amount: int
+    +collect(player: Virologist)
+}
 
-together {
-    class Resource {
-        -amount: int
-    }
-
-    enum ResourceType {
-        AminoAcid
-        Nucleotide
-    }
-    'class AminoAcid extends Resource {
+enum ResourceType {
+    AminoAcid
+    Nucleotide
+}
+'class AminoAcid extends Resource {
 '
-    '}
-    'class Nucleotide extends Resource {
+'}
+'class Nucleotide extends Resource {
 '
-    '}
-    Resource *-- "-type, 1" ResourceType
+'}
+Resource *-- "-type, 1" ResourceType
 
+abstract class Agent implements Effect, Collectable {
+    {static} {abstract} +create(): Agent
+    {abstract} +impact()
+    {abstract} +collect(inv: Inventory)
 }
 
-together {
-    abstract class Agent implements Effect{
-    {static} create(): Agent
-
-    }
-    class AmnesiaVirus extends Agent{
-
-    }
-
-    class StunVirus extends Agent{
-
-    }
-    class VitusDanceVirus extends Agent{
-
-    }
-    class Vaccine extends Agent{
-
-    }
-}
-together {
-
-    class Virologist {
-
-    }
-
-    class Inventory {
-
-    }
-    interface Effect {
-
-    }
-    class GeneticCode {
-
-    }
-
-    Virologist *-- "-inventory, 1" Inventory
-    Virologist *-- "-learntCodes, 0..*" GeneticCode
-    Virologist <-- "-activeEffects, 0..*" Effect
-
-    Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
-    Inventory *-- "-craftedAgents, 0..*" Agent
-    Inventory *-- "-resources, N" Resource
-
-    GeneticCode *-- "-requirements ,N" Resource
-    GeneticCode *-- "-agent, 1" Agent
+class AmnesiaVirus extends Agent{
+    {static} +create(): Agent
+    +impact()
+    +collect(inv: Inventory)
 }
 
-together {
-    abstract class Equipment implements Effect {
-
-    }
-    class ProtectiveCloak extends Equipment {
-
-    }
-
-    class Bag extends Equipment{
-
-    }
-    class Glove extends Equipment {
-
-    }
+class StunVirus extends Agent{
+    {static} +create(): Agent
+    +impact()
+    +collect(inv: Inventory)
+}
+class VitusDanceVirus extends Agent{
+    {static} +create(): Agent
+    +impact()
+    +collect(inv: Inventory)
+}
+class Vaccine extends Agent{
+    {static} +create(): Agent
+    +impact()
+    +collect(inv: Inventory)
 }
 
-together {
-    abstract class Tile {
-        #id: int
-        +Collect()
-
-    }
-    class Laboratory extends Tile {
-
-    }
-
-    class Safehouse extends Tile {
-
-    }
-    class Warehouse extends Tile {
-
-    }
-    class EmptyTile extends Tile {
-
-    }
-
-    class Map {
-
-    }
-    Laboratory *-- "-code, 1" GeneticCode
-    Safehouse *-- "-equipment, 1" Equipment
-    Warehouse *-- "-collectable, 1" Resource
-
-    Map  *-- "-tiles, L" Tile
-    Tile <-- "-neighbours, 1..K" Tile
+class Virologist {
+    +moveTo(id: int)
+    +getCollectedItems(): Collectable[]
 }
+
+class Inventory {
+    +addCollectable(newGeneticCode: GeneticCode)
+    +addCollectable(newEquipment: Equipment)
+    +addCollectable(newAgent: Agent)
+    +addCollectable(newResource: Resource)
+    +removeCollectable(removedGeneticCode: GeneticCode)
+    +removeCollectable(removedEquipment: Equipment)
+    +removeCollectable(removedAgent: Agent)
+    +removeCollectable(removedResource: Resource)
+}
+interface Effect {
+    +impact()
+}
+class GeneticCode implements Collectable {
+    +collect(inv: Inventory)
+}
+
+interface Collectable {
+    +collect(inv: Inventory)
+}
+
+Virologist *-- "-inventory, 1" Inventory
+Virologist --> "-activeEffects, 0..*" Effect
+
+Inventory *-- "-learntCodes, 0..*" GeneticCode
+Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
+Inventory *-- "-craftedAgents, 0..*" Agent
+Inventory *-- "-resources, N" Resource
+
+GeneticCode *-- "-requirements ,N" Resource
+GeneticCode *-- "-agent, 1" Agent
+
+Virologist "-players 0..*" - "-activeTile, 1" Tile
+
+abstract class Equipment implements Effect, Collectable {
+    {abstract} +impact()
+    {abstract} +collect(inv: Inventory)
+
+}
+class ProtectiveCloak extends Equipment {
+    +collect(inv: Inventory)
+    +impact()
+}
+
+class Bag extends Equipment{
+    +collect(inv: Inventory)
+    +impact()
+}
+class Glove extends Equipment {
+    +collect(inv: Inventory)
+    +impact()
+}
+
+'There is Collectable getter because EmptyTile must have a getter either
+abstract class Tile {
+    #id: int
+    #name: string
+    {abstract} +collectItem(player: Virologist)
+    {abstract} +getCollectableItem(): Collectable
+}
+class Laboratory extends Tile {
+    +collectItem(player: Virologist)
+    +getCollectableItem(): Collectable
+}
+
+class Safehouse extends Tile {
+    +collectItem(player: Virologist)
+    +getCollectableItem(): Collectable
+}
+class Warehouse extends Tile {
+    +collectItem(player: Virologist)
+    +getCollectableItem(): Collectable
+}
+class EmptyTile extends Tile {
+    +collectItem(player: Virologist)
+    +getCollectableItem(): Collectable
+}
+
+class Map {
+    +loadMap()
+}
+Laboratory *-- "-code, 1" GeneticCode
+Safehouse *-- "-equipment, 1" Equipment
+Warehouse *-- "-collectable, 1" Resource
+
+Map  *-- "-tiles, L" Tile
+Tile <-- "-neighbours, 1..K" Tile
+
 
 class Controller {
-
+    -activePlayer: int
+    +startGame()
+    +getActiveCollectableItems(): Collectable[]
+    +getActiveNeighbours(): Tile[]
 }
 Controller *-- "-map, 1" Map
 Controller *-- "-players, 2..M" Virologist
