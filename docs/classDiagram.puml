@@ -21,36 +21,34 @@ Resource *-- "-type, 1" ResourceType
 abstract class Agent implements Effect, Collectable {
     {static} {abstract} +create(): Agent
     {abstract} +impact()
-    {abstract} +collect(): Collectable
+    {abstract} +collect(inv: Inventory)
 }
 
 class AmnesiaVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(): Collectable
+    +collect(inv: Inventory)
 }
 
 class StunVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(): Collectable
+    +collect(inv: Inventory)
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(): Collectable
+    +collect(inv: Inventory)
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
     +impact()
-    +collect(): Collectable
+    +collect(inv: Inventory)
 }
 
 class Virologist {
     +moveTo(id: int)
     +getCollectedItems(): Collectable[]
-    +addCollectableItem(collectedItem: Collectable)
-    +removeCollectableItem(removedItem: Collectable)
 }
 
 class Inventory {
@@ -67,11 +65,11 @@ interface Effect {
     +impact()
 }
 class GeneticCode implements Collectable {
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
 }
 
 interface Collectable {
-    +collect(): Collectable
+    +collect(inv: Inventory)
 }
 
 Virologist *-- "-inventory, 1" Inventory
@@ -89,20 +87,20 @@ Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
     {abstract} +impact()
-    {abstract} +collect(player: Virologist)
+    {abstract} +collect(inv: Inventory)
 
 }
 class ProtectiveCloak extends Equipment {
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
     +impact()
 }
 
 class Bag extends Equipment{
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
     +impact()
 }
 class Glove extends Equipment {
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
     +impact()
 }
 
