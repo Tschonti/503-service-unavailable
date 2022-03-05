@@ -51,7 +51,7 @@ class Virologist {
     'az alap useCase-ek:
     +pickUp()
     +craft(code: GeneticCode)
-    +useAgent(agent: Agent)
+    +useAgent(agent: Agent, v: Virologist)
     +steal(Virologist v)
     +pass()
 }
