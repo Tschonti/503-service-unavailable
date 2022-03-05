@@ -1,0 +1,17 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Player Turn
+
+participant "c: Controller" as c
+participant "p: Player" as p
+participant "e: Effect" as e
+c -> p ++ : myTurn()
+    loop for e in effects
+        p -> e ++ : onTurnImpact(p)
+        return
+    end
+return
+@enduml
