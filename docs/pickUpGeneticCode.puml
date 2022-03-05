@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Virologist learns a new genetic code
+
+actor Player as p
+participant "v: Virologist" as v
+participant "l: Laboratory" as l
+participant "g: GeneticCode" as g
+participant "i: Inventory" as i
+
+p -> v ++ : pickUp()
+    v -> l ++ : collectItem(i)
+        l -> g ++ : collect(i)
+            g -> i ++ : addGeneticCode(g)
+            return
+        return
+    return
+return
+
+@enduml

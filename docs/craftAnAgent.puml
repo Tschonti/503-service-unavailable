@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Virologist crafts an agent
+
+actor Player as p
+participant "v: Virologist" as v
+participant "i: Inventory" as i
+participant "price: Resource"
+participant "g: GeneticCode" as g
+participant "agent: Agent" as a1
+participant "newAgent: Agent" as a2
+
+p -> v ++ : craft(g)
+    v -> i ++ : getResources()
+    return resources
+    v -> g ++ : isCraftable(resources)
+    return craftable
+
+    alt craftable
+        v -> g ++ : craft(i)
+            loop for all price: Resource
+                g -> i ++ : removeResource(price)
+                return
+            end
+            g -> a1 ++ : create()
+                a1 -> a2 **
+            return newAgent
+            g -> i ++ : addCraftedAgent(newAgent)
+            return
+        return
+    end
+return
+
+
+
+@enduml

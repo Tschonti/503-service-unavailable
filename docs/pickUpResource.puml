@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Virologist picks up resource
+
+actor Player as p
+participant "v: Virologist" as v
+participant "w: Warehouse" as w
+participant "r: Resource" as r
+participant "i: Inventory" as i
+
+p -> v ++ : pickUp()
+    v -> w ++ : collectItem(i)
+        w -> r ++ : collect(i)
+            r -> i ++ : addResource(r)
+            return
+        return
+    return
+return
+
+@enduml

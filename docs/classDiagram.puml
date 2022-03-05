@@ -3,69 +3,86 @@
 skinparam classAttributeIconSize 0
 class Resource implements Collectable {
     -amount: int
-    +collect(player: Virologist)
+    +collect(inv: Inventory)
+    {static} getResourceByType(resources: Resource[], type: ResourceType): Resource
 }
 
 enum ResourceType {
     AminoAcid
     Nucleotide
 }
-'class AminoAcid extends Resource {
-'
-'}
-'class Nucleotide extends Resource {
-'
-'}
 Resource *-- "-type, 1" ResourceType
 
 abstract class Agent implements Effect, Collectable {
+    #roundsLeft: int
+    #active: bool
+    +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
-    {abstract} +impact()
+    {abstract} +onTurnImpact(to: Virologist)
+    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    'Lehet nem is kell
     {abstract} +collect(inv: Inventory)
 }
 
 class AmnesiaVirus extends Agent{
     {static} +create(): Agent
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 
 class StunVirus extends Agent{
     {static} +create(): Agent
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 
 class Virologist {
+    -actionsLeft: int
     +moveTo(id: int)
     +getCollectedItems(): Collectable[]
+    +addEffect(effect: Effect)
+    +removeEffect(effect:Effect)
+    'az alap useCase-ek:
+    +pickUp()
+    +craft(code: GeneticCode)
+    +useAgent(agent: Agent, v: Virologist)
+    +steal(Virologist v)
+    +pass()
 }
 
 class Inventory {
-    +addCollectable(newGeneticCode: GeneticCode)
-    +addCollectable(newEquipment: Equipment)
-    +addCollectable(newAgent: Agent)
-    +addCollectable(newResource: Resource)
-    +removeCollectable(removedGeneticCode: GeneticCode)
-    +removeCollectable(removedEquipment: Equipment)
-    +removeCollectable(removedAgent: Agent)
-    +removeCollectable(removedResource: Resource)
+    -maxResourceAmount: int
+    +addGeneticCode(gc: GeneticCode)
+    +addEquipment(eq: Equipment)
+    +addCraftedAgent(agent: Agent)
+    +addResource(res: Resource)
+    +removeGeneticCode(gc: GeneticCode)
+    +removeEquipment(eq: Equipment)
+    +removeCraftedAgent(agent: Agent)
+    +removeResource(res: Resource)
 }
 interface Effect {
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory)
+    +isCraftable(resources: Resource[]): boolean
+    +craft(inv: Inventory)
 }
 
 interface Collectable {
@@ -80,52 +97,56 @@ Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
 
-GeneticCode *-- "-requirements ,N" Resource
+GeneticCode *-- "-price ,N" Resource
 GeneticCode *-- "-agent, 1" Agent
 
 Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
-    {abstract} +impact()
+    {abstract} +onTurnImpact(to: Virologist)
+    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     {abstract} +collect(inv: Inventory)
 
 }
 class ProtectiveCloak extends Equipment {
     +collect(inv: Inventory)
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 
 class Bag extends Equipment{
     +collect(inv: Inventory)
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 class Glove extends Equipment {
     +collect(inv: Inventory)
-    +impact()
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 
 'There is Collectable getter because EmptyTile must have a getter either
 abstract class Tile {
     #id: int
     #name: string
-    {abstract} +collectItem(player: Virologist)
+    {abstract} +collectItem(inv: Inventory)
     {abstract} +getCollectableItem(): Collectable
 }
 class Laboratory extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 
 class Safehouse extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 class Warehouse extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 class EmptyTile extends Tile {
-    +collectItem(player: Virologist)
+    +collectItem(inv: Inventory)
     +getCollectableItem(): Collectable
 }
 
