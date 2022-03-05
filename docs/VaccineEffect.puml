@@ -1,24 +1,20 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+mainframe Protective Cloak Effect
 
 participant "v1: Virologist" as v1
 participant "a: Agent" as a
-participant "g: Glove" as g
 participant "v2: Virologist" as v2
-Participant "g: Glove" as g
+participant "v: Vaccine" as v
 
 v1 -> a ++: use(v1,v2)
     a -> v2 ++: addEffect(a)
     return
-    a-> g ++: counterImpact(a, v1, v2)
-        g -> v2++: removeEffect(a)
-        return
-        g -> v1++: addEffect(a))
+    a-> v ++: counterImpact(a, v1, v2)
+        v -> v2++: removeEffect(a)
         return
     return
 return
-
-
-
-
 @enduml
