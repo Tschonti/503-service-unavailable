@@ -15,7 +15,6 @@ Resource *-- "-type, 1" ResourceType
 
 abstract class Agent implements Effect, Collectable {
     #roundsLeft: int
-    #active: bool
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
     {abstract} +onTurnImpact(to: Virologist)
@@ -62,6 +61,9 @@ class Virologist {
     +useAgent(agent: Agent, v: Virologist)
     +steal(Virologist v)
     +pass()
+    /' Zsombi adta hozzá '/
+   -tick()          /'crafted agentek idejét eggyel csökkenti'/
+   +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/
 }
 
 class Inventory {
@@ -77,6 +79,7 @@ class Inventory {
 }
 interface Effect {
     +onTurnImpact(to: Virologist)
+    +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 class GeneticCode implements Collectable {

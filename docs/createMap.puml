@@ -1,0 +1,16 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Create Map
+
+actor Controller as cr
+participant "c: Controller" as c
+participant "m: map" as m
+cr -> c ++ : startGame()
+    c -> m ++ : createMap()
+    return geneticCodes
+return
+
+@enduml
