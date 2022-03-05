@@ -20,5 +20,5 @@ p -> v ++ : pickUp()
         return
     return
 return
-' +impact valahogy
+
 @enduml
