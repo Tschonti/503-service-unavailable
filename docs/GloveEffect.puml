@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+Participant "v1: Virologist" as v1
+Participant "a: Agent" as a
+Participant "v2:Virologist" as v2
+Participant "i2:Inventory" as i2
+Participant "g: Glove" as g
+
+v1 -> a ++: usedOn(v2)
+    a -> v2 ++: addEffect(a)
+        v2 -> i2 ++: addCollectable(a)
+        i2-> g ++:
+
+
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Player
+participant "v1: Virologist" as v1
+participant "a: Agent" as a
+participant "e: Effect" as e
+participant "v2: Virologist" as v2
+
+
+
+Player -> v1 ++: useAgent(a, v2)
+    v1 -> a ++: use(v1,v2)
+        a -> v2 ++: addEffect(a)
+        return
+        loop e: v2.effects
+            a -> e ++: counterImpact(a, v1, v2)
+            return
+        end
+    return
+return
+
+
+@enduml

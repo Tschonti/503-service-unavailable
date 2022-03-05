@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+Participant "v: Virologist" as v
+Participant "e: Effect" as e
+
+Virologist -> Effect ++: Tick()
+    Effect -> Virologist++: removeEffect(Effect)
+    return
+return
+@enduml
