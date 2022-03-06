@@ -3,15 +3,21 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Player Turn
+mainframe myTurn
 
 participant "c: Controller" as c
-participant "p: Player" as p
+participant "v: Virologist" as v
 participant "e: Effect" as e
-c -> p ++ : myTurn()
-    loop for e in effects
-        p -> e ++ : onTurnImpact(p)
+c -> v ++ : myTurn()
+    loop for e in activeEffects
+        v -> e ++ : onTurnImpact(v)
         return
     end
+    note over v,e: Az első loop után történnek\n a játékos által választott akciók.
+    loop for e in activeEffects
+        v -> e ++ : endTurnImpact(v)
+        return
+    end
+
 return
 @enduml

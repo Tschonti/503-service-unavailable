@@ -35,6 +35,7 @@ class StunVirus extends Agent{
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
+    +decrement()
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
@@ -81,6 +82,7 @@ interface Effect {
     +onTurnImpact(to: Virologist)
     +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +decrement()
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory)

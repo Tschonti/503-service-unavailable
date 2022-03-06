@@ -1,0 +1,19 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe tick
+
+participant Controller as cr
+participant "v: Virologist" as v
+participant "e: Effect" as e
+
+cr -> v ++ : myTurn()
+    loop for all e: Effect
+        v -> e ++ : decrement()
+        return
+    end
+return
+
+@enduml
