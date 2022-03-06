@@ -6,18 +6,20 @@ skinparam sequenceMessageAlign center
 
 mainframe Bag on turn impact
 
-actor Controller as c
-participant "p: Player" as p
+participant Controller as c
+participant "v: Virologist" as v
 participant "b: Bag" as b
 participant "i: Inventory" as i
 
-c -> p ++ : myTurn()
-        p -> b ++ : onTurnImpact(p)
-        b -> p ++ : getInventory()
+c -> v ++ : myTurn()
+    v -> b ++ : onTurnImpact(p)
+        b -> v ++ : getInventory()
         return i
-            b -> i ++ : setResourceAmount(2)
-            return
+        b -> i ++ : getMaxResourceAmount()
+        return x
+        b -> i ++ : setMaxResourceAmount(2*x)
         return
+    return
 return
 
 @enduml
