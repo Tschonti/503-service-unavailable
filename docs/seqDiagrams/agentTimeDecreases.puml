@@ -8,10 +8,18 @@ mainframe Agent time decreases
 participant Controller as cr
 participant "v: Virologist" as v
 participant "e: Effect" as e
+participant "inv: Inventory" as inv
+participant "a: Agent" as a
 
 cr -> v ++ : myTurn()
-    loop for all e: Effect
+v -> inv ++ : getCraftedAgents()
+return craftedAgents
+    loop for all e: activeEffects
         v -> e ++ : decrement()
+        return
+    end
+    loop for all a: craftedAgents
+        v -> a++ : decrement()
         return
     end
 return

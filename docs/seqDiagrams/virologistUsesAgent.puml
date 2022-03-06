@@ -14,7 +14,7 @@ Player -> v1 ++: useAgent(a, v2)
     v1 -> a ++: use(v1,v2)
         a -> v2 ++: addEffect(a)
         return
-        loop e: v2.effects
+        loop for all e : v2.activeEffects
             a -> e ++: counterImpact(a, v1, v2)
             return
         end

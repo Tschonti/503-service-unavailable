@@ -2,10 +2,8 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-mainframe Virologist forget their genetic codes by Amnesiavirus
+mainframe Virologist forget their genetic codes by Amnesiavirus -
 skinparam sequenceMessageAlign center
-
-actor Player as p1
 
 participant "v: Virologist" as v
 participant "av: AmnesiaVirus" as av

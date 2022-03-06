@@ -7,11 +7,13 @@ left to right direction
 (Pick up resources) as (pu_mat)
 (Pick up an equipment) as (pu_eq)
 (Steal from another player) as (steal)
-(Time passing by) as (time)
+(Round management) as (time)
+(Starting the game) as (game)
 
 actor Player as j1
 actor Controller as k
-k --> time
+k --> (time)
+k --> (game)
 j1 --> lep
 j1 --> gen
 j1 --> cr_ag
