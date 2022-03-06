@@ -1,16 +1,16 @@
 @startuml
 left to right direction
-(Lépés) as (lep)
-(Genetikai kód megismerése) as (gen)
-(Ágens készítés) as (cr_ag)
-(Ágens alkalmazása) as (use_ag)
-(Anyag felvétele) as (pu_mat)
-(Védőfelszerelés felvétele) as (pu_eq)
-(Másik játékos meglopása) as (steal)
-(Idő múlása) as (time)
+(Step) as (lep)
+(Learn genetic code) as (gen)
+(Craft an agent) as (cr_ag)
+(Use an agent) as (use_ag)
+(Pick up resources) as (pu_mat)
+(Pick up an equipment) as (pu_eq)
+(Steal from another player) as (steal)
+(Time passing by) as (time)
 
-actor Játékos as j1
-actor Kontroller as k
+actor Player as j1
+actor Controller as k
 k --> time
 j1 --> lep
 j1 --> gen
