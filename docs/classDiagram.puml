@@ -115,7 +115,7 @@ Virologist "-players 0..*" - "-activeTile, 1" Tile
 abstract class Equipment implements Effect, Collectable {
     {abstract} +onTurnImpact(to: Virologist)
     {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    {abstract} +allowStealing(): boolean
+    +allowStealing(): boolean
     {abstract} +collect(inv: Inventory)
 
 }
@@ -123,20 +123,17 @@ class ProtectiveCloak extends Equipment {
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
 }
 
 class Bag extends Equipment{
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
 }
 class Glove extends Equipment {
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
 }
 
 'There is Collectable getter because EmptyTile must have a getter either
