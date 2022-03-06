@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+skinparam sequenceMessageAlign center
+mainframe Virologist moves to another Tile
+
+actor Player as p
+participant "v: Virologist" as v
+participant "activeTile: Tile" as t1
+participant "t2: Tile" as t2
+
+'p -> v ++ : getActiveTile()
+'return
+'p -> t1 ++ : getNeighbours()
+'return neighbours: Tile[]
+p -> v++ : moveTo(t2)
+v -> t1 ++ : removeVirologist(v)
+return
+v -> t2 ++ : addVirologist(v)
+return
+return
+
+
+
+@enduml

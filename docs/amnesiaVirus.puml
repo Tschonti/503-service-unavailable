@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+hide footbox
+mainframe Virologist forget their genetic codes by Amnesiavirus
+skinparam sequenceMessageAlign center
+
+actor Player as p1
+
+participant "v1: Virologist" as v1
+participant "v2: Virologist" as v2
+participant "av: AmnesiaVirus" as av
+
+p1 -> v1 ++ : useAgent(av, v2)
+    loop for all geneticCode: GeneticCode
+        v1 -> v2 ++ :removeCollectable(geneticCode)
+        return
+    end
+return
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+mainframe Virologist add vitus dance virus to another virologist
+
+actor Player as p1
+
+participant "v1: Virologist" as v1
+participant "v2: Virologist" as v2
+participant "dv: VitusDanceVirus" as dv
+
+p1 -> v1 ++: useAgent(dv, v2)
+v1 -> v2 ++: addEffect(dv)
+return
+return
+@enduml
