@@ -7,9 +7,9 @@ skinparam sequenceMessageAlign center
 
 actor Player as p1
 
-participant "v1: Virologist" as v1
-participant "v2: Virologist" as v2
+participant "v: Virologist" as v
 participant "av: AmnesiaVirus" as av
+participant "i: Inventory" as i
 
 v -> av ++ : onTurnImpact(v)
     av -> v ++:getInventory()
