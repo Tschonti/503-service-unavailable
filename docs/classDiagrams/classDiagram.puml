@@ -103,7 +103,7 @@ Inventory *-- "-pickedUpEquipments, 0..*\n" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
 
-GeneticCode *-- "-price ,N" Resource
+GeneticCode *-- "-price, N" Resource
 GeneticCode *-- "-agent, 1" Agent
 
 Virologist "-players, 0..*" - "-activeTile, 1" Tile
@@ -162,13 +162,13 @@ class EmptyTile extends Tile {
 class Map {
     +createMap()
 }
+
 Laboratory *-- "-code, 1" GeneticCode
 Safehouse *-- "-equipment, 1" Equipment
 Warehouse *-- "-collectable, 1" Resource
 
 Map  *-- "-tiles, L" Tile
 Tile <-- "-neighbours, 1..K" Tile
-
 
 class Controller {
     -activePlayer: int
