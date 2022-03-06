@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe tick
+mainframe Agent time decreases
 
 participant Controller as cr
 participant "v: Virologist" as v

@@ -4,17 +4,22 @@ hide footbox
 skinparam sequenceMessageAlign center
 mainframe Protective Cloak Effect
 
+participant "a: Agent" as a
+participant "c: ProtectiveCloak" as c
+participant "v2: Virologist" as v2
 participant "v1: Virologist" as v1
 participant "a: Agent" as a
 participant "v2: Virologist" as v2
-participant "v: Vaccine" as v
+participant "c: ProtectiveCloak" as c
 
 v1 -> a ++: use(v1,v2)
     a -> v2 ++: addEffect(a)
     return
-    a-> v ++: counterImpact(a, v1, v2)
-        v -> v2++: removeEffect(a)
-        return
+    a-> c ++: counterImpact(a, v1, v2)
+        opt
+            c -> v2++: removeEffect(a)
+            return
+        end
     return
 return
 @enduml

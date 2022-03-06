@@ -54,7 +54,7 @@ class Virologist {
     -craft(code: GeneticCode)
     -useAgent(agent: Agent, v: Virologist)
     -steal(Virologist v)
-    -pass()
+    +pass()
     /' Zsombi adta hozzá '/
     -tick()          /'crafted agentek idejét eggyel csökkenti'/
     +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/

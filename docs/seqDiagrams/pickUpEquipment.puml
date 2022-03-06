@@ -18,6 +18,7 @@ p -> v ++ : pickUp()
             e -> i ++ : addEquipment(e)
                 i -> v ++ : addEffect(e)
                 return
+            return
         return
     return
 return

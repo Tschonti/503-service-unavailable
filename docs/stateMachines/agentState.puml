@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/state-diagram
-
+left to right direction
 mainframe Agent states
 hide empty description
 

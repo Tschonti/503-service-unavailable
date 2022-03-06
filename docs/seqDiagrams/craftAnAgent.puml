@@ -35,6 +35,4 @@ p -> v ++ : craft(g)
     end
 return
 
-
-
 @enduml

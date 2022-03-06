@@ -11,10 +11,6 @@ participant "v: Virologist" as v
 participant "activeTile: Tile" as t1
 participant "t2: Tile" as t2
 
-'p -> v ++ : getActiveTile()
-'return
-'p -> t1 ++ : getNeighbours()
-'return neighbours: Tile[]
 p -> v++ : moveTo(t2)
 v -> t1 ++ : removeVirologist(v)
 return
