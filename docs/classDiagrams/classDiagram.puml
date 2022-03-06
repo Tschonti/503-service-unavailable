@@ -89,6 +89,12 @@ interface Collectable {
     +collect(inv: Inventory)
 }
 
+Tile ..> Collectable
+Collectable ..> Inventory
+Virologist ..> GeneticCode
+Virologist ..> Agent
+Equipment ..> Agent
+
 Virologist "-virologist, 1" -- "-inventory, 1" Inventory
 Virologist --> "-activeEffects, 0..*" Effect
 
