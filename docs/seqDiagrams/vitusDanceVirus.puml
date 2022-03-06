@@ -5,14 +5,23 @@ hide footbox
 skinparam sequenceMessageAlign center
 mainframe Virologist add vitus dance virus to another virologist
 
-actor Player as p1
-
-participant "v1: Virologist" as v1
-participant "v2: Virologist" as v2
+participant "v: Virologist" as v
 participant "dv: VitusDanceVirus" as dv
+participant "t: Tile" as t
 
-p1 -> v1 ++: useAgent(dv, v2)
-v1 -> v2 ++: addEffect(dv)
-return
+v -> dv ++: onTurnImpact(v)
+    dv -> v ++: getActionsLeft()
+    return actionsLeft
+    loop for actionsLeft > 0
+        dv -> v ++: getActiveTile()
+        return t: Tile
+        dv -> t ++: getNeighbours()
+        return neighbours: Tile[]
+        note over dv: A number is generated between 0\n and the number of neighbours - 1
+        dv -> v ++: moveTo(neighbours[randomNumber])
+        return
+        dv -> v ++: getActionsLeft()
+        return actionsLeft
+    end
 return
 @enduml

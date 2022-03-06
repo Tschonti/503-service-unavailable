@@ -13,4 +13,5 @@ Created --> Destroyed : roundLeft <= 0
 Created --> Activated : use(from, to)
 Activated --> Activated : roundLeft > 0
 Activated --> Destroyed : roundLeft <= 0
+Destroyed-->[*]
 @enduml
