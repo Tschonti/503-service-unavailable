@@ -18,11 +18,11 @@ abstract class Agent implements Effect {
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
     /'             Effekt interface            '/
-        +onTurnImpact(to: Virologist): void
-        +endTurnImpact(to: Virologist): void
-        +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-        +allowStealing(): boolean
-        +decrement(): void
+    +onTurnImpact(to: Virologist): void
+    +endTurnImpact(to: Virologist): void
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
+    +decrement(): void
 }
 
 class AmnesiaVirus extends Agent{
@@ -93,23 +93,23 @@ Virologist "-virologist, 1" -- "-inventory, 1" Inventory
 Virologist --> "-activeEffects, 0..*" Effect
 
 Inventory *-- "-learntCodes, 0..*" GeneticCode
-Inventory *-- "-pickedUpEquipments, 0..*" Equipment
+Inventory *-- "-pickedUpEquipments, 0..*\n" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
 
 GeneticCode *-- "-price ,N" Resource
 GeneticCode *-- "-agent, 1" Agent
 
-Virologist "-players 0..*" - "-activeTile, 1" Tile
+Virologist "-players, 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
     {abstract} +collect(inv: Inventory)
     /'             Effekt interface            '/
-            +onTurnImpact(to: Virologist): void
-            +endTurnImpact(to: Virologist): void
-            +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-            +allowStealing(): boolean
-            +decrement(): void
+    +onTurnImpact(to: Virologist): void
+    +endTurnImpact(to: Virologist): void
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
+    +decrement(): void
 }
 class ProtectiveCloak extends Equipment {
     +collect(inv: Inventory) /'Collectable'/
