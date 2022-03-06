@@ -18,8 +18,9 @@ abstract class Agent implements Effect, Collectable {
     #active: bool
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
-    {abstract} +onTurnImpact(to: Virologist)
-    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +onTurnImpact(to: Virologist)
+    +endTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     'Lehet nem is kell
     {abstract} +collect(inv: Inventory)
 }
@@ -27,26 +28,22 @@ abstract class Agent implements Effect, Collectable {
 class AmnesiaVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 
 class StunVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +collect(inv: Inventory)
 }
 
@@ -77,6 +74,7 @@ class Inventory {
 }
 interface Effect {
     +onTurnImpact(to: Virologist)
+    +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 class GeneticCode implements Collectable {
@@ -103,25 +101,23 @@ GeneticCode *-- "-agent, 1" Agent
 Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
-    {abstract} +onTurnImpact(to: Virologist)
-    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     {abstract} +collect(inv: Inventory)
 
 }
 class ProtectiveCloak extends Equipment {
     +collect(inv: Inventory)
-    +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 
 class Bag extends Equipment{
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +endTurnImpact(to: Virologist)
 }
 class Glove extends Equipment {
     +collect(inv: Inventory)
-    +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 
