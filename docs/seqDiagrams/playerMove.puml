@@ -12,10 +12,10 @@ participant "activeTile: Tile" as t1
 participant "t2: Tile" as t2
 
 p -> v++ : moveTo(t2)
-v -> t1 ++ : removeVirologist(v)
-return
-v -> t2 ++ : addVirologist(v)
-return
+    v -> t1 ++ : removeVirologist(v)
+    return
+    v -> t2 ++ : addVirologist(v)
+    return
 return
 
 
