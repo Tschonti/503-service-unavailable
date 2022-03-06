@@ -48,8 +48,6 @@ class Vaccine extends Agent{
 
 class Virologist {
     -actionsLeft: int
-    +moveTo(id: int)
-    +getCollectedItems(): Collectable[]
     +addEffect(effect: Effect)
     +removeEffect(effect:Effect)
     'az alap useCase-ek:
@@ -133,6 +131,8 @@ abstract class Tile {
     +getPlayersToStealFrom(): Virologist[]
     {abstract} +collectItem(inv: Inventory)
     {abstract} +getCollectableItem(): Collectable
+    +addVirologist(player: Virologist)
+    +removeVirologist(player: Virologist)
 }
 class Laboratory extends Tile {
     +collectItem(inv: Inventory)
