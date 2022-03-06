@@ -33,7 +33,6 @@ class AmnesiaVirus extends Agent{
 class StunVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
 }
 class VitusDanceVirus extends Agent{
@@ -78,9 +77,10 @@ interface Effect {
     +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
+    +decrement(): void
 }
 class GeneticCode implements Collectable {
-    +collect(inv: Inventory)
+    +collect(inv: Inventory) /'Collectable'/
     +isCraftable(resources: Resource[]): boolean
     +craft(inv: Inventory)
 }
@@ -104,26 +104,28 @@ Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
     {abstract} +collect(inv: Inventory)
-
+    /'             Effekt interface            '/
+            +onTurnImpact(to: Virologist): void
+            +endTurnImpact(to: Virologist): void
+            +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+            +allowStealing(): boolean
+            +decrement(): void
 }
 class ProtectiveCloak extends Equipment {
-    +collect(inv: Inventory)
-    +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +collect(inv: Inventory) /'Collectable'/
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
 }
 
 class Bag extends Equipment{
-    +collect(inv: Inventory)
-    +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +collect(inv: Inventory): void /'Collectable'/
+    +onTurnImpact(to: Virologist): void /'Equipment'/
+    +endTurnImpact(to: Virologist): void /'Equipment'/
 }
 class Glove extends Equipment {
-    +collect(inv: Inventory)
-    +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +collect(inv: Inventory): void /'Collectable'/
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist): void /'Equipment'/
 }
 
-'There is Collectable getter because EmptyTile must have a getter either
 abstract class Tile {
     #id: int
     #name: string
@@ -152,7 +154,7 @@ class EmptyTile extends Tile {
 }
 
 class Map {
-    +loadMap()
+    +createMap()
 }
 Laboratory *-- "-code, 1" GeneticCode
 Safehouse *-- "-equipment, 1" Equipment
@@ -164,9 +166,8 @@ Tile <-- "-neighbours, 1..K" Tile
 
 class Controller {
     -activePlayer: int
-    +startGame()
-    +getActiveCollectableItems(): Collectable[]
-    +getActiveNeighbours(): Tile[]
+    +startGame(): void
+    -nextRound(): void
 }
 Controller *-- "-map, 1" Map
 Controller *-- "-players, 2..M" Virologist
