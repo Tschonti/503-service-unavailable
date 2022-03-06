@@ -19,6 +19,7 @@ abstract class Agent implements Effect, Collectable {
     {static} {abstract} +create(): Agent
     {abstract} +onTurnImpact(to: Virologist)
     {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    {abstract} +allowStealing(): boolean
     'Lehet nem is kell
     {abstract} +collect(inv: Inventory)
 }
@@ -27,6 +28,7 @@ class AmnesiaVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
     +collect(inv: Inventory)
 }
 
@@ -34,18 +36,21 @@ class StunVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
     +collect(inv: Inventory)
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
     +collect(inv: Inventory)
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
     +collect(inv: Inventory)
 }
 
@@ -73,14 +78,16 @@ class Inventory {
     +addCraftedAgent(agent: Agent)
     +addResource(res: Resource)
     +removeGeneticCode(gc: GeneticCode)
-    +removeEquipment(eq: Equipment)
+    +removeEquipment(eq: Equipment): boolean
     +removeCraftedAgent(agent: Agent)
     +removeResource(res: Resource)
+    +steal(from: Inventory, what: Equipment)
 }
 interface Effect {
     +onTurnImpact(to: Virologist)
     +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory)
@@ -108,6 +115,7 @@ Virologist "-players 0..*" - "-activeTile, 1" Tile
 abstract class Equipment implements Effect, Collectable {
     {abstract} +onTurnImpact(to: Virologist)
     {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    {abstract} +allowStealing(): boolean
     {abstract} +collect(inv: Inventory)
 
 }
@@ -115,23 +123,27 @@ class ProtectiveCloak extends Equipment {
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
 }
 
 class Bag extends Equipment{
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
 }
 class Glove extends Equipment {
     +collect(inv: Inventory)
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +allowStealing(): boolean
 }
 
 'There is Collectable getter because EmptyTile must have a getter either
 abstract class Tile {
     #id: int
     #name: string
+    +getPlayersToStealFrom(): Virologist[]
     {abstract} +collectItem(inv: Inventory)
     {abstract} +getCollectableItem(): Collectable
 }
