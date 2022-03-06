@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Vaccine counter impact
+
+actor Player as p
+participant "v1: Virologist" as v1
+participant "a: Agent" as a
+participant "v2: Virologist" as v2
+participant "vac Vaccine" as vac
+
+p -> v1++: useAgent(a, v2)
+    v1 -> a++: use(v1, v2)
+        a -> v2++: addEffect(a)
+        return
+        a -> vac++: counterImpact(a, v1, v2)
+            vac -> v2++: removeEffect(a)
+            return
+        return
+    return
+return
+
+@enduml

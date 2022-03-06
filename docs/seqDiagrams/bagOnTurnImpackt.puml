@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Bag on turn impact
+
+participant Controller as c
+participant "v: Virologist" as v
+participant "b: Bag" as b
+participant "i: Inventory" as i
+
+c -> v ++ : myTurn()
+    v -> b ++ : onTurnImpact(p)
+        b -> v ++ : getInventory()
+        return i
+        b -> i ++ : getMaxResourceAmount()
+        return x
+        b -> i ++ : setMaxResourceAmount(2*x)
+        return
+    return
+return
+
+@enduml
