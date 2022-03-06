@@ -42,7 +42,6 @@ class VitusDanceVirus extends Agent{
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
-    +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
 }
 
