@@ -32,6 +32,8 @@ p -> v1 ++ : steal(v2)
         end
         alt eq != null
             v1Inv -> v2Inv ++ : removeEquipment(eq)
+                v2Inv -> v2 ++ : removeEffect(eq)
+                return
             return
             v1Inv -> v1Inv ++ : addEquipment(eq)
             return

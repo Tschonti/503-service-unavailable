@@ -13,23 +13,21 @@ enum ResourceType {
 }
 Resource *-- "-type, 1" ResourceType
 
-abstract class Agent implements Effect, Collectable {
+abstract class Agent implements Effect {
     #roundsLeft: int
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
-    {abstract} +onTurnImpact(to: Virologist)
-    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    {abstract} +allowStealing(): boolean
-    'Lehet nem is kell
-    {abstract} +collect(inv: Inventory)
+    /'             Effekt interface            '/
+        +onTurnImpact(to: Virologist): void
+        +endTurnImpact(to: Virologist): void
+        +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+        +allowStealing(): boolean
+        +decrement(): void
 }
 
 class AmnesiaVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
-    +collect(inv: Inventory)
 }
 
 class StunVirus extends Agent{
@@ -37,21 +35,15 @@ class StunVirus extends Agent{
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
-    +collect(inv: Inventory)
 }
 class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
-    +collect(inv: Inventory)
 }
 class Vaccine extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
-    +collect(inv: Inventory)
 }
 
 class Virologist {
@@ -61,14 +53,15 @@ class Virologist {
     +addEffect(effect: Effect)
     +removeEffect(effect:Effect)
     'az alap useCase-ek:
-    +pickUp()
-    +craft(code: GeneticCode)
-    +useAgent(agent: Agent, v: Virologist)
-    +steal(Virologist v)
-    +pass()
+    -moveTo(newTile: Tile)
+    -pickUp()
+    -craft(code: GeneticCode)
+    -useAgent(agent: Agent, v: Virologist)
+    -steal(Virologist v)
+    -pass()
     /' Zsombi adta hozzá '/
-   -tick()          /'crafted agentek idejét eggyel csökkenti'/
-   +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/
+    -tick()          /'crafted agentek idejét eggyel csökkenti'/
+    +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/
 }
 
 class Inventory {
@@ -99,11 +92,11 @@ interface Collectable {
     +collect(inv: Inventory)
 }
 
-Virologist *-- "-inventory, 1" Inventory
+Virologist "-virologist, 1" -- "-inventory, 1" Inventory
 Virologist --> "-activeEffects, 0..*" Effect
 
 Inventory *-- "-learntCodes, 0..*" GeneticCode
-Inventory *-- "-pickedUpEquipments, 0. .*" Equipment
+Inventory *-- "-pickedUpEquipments, 0..*" Equipment
 Inventory *-- "-craftedAgents, 0..*" Agent
 Inventory *-- "-resources, N" Resource
 
@@ -113,9 +106,6 @@ GeneticCode *-- "-agent, 1" Agent
 Virologist "-players 0..*" - "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
-    {abstract} +onTurnImpact(to: Virologist)
-    {abstract} +counterImpact(agent: Agent, from: Virologist, to: Virologist)
-    +allowStealing(): boolean
     {abstract} +collect(inv: Inventory)
 
 }
