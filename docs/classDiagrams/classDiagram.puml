@@ -22,7 +22,7 @@ abstract class Agent implements Effect {
     #roundsLeft: int
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
-    /'             Effekt interface            '/
+    /'             Effect interface            '/
     +onTurnImpact(to: Virologist): void
     +endTurnImpact(to: Virologist): void
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
