@@ -1,5 +1,4 @@
 @startuml
-
 hide footbox
 skinparam sequenceMessageAlign center
 
@@ -10,7 +9,8 @@ participant "e: Effect" as e
 participant "inv: Inventory" as inv
 participant "a: Agent" as a
 
-cr -> v ++ : myTurn()
+-> v++:
+note over v,e : This sequence happens during myTurn
 v -> inv ++ : getCraftedAgents()
 return craftedAgents
     loop for all e: activeEffects
@@ -38,5 +38,4 @@ return craftedAgents
         return
     end
 return
-
 @enduml

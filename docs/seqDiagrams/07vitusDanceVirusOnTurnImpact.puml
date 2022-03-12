@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
 hide footbox
 skinparam sequenceMessageAlign center
 
@@ -10,6 +9,7 @@ participant "v: Virologist" as v
 participant "dv: VitusDanceVirus" as dv
 participant "t: Tile" as t
 
+note over v, dv : This function gets called in myTurn
 v -> dv ++: onTurnImpact(v)
     dv -> v ++: getActionsLeft()
     return actionsLeft

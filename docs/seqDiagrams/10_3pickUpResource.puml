@@ -14,8 +14,9 @@ participant "i: Inventory" as i
 
 p -> v ++ : pickUp()
     v -> w ++ : collectItem(i)
-        w -> r ++ : collect(i)
-            r -> i ++ : addResource(r)
+        w -> newRes ** : <<create>>
+        w -> newRes ++ : collect(i)
+            newRes -> i ++ : addResource(newRes)
             return
         return
     return

@@ -13,3 +13,4 @@ Created --> Activated : use
 Activated --> Activated : decrement [roundsLeft >= 0]
 Activated -->[*] : decrement [roundsLeft == 0]
 @enduml
+

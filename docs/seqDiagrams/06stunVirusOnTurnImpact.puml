@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
 hide footbox
 skinparam sequenceMessageAlign center
 
@@ -9,6 +8,7 @@ mainframe 3.4.7 Virologist is stunned
 participant "v: Virologist" as v
 participant "sv: StunVirus" as sv
 
+note over v, sv : This function gets called in myTurn
 v -> sv ++: onTurnImpact(v)
     sv -> v ++: getActionsLeft()
     return actionsLeft
