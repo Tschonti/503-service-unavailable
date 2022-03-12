@@ -3,7 +3,8 @@
 
 hide footbox
 skinparam sequenceMessageAlign center
-mainframe The Protective Cloak's counterImpact saves the Virologist from getting affected
+
+mainframe 3.4.16 The Protective Cloak's counterImpact
 
 participant "a: Agent" as a
 participant "c: ProtectiveCloak" as c

@@ -3,7 +3,8 @@
 
 hide footbox
 skinparam sequenceMessageAlign center
-mainframe Virologist add vitus dance virus to another virologist
+
+mainframe 3.4.8 Virologist is affected by Vitus Dance Virus
 
 participant "v: Virologist" as v
 participant "dv: VitusDanceVirus" as dv

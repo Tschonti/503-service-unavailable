@@ -7,13 +7,15 @@ class Resource implements Collectable {
     -type: ResourceType
     +collect(inv: Inventory)
     {static} getResourceByType(resources: Resource[], type: ResourceType): Resource
+
 }
 
 enum ResourceType {
     AminoAcid
     Nucleotide
 }
-Resource *-- "-type, 1" ResourceType
+
+Resource -- ResourceType #line:white
 
 abstract class Agent implements Effect {
 

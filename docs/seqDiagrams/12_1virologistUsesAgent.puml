@@ -6,7 +6,7 @@ skinparam sequenceMessageAlign center
 
 mainframe 3.4.14 Virologist Uses Agent
 
-actor Player
+actor Player as p
 participant "v1: Virologist" as v1
 participant "i: Inventory" as i
 participant "t: Tile" as t

@@ -2,8 +2,9 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-mainframe Glove's CounterImpact throws agent back
 skinparam sequenceMessageAlign center
+
+mainframe 3.4.15 Glove's CounterImpact throws agent back
 
 participant "a: Agent" as a
 participant "g: Glove" as g

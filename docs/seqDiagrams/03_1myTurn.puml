@@ -19,6 +19,6 @@ c -> v ++ : myTurn()
         v -> e ++ : endTurnImpact(v)
         return
     end
-
+    ref over v: Agent time decreases
 return
 @enduml
