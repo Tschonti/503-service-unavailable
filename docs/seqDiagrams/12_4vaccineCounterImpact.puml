@@ -2,7 +2,8 @@
 'https://plantuml.com/sequence-diagram
 hide footbox
 skinparam sequenceMessageAlign center
-mainframe The Vaccine's CounterImpact saves Virologist from getting affected
+
+mainframe 3.4.17 The Vaccine's CounterImpact saves Virologist from getting affected
 
 participant "a: Agent" as a
 participant "vac: Vaccine" as vac

@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist picks up equipment
+mainframe 3.4.10 Virologist picks up equipment
 
 actor Player as p
 participant "v: Virologist" as v

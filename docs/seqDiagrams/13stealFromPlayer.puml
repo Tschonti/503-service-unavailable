@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist steals from a stunned Virologist
+mainframe 3.4.18 Virologist steals from a stunned Virologist
 
 actor Player as p
 participant "v1: Virologist" as v1
