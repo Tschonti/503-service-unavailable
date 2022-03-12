@@ -9,7 +9,7 @@ mainframe Virologist picks up resource
 actor Player as p
 participant "v: Virologist" as v
 participant "w: Warehouse" as w
-participant "r: Resource" as r
+participant "newRes: Resource" as newRes
 participant "i: Inventory" as i
 
 p -> v ++ : pickUp()

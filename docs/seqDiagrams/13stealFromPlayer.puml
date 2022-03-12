@@ -8,9 +8,17 @@ mainframe Virologist steals from a stunned Virologist
 
 actor Player as p
 participant "v1: Virologist" as v1
+participant "t: Tile" as t
 participant "v1Inv: Inventory" as v1Inv
 participant "v2: Virologist" as v2
 participant "v2Inv: Inventory" as v2Inv
+
+p -> v1 ++ : getNearbyVirologistsToStealFrom()
+    v1-> t ++ : getPlayersToStealFrom()
+    return players
+return virologists
+
+note over p, v1 : Player chooses 'v2' virologist to steal from
 
 p -> v1 ++ : steal(v2)
     v1 -> v2 ++ : getInventory()
@@ -18,7 +26,7 @@ p -> v1 ++ : steal(v2)
 
     v1 -> v2Inv ++ : getEquipments()
     return v2Equipments
-    note over v1: Player chooses one eq from v2Equipments
+    note over v1, t: Player chooses one eq from v2Equipments
 
     v1 -> v1Inv ++ : steal(v2Inv, eq)
         v1Inv -> v2Inv ++ : getResources()

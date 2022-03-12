@@ -9,14 +9,15 @@ mainframe Virologist picks up equipment
 actor Player as p
 participant "v: Virologist" as v
 participant "s: Safehouse" as s
-participant "e: Equipment" as e
+participant "newEq: Equipment" as newEq
 participant "i: Inventory" as i
 
 p -> v ++ : pickUp()
     v -> s ++ : collectItem(i)
-        s -> e ++ : collect(i)
-            e -> i ++ : addEquipment(e)
-                i -> v ++ : addEffect(e)
+        s -> newEq ** : <<create>>
+        s -> newEq ++ : collect(i)
+            newEq -> i ++ : addEquipment(newEq)
+                i -> v ++ : addEffect(newEq)
                 return
             return
         return

@@ -9,7 +9,7 @@ mainframe Virologist learns a new genetic code
 actor Player as p
 participant "v: Virologist" as v
 participant "l: Laboratory" as l
-participant "g: GeneticCode" as g
+participant "newGc: GeneticCode" as newGc
 participant "i: Inventory" as i
 
 p -> v ++ : pickUp()

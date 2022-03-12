@@ -1,0 +1,42 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Agent time decreases
+
+participant "v: Virologist" as v
+participant "e: Effect" as e
+participant "inv: Inventory" as inv
+participant "a: Agent" as a
+
+cr -> v ++ : myTurn()
+v -> inv ++ : getCraftedAgents()
+return craftedAgents
+    loop for all e: activeEffects
+        v -> e ++ : decrement(v)
+        opt roundsLeft ==  0
+            e -> v ++ : removeActiveEffect(e)
+            return
+            e -> v ++ : getInventory()
+            return inv
+            e -> inv ++ : removeCraftedAgent(e)
+            return
+        end
+        return
+    end
+    loop for all a: craftedAgents
+        v -> a++ : decrement(v)
+            opt roundsLeft == 0
+                a -> v ++ : removeActiveEffect(e)
+                return
+                e -> v ++ : getInventory()
+                return inv
+                a -> inv ++ : removeCraftedAgent(e)
+                return
+            end
+        return
+    end
+return
+
+@enduml

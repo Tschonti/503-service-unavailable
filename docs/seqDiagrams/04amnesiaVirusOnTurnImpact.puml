@@ -2,13 +2,15 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-mainframe Virologist forget their genetic codes by Amnesiavirus -
 skinparam sequenceMessageAlign center
+
+mainframe 3.4.5 Virologist forget their genetic codes by Amnesiavirus
 
 participant "v: Virologist" as v
 participant "av: AmnesiaVirus" as av
 participant "i: Inventory" as i
 
+note over v, av : This function gets called in myTurn
 v -> av ++ : onTurnImpact(v)
     av -> v ++:getInventory()
     return i

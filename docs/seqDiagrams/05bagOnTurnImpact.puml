@@ -10,13 +10,13 @@ participant "v: Virologist" as v
 participant "b: Bag" as b
 participant "i: Inventory" as i
 
-    v -> b ++ : onTurnImpact(p)
-        b -> v ++ : getInventory()
-        return i
-        b -> i ++ : getMaxResourceAmount()
-        return x
-        b -> i ++ : setMaxResourceAmount(2*x)
-        return
+note over v, b : This function gets called in myTurn
+v -> b ++ : onTurnImpact(p)
+    b -> v ++ : getInventory()
+    return i
+    b -> i ++ : getMaxResourceAmount()
+    return x
+    b -> i ++ : setMaxResourceAmount(2*x)
     return
-
+return
 @enduml

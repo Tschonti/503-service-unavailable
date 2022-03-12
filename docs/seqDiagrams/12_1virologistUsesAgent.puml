@@ -6,11 +6,24 @@ mainframe Virologist Uses Agent
 
 actor Player
 participant "v1: Virologist" as v1
+participant "i: Inventory" as i
+participant "t: Tile" as t
 participant "a: Agent" as a
 participant "e: Effect" as e
 participant "v2: Virologist" as v2
 
-Player -> v1 ++: useAgent(a, v2)
+p -> v1 ++ : getCraftedAgents()
+    v1-> i ++ : getCraftedAgents()
+    return agents
+return agents
+
+p -> v1 ++ : getNearbyVirologists()
+    v1-> t ++ : getPlayers()
+    return players
+return virologists
+
+note over p, v1 : Player chooses 'v2' from virologists and 'a' from agents
+p -> v1 ++: useAgent(a, v2)
     v1 -> a ++: use(v1,v2)
         a -> v2 ++: addEffect(a)
         return

@@ -9,6 +9,7 @@ participant "c: ProtectiveCloak" as c
 participant "v2: Virologist" as v2
 participant "v1: Virologist" as v1
 
+note over a,c: This function gets called in virologistUsesAgent
 a -> c ++: counterImpact(a, v1, v2)
     note over c :getting a random number\n from 1 to 1000
     opt randomNumber <= 823

@@ -9,25 +9,35 @@ mainframe Virologist crafts an agent
 actor Player as p
 participant "v: Virologist" as v
 participant "i: Inventory" as i
-participant "price: Resource"
 participant "g: GeneticCode" as g
 participant "agent: Agent" as a1
+participant "price: Resource"
 participant "newAgent: Agent" as a2
 
-p -> v ++ : craft(g)
-    v -> i ++ : getResources()
-    return resources
-    v -> g ++ : isCraftable(resources)
-    return craftable
+p -> v ++ : getCraftables()
 
+    v -> i ++ : getGeneticCodes()
+    return geneticCodes
+
+    loop for all g in geneticCodes
+        v -> g ++ : isCraftable(i)
+            g -> i ++ : getResources()
+            return resources
+        return craftable
+    end
+return craftableCodes
+
+note over p,v: Player chooses 'g' from craftableCodes.
+p -> v ++ : craft(g)
     alt craftable
         v -> g ++ : craft(i)
             loop for all price: Resource
                 g -> i ++ : removeResource(price)
                 return
             end
+            note over g, a1 : Clones the agent stored in the agent attribute
             g -> a1 ++ : create()
-                a1 -> a2 **
+                a1 -> a2 ** : <<create>>
             return newAgent
             g -> i ++ : addCraftedAgent(newAgent)
             return

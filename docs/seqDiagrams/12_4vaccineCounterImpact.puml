@@ -9,6 +9,7 @@ participant "vac: Vaccine" as vac
 participant "v2: Virologist" as v2
 participant "v1: Virologist" as v1
 
+note over a, vac : This function gets called in virologistUsesAgent
 a -> vac ++: counterImpact(a, v1, v2)
     vac -> v2++: removeEffect(a)
     return

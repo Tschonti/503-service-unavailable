@@ -11,13 +11,15 @@ participant "v: Virologist" as v
 participant "activeTile: Tile" as t1
 participant "t2: Tile" as t2
 
-p -> v++ : moveTo(t2)
+p -> v++ : move()
+    v -> t1 ++ : getNeighbours()
+    return neighbours
+return neighbours
+note over p,v: Player chooses 't2' from neighbours
+p -> v ++: moveTo(t2)
     v -> t1 ++ : removeVirologist(v)
     return
     v -> t2 ++ : addVirologist(v)
     return
 return
-
-
-
 @enduml

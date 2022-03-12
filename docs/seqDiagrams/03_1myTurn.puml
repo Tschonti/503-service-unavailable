@@ -13,7 +13,8 @@ c -> v ++ : myTurn()
         v -> e ++ : onTurnImpact(v)
         return
     end
-    note over v,e: Itt történnek a játékos által választott akciók.
+
+    note over v,e: Actions chosen by the Player
     loop for e in activeEffects
         v -> e ++ : endTurnImpact(v)
         return

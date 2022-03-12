@@ -1,8 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
+
 class Resource implements Collectable {
     -amount: int
+    -type: ResourceType
     +collect(inv: Inventory)
     {static} getResourceByType(resources: Resource[], type: ResourceType): Resource
 }
@@ -14,6 +16,7 @@ enum ResourceType {
 Resource *-- "-type, 1" ResourceType
 
 abstract class Agent implements Effect {
+
     #roundsLeft: int
     +use(from: Virologist, to: Virologist)
     {static} {abstract} +create(): Agent
@@ -55,8 +58,12 @@ class Virologist {
     -useAgent(agent: Agent, v: Virologist)
     -steal(Virologist v)
     +pass()
-    /' Zsombi adta hozzá '/
-    -tick()          /'crafted agentek idejét eggyel csökkenti'/
+    'usecase wrapperek
+    -getNeighbours(): Tile[]
+    -getCraftables(): GeneticCode[]
+    -getCraftedAgents(): Agent[]
+    -getNearbyVirologists(): Virologist[]
+    -getNearbyVirologistsToStealFrom(): Virologist[]
     +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/
 }
 
@@ -81,7 +88,7 @@ interface Effect {
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory) /'Collectable'/
-    +isCraftable(resources: Resource[]): boolean
+    +isCraftable(inv: Inventory): boolean
     +craft(inv: Inventory)
 }
 
@@ -106,7 +113,7 @@ Inventory *-- "-resources, N" Resource
 GeneticCode *-- "-price, N" Resource
 GeneticCode *-- "-agent, 1" Agent
 
-Virologist "-players, 0..*" - "-activeTile, 1" Tile
+Virologist "-players, 0..*" -- "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
     +collect(inv: Inventory)
