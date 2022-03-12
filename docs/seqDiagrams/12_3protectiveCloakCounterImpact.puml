@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+
 hide footbox
 skinparam sequenceMessageAlign center
 mainframe The Protective Cloak's counterImpact saves the Virologist from getting affected

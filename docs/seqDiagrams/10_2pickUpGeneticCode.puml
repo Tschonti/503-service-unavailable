@@ -14,8 +14,9 @@ participant "i: Inventory" as i
 
 p -> v ++ : pickUp()
     v -> l ++ : collectItem(i)
-        l -> g ++ : collect(i)
-            g -> i ++ : addGeneticCode(g)
+        l -> newGc ** : <<create>>
+        l -> newGc ++ : collect(i)
+            newGc -> i ++ : addGeneticCode(newGc)
             return
         return
     return

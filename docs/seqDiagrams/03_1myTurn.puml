@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe myTurn
+mainframe 3.4.3 myTurn
 
 participant "c: Controller" as c
 participant "v: Virologist" as v

@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Agent time decreases
+mainframe 3.4.4 Agent time decreases
 
 participant "v: Virologist" as v
 participant "e: Effect" as e

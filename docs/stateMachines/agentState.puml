@@ -5,7 +5,6 @@ mainframe Agent states
 hide empty description
 
 state Created
-state Destroyed
 state Activated
 [*] --> Created
 Created --> Created : roundLeft > 0

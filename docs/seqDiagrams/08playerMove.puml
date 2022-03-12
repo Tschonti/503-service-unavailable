@@ -2,7 +2,6 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-
 skinparam sequenceMessageAlign center
 
 mainframe 3.4.9 Virologist moves to another Tile
