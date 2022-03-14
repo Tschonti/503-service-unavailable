@@ -10,7 +10,7 @@ participant "b: Bag" as b
 participant "i: Inventory" as i
 
 note over v, b : This function gets called in myTurn
-v -> b ++ : onTurnImpact(p)
+v -> b ++ : onTurnImpact(v)
     b -> v ++ : getInventory()
     return i
     b -> i ++ : getMaxResourceAmount()

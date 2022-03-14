@@ -108,9 +108,9 @@ Virologist "-virologist, 1" -- "-inventory, 1" Inventory
 Virologist *-- "-activeEffects, 0..*" Effect
 
 Inventory *-- "-learntCodes, 0..*" GeneticCode
-Inventory *-- "-pickedUpEquipments, 0..*" Equipment
-Inventory *-- "-craftedAgents, 0..*" Agent
-Inventory *-- "-resources, N" Resource
+Inventory --> "-pickedUpEquipments, 0..*" Equipment
+Inventory --> "-craftedAgents, 0..*" Agent
+Inventory --> "-resources, N" Resource
 
 GeneticCode *-- "-price, N" Resource
 GeneticCode *-- "-agent, 1" Agent

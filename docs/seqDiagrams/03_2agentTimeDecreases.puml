@@ -30,7 +30,7 @@ return craftedAgents
             opt roundsLeft == 0
                 a -> v ++ : removeActiveEffect(e)
                 return
-                e -> v ++ : getInventory()
+                a -> v ++ : getInventory()
                 return inv
                 a -> inv ++ : removeCraftedAgent(e)
                 return

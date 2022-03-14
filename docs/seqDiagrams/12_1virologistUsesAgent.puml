@@ -29,7 +29,9 @@ p -> v1 ++: useAgent(a, v2)
     v1 -> a ++: use(v1,v2)
         a -> v2 ++: addEffect(a)
         return
-        loop for all e : v2.activeEffects
+        a -> v2 ++: getActiveEffects()
+        return activeEffects
+        loop for all e : activeEffects
             a -> e ++: counterImpact(a, v1, v2)
             return
         end
