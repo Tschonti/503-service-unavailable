@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.16 The Protective Cloak's counterImpact
+mainframe 4.4.16 The Protective Cloak's counterImpact
 
 participant "a: Agent" as a
 participant "c: ProtectiveCloak" as c

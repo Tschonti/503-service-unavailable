@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.6 Bag enlarges Virologist's inventory.
+mainframe 4.4.6 Bag enlarges Virologist's inventory.
 
 participant "v: Virologist" as v
 participant "b: Bag" as b

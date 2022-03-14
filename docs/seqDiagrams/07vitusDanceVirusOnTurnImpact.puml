@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.8 Virologist is affected by Vitus Dance Virus
+mainframe 4.4.8 Virologist is affected by Vitus Dance Virus
 
 participant "v: Virologist" as v
 participant "dv: VitusDanceVirus" as dv

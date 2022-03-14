@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.9 Virologist moves to another Tile
+mainframe 4.4.9 Virologist moves to another Tile
 
 actor Player as p
 participant "v: Virologist" as v

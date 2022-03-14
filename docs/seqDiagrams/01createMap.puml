@@ -1,7 +1,8 @@
 @startuml
 hide footbox
 skinparam sequenceMessageAlign center
-mainframe 3.4.1 Create Map
+
+mainframe 4.4.1 Create Map
 
 actor Controller as cr
 participant "c: Controller" as c

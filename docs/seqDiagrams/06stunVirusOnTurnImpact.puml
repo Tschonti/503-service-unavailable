@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.7 Virologist is stunned
+mainframe 4.4.7 Virologist is stunned
 
 participant "v: Virologist" as v
 participant "sv: StunVirus" as sv

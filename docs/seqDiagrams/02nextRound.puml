@@ -2,7 +2,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 3.4.2 nextRound
+mainframe 4.4.2 nextRound
 
 actor Controller as cr
 participant "c: Controller" as c
