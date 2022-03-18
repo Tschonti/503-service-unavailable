@@ -1,0 +1,65 @@
+@startuml
+left to right direction
+actor Player as P
+actor Controller as C
+
+'kérdés mindegyikre: magadra vagy másra?
+'van e más játékos a mezőn?
+'kérdések counterimpactben: van e azon, akin alkalmazták, cloak, glove vagy vaccine
+(useAmnesiaVirus) as uAv
+(useStunVirus) as uSv
+(useVitusDanceVirus) as uVdv
+(useVaccine) as uV
+
+/' Vírusokat craftol (szerintem nem kell mindegyiket külön)'/
+(craftVaccine) as cV
+(craftVitusDance) as cVd
+(craftAmnesia) as cA
+(craftStun) as cS
+
+/' Mező típusokra lép '/
+(pickUpBag) as pB
+(pickUpCloak) as pC
+(pickUpGlove) as pG
+(pickUpResource) as pRES
+(learnGeneticCode)  as lGC
+
+(moveToWarehouse) as mWh
+(moveToSafehouse) as mSh
+(moveToLaboratory) as mL
+(moveToEmptyTile) as mEt
+
+/' Scenes '/
+(robVirologist) as rv
+
+P -left-> mWh
+P -left-> mSh
+P -left-> mL
+P -left-> mEt
+
+P -up-> uAv
+P -up-> uSv
+P -up-> uVdv
+P -up-> uV
+
+P -right-> cA
+P -right-> cS
+P -right-> cVd
+P -right-> cV
+
+P -down-> rv
+P -down-> pG
+P -down-> pC
+P -down-> pB
+P -down-> lGC
+P -down-> pRES
+
+/' Controller test-cases '/
+
+(createMap) as cM
+(nextRound) as nR
+
+C --> cM
+C --> nR
+
+@enduml
