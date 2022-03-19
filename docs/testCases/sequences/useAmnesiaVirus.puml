@@ -1,0 +1,21 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe S-Z-Á-M useAmnesiaVirus
+participant "av: AmnesiaVirus" as av
+participant "v2: Virologist" as v2
+participant "g: Glove" as g
+participant "v1: Virologist" as v1
+
+ -> av++ : use(v1,v2)
+    av -> v2++ : getActiveEffects()
+    return activeEffects
+    av -> v2++ : addEffect(av)
+    return
+    opt v1 != v2
+        av -> g++: counterImpact(av, v1, v2)
+        return
+    end
+ return
+@enduml
