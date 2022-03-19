@@ -6,7 +6,6 @@ skinparam sequenceMessageAlign center
 
 mainframe  Virologist crafts a VitusDanceVirus
 
-actor Player as p
 participant "v: Virologist" as v
 participant "i: Inventory" as i
 participant "g: GeneticCode" as g
@@ -14,21 +13,7 @@ participant "v: VitusDanceVirus" as v1
 participant "price: Resource"
 participant "newVitus: VitusDanceVirus" as v2
 
-p -> v ++ : getCraftables()
-    v -> i ++ : getGeneticCodes()
-    return geneticCodes
-
-    loop for all g in geneticCodes
-        v -> g ++ : isCraftable(i)
-            g -> i ++ : getResources()
-            return resources
-        return craftable
-    end
-return craftableCodes
-
-note over p,v: Player chooses 'g' from craftableCodes.
-p -> v ++ : craft(g)
-    alt craftable
+-> v ++ : craft(g)
         v -> g ++ : craft(i)
             loop for all price: Resource
                 g -> i ++ : removeResource(price)
@@ -41,7 +26,6 @@ p -> v ++ : craft(g)
             g -> i ++ : addCraftedAgent(newVitus)
             return
         return
-    end
 return
 
 @enduml
