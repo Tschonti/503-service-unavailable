@@ -27,13 +27,15 @@ return virologists
 note over p, v1 : Player chooses 'v2' from virologists and 'a' from agents
 p -> v1 ++: useAgent(a, v2)
     v1 -> a ++: use(v1,v2)
-        a -> v2 ++: addEffect(a)
-        return
         a -> v2 ++: getActiveEffects()
         return activeEffects
-        loop for all e : activeEffects
-            a -> e ++: counterImpact(a, v1, v2)
-            return
+        a -> v2 ++: addEffect(a)
+        return
+        opt v1 != v2
+            loop for all e : activeEffects
+                a -> e ++: counterImpact(a, v1, v2)
+                return
+            end
         end
     return
 return

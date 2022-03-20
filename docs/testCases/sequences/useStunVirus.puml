@@ -1,0 +1,23 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe S-Z-Á-M useStunVirus
+participant "sv: StunVirus" as sv
+participant "v2: Virologist" as v2
+participant "e: Effect" as e
+participant "v1: Virologist" as v1
+
+ -> sv++ : use(v1,v2)
+    sv -> v2++ : getActiveEffects()
+    return activeEffects
+    sv -> v2++ : addEffect(sv)
+    return
+    opt v1 != v2
+        loop for all e in activeEffects
+            sv -> e++ : counterImpact(sv, v1, v2)
+            return
+        end
+    end
+ return
+@enduml
