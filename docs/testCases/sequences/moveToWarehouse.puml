@@ -5,30 +5,14 @@ skinparam sequenceMessageAlign center
 
 mainframe Virologist moves to Warehouse
 
-actor Player as p
 participant "v: Virologist" as v
 participant "activeTile: EmptyTile" as t1
 participant "w: Warehouse" as w
 
-p -> v++ : move()
-    v -> t1 ++ : getNeighbours()
-    return neighbours
-return neighbours
-
-p -> v ++: moveTo(w)
+-> v ++: moveTo(w)
     v -> t1 ++ : removeVirologist(v)
     return
     v -> w ++ : addVirologist(v)
     return
 return
-@enduml@startuml
-'https://plantuml.com/sequence-diagram
-
-autonumber
-
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
 @enduml

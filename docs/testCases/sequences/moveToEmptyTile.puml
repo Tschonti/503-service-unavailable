@@ -5,17 +5,11 @@ skinparam sequenceMessageAlign center
 
 mainframe Virologist moves to EmptyTile
 
-actor Player as p
 participant "v: Virologist" as v
 participant "activeTile: EmptyTile" as t1
 participant "e: EmptyTile" as e
 
-p -> v++ : move()
-    v -> t1 ++ : getNeighbours()
-    return neighbours
-return neighbours
-
-p -> v ++: moveTo(e)
+-> v ++: moveTo(e)
     v -> t1 ++ : removeVirologist(v)
     return
     v -> e ++ : addVirologist(v)
