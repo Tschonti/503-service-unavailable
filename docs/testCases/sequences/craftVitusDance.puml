@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe  Virologist crafts a VitusDanceVirus
+mainframe  5.3.12 Virologist crafts a VitusDanceVirus
 
 participant "v: Virologist" as v
 participant "i: Inventory" as i
