@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Virologist picks up protective cloak
+
+actor Player as p
+participant "v: Virologist" as v
+participant "s: Safehouse" as s
+participant "pc: ProtectiveCloak" as pc
+participant "i: Inventory" as i
+
+p -> v ++ : pickUp()
+    v -> s ++ : collectItem(i)
+        s -> pc ** : <<create>>
+        s -> pc ++ : collect(i)
+            pc -> i ++ : addEquipment(pc)
+                i -> v ++ : addEffect(pc)
+                return
+            return
+        return
+    return
+return
+
+@enduml
