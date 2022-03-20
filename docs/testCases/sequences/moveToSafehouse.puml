@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist moves to Safehouse
+mainframe 5.3.3 Virologist moves to Safehouse
 
 participant "v: Virologist" as v
 participant "activeTile: EmptyTile" as t1
