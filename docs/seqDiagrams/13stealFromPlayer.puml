@@ -9,12 +9,26 @@ mainframe 4.4.18 Virologist steals from a stunned Virologist
 actor Player as p
 participant "v1: Virologist" as v1
 participant "t: Tile" as t
+participant "vX: Virologist" as vX
+participant "vXInv: Inventory" as vXInv
+participant "e: Effect" as e
 participant "v1Inv: Inventory" as v1Inv
 participant "v2: Virologist" as v2
 participant "v2Inv: Inventory" as v2Inv
+participant "eq: Equipment" as eq
 
 p -> v1 ++ : getNearbyVirologistsToStealFrom()
     v1-> t ++ : getPlayersToStealFrom()
+    loop for all vX in t.players
+        t -> vX ++ : getInventory()
+        return vXInv
+        t -> vXInv ++ : getActiveEffects()
+        return effects
+        loop for all e in effects
+            t -> e ++ : allowStealing()
+            return allow
+        end
+    end
     return players
 return virologists
 
@@ -38,7 +52,7 @@ p -> v1 ++ : steal(v2)
             v1Inv -> v2Inv ++ : removeResource(addedResource)
             return
         end
-        alt eq != null
+        opt eq != null && v1Inv.pickedUpEquipments.length < 3
             v1Inv -> v2Inv ++ : removeEquipment(eq)
                 v2Inv -> v2 ++ : removeEffect(eq)
                 return

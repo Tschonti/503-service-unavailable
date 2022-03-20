@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe XXX Virologist is stunned
+
+participant "v: Virologist" as v
+participant "sv: StunVirus" as sv
+
+-> v ++: myTurn()
+    v -> sv ++: onTurnImpact(v)
+        sv -> v ++: getActionsLeft()
+        return actionsLeft
+        loop while actionsLeft > 0
+            sv -> v ++: pass()
+            return
+            sv -> v ++: getActionsLeft()
+            return actionsLeft
+        end
+    return
+return
+@enduml

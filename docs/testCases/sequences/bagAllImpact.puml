@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe XXX Virologist pick up more Resources with enlarged Bag.
+
+participant "v: Virologist" as v
+participant "b: Bag" as b
+participant "i: Inventory" as i
+participant "w: Warehouse" as w
+participant "newRes: Resource" as newRes
+
+-> v ++ : myTurn()
+    v -> b ++ : onTurnImpact(v)
+        b -> v ++ : getInventory()
+        return i
+        b -> i ++ : getMaxResourceAmount()
+        return x
+        b -> i ++ : setMaxResourceAmount(2*x)
+        return
+    return
+
+    v -> w ++ : collectItem(i)
+        w -> newRes ** : <<create>>
+        w -> newRes ++ : collect(i)
+            newRes -> i ++ : addResource(newRes)
+            return
+        return
+    return
+
+    v -> b ++ : endTurnImpact(v)
+            b -> v ++ : getInventory()
+            return i
+            b -> i ++ : getMaxResourceAmount()
+            return x
+            b -> i ++ : setMaxResourceAmount(x/2)
+            return
+        return
+return
+@enduml
