@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Virologist moves to Safehouse
+
+participant "v: Virologist" as v
+participant "activeTile: EmptyTile" as t1
+participant "s: Safehouse" as s
+
+-> v ++: moveTo(s)
+    v -> t1 ++ : removeVirologist(v)
+    return
+    v -> s ++ : addVirologist(v)
+    return
+return
+@enduml
