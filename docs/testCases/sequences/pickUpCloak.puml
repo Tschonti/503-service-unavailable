@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist picks up protective cloak
+mainframe 5.3.6 Virologist picks up protective cloak
 
 actor Player as p
 participant "v: Virologist" as v

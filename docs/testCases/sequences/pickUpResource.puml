@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist picks up resource
+mainframe 5.3.8 Virologist picks up resource
 
 actor Player as p
 participant "v: Virologist" as v

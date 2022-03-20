@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe Virologist picks up bag
+mainframe 5.3.5 Virologist picks up bag
 
 actor Player as p
 participant "v: Virologist" as v
