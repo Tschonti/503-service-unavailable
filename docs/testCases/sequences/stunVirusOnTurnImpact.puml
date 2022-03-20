@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe XXX Virologist is stunned
+mainframe 5.3.21 Virologist is stunned
 
 participant "v: Virologist" as v
 participant "sv: StunVirus" as sv
@@ -18,6 +18,11 @@ participant "sv: StunVirus" as sv
             sv -> v ++: getActionsLeft()
             return actionsLeft
         end
+    return
+
+    note across : The player will choose their actions here in the real game
+
+    v -> sv ++ : endTurnImpact()
     return
 return
 @enduml

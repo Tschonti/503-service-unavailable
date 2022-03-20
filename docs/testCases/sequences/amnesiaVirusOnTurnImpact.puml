@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe XXX Virologist forgets their genetic codes by Amnesiavirus
+mainframe 5.3.19 Virologist forgets their genetic codes by Amnesiavirus
 
 participant "v: Virologist" as v
 participant "av: AmnesiaVirus" as av
@@ -18,7 +18,7 @@ participant "i: Inventory" as i
             return
         end
     return
-    ...
+    note across : The player will choose their actions here in the real game
     v -> av ++ : endTurnImpact(v)
     return
 

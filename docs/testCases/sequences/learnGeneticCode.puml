@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 4.4.11 Virologist learns a new genetic code
+mainframe 5.3.9 Virologist learns a new genetic code
 
 participant "v: Virologist" as v
 participant "c: Controller" as c

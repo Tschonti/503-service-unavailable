@@ -11,6 +11,11 @@ actor Player as P
 (useVitusDanceVirus) as uVdv
 (useVaccine) as uV
 
+(forgetCodesViaAmnesiaVirus) as fcvav
+(enlargeTheBag) as purweb
+(stunnedPlayerMissesTurn) as spmt
+(playerVitusDances) as pvd
+
 /' Vírusokat craftol (szerintem nem kell mindegyiket külön)'/
 (craftVaccine) as cV
 (craftVitusDance) as cVd
@@ -29,10 +34,7 @@ actor Player as P
 (moveToLaboratory) as mL
 (moveToEmptyTile) as mEt
 
-(forgetCodesViaAmnesiaVirus) as fcvav
-(pickUpResourcesWithEnlargedBag) as purweb
-(stunnedPlayerMissesTurn) as spmt
-(playerVitusDances) as pvd
+
 
 /' Scenes '/
 (robVirologist) as rv
@@ -49,8 +51,8 @@ P -up-> uV
 
 P -up-> fcvav
 P -up-> purweb
-P -up-> spmt
-P -up-> pvd
+P -down-> spmt
+P -down-> pvd
 
 P -right-> cA
 P -right-> cS

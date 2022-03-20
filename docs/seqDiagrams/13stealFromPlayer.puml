@@ -43,6 +43,17 @@ p -> v1 ++ : steal(v2)
     note over v1, t: Player chooses one eq from v2Equipments
 
     v1 -> v1Inv ++ : steal(v2Inv, eq)
+        opt eq != null && v1Inv.pickedUpEquipments.length < 3
+            v1Inv -> v2Inv ++ : removeEquipment(eq)
+                v2Inv -> v2 ++ : removeEffect(eq)
+                return
+            return
+            v1Inv -> v1Inv ++ : addEquipment(eq)
+            return
+            v1Inv -> eq ++ : onTurnImpact(v1)
+            return
+        end
+
         v1Inv -> v2Inv ++ : getResources()
         return v2Resources
 
@@ -50,14 +61,6 @@ p -> v1 ++ : steal(v2)
             v1Inv -> v1Inv ++ : addResource(res)
             return addedResource
             v1Inv -> v2Inv ++ : removeResource(addedResource)
-            return
-        end
-        opt eq != null && v1Inv.pickedUpEquipments.length < 3
-            v1Inv -> v2Inv ++ : removeEquipment(eq)
-                v2Inv -> v2 ++ : removeEffect(eq)
-                return
-            return
-            v1Inv -> v1Inv ++ : addEquipment(eq)
             return
         end
     return

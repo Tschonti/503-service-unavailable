@@ -4,7 +4,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe SORREND Virologist steals from a stunned Virologist
+mainframe 5.3.18 Virologist steals from a stunned Virologist
 
 participant "v1: Virologist" as v1
 participant "v1Inv: Inventory" as v1Inv
@@ -21,6 +21,15 @@ participant "g: Glove" as g
     note over v1: Player chooses g from v2Equipments
 
     v1 -> v1Inv ++ : steal(v2Inv, g)
+        v1Inv -> v2Inv ++ : removeEquipment(g)
+            v2Inv -> v2 ++ : removeEffect(g)
+            return
+        return
+        v1Inv -> v1Inv ++ : addEquipment(g)
+        return
+        v1Inv -> g ++ : onTurnImpact(v1)
+        return
+
         v1Inv -> v2Inv ++ : getResources()
         return v2Resources
 
@@ -30,12 +39,7 @@ participant "g: Glove" as g
             v1Inv -> v2Inv ++ : removeResource(addedResource)
             return
         end
-        v1Inv -> v2Inv ++ : removeEquipment(g)
-            v2Inv -> v2 ++ : removeEffect(g)
-            return
-        return
-        v1Inv -> v1Inv ++ : addEquipment(g)
-        return
+
     return
 return
 

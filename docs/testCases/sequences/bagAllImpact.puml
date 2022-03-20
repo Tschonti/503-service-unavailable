@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe XXX Virologist pick up more Resources with enlarged Bag.
+mainframe 5.3.20 Virologist can pick up more resources with enlarged Bag.
 
 participant "v: Virologist" as v
 participant "b: Bag" as b
@@ -21,13 +21,7 @@ participant "newRes: Resource" as newRes
         return
     return
 
-    v -> w ++ : collectItem(i)
-        w -> newRes ** : <<create>>
-        w -> newRes ++ : collect(i)
-            newRes -> i ++ : addResource(newRes)
-            return
-        return
-    return
+    note across : The player will choose their actions here in the real game
 
     v -> b ++ : endTurnImpact(v)
             b -> v ++ : getInventory()

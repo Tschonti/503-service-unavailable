@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe XXX Virologist is affected by Vitus Dance Virus
+mainframe 5.3.22 Virologist is affected by Vitus Dance Virus
 
 participant "v: Virologist" as v
 participant "vd: VitusDanceVirus" as vd
@@ -33,6 +33,10 @@ participant "l: Laboratory" as l
             vd -> v ++: getActionsLeft()
             return actionsLeft
         end
+    return
+    note across : The player will choose their actions here in the real game
+
+    v -> vd ++ : endTurnImpact()
     return
 return
 @enduml
