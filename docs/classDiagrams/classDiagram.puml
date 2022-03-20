@@ -179,10 +179,11 @@ Tile <-- "-neighbours, 1..K" Tile
 class Controller {
     -activePlayer: int
     +startGame(): void
+    +checkWinner(v: Virologist): void
     -nextRound(): void
 }
 Controller *-- "-map, 1" Map
-Controller *-- "-players, 2..M" Virologist
+Controller "-controller" -- "-players, 2..M" Virologist
 Controller *-- "-codes, J" GeneticCode
 
 @enduml

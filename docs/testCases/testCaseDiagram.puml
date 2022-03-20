@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 actor Player as P
-actor Controller as C
+'actor Controller as C
 
 'kérdés mindegyikre: magadra vagy másra?
 'van e más játékos a mezőn?
@@ -29,6 +29,11 @@ actor Controller as C
 (moveToLaboratory) as mL
 (moveToEmptyTile) as mEt
 
+(forgetCodesViaAmnesiaVirus) as fcvav
+(pickUpResourcesWithEnlargedBag) as purweb
+(stunnedPlayerMissesTurn) as spmt
+(playerVitusDances) as pvd
+
 /' Scenes '/
 (robVirologist) as rv
 
@@ -41,6 +46,11 @@ P -up-> uAv
 P -up-> uSv
 P -up-> uVdv
 P -up-> uV
+
+P -up-> fcvav
+P -up-> purweb
+P -up-> spmt
+P -up-> pvd
 
 P -right-> cA
 P -right-> cS
@@ -56,10 +66,10 @@ P -down-> pRES
 
 /' Controller test-cases '/
 
-(createMap) as cM
-(nextRound) as nR
-
-C --> cM
-C --> nR
+'(createMap) as cM
+'(nextRound) as nR
+'
+'C --> cM
+'C --> nR
 
 @enduml

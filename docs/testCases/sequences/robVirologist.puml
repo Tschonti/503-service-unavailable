@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe SORREND Virologist steals from a stunned Virologist
+
+participant "v1: Virologist" as v1
+participant "v1Inv: Inventory" as v1Inv
+participant "v2: Virologist" as v2
+participant "v2Inv: Inventory" as v2Inv
+participant "g: Glove" as g
+
+-> v1 ++ : steal(v2)
+    v1 -> v2 ++ : getInventory()
+    return v2Inv
+
+    v1 -> v2Inv ++ : getEquipments()
+    return v2Equipments
+    note over v1: Player chooses g from v2Equipments
+
+    v1 -> v1Inv ++ : steal(v2Inv, g)
+        v1Inv -> v2Inv ++ : getResources()
+        return v2Resources
+
+        loop res in v2Resources
+            v1Inv -> v1Inv ++ : addResource(res)
+            return addedResource
+            v1Inv -> v2Inv ++ : removeResource(addedResource)
+            return
+        end
+        v1Inv -> v2Inv ++ : removeEquipment(g)
+            v2Inv -> v2 ++ : removeEffect(g)
+            return
+        return
+        v1Inv -> v1Inv ++ : addEquipment(g)
+        return
+    return
+return
+
+@enduml
