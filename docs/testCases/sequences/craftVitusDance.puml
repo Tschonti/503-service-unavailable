@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe  Virologist crafts a VitusDanceVirus
+
+participant "v: Virologist" as v
+participant "i: Inventory" as i
+participant "g: GeneticCode" as g
+participant "v: VitusDanceVirus" as v1
+participant "price: Resource"
+participant "newVitus: VitusDanceVirus" as v2
+
+-> v ++ : craft(g)
+        v -> g ++ : craft(i)
+            loop for all price: Resource
+                g -> i ++ : removeResource(price)
+                return
+            end
+            note over g, v1 : Clones the VitusDanceVirus stored in the agent attribute
+            g -> v1 ++ : create()
+                v1 -> v2 ** : <<create>>
+            return newVitus
+            g -> i ++ : addCraftedAgent(newVitus)
+            return
+        return
+return
+
+@enduml
