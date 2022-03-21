@@ -8,6 +8,13 @@ import skeleton.OutputObject;
 public class EmptyTile extends Tile {
     public EmptyTile(int id, String name) {
         super(id, name);
+
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                null
+        );
+        Initializer.returnWrite(null);
     }
     public void collectItem(Inventory inv) {
         Initializer.functionWrite(
@@ -24,8 +31,8 @@ public class EmptyTile extends Tile {
                 "getCollectableItem",
                 null
         );
-
         Initializer.returnWrite(null);
+
         return null;
     }
 }

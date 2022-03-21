@@ -8,6 +8,7 @@ public class VitusDanceVirus extends Agent{
 
     public VitusDanceVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
+
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",
@@ -22,9 +23,11 @@ public class VitusDanceVirus extends Agent{
                 "create",
                 OutputObject.generateParamsArray()
         );
-        Initializer.returnWrite(null);
+        Initializer.returnWrite(new OutputObject(new VitusDanceVirus()));
+
         return new VitusDanceVirus();
     }
+
     /* Effect functions */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(

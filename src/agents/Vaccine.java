@@ -7,8 +7,8 @@ import skeleton.OutputObject;
 public class Vaccine extends Agent{
 
     public Vaccine() {
-
         super(3); //Rounds left of the Agent in the Virologist's Inventory
+
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",
@@ -23,9 +23,11 @@ public class Vaccine extends Agent{
                 "create",
                 null
         );
-        Initializer.returnWrite(null);
+        Initializer.returnWrite(new OutputObject(new Vaccine()));
+
         return new Vaccine();
     }
+
     /* Effect functions */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(

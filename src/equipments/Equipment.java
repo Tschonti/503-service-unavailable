@@ -17,8 +17,10 @@ public abstract class Equipment implements Effect, Collectable {
                 OutputObject.generateParamsArray(inv)
         );
         Initializer.returnWrite(null);
+
         inv.addEquipment(this.clone());
     }
+
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -27,6 +29,7 @@ public abstract class Equipment implements Effect, Collectable {
         );
         Initializer.returnWrite(null);
     }
+
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -35,6 +38,7 @@ public abstract class Equipment implements Effect, Collectable {
         );
         Initializer.returnWrite(null);
     }
+
     public void endTurnImpact(Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -43,6 +47,7 @@ public abstract class Equipment implements Effect, Collectable {
         );
         Initializer.returnWrite(null);
     }
+
     public boolean allowStealing() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -52,6 +57,7 @@ public abstract class Equipment implements Effect, Collectable {
         Initializer.returnWrite(new OutputObject(false));
         return false;
     }
+
     public void decrement(Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -60,5 +66,6 @@ public abstract class Equipment implements Effect, Collectable {
         );
         Initializer.returnWrite(null);
     }
+
     protected abstract Equipment clone();
 }

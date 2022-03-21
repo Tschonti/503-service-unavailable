@@ -7,6 +7,7 @@ public class StunVirus extends Agent {
 
     public StunVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
+
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",
@@ -21,9 +22,11 @@ public class StunVirus extends Agent {
                 "create",
                 null
         );
-        Initializer.returnWrite(null);
+        Initializer.returnWrite(new OutputObject(new StunVirus()));
+
         return new StunVirus();
     }
+
     /* Effect functions */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(

@@ -7,6 +7,7 @@ public class AmnesiaVirus extends Agent {
 
     public AmnesiaVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
+
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",
@@ -21,9 +22,11 @@ public class AmnesiaVirus extends Agent {
                 "create",
                 null
         );
-        Initializer.returnWrite(null);
+        Initializer.returnWrite(new OutputObject(new AmnesiaVirus()));
+
         return new AmnesiaVirus();
     }
+
     /* Effect functions */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
