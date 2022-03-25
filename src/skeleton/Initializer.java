@@ -37,7 +37,7 @@ public class Initializer {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
         for (int i = 0; i < options.size(); i++) {
-            String c = (options.get(i) == "quit program") ? ConsoleColor.BLUE.c : ConsoleColor.RED.c;
+            String c = (options.get(i) == "quit program") ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
             System.out.println(c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
         }
         Scanner s = new Scanner(System.in);
