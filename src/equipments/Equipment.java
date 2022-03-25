@@ -1,5 +1,4 @@
 package equipments;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import main.Effect;
 import main.Collectable;
 import main.Virologist;

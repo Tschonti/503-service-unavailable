@@ -35,7 +35,9 @@ public class OutputObject {
     public static String objectToName(Object o) {
         String[] regex =  o.getClass().toString().split("\\.");
         return regex[regex.length - 1];
-        
+
+
+        //TODO ezt átbeszélni
         //Az Vírusok roundsLeft-jénél valamiért ezt hívta meg, erre rá kéne nézni, hogy miért, addig szerintem így jó lesz.
         //if(o.toString().contains("@")) {
         //    return o.toString().split("@")[0].split("\\.")[1];

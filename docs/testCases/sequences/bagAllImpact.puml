@@ -8,8 +8,7 @@ mainframe 5.3.20 Virologist can pick up more resources with enlarged Bag.
 participant "v: Virologist" as v
 participant "b: Bag" as b
 participant "i: Inventory" as i
-participant "w: Warehouse" as w
-participant "newRes: Resource" as newRes
+'#Todo itt voltak változások, meg a komm diagrammon is kéne
 
 -> v ++ : myTurn()
     v -> b ++ : onTurnImpact(v)
