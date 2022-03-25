@@ -130,6 +130,94 @@ public class Initializer {
         }
     }
 
+    public static void moveToEmptyTile() {
+
+    }
+
+    public static void moveToLaboratory() {
+
+    }
+
+    public static void moveToSafeHouse() {
+
+    }
+
+    public static void moveToWareHouse() {
+
+    }
+
+    public static void pickUpBag() {
+
+    }
+
+    public static void pickUpCloak() {
+
+    }
+
+    public static void pickUpGlove() {
+
+    }
+
+    public static void pickUpResource() {
+
+    }
+
+    public static void learnGeneticCode() {
+
+    }
+
+    public static void craftStunVirus() {
+
+    }
+
+    public static void craftAmnesiaVirus() {
+
+    }
+
+    public static void craftVitusDanceVirus() {
+
+    }
+
+    public static void craftVaccine() {
+
+    }
+
+    public static void useStunVirus() {
+
+    }
+
+    public static void useAmnesiaVirus() {
+
+    }
+
+    public static void useVitusDanceVirus() {
+
+    }
+
+    public static void useVaccine() {
+
+    }
+
+    public static void robVirologist() {
+
+    }
+
+    public static void forgetCodesViaAmnesiaVirus() {
+
+    }
+
+    public static void enlargeTheBag() {
+
+    }
+
+    public static void stunnedPlayerMissesTurn() {
+
+    }
+
+    public static void playerVitusDances() {
+
+    }
+
     public static void samuTest() {
         objects.clear();
         Virologist v1 = new Virologist();
