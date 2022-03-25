@@ -6,6 +6,7 @@ import equipments.Glove;
 import main.Virologist;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -13,6 +14,7 @@ public class Initializer {
 
     static private int tabs = 0;
     private static final HashMap<Object, String> objects = new HashMap<>();
+
     public static boolean questionWrite(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
         char reply = ' ';
@@ -23,6 +25,21 @@ public class Initializer {
         }
         return reply == 'y';
     }
+
+    public static int questionListWrite(String question, ArrayList<String> options) {
+        System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
+        int reply = 0;
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println(ConsoleColor.BLUE.c + ConsoleColor.BOLD.c + i+1 + ". " + options.get(i) + ConsoleColor.RESET.c);
+        }
+        try {
+            reply = System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return reply;
+    }
+
     public static void functionWrite(OutputObject caller, String methodName, OutputObject[] params) {
         doTabs();
         System.out.print(

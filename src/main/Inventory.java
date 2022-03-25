@@ -104,4 +104,17 @@ public class Inventory {
 
         return false;
     }
+
+    public ArrayList<Equipment> getEquipments() {
+        return pickedUpEquipments;
+    }
+
+    public void steal(Inventory v, Equipment e) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "steal",
+                OutputObject.generateParamsArray(v, e)
+        );
+        Initializer.returnWrite(null);
+    }
 }
