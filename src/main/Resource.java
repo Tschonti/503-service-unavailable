@@ -28,6 +28,8 @@ public class Resource implements Collectable {
                 OutputObject.generateParamsArray(inv)
         );
         Initializer.returnWrite(null);
+
+        inv.addResource(this);
     }
 
     public int getAmount() {
@@ -74,16 +76,28 @@ public class Resource implements Collectable {
         this.type = type;
     }
 
+    /**
+     *
+     * @param resources
+     * @param type
+     * @return specific recourse or if it's not exist in the array --> null
+     */
     public static Resource getResourceByType(ArrayList<Resource> resources, ResourceType type) {
         Initializer.functionWrite(
                 new OutputObject(Resource.class),
                 "getResourcesByType",
                 OutputObject.generateParamsArray(resources, type)
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new Resource(0, ResourceType.Nucleotid)));
 
-        //TODO:
-        return new Resource(0, ResourceType.Nucleotid);
+        for (Resource r : resources) {
+            if (r.getType() == type) {
+                Initializer.returnWrite(new OutputObject(r));
+
+                return r;
+            }
+        }
+
+        Initializer.returnWrite(null);
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package main;
 
 import agents.Agent;
+import equipments.Equipment;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 import tiles.Tile;
@@ -30,7 +31,9 @@ public class Virologist {
                 OutputObject.generateParamsArray(effect)
         );
         Initializer.returnWrite(null);
+
         useAgent((Agent)effect, this);
+        activeEffects.add(effect);
     }
 
     public void removeEffect(Effect effect) {
@@ -40,6 +43,8 @@ public class Virologist {
                 OutputObject.generateParamsArray(effect)
         );
         Initializer.returnWrite(null);
+
+        removeEffect(effect);
     }
 
     public void pass() {
@@ -67,6 +72,9 @@ public class Virologist {
                 OutputObject.generateParamsArray(newTile)
         );
         Initializer.returnWrite(null);
+
+        activeTile.removeVirologist(this);
+        newTile.addVirologist(this);
     }
 
     private void pickUp() {
@@ -76,6 +84,8 @@ public class Virologist {
                 null
         );
         Initializer.returnWrite(null);
+
+        activeTile.collectItem(inventory);
     }
     private void craft(GeneticCode code) {
         Initializer.functionWrite(
@@ -84,6 +94,8 @@ public class Virologist {
                 OutputObject.generateParamsArray(code)
         );
         Initializer.returnWrite(null);
+
+        code.craft(inventory);
     }
 
     private void useAgent(Agent agent, Virologist v) {
@@ -93,6 +105,7 @@ public class Virologist {
                 OutputObject.generateParamsArray(agent, v)
         );
         Initializer.returnWrite(null);
+
     }
 
     private void steal(Virologist v) {
@@ -102,6 +115,15 @@ public class Virologist {
                 OutputObject.generateParamsArray(v)
         );
         Initializer.returnWrite(null);
+
+        Inventory inv = v.getInventory();
+        ArrayList<Equipment> equipments = inv.getEquipments();
+        ArrayList<String> equipmentsString = new ArrayList<>();
+        for (Equipment e : equipments)
+            equipmentsString.add(e.toString());
+        int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString);
+        inventory.steal(inv, equipments.get(result));
+
     }
 
     private ArrayList<Tile> getNeighbours() {
