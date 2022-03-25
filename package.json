@@ -1,11 +1,4 @@
 {
-  "devDependencies": {
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
-    "prettier": "^2.6.1",
-    "prettier-plugin-java": "^1.6.1"
-  },
-
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -16,5 +9,12 @@
       "prettier --write",
       "git add"
     ]
+  },
+
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.1",
+    "prettier-plugin-java": "^1.6.1"
   }
 }
