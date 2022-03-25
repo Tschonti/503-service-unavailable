@@ -101,7 +101,19 @@ public abstract class Tile {
                 "addNeighbour",
                 OutputObject.generateParamsArray(t)
         );
-        neighbours.add(t);
         Initializer.returnWrite(null);
+
+        neighbours.add(t);
+    }
+
+    public ArrayList<Virologist> getPlayers() {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "getPlayers",
+                null
+        );
+        Initializer.returnWrite(new OutputObject(players));
+
+        return players;
     }
 }

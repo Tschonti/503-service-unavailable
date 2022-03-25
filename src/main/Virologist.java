@@ -162,10 +162,11 @@ public class Virologist {
                 "getNearbyVirologist",
                 null
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
 
-        return new ArrayList<>();
+        ArrayList<Virologist> result = activeTile.getPlayers();
+        Initializer.returnWrite(new OutputObject(result));
+
+        return result;
     }
 
     private ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
@@ -174,10 +175,11 @@ public class Virologist {
                 "getNearbyVirologistToStealFrom",
                 null
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
 
-        return new ArrayList<>();
+        ArrayList<Virologist> result = activeTile.getPlayersToStealFrom();
+        Initializer.returnWrite(new OutputObject(result));
+
+        return result;
     }
 
     public int getActionsLeft() {

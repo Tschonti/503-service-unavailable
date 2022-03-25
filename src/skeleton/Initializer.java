@@ -262,6 +262,58 @@ public class Initializer {
         v.myTurn();
     }
 
+    public static void moveToEmptyTile() {
+
+    }
+
+    public static void moveToLaboratory() {
+
+    }
+
+    public static void moveToSafeHouse() {
+
+    }
+
+    public static void moveToWareHouse() {
+
+    }
+
+    public static void pickUpBag() {
+
+    }
+
+    public static void pickUpCloak() {
+
+    }
+
+    public static void pickUpGlove() {
+
+    }
+
+    public static void pickUpResource() {
+
+    }
+
+    public static void learnGeneticCode() {
+
+    }
+
+    public static void useStunVirus() {
+
+    }
+
+    public static void useAmnesiaVirus() {
+
+    }
+
+    public static void useVitusDanceVirus() {
+
+    }
+
+    public static void useVaccine() {
+
+    }
+
     public static void stunnedMissesTurn() {
         objects.clear();
         Virologist v = new Virologist();
