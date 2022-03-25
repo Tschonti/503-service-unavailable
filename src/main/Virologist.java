@@ -77,7 +77,7 @@ public class Virologist {
         newTile.addVirologist(this);
     }
 
-    private void pickUp() {
+    public void pickUp() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "pickUp",
@@ -87,7 +87,7 @@ public class Virologist {
 
         activeTile.collectItem(inventory);
     }
-    private void craft(GeneticCode code) {
+    public void craft(GeneticCode code) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "craft",
@@ -98,7 +98,7 @@ public class Virologist {
         code.craft(inventory);
     }
 
-    private void useAgent(Agent agent, Virologist v) {
+    public void useAgent(Agent agent, Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "useAgent",
@@ -108,7 +108,7 @@ public class Virologist {
 
     }
 
-    private void steal(Virologist v) {
+    public void steal(Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "steal",

@@ -16,9 +16,9 @@ public abstract class Equipment implements Effect, Collectable {
                 "collect",
                 OutputObject.generateParamsArray(inv)
         );
+        Equipment cloned=this.clone();
+        inv.addEquipment(cloned);
         Initializer.returnWrite(null);
-
-        inv.addEquipment(this.clone());
     }
 
     public void counterImpact(Agent agent, Virologist from, Virologist to) {

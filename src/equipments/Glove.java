@@ -22,6 +22,8 @@ public class Glove extends Equipment {
                 "counterImpact",
                 OutputObject.generateParamsArray(agent, from, to)
         );
+        to.removeEffect(agent);
+        from.addEffect(agent);
         Initializer.returnWrite(null);
     }
 

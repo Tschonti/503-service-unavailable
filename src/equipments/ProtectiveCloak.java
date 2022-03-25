@@ -23,13 +23,13 @@ public class ProtectiveCloak extends Equipment {
                 "counterImpact",
                 null
         );
+        boolean q=Initializer.questionWrite("Do you want the ProtectiveCloak to save its owner?");
+        if(q){
+            to.removeEffect(agent);
+        }
         Initializer.returnWrite(null);
 
-        //int i = (int)(Math.random()*1000);
-        //if(i<=823){
-        //    //print
-        //    to.removeEffect(agent);
-        //}
+
     }
 
     protected Equipment clone() {
