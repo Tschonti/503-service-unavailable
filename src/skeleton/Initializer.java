@@ -1,24 +1,26 @@
 package skeleton;
 
 import agents.*;
+import com.sun.org.apache.xml.internal.security.Init;
 import equipments.Bag;
 import equipments.Glove;
 import main.GeneticCode;
 import main.Inventory;
 import main.Virologist;
+import sun.awt.windows.WPrinterJob;
 import tiles.EmptyTile;
 import tiles.Laboratory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Initializer {
 
+    static private boolean quit=false;
     static private int tabs = 0;
     private static final HashMap<Object, String> objects = new HashMap<>();
+    static HashMap<String, TestCase> testcases = new HashMap<>();
 
     public static boolean questionWrite(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
@@ -111,12 +113,11 @@ public class Initializer {
         AmnesiaVirus av = new AmnesiaVirus();
         objects.put(av, "av");
         v1.addEffect(av);
-        //questionWrite("Szeretnéd, hogy legyen a kedves kis virológusnak fasztyűje??");
         Glove g = new Glove();
         objects.put(g, "glove");
         g.allowStealing();
 
-        HashMap<String, TestCase> testcases = new HashMap<>();
+
 
         //testcases.put("moveToEmptyTile");
         //testcases.put("moveToLaboratory");
@@ -127,190 +128,182 @@ public class Initializer {
         //testcases.put("pickUpGlove");
         //testcases.put("pickUpResource");
         //testcases.put("learnGeneticCode");
-        testcases.put("craftStunVirus", new CraftStun());
-        testcases.put("craftAmnesiaVirus", new CraftAmneisa());
-        testcases.put("craftVitusDanceVirus", new CraftVitusDance());
-        testcases.put("craftVaccine", new CraftVaccine());
+        testcases.put("craftStunVirus", Initializer::craftStun);
+        testcases.put("craftAmnesiaVirus", Initializer::craftAmnesia);
+        testcases.put("craftVitusDanceVirus", Initializer::craftVitusDance);
+        testcases.put("craftVaccine", Initializer::craftVaccine);
         //testcases.put("useStunVirus");
         //testcases.put("useAmnesiaVirus");
         //testcases.put("useVitusDanceVirus");
         //testcases.put("useVaccine");
-        testcases.put("robVirologist", new RobVirologist());
-        testcases.put("forgetCodesViaAmnesiaVirus", new ForgetCodes());
-        testcases.put("enlargeTheBag", new EnlargeTheBag());
-        testcases.put("stunnedPlayerMissesTurn", new StunnedMissesTurn());
-        testcases.put("playerVitusDances", new PlayerVitusDances());
+        testcases.put("robVirologist", Initializer::robVirologist);
+        testcases.put("forgetCodesViaAmnesiaVirus", Initializer::forgetCodes);
+        testcases.put("enlargeTheBag", Initializer::enlargeTheBag);
+        testcases.put("stunnedPlayerMissesTurn", Initializer::stunnedMissesTurn);
+        testcases.put("playerVitusDances", Initializer::playerVitusDances);
+        testcases.put("quit program",()->quit=true);
 
         ArrayList<String> tests = new ArrayList<>();
         testcases.forEach((name, object) -> tests.add(name));
-        InputObject input =  questionListWrite("Which test case would you like to run?", tests);
-        testcases.get(input.getName()).startTestCase();
+        Collections.sort(tests,Initializer::sort);
+        while (!quit) {
+            InputObject input = questionListWrite("Which test case would you like to run?", tests);
+            testcases.get(input.getName()).run();
+        }
+    }
 
+    public static int sort(String a, String b)
+    {
+        String[] s1=testcases.get(a).toString().split("\\$");
+        String[] s2=testcases.get(b).toString().split("\\$");
+        int i1=Integer.parseInt(s1[s1.length - 1].split("/")[0]);
+        int i2=Integer.parseInt(s2[s2.length - 1].split("/")[0]);
+        return i1-i2;
     }
 
     public interface TestCase {
-        void startTestCase();
+        void run();
     }
 
-    private static class CraftStun implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v=new Virologist();
-            objects.put(v,"v");
-            Agent sV=new StunVirus();
-            objects.put(sV,"sV");
-            GeneticCode gC=new GeneticCode();
-            objects.put(gC,"gC");
-            gC.setAgent(sV);
-            Inventory i=v.getInventory();
-            objects.put(i,"i");
-            i.addGeneticCode(gC);
-            v.craft(gC);
-        }
-
+    public static void craftStun() {
+        objects.clear();
+        Virologist v=new Virologist();
+        objects.put(v,"v");
+        Agent sV=new StunVirus();
+        objects.put(sV,"sV");
+        GeneticCode gC=new GeneticCode();
+        objects.put(gC,"gC");
+        gC.setAgent(sV);
+        Inventory i=v.getInventory();
+        objects.put(i,"i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
     }
 
-    private static class CraftAmneisa implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
-            Agent aV = new AmnesiaVirus();
-            objects.put(aV, "aV");
-            GeneticCode gC = new GeneticCode();
-            objects.put(gC, "gC");
-            gC.setAgent(aV);
-            Inventory i = v.getInventory();
-            objects.put(i, "i");
-            i.addGeneticCode(gC);
-            v.craft(gC);
-        }
+    public static void craftAmnesia() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Agent aV = new AmnesiaVirus();
+        objects.put(aV, "aV");
+        GeneticCode gC = new GeneticCode();
+        objects.put(gC, "gC");
+        gC.setAgent(aV);
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
     }
 
-    private static class CraftVitusDance implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
-            Agent vDV = new VitusDanceVirus();
-            objects.put(vDV, "vDV");
-            GeneticCode gC = new GeneticCode();
-            objects.put(gC, "gC");
-            gC.setAgent(vDV);
-            Inventory i = v.getInventory();
-            objects.put(i, "i");
-            i.addGeneticCode(gC);
-            v.craft(gC);
-        }
+    public static void craftVitusDance() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Agent vDV = new VitusDanceVirus();
+        objects.put(vDV, "vDV");
+        GeneticCode gC = new GeneticCode();
+        objects.put(gC, "gC");
+        gC.setAgent(vDV);
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
     }
 
-    private static class CraftVaccine implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
-            Agent vac = new Vaccine();
-            objects.put(vac, "vac");
-            GeneticCode gC = new GeneticCode();
-            objects.put(gC, "gC");
-            gC.setAgent(vac);
-            Inventory i = v.getInventory();
-            objects.put(i, "i");
-            i.addGeneticCode(gC);
-            v.craft(gC);
-        }
+    public static void craftVaccine() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Agent vac = new Vaccine();
+        objects.put(vac, "vac");
+        GeneticCode gC = new GeneticCode();
+        objects.put(gC, "gC");
+        gC.setAgent(vac);
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
     }
 
-    private static class RobVirologist implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v1 = new Virologist();
-            objects.put(v1, "v1");
+    public static void robVirologist() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        objects.put(v1, "v1");
 
-            Virologist v2 = new Virologist();
-            objects.put(v2, "v2");
+        Virologist v2 = new Virologist();
+        objects.put(v2, "v2");
 
-            StunVirus s = new StunVirus();
-            objects.put(s, "s");
+        StunVirus s = new StunVirus();
+        objects.put(s, "s");
 
-            v2.addEffect(s);
+        v2.addEffect(s);
 
-            Glove g = new Glove();
-            v2.getInventory().addEquipment(g);
+        Glove g = new Glove();
+        v2.getInventory().addEquipment(g);
 
-            v1.steal(v2);
-        }
+        v1.steal(v2);
     }
 
-    private static class ForgetCodes implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
+    public static void forgetCodes() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
 
-            GeneticCode gc = new GeneticCode();
-            objects.put(gc, "gc");
+        GeneticCode gc = new GeneticCode();
+        objects.put(gc, "gc");
 
-            Inventory i = v.getInventory();
-            objects.put(i, "i");
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
 
-            i.addGeneticCode(gc);
+        i.addGeneticCode(gc);
 
-            AmnesiaVirus av = new AmnesiaVirus();
-            objects.put(av, "av");
-            v.addEffect(av);
+        AmnesiaVirus av = new AmnesiaVirus();
+        objects.put(av, "av");
+        v.addEffect(av);
 
-            v.myTurn();
-        }
+        v.myTurn();
     }
 
-    private static class EnlargeTheBag implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
-            Bag b = new Bag();
-            objects.put(b, "b");
-            v.getInventory().addEquipment(b);
+    public static void enlargeTheBag() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Bag b = new Bag();
+        objects.put(b, "b");
+        v.getInventory().addEquipment(b);
 
-            v.myTurn();
-        }
+        v.myTurn();
     }
 
-    private static class StunnedMissesTurn implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
-            StunVirus sv = new StunVirus();
-            objects.put(sv, "sv");
-            v.addEffect(sv);
+    public static void stunnedMissesTurn() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        StunVirus sv = new StunVirus();
+        objects.put(sv, "sv");
+        v.addEffect(sv);
 
-            v.myTurn();
-
-        }
+        v.myTurn();
     }
 
-    private static class PlayerVitusDances implements TestCase {
-        public void startTestCase() {
-            objects.clear();
-            Virologist v = new Virologist();
-            objects.put(v, "v");
+    public static void playerVitusDances() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
 
-            EmptyTile et = new EmptyTile(1, "et");
-            Laboratory l = new Laboratory(2, "l");
-            objects.put(et, "et");
-            objects.put(l, "l");
-            et.addNeighbour(l);
-            l.addNeighbour(et);
-            et.addVirologist(v);
-            v.setActiveTile(et);
+        EmptyTile et = new EmptyTile(1, "et");
+        Laboratory l = new Laboratory(2, "l");
+        objects.put(et, "et");
+        objects.put(l, "l");
+        et.addNeighbour(l);
+        l.addNeighbour(et);
+        et.addVirologist(v);
+        v.setActiveTile(et);
 
-            VitusDanceVirus vd = new VitusDanceVirus();
-            objects.put(vd, "vd");
-            v.addEffect(vd);
+        VitusDanceVirus vd = new VitusDanceVirus();
+        objects.put(vd, "vd");
+        v.addEffect(vd);
 
-            v.myTurn();
-        }
+        v.myTurn();
     }
 }
