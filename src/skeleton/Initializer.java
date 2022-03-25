@@ -1,11 +1,13 @@
 package skeleton;
 
-import agents.AmnesiaVirus;
-import equipments.Bag;
+import agents.*;
 import equipments.Glove;
+import main.GeneticCode;
+import main.Inventory;
 import main.Virologist;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -83,10 +85,100 @@ public class Initializer {
         objects.put(av, "av");
         v1.addEffect(av);
         questionWrite("Szeretnéd, hogy legyen a kedves kis virológusnak fasztyűje??");
-
         Glove g = new Glove();
         objects.put(g, "glove");
         g.allowStealing();
 
+        ArrayList<String> tests=new ArrayList<>();
+        tests.add("moveToEmptyTile");
+        tests.add("moveToLaboratory");
+        tests.add("moveToSafeHouse");
+        tests.add("moveToWareHouse");
+        tests.add("pickUpBag");
+        tests.add("pickUpCloak");
+        tests.add("pickUpGlove");
+        tests.add("pickUpResource");
+        tests.add("learnGeneticCode");
+        tests.add("craftStunVirus");
+        tests.add("craftAmnesiaVirus");
+        tests.add("craftVitusDanceVirus");
+        tests.add("craftVaccine");
+        tests.add("useStunVirus");
+        tests.add("useAmnesiaVirus");
+        tests.add("useVitusDanceVirus");
+        tests.add("useVaccine");
+        tests.add("robVirologist");
+        tests.add("forgetCodesViaAmnesiaVirus");
+        tests.add("enlargeTheBag");
+        tests.add("stunnedPlayerMissesTurn");
+        tests.add("playerVitusDances");
+
+
+        for(int i=0; i < tests.size(); i++){
+            System.out.println(i+1+":\t"+tests.get(i));
+        }
     }
+
+    public static void craftStun(){
+        objects.clear();
+        Virologist v=new Virologist();
+        objects.put(v,"v");
+        Agent sV=new StunVirus();
+        objects.put(sV,"sV");
+        GeneticCode gC=new GeneticCode();
+        objects.put(gC,"gC");
+        gC.setAgent(sV);
+        Inventory i=v.getInventory();
+        objects.put(i,"i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
+    }
+
+    public static void craftAmnesia(){
+        objects.clear();
+        Virologist v=new Virologist();
+        objects.put(v,"v");
+        Agent aV=new AmnesiaVirus();
+        objects.put(aV,"aV");
+        GeneticCode gC=new GeneticCode();
+        objects.put(gC,"gC");
+        gC.setAgent(aV);
+        Inventory i=v.getInventory();
+        objects.put(i,"i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
+    }
+
+    public static void craftVitusDance(){
+        objects.clear();
+        Virologist v=new Virologist();
+        objects.put(v,"v");
+        Agent vDV=new VitusDanceVirus();
+        objects.put(vDV,"vDV");
+        GeneticCode gC=new GeneticCode();
+        objects.put(gC,"gC");
+        gC.setAgent(vDV);
+        Inventory i=v.getInventory();
+        objects.put(i,"i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
+    }
+
+    public static void craftVaccine(){
+        objects.clear();
+        Virologist v=new Virologist();
+        objects.put(v,"v");
+        Agent vac=new Vaccine();
+        objects.put(vac,"vac");
+        GeneticCode gC=new GeneticCode();
+        objects.put(gC,"gC");
+        gC.setAgent(vac);
+        Inventory i=v.getInventory();
+        objects.put(i,"i");
+        i.addGeneticCode(gC);
+        v.craft(gC);
+    }
+
+
+
 }

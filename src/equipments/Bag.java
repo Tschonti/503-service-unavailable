@@ -1,4 +1,5 @@
 package equipments;
+import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
@@ -20,6 +21,9 @@ public class Bag extends Equipment {
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
+        Inventory i=to.getInventory();
+        int amount=i.getMaxResourceAmount();
+        i.setMaxResourceAmount(2*amount);
         Initializer.returnWrite(null);
     }
 
@@ -29,6 +33,9 @@ public class Bag extends Equipment {
                 "endTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
+        Inventory i=to.getInventory();
+        int amount=i.getMaxResourceAmount();
+        i.setMaxResourceAmount(amount/2);
         Initializer.returnWrite(null);
     }
 

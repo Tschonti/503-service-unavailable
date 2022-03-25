@@ -69,7 +69,7 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
-    private void pickUp() {
+    public void pickUp() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "pickUp",
@@ -77,7 +77,7 @@ public class Virologist {
         );
         Initializer.returnWrite(null);
     }
-    private void craft(GeneticCode code) {
+    public void craft(GeneticCode code) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "craft",
@@ -86,7 +86,7 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
-    private void useAgent(Agent agent, Virologist v) {
+    public void useAgent(Agent agent, Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "useAgent",
@@ -95,7 +95,7 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
-    private void steal(Virologist v) {
+    public void steal(Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "steal",

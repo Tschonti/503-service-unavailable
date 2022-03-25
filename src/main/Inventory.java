@@ -104,4 +104,26 @@ public class Inventory {
 
         return false;
     }
+
+    public int getMaxResourceAmount(){
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "getMaxResourceAmount",
+                null
+        );
+
+        Initializer.returnWrite(new OutputObject(maxResourceAmount));
+        return maxResourceAmount;
+    }
+    public void setMaxResourceAmount(int amount){
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "setMaxResourceAmount",
+                OutputObject.generateParamsArray(amount)
+        );
+        maxResourceAmount=amount;
+        Initializer.returnWrite(null);
+    }
+
+
 }
