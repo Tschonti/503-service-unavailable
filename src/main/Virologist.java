@@ -12,8 +12,8 @@ public class Virologist {
     private int actionsLeft;
     private static Controller controller;
     private Tile activeTile;
-    private Inventory inventory;
-    private ArrayList<Effect> activeEffects;
+    private final Inventory inventory;
+    private final ArrayList<Effect> activeEffects;
 
     public Virologist() {
         Initializer.functionWrite(
@@ -21,6 +21,8 @@ public class Virologist {
                 "constructor",
                 null
         );
+        activeEffects = new ArrayList<>();
+        inventory = new Inventory(this);
         Initializer.returnWrite(null);
     }
 
@@ -30,10 +32,8 @@ public class Virologist {
                 "addEffect",
                 OutputObject.generateParamsArray(effect)
         );
-        Initializer.returnWrite(null);
-
-        useAgent((Agent)effect, this);
         activeEffects.add(effect);
+        Initializer.returnWrite(null);
     }
 
     public void removeEffect(Effect effect) {
@@ -42,9 +42,9 @@ public class Virologist {
                 "removeEffect",
                 OutputObject.generateParamsArray(effect)
         );
-        Initializer.returnWrite(null);
 
         removeEffect(effect);
+        Initializer.returnWrite(null);
     }
 
     public void pass() {
@@ -71,10 +71,10 @@ public class Virologist {
                 "moveTo",
                 OutputObject.generateParamsArray(newTile)
         );
-        Initializer.returnWrite(null);
 
         activeTile.removeVirologist(this);
         newTile.addVirologist(this);
+        Initializer.returnWrite(null);
     }
 
     public void pickUp() {
@@ -83,9 +83,8 @@ public class Virologist {
                 "pickUp",
                 null
         );
-        Initializer.returnWrite(null);
-
         activeTile.collectItem(inventory);
+        Initializer.returnWrite(null);
     }
     public void craft(GeneticCode code) {
         Initializer.functionWrite(
@@ -93,9 +92,8 @@ public class Virologist {
                 "craft",
                 OutputObject.generateParamsArray(code)
         );
-        Initializer.returnWrite(null);
-
         code.craft(inventory);
+        Initializer.returnWrite(null);
     }
 
     public void useAgent(Agent agent, Virologist v) {
@@ -105,7 +103,6 @@ public class Virologist {
                 OutputObject.generateParamsArray(agent, v)
         );
         Initializer.returnWrite(null);
-
     }
 
     public void steal(Virologist v) {
@@ -114,16 +111,15 @@ public class Virologist {
                 "steal",
                 OutputObject.generateParamsArray(v)
         );
-        Initializer.returnWrite(null);
 
         Inventory inv = v.getInventory();
         ArrayList<Equipment> equipments = inv.getEquipments();
         ArrayList<String> equipmentsString = new ArrayList<>();
         for (Equipment e : equipments)
             equipmentsString.add(e.toString());
-        int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString);
+        int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
         inventory.steal(inv, equipments.get(result));
-
+        Initializer.returnWrite(null);
     }
 
     private ArrayList<Tile> getNeighbours() {
@@ -153,10 +149,10 @@ public class Virologist {
                 "getCraftedAgents",
                 null
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
 
         getCraftables();
+        //TODO:
+        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
         return new ArrayList<>();
     }
 
