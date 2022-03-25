@@ -22,13 +22,14 @@ public class Inventory {
                 "constructor",
                 OutputObject.generateParamsArray(virologist)
         );
-        Initializer.returnWrite(null);
 
-        this.virologist=virologist;
-        resources=new ArrayList<>();
-        pickedUpEquipments=new ArrayList<>();
-        craftedAgents=new ArrayList<>();
-        learntCodes=new ArrayList<>();
+        this.virologist = virologist;
+        resources = new ArrayList<>();
+        pickedUpEquipments = new ArrayList<>();
+        craftedAgents = new ArrayList<>();
+        learntCodes = new ArrayList<>();
+
+        Initializer.returnWrite(null);
     }
 
     public void addGeneticCode(GeneticCode gc){
@@ -37,16 +38,23 @@ public class Inventory {
                 "addGeneticCode",
                 OutputObject.generateParamsArray(gc)
         );
+
+        learntCodes.add(gc);
+
         Initializer.returnWrite(null);
     }
 
-    public void addResource(Resource res){
+    public Resource addResource(Resource res){
         Initializer.functionWrite(
                 new OutputObject(this),
                 "addResource",
                 OutputObject.generateParamsArray(res)
         );
-        Initializer.returnWrite(null);
+
+        resources.add(res);
+
+        Initializer.returnWrite(new OutputObject(res));
+        return null;
     }
 
     public void addCraftedAgent(Agent agent){
@@ -55,6 +63,9 @@ public class Inventory {
                 "addCraftedAgent",
                 OutputObject.generateParamsArray(agent)
         );
+
+        craftedAgents.add(agent);
+
         Initializer.returnWrite(null);
     }
 
@@ -64,6 +75,10 @@ public class Inventory {
                 "addEquipment",
                 OutputObject.generateParamsArray(eq)
         );
+
+        pickedUpEquipments.add(eq);
+        virologist.addEffect(eq);
+
         Initializer.returnWrite(null);
     }
 
@@ -73,6 +88,9 @@ public class Inventory {
                 "removeGeneticCode",
                 OutputObject.generateParamsArray(gc)
         );
+
+        learntCodes.remove(gc);
+
         Initializer.returnWrite(null);
     }
 
@@ -82,6 +100,9 @@ public class Inventory {
                 "removeResource",
                 OutputObject.generateParamsArray(res)
         );
+
+        resources.remove(res);
+
         Initializer.returnWrite(null);
     }
 
@@ -91,6 +112,9 @@ public class Inventory {
                 "removeCraftedAgent",
                 OutputObject.generateParamsArray(agent)
         );
+
+        craftedAgents.remove(agent);
+
         Initializer.returnWrite(null);
     }
 
@@ -100,6 +124,9 @@ public class Inventory {
                 "removeEquipment",
                 OutputObject.generateParamsArray(eq)
         );
+
+        virologist.removeEffect(eq);
+
         Initializer.returnWrite(new OutputObject(false));
 
         return false;
@@ -111,32 +138,52 @@ public class Inventory {
                 "getMaxResourceAmount",
                 null
         );
-
         Initializer.returnWrite(new OutputObject(maxResourceAmount));
         return maxResourceAmount;
     }
+
+    public ArrayList<Resource> getResources() {
+        return resources;
+    }
+
     public void setMaxResourceAmount(int amount){
         Initializer.functionWrite(
                 new OutputObject(this),
                 "setMaxResourceAmount",
                 OutputObject.generateParamsArray(amount)
         );
-        maxResourceAmount=amount;
+
+        maxResourceAmount = amount;
+
         Initializer.returnWrite(null);
     }
 
-
-
     public ArrayList<Equipment> getEquipments() {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "getEquipments",
+                null
+        );
+        Initializer.returnWrite(new OutputObject(pickedUpEquipments));
         return pickedUpEquipments;
     }
 
-    public void steal(Inventory v, Equipment e) {
+    public void steal(Inventory inv2, Equipment eq) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "steal",
-                OutputObject.generateParamsArray(v, e)
+                OutputObject.generateParamsArray(inv2, eq)
         );
+
+        inv2.removeEquipment(eq);
+        addEquipment(eq);
+        eq.onTurnImpact(virologist);
+        ArrayList<Resource> inv2Resources =  inv2.getResources();
+        for (Resource res : inv2Resources) {
+            Resource addedResource = addResource(res);
+            inv2.removeResource(addedResource);
+        }
+
         Initializer.returnWrite(null);
     }
 }

@@ -15,6 +15,12 @@ public class Controller {
                 "constructor",
                 null
         );
+
+        activePlayer = 0;
+        map = new Map();
+        players = new Virologist[20];
+        codes = new GeneticCode[20];
+
         Initializer.returnWrite(new OutputObject(this));
     }
 
@@ -24,6 +30,9 @@ public class Controller {
                 "startGame",
                 null
         );
+
+        map.createMap();
+
         Initializer.returnWrite(new OutputObject(this));
     }
 
@@ -42,6 +51,11 @@ public class Controller {
                 "nextRound",
                 null
         );
+
+        for (Virologist player : players) {
+            player.myTurn();
+        }
+
         Initializer.returnWrite(null);
     }
 }

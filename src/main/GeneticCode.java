@@ -1,6 +1,6 @@
 package main;
 
-import agents.Agent;
+import agents.*;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
@@ -16,6 +16,20 @@ public class GeneticCode implements Collectable {
                 "constructor",
                 null
         );
+
+        //random for now
+        int random = (int)(Math.random()*10);
+        if (random < 3) {
+            agent = new StunVirus();
+        } else if (random < 6) {
+            agent = new AmnesiaVirus();
+        } else if (random < 8) {
+            agent = new VitusDanceVirus();
+        } else {
+            agent = new Vaccine();
+        }
+        price = new ArrayList<>();
+
         Initializer.returnWrite(null);
     }
 
@@ -25,6 +39,9 @@ public class GeneticCode implements Collectable {
                 "collect",
                 OutputObject.generateParamsArray(inv)
         );
+
+        inv.addGeneticCode(new GeneticCode());
+
         Initializer.returnWrite(null);
     }
 
@@ -34,8 +51,8 @@ public class GeneticCode implements Collectable {
                 "isCraftable",
                 OutputObject.generateParamsArray(inv)
         );
-        Initializer.returnWrite(new OutputObject(false));
 
+        Initializer.returnWrite(new OutputObject(false));
         return false;
     }
 
@@ -45,6 +62,12 @@ public class GeneticCode implements Collectable {
                 "craft",
                 OutputObject.generateParamsArray(inv)
         );
+
+        for (Resource res : price) {
+            inv.removeResource(res);
+        }
+        inv.addCraftedAgent(agent.create());
+
         Initializer.returnWrite(null);
     }
 
@@ -65,9 +88,10 @@ public class GeneticCode implements Collectable {
                 "setAgent",
                 OutputObject.generateParamsArray(agent)
         );
-        Initializer.returnWrite(null);
 
         this.agent = agent;
+
+        Initializer.returnWrite(null);
     }
 
     public ArrayList<Resource> getPrice() {
@@ -87,8 +111,7 @@ public class GeneticCode implements Collectable {
                 "setPrice",
                 OutputObject.generateParamsArray(price)
         );
-        Initializer.returnWrite(null);
-
         this.price = price;
+        Initializer.returnWrite(null);
     }
 }
