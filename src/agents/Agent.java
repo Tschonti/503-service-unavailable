@@ -9,13 +9,6 @@ public abstract class Agent implements Effect {
     protected int roundsLeft;
 
     public Agent(int rLeft) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(rLeft)
-        );
-        Initializer.returnWrite(null);
-
         roundsLeft = rLeft;
     }
 

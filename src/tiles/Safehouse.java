@@ -26,6 +26,7 @@ public class Safehouse extends Tile {
                 "collectItem",
                 null
         );
+        inv.addEquipment(equipment);
         Initializer.returnWrite(null);
     }
     public Collectable getCollectableItem() {

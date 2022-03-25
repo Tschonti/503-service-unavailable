@@ -17,6 +17,7 @@ public class Laboratory extends Tile {
                 "constructor",
                 null
         );
+        code = new GeneticCode();
         Initializer.returnWrite(null);
     }
 
@@ -26,6 +27,7 @@ public class Laboratory extends Tile {
                 "collectItem",
                 null
         );
+        inv.addGeneticCode(code);
         Initializer.returnWrite(null);
     }
 

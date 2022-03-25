@@ -26,6 +26,7 @@ public class Warehouse extends Tile {
                 "collectItem",
                 OutputObject.generateParamsArray(inv)
         );
+        inv.addResource(collectable);
         Initializer.returnWrite(null);
     }
     public Collectable getCollectableItem() {
