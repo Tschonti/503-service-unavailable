@@ -106,23 +106,23 @@ public class Initializer {
     }
 
     public static void test() {
-        //testcases.put("moveToEmptyTile");
-        //testcases.put("moveToLaboratory");
-        //testcases.put("moveToSafeHouse");
-        //testcases.put("moveToWareHouse");
-        //testcases.put("pickUpBag");
-        //testcases.put("pickUpCloak");
-        //testcases.put("pickUpGlove");
-        //testcases.put("pickUpResource");
-        //testcases.put("learnGeneticCode");
+        testcases.put("moveToEmptyTile", Initializer::moveToEmptyTile);
+        testcases.put("moveToLaboratory", Initializer::moveToLaboratory);
+        testcases.put("moveToSafeHouse", Initializer::moveToSafeHouse);
+        testcases.put("moveToWareHouse", Initializer::moveToWareHouse);
+        testcases.put("pickUpBag", Initializer::pickUpBag);
+        testcases.put("pickUpCloak", Initializer::pickUpCloak);
+        testcases.put("pickUpGlove", Initializer::pickUpGlove);
+        testcases.put("pickUpResource", Initializer::pickUpResource);
+        testcases.put("learnGeneticCode", Initializer::learnGeneticCode);
         testcases.put("craftStunVirus", Initializer::craftStun);
         testcases.put("craftAmnesiaVirus", Initializer::craftAmnesia);
         testcases.put("craftVitusDanceVirus", Initializer::craftVitusDance);
         testcases.put("craftVaccine", Initializer::craftVaccine);
-        //testcases.put("useStunVirus");
-        //testcases.put("useAmnesiaVirus");
-        //testcases.put("useVitusDanceVirus");
-        //testcases.put("useVaccine");
+        testcases.put("useStunVirus", Initializer::useStunVirus);
+        testcases.put("useAmnesiaVirus", Initializer::useAmnesiaVirus);
+        testcases.put("useVitusDanceVirus", Initializer::useVitusDanceVirus);
+        testcases.put("useVaccine", Initializer::useVaccine);
         testcases.put("robVirologist", Initializer::robVirologist);
         testcases.put("forgetCodesViaAmnesiaVirus", Initializer::forgetCodes);
         testcases.put("enlargeTheBag", Initializer::enlargeTheBag);
@@ -212,56 +212,6 @@ public class Initializer {
         v.craft(gC);
     }
 
-    public static void robVirologist() {
-        objects.clear();
-        Virologist v1 = new Virologist();
-        objects.put(v1, "v1");
-
-        Virologist v2 = new Virologist();
-        objects.put(v2, "v2");
-
-        StunVirus s = new StunVirus();
-        objects.put(s, "s");
-
-        v2.addEffect(s);
-
-        Glove g = new Glove();
-        v2.getInventory().addEquipment(g);
-
-        v1.steal(v2);
-    }
-
-    public static void forgetCodes() {
-        objects.clear();
-        Virologist v = new Virologist();
-        objects.put(v, "v");
-
-        GeneticCode gc = new GeneticCode();
-        objects.put(gc, "gc");
-
-        Inventory i = v.getInventory();
-        objects.put(i, "i");
-
-        i.addGeneticCode(gc);
-
-        AmnesiaVirus av = new AmnesiaVirus();
-        objects.put(av, "av");
-        v.addEffect(av);
-
-        v.myTurn();
-    }
-
-    public static void enlargeTheBag() {
-        objects.clear();
-        Virologist v = new Virologist();
-        objects.put(v, "v");
-        Bag b = new Bag();
-        objects.put(b, "b");
-        v.getInventory().addEquipment(b);
-
-        v.myTurn();
-    }
-
     public static void moveToEmptyTile() {
 
     }
@@ -312,6 +262,56 @@ public class Initializer {
 
     public static void useVaccine() {
 
+    }
+
+    public static void robVirologist() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        objects.put(v1, "v1");
+
+        Virologist v2 = new Virologist();
+        objects.put(v2, "v2");
+
+        StunVirus s = new StunVirus();
+        objects.put(s, "s");
+
+        v2.addEffect(s);
+
+        Glove g = new Glove();
+        v2.getInventory().addEquipment(g);
+
+        v1.steal(v2);
+    }
+
+    public static void forgetCodes() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+
+        GeneticCode gc = new GeneticCode();
+        objects.put(gc, "gc");
+
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
+
+        i.addGeneticCode(gc);
+
+        AmnesiaVirus av = new AmnesiaVirus();
+        objects.put(av, "av");
+        v.addEffect(av);
+
+        v.myTurn();
+    }
+
+    public static void enlargeTheBag() {
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Bag b = new Bag();
+        objects.put(b, "b");
+        v.getInventory().addEquipment(b);
+
+        v.myTurn();
     }
 
     public static void stunnedMissesTurn() {
