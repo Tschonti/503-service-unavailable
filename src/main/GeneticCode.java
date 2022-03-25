@@ -17,7 +17,7 @@ public class GeneticCode implements Collectable {
                 null
         );
 
-        //random for now
+        //TODO random for now
         int random = (int)(Math.random()*10);
         if (random < 3) {
             agent = new StunVirus();

@@ -8,6 +8,8 @@ import main.Inventory;
 import main.Virologist;
 import tiles.EmptyTile;
 import tiles.Laboratory;
+import tiles.Safehouse;
+import tiles.Warehouse;
 
 import java.io.IOException;
 import java.util.*;
@@ -35,7 +37,8 @@ public class Initializer {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
         for (int i = 0; i < options.size(); i++) {
-            System.out.println(ConsoleColor.BLUE.c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
+            String c = (options.get(i) == "quit program") ? ConsoleColor.BLUE.c : ConsoleColor.RED.c;
+            System.out.println(c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
         }
         Scanner s = new Scanner(System.in);
         InputObject result = null;
@@ -63,8 +66,7 @@ public class Initializer {
         doTabs();
         System.out.print(
                 "[" +
-                ConsoleColor.RED.c + outputObjectToString(caller) +
-                ConsoleColor.RESET.c +
+                ConsoleColor.RED.c + outputObjectToString(caller) + ConsoleColor.RESET.c +
                 "] [" +
                 ConsoleColor.CYAN.c + methodName + ConsoleColor.RESET.c +
                 "("
@@ -128,7 +130,7 @@ public class Initializer {
         testcases.put("enlargeTheBag", Initializer::enlargeTheBag);
         testcases.put("stunnedPlayerMissesTurn", Initializer::stunnedMissesTurn);
         testcases.put("playerVitusDances", Initializer::playerVitusDances);
-        testcases.put("quit program",()->quit=true);
+        testcases.put("quit program",()->{quit=true; System.out.println("Bye");});
 
         ArrayList<String> tests = new ArrayList<>();
         testcases.forEach((name, object) -> tests.add(name));
@@ -213,19 +215,43 @@ public class Initializer {
     }
 
     public static void moveToEmptyTile() {
-
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        EmptyTile tile = new EmptyTile(0, "from");
+        v.setActiveTile(tile);
+        EmptyTile tile2 = new EmptyTile(1, "to");
+        v.moveTo(tile2);
     }
 
     public static void moveToLaboratory() {
-
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        EmptyTile tile = new EmptyTile(0, "from");
+        v.setActiveTile(tile);
+        Laboratory tile2 = new Laboratory(1, "to");
+        v.moveTo(tile2);
     }
 
     public static void moveToSafeHouse() {
-
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        EmptyTile tile = new EmptyTile(0, "from");
+        v.setActiveTile(tile);
+        Safehouse tile2 = new Safehouse(1, "to");
+        v.moveTo(tile2);
     }
 
     public static void moveToWareHouse() {
-
+        objects.clear();
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        EmptyTile tile = new EmptyTile(0, "from");
+        v.setActiveTile(tile);
+        Warehouse tile2 = new Warehouse(1, "to");
+        v.moveTo(tile2);
     }
 
     public static void pickUpBag() {
