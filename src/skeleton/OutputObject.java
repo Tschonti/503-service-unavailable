@@ -33,7 +33,9 @@ public class OutputObject {
     }
 
     public static String objectToName(Object o) {
-        return o.toString().split("@")[0].split("\\.")[1];
+        String[] regex =  o.getClass().toString().split("\\.");
+        return regex[regex.length - 1];
+        //return o.toString().split("@")[0].split("\\.")[1];
     }
 
     public static OutputObject[] generateParamsArray(Object... params) {

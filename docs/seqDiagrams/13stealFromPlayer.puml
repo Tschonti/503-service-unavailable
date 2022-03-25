@@ -10,7 +10,6 @@ actor Player as p
 participant "v1: Virologist" as v1
 participant "t: Tile" as t
 participant "vX: Virologist" as vX
-participant "vXInv: Inventory" as vXInv
 participant "e: Effect" as e
 participant "v1Inv: Inventory" as v1Inv
 participant "v2: Virologist" as v2
@@ -20,9 +19,7 @@ participant "eq: Equipment" as eq
 p -> v1 ++ : getNearbyVirologistsToStealFrom()
     v1-> t ++ : getPlayersToStealFrom()
     loop for all vX in t.players
-        t -> vX ++ : getInventory()
-        return vXInv
-        t -> vXInv ++ : getActiveEffects()
+        t -> vX ++ : getActiveEffects()
         return effects
         loop for all e in effects
             t -> e ++ : allowStealing()

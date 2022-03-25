@@ -1,6 +1,7 @@
 package tiles;
 
 import main.Collectable;
+import main.Effect;
 import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
@@ -11,16 +12,12 @@ import java.util.ArrayList;
 public abstract class Tile {
     protected int id;
     protected String name;
-    private ArrayList<Tile> neighbours;
+    private final ArrayList<Tile> neighbours;
+    private final ArrayList<Virologist> players;
 
     public Tile(int id, String name) {
-        //TODO: ez a kiiratás nem kell szerintem
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
-        Initializer.returnWrite(null);
+        players = new ArrayList<>();
+        neighbours = new ArrayList<>();
     }
 
     public ArrayList<Virologist> getPlayersToStealFrom(){
@@ -29,10 +26,17 @@ public abstract class Tile {
                 "getPlayersToStealFrom",
                 null
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
 
-        return new ArrayList<>();
+        ArrayList<Virologist> result = new ArrayList<>();
+        for (Virologist v : players) {
+            for (Effect e : v.getActiveEffects()) {
+                e.allowStealing();
+            }
+        }
+
+        //TODO:
+        Initializer.returnWrite(new OutputObject(result));
+        return result;
     }
 
     public abstract void collectItem(Inventory inv);
@@ -45,6 +49,7 @@ public abstract class Tile {
                 "addVirologist",
                 OutputObject.generateParamsArray(player)
         );
+        players.add(player);
         Initializer.returnWrite(null);
     }
     public void removeVirologist(Virologist player) {
@@ -53,6 +58,7 @@ public abstract class Tile {
                 "removeVirologist",
                 OutputObject.generateParamsArray(player)
         );
+        players.remove(player);
         Initializer.returnWrite(null);
     }
 
@@ -95,8 +101,7 @@ public abstract class Tile {
                 "addNeighbour",
                 OutputObject.generateParamsArray(t)
         );
-        Initializer.returnWrite(null);
-
         neighbours.add(t);
+        Initializer.returnWrite(null);
     }
 }

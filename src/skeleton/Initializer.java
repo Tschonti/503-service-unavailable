@@ -1,9 +1,11 @@
 package skeleton;
 
 import agents.AmnesiaVirus;
+import agents.StunVirus;
 import equipments.Bag;
 import equipments.Glove;
 import main.Virologist;
+import tiles.Laboratory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,8 +29,7 @@ public class Initializer {
         doTabs();
         System.out.print(
                 "[" +
-                ConsoleColor.RED.c + caller.className +
-                (objects.get(caller.ref) == null ? "" : " " + objects.get(caller.ref)) +
+                ConsoleColor.RED.c + outputObjectToString(caller) +
                 ConsoleColor.RESET.c +
                 "] [" +
                 ConsoleColor.CYAN.c + methodName + ConsoleColor.RESET.c +
@@ -37,7 +38,7 @@ public class Initializer {
         int i=0;
         if (params != null) {
             for (OutputObject o : params) {
-                System.out.print(ConsoleColor.GREEN.c + o.className + " " + objects.get(o.ref) + ((params.length-1 == (i++)) ? "" : ", " ));
+                System.out.print(ConsoleColor.GREEN.c + outputObjectToString(o) + ((params.length-1 == (i++)) ? "" : ", " ));
             }
         }
         System.out.print(ConsoleColor.RESET.c + ")" + ConsoleColor.RESET.c +"]\n");
@@ -51,29 +52,23 @@ public class Initializer {
             ConsoleColor.YELLOW.c + ConsoleColor.BOLD.c + "return "+ ConsoleColor.RESET.c +
                     "[" +
                     ConsoleColor.MAGENTA.c +
-                    (returned == null ? "void" : (returned.className +
-                    (returned.ref == null ? " " + returned.value : (objects.get(returned.ref) == null ? "" : " " + objects.get(returned.ref))))) +
+                    (returned == null ? "void" : returned.className) +
                     ConsoleColor.RESET.c +
                     "]"
         );
 
     }
 
-
-    //public static void returnStringWrite(String returned) {
-    //    tabs--;
-    //    doTabs();
-    //    System.out.println(
-    //            ConsoleColor.YELLOW.c + ConsoleColor.BOLD.c + "return "+ ConsoleColor.RESET.c +
-    //                    "[" +
-    //                    ConsoleColor.MAGENTA.c + returned + ConsoleColor.RESET.c +
-    //                    "]"
-    //    );
-    //}
     private static void doTabs() {
         for(int i=0; i<tabs; i++){
             System.out.print(("\t"));
         }
+    }
+
+    private static String outputObjectToString(OutputObject o) {
+        if (o == null) return "void";
+        String id = objects.get(o.ref);
+        return o.className + ((id == null) ? "" : " " + id);
     }
 
     public static void test() {
@@ -87,6 +82,23 @@ public class Initializer {
         Glove g = new Glove();
         objects.put(g, "glove");
         g.allowStealing();
+
+        samuTest();
+    }
+
+    public static void samuTest() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        objects.put(v1, "v1");
+        Laboratory l = new Laboratory(1, "hun");
+        objects.put(l, "lab");
+        l.addVirologist(v1);
+        StunVirus sv = new StunVirus();
+        objects.put(sv, "sv");
+        v1.addEffect(sv);
+        l.getPlayersToStealFrom();
+
+        l.collectItem(v1.getInventory());
 
     }
 }
