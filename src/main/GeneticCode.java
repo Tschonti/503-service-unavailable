@@ -40,6 +40,7 @@ public class GeneticCode implements Collectable {
                 OutputObject.generateParamsArray(inv)
         );
 
+        // TODO klónózás kéne
         inv.addGeneticCode(new GeneticCode());
 
         Initializer.returnWrite(null);
