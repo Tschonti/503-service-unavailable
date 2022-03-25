@@ -1,13 +1,11 @@
 package skeleton;
 
 import agents.*;
-import com.sun.org.apache.xml.internal.security.Init;
 import equipments.Bag;
 import equipments.Glove;
 import main.GeneticCode;
 import main.Inventory;
 import main.Virologist;
-import sun.awt.windows.WPrinterJob;
 import tiles.EmptyTile;
 import tiles.Laboratory;
 
@@ -108,17 +106,6 @@ public class Initializer {
     }
 
     public static void test() {
-        Virologist v1 = new Virologist();
-        objects.put(v1, "v1");
-        AmnesiaVirus av = new AmnesiaVirus();
-        objects.put(av, "av");
-        v1.addEffect(av);
-        Glove g = new Glove();
-        objects.put(g, "glove");
-        g.allowStealing();
-
-
-
         //testcases.put("moveToEmptyTile");
         //testcases.put("moveToLaboratory");
         //testcases.put("moveToSafeHouse");
@@ -145,7 +132,7 @@ public class Initializer {
 
         ArrayList<String> tests = new ArrayList<>();
         testcases.forEach((name, object) -> tests.add(name));
-        Collections.sort(tests,Initializer::sort);
+        tests.sort(Initializer::sort);
         while (!quit) {
             InputObject input = questionListWrite("Which test case would you like to run?", tests);
             testcases.get(input.getName()).run();
