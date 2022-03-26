@@ -8,7 +8,11 @@ import java.util.ArrayList;
 
 /**
  * Inventory
- *
+ * Every Virologist has an inventory and the other way around as well.
+ * It stores the collected resources, equipments, agents and genetic codes.
+ * It also has a maxResourceAmount and stores the virologist too.
+ * The inventory manages all these things (adding, removing etc.)
+ * and does the stealing mechanic.
  */
 public class Inventory {
     private int maxResourceAmount;
