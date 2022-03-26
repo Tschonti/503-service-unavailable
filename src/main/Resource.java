@@ -43,7 +43,7 @@ public class Resource implements Collectable {
         Initializer.returnWrite(null);
     }
 
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",

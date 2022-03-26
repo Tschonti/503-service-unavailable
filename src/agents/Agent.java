@@ -52,7 +52,7 @@ public abstract class Agent implements Effect {
 
     public abstract Agent create();
 
-    /* Effect függvények */
+    /* Effect functions */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),

@@ -46,7 +46,7 @@ public class Initializer {
      */
     public static boolean questionWrite(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
-        char reply = ' ';
+        char reply; //TODO samu??????
         Scanner sc = new Scanner(System.in);
         reply = sc.next().charAt(0);
         return reply == 'y';
@@ -63,7 +63,7 @@ public class Initializer {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
         for (int i = 0; i < options.size(); i++) {
-            String c = (options.get(i) == "quit program") ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
+            String c = (options.get(i).equals("quit program")) ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
             System.out.println(c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
         }
         Scanner s = new Scanner(System.in);

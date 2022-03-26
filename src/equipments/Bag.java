@@ -59,7 +59,7 @@ public class Bag extends Equipment {
      * Creates a new Bag and returns it.
      * @return The new Bag.
      */
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",

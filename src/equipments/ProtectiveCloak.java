@@ -47,7 +47,7 @@ public class ProtectiveCloak extends Equipment {
      * Creates a new ProtectiveCloak and returns it.
      * @return The new ProtectiveCloak.
      */
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",

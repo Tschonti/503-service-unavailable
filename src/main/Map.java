@@ -16,7 +16,7 @@ public class Map {
         Initializer.returnWrite(null);
     }
 
-    // 4.4.1 szerint geneticCodeokat kéne visszaadnia, de usecaseben úgysincs
+    //TODO 4.4.1 szerint geneticCodeokat kéne visszaadnia, de usecaseben úgysincs
     public void createMap() {
         Initializer.functionWrite(
                 new OutputObject(this),
