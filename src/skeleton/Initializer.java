@@ -219,8 +219,10 @@ public class Initializer {
         Virologist v = new Virologist();
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
-        v.setActiveTile(tile);
         EmptyTile tile2 = new EmptyTile(1, "to");
+        objects.put(tile, "activeTile");
+        objects.put(tile2, "e");
+        v.setActiveTile(tile);
         v.moveTo(tile2);
     }
 
@@ -229,8 +231,10 @@ public class Initializer {
         Virologist v = new Virologist();
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
-        v.setActiveTile(tile);
         Laboratory tile2 = new Laboratory(1, "to");
+        objects.put(tile, "activeTile");
+        objects.put(tile2, "l");
+        v.setActiveTile(tile);
         v.moveTo(tile2);
     }
 
@@ -239,8 +243,10 @@ public class Initializer {
         Virologist v = new Virologist();
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
-        v.setActiveTile(tile);
         Safehouse tile2 = new Safehouse(1, "to");
+        objects.put(tile, "activeTile");
+        objects.put(tile2, "s");
+        v.setActiveTile(tile);
         v.moveTo(tile2);
     }
 
@@ -249,8 +255,10 @@ public class Initializer {
         Virologist v = new Virologist();
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
-        v.setActiveTile(tile);
         Warehouse tile2 = new Warehouse(1, "to");
+        objects.put(tile, "activeTile");
+        objects.put(tile2, "w");
+        v.setActiveTile(tile);
         v.moveTo(tile2);
     }
 

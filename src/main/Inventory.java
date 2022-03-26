@@ -51,6 +51,7 @@ public class Inventory {
                 OutputObject.generateParamsArray(res)
         );
 
+        // TODO ennek majd nem így kell lennie, ellenőrizni kell a maxot
         resources.add(res);
 
         Initializer.returnWrite(new OutputObject(res));
@@ -100,7 +101,7 @@ public class Inventory {
                 "removeResource",
                 OutputObject.generateParamsArray(res)
         );
-
+        // TODO szintúgy
         resources.remove(res);
 
         Initializer.returnWrite(null);
@@ -126,6 +127,7 @@ public class Inventory {
         );
 
         virologist.removeEffect(eq);
+        pickedUpEquipments.remove(eq);
 
         Initializer.returnWrite(new OutputObject(false));
 
@@ -168,20 +170,20 @@ public class Inventory {
         return pickedUpEquipments;
     }
 
-    public void steal(Inventory inv2, Equipment eq) {
+    public void steal(Inventory v2Inv, Equipment eq) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "steal",
-                OutputObject.generateParamsArray(inv2, eq)
+                OutputObject.generateParamsArray(v2Inv, eq)
         );
 
-        inv2.removeEquipment(eq);
+        v2Inv.removeEquipment(eq);
         addEquipment(eq);
         eq.onTurnImpact(virologist);
-        ArrayList<Resource> inv2Resources =  inv2.getResources();
+        ArrayList<Resource> inv2Resources =  v2Inv.getResources();
         for (Resource res : inv2Resources) {
             Resource addedResource = addResource(res);
-            inv2.removeResource(addedResource);
+            v2Inv.removeResource(addedResource);
         }
 
         Initializer.returnWrite(null);
