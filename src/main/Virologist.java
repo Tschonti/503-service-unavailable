@@ -43,7 +43,7 @@ public class Virologist {
                 OutputObject.generateParamsArray(effect)
         );
 
-        removeEffect(effect);
+        activeEffects.remove(effect);
         Initializer.returnWrite(null);
     }
 
@@ -65,7 +65,7 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
-    private void moveTo(Tile newTile) {
+    public void moveTo(Tile newTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "moveTo",
