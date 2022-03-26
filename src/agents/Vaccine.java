@@ -35,6 +35,7 @@ public class Vaccine extends Agent{
                 "counterImpact",
                 OutputObject.generateParamsArray(agent, from, to)
         );
+        to.removeEffect(agent);
         Initializer.returnWrite(null);
     }
 }

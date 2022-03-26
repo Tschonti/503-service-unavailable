@@ -3,14 +3,14 @@ package skeleton;
 import agents.*;
 import equipments.Bag;
 import equipments.Glove;
+import equipments.ProtectiveCloak;
+import main.Effect;
 import main.Controller;
 import main.GeneticCode;
 import main.Inventory;
 import main.Virologist;
 import tiles.EmptyTile;
 import tiles.Laboratory;
-
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -43,11 +43,8 @@ public class Initializer {
     public static boolean questionWrite(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
         char reply = ' ';
-        try {
-            reply = (char)System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Scanner sc = new Scanner(System.in);
+        reply = sc.next().charAt(0);
         return reply == 'y';
     }
 
@@ -218,10 +215,10 @@ public class Initializer {
      */
     public static void craftStun() {
         objects.clear();
-        Virologist v=new Virologist();
-        objects.put(v,"v");
-        Agent sV=new StunVirus();
-        objects.put(sV,"sV");
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Agent sV =new StunVirus();
+        objects.put(sV, "sV");
         GeneticCode gC=new GeneticCode();
         objects.put(gC,"gC");
         gC.setAgent(sV);
@@ -334,19 +331,115 @@ public class Initializer {
     }
 
     public static void useStunVirus() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        AmnesiaVirus sv = new AmnesiaVirus();
+        Virologist v2 = new Virologist();
 
+        objects.put(v1, "v1");
+        objects.put(v2, "v2");
+        objects.put(sv, "sv");
+        objects.put(v1.getInventory(), "inv");
+        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+            Vaccine v = new Vaccine();
+            objects.put(v, "v");
+            v2.addEffect(v);
+        }
+        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+            Glove g1 = new Glove();
+            objects.put(g1, "g1");
+            v2.addEffect(g1);
+        }
+        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+            ProtectiveCloak p1 = new ProtectiveCloak();
+            objects.put(p1, "p1");
+            v2.addEffect(p1);
+        }
+        sv.use(v1, v2);
     }
 
     public static void useAmnesiaVirus() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        AmnesiaVirus av = new AmnesiaVirus();
+        Virologist v2 = new Virologist();
 
+        objects.put(v1, "v1");
+        objects.put(v2, "v2");
+        objects.put(av, "av");
+        objects.put(v1.getInventory(), "inv");
+        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+            Glove g1 = new Glove();
+            objects.put(g1, "g1");
+            v2.addEffect(g1);
+        }
+        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+            Vaccine v = new Vaccine();
+            objects.put(v, "v");
+            v2.addEffect(v);
+        }
+        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+            ProtectiveCloak p1 = new ProtectiveCloak();
+            objects.put(p1, "p1");
+            v2.addEffect(p1);
+        }
+        av.use(v1, v2);
     }
 
     public static void useVitusDanceVirus() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        AmnesiaVirus vdv = new AmnesiaVirus();
+        Virologist v2 = new Virologist();
 
+        objects.put(v1, "v1");
+        objects.put(v2, "v2");
+        objects.put(vdv, "vdv");
+        objects.put(v1.getInventory(), "inv");
+        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+            Vaccine v = new Vaccine();
+            objects.put(v, "v");
+            v2.addEffect(v);
+        }
+        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+            Glove g1 = new Glove();
+            objects.put(g1, "g1");
+            v2.addEffect(g1);
+        }
+        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+            ProtectiveCloak p1 = new ProtectiveCloak();
+            objects.put(p1, "p1");
+            v2.addEffect(p1);
+        }
+        vdv.use(v1, v2);
     }
 
     public static void useVaccine() {
+        objects.clear();
+        Virologist v1 = new Virologist();
+        AmnesiaVirus v = new AmnesiaVirus();
+        Virologist v2 = new Virologist();
 
+        objects.put(v1, "v1");
+        objects.put(v2, "v2");
+        objects.put(v, "v");
+        objects.put(v1.getInventory(), "inv");
+        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+            Vaccine vac = new Vaccine();
+            objects.put(vac, "vac");
+            v2.addEffect(vac);
+        }
+        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+            Glove g1 = new Glove();
+            objects.put(g1, "g1");
+            v2.addEffect(g1);
+        }
+        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+            ProtectiveCloak p1 = new ProtectiveCloak();
+            objects.put(p1, "p1");
+            v2.addEffect(p1);
+        }
+        v.use(v1, v2);
     }
 
     public static void robVirologist() {

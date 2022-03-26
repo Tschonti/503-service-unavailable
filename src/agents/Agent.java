@@ -5,6 +5,8 @@ import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
+import java.util.ArrayList;
+
 public abstract class Agent implements Effect {
     protected int roundsLeft;
 
@@ -39,6 +41,12 @@ public abstract class Agent implements Effect {
                 "use",
                 OutputObject.generateParamsArray(from, to)
         );
+        ArrayList<Effect> activeEffects = new ArrayList<>(to.getActiveEffects());
+        to.addEffect(this);
+        if(from != to)
+            for(Effect e : activeEffects) {
+                e.counterImpact(this, from, to);
+            }
         Initializer.returnWrite(null);
     }
 

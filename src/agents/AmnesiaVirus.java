@@ -1,4 +1,6 @@
 package agents;
+import main.GeneticCode;
+import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
@@ -34,6 +36,10 @@ public class AmnesiaVirus extends Agent {
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
+        Inventory inv = to.getInventory();
+        /*for(GeneticCode gc : inv.getLearnedAgents()) {
+            removeGeneticCode(gc);
+        }*/
         Initializer.returnWrite(null);
     }
 }
