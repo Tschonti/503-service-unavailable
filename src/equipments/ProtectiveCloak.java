@@ -34,7 +34,7 @@ public class ProtectiveCloak extends Equipment {
                 "counterImpact",
                 null
         );
-        boolean q=Initializer.questionWrite("Do you want the ProtectiveCloak to save its owner?");
+        boolean q=Initializer.questionYesOrNo("Do you want the ProtectiveCloak to save its owner?");
         if(q){
             to.removeEffect(agent);
         }
