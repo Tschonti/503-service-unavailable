@@ -4,7 +4,6 @@ import agents.*;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import main.Effect;
 import main.Controller;
 import main.GeneticCode;
 import main.Inventory;
@@ -14,7 +13,6 @@ import tiles.Laboratory;
 import tiles.Safehouse;
 import tiles.Warehouse;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -44,9 +42,9 @@ public class Initializer {
      * @param question The full text of the question.
      * @return Returns the answer to the question, true means yes, false means no.
      */
-    public static boolean questionWrite(String question) {
+    public static boolean questionYesOrNo(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
-        char reply = ' ';
+        char reply; //TODO samu??????
         Scanner sc = new Scanner(System.in);
         reply = sc.next().charAt(0);
         return reply == 'y';
@@ -63,7 +61,7 @@ public class Initializer {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
         for (int i = 0; i < options.size(); i++) {
-            String c = (options.get(i) == "quit program") ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
+            String c = (options.get(i).equals("quit program")) ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
             System.out.println(c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
         }
         Scanner s = new Scanner(System.in);
@@ -396,17 +394,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(sv, "sv");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -424,17 +422,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(av, "av");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -452,17 +450,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(vdv, "vdv");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -480,17 +478,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(v, "v");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionWrite("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vakcina hatasa a virologusnak akire felkenik az amnezia virust?")) {
             Vaccine vac = new Vaccine();
             objects.put(vac, "vac");
             v2.addEffect(vac);
         }
-        if(Initializer.questionWrite("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen kesztyuje a virologusnak akire felkenik az amnezia virust?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionWrite("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
+        if(Initializer.questionYesOrNo("Legyen vedelmi kopenye a virologusnak akire felkenik az amnezia virust?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);

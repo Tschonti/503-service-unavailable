@@ -16,7 +16,7 @@ public class Warehouse extends Tile {
     /**
      * Constructor
      * Creates a new resource object
-     * @param id Unique identifier of the tiel
+     * @param id Unique identifier of the tile
      * @param name Name of the tile
      */
     public Warehouse(int id, String name) {
@@ -27,7 +27,7 @@ public class Warehouse extends Tile {
                 "constructor",
                 null
         );
-        collectable = new Resource(10, ResourceType.Aminoacid);
+        collectable = new Resource(10, ResourceType.AminoAcid);
         Initializer.returnWrite(null);
     }
 
@@ -43,7 +43,7 @@ public class Warehouse extends Tile {
                 "collectItem",
                 OutputObject.generateParamsArray(inv)
         );
-        collectable.clone().collect(inv);
+        collectable.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);
     }
 

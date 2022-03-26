@@ -144,7 +144,7 @@ public abstract class Tile {
 
     /**
      * Adds a tile as a neighbour to this tile
-     * @param t Tile to be added as neigbour
+     * @param t Tile to be added as neighbour
      */
     public void addNeighbour(Tile t) {
         Initializer.functionWrite(

@@ -14,7 +14,7 @@ public class Safehouse extends Tile {
     private final Equipment equipment;
 
     /**
-     * Contructor
+     * Constructor
      * Creates a new equipment
      * @param id Unique identifier of the tile
      * @param name Name of the tile
@@ -34,7 +34,7 @@ public class Safehouse extends Tile {
     /**
      * Clones the collectable of the field and calls its collect method,
      * that'll eventually put the new collectable into the inventory.
-     * In this case, it clones the equipmentand calls its collect method.
+     * In this case, it clones the equipment and calls its collect method.
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
     public void collectItem(Inventory inv) {
@@ -43,7 +43,7 @@ public class Safehouse extends Tile {
                 "collectItem",
                 null
         );
-        equipment.clone().collect(inv);
+        equipment.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);
     }
 

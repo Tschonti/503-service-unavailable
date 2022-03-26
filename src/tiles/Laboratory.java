@@ -42,7 +42,7 @@ public class Laboratory extends Tile {
                 "collectItem",
                 OutputObject.generateParamsArray(inv)
         );
-        code.clone().collect(inv);
+        code.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);
     }
 

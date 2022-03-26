@@ -34,7 +34,7 @@ public class ProtectiveCloak extends Equipment {
                 "counterImpact",
                 null
         );
-        boolean q=Initializer.questionWrite("Do you want the ProtectiveCloak to save its owner?");
+        boolean q=Initializer.questionYesOrNo("Do you want the ProtectiveCloak to save its owner?");
         if(q){
             to.removeEffect(agent);
         }
@@ -47,7 +47,7 @@ public class ProtectiveCloak extends Equipment {
      * Creates a new ProtectiveCloak and returns it.
      * @return The new ProtectiveCloak.
      */
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",

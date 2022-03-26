@@ -28,7 +28,7 @@ public class EmptyTile extends Tile {
     /**
      * Clones the collectable of the field and calls its collect method,
      * that'll eventually put the new collectable into the inventory.
-     * Since nothig can be picked up from here, this method does nothing.
+     * Since nothing can be picked up from here, this method does nothing.
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
     public void collectItem(Inventory inv) {

@@ -48,8 +48,8 @@ public class Controller {
     }
 
     /**
-     * Checks, if any player has collected all the genetic codes.
-     * @param v
+     * Checks, if this player has collected all the genetic codes.
+     * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
         Initializer.functionWrite(
