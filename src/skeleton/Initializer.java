@@ -399,17 +399,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(sv, "sv");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Vaccine effect?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Glove?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a ProtectiveCloak?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -427,17 +427,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(av, "av");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Vaccine effect?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Glove?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a ProtectiveCloak?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -455,17 +455,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(vdv, "vdv");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Vaccine effect?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Glove?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a ProtectiveCloak?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -483,17 +483,17 @@ public class Initializer {
         objects.put(v2, "v2");
         objects.put(v, "v");
         objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Vaccine effect?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine vac = new Vaccine();
             objects.put(vac, "vac");
             v2.addEffect(vac);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a Glove?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown have a ProtectiveCloak?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
