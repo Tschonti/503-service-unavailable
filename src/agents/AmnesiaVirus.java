@@ -37,9 +37,9 @@ public class AmnesiaVirus extends Agent {
                 OutputObject.generateParamsArray(to)
         );
         Inventory inv = to.getInventory();
-        /*for(GeneticCode gc : inv.getLearnedAgents()) {
-            removeGeneticCode(gc);
-        }*/
+        for(GeneticCode gc : inv.getGeneticCodes()) {
+            inv.removeGeneticCode(gc);
+        }
         Initializer.returnWrite(null);
     }
 }

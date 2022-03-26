@@ -1,5 +1,6 @@
 package agents;
 
+import main.Constants;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
@@ -39,15 +40,13 @@ public class VitusDanceVirus extends Agent{
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < Constants.numberOfActions; i++) {
             Tile t = to.getActiveTile();
             ArrayList<Tile> tileList = t.getNeighbours();
             Random r = new Random();
             int randomInt = tileList.size() == 1 ? 0 : r.nextInt(tileList.size() - 1);
-            Tile rT = tileList.get(randomInt);
-            to.moveTo(rT);
-            t.removeVirologist(to);
-            rT.addVirologist(to);
+            Tile randomTile = tileList.get(randomInt);
+            to.moveTo(randomTile);
         }
         Initializer.returnWrite(null);
     }

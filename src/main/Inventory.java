@@ -264,11 +264,19 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Getter for craftedAgents.
+     * @return craftedAgents
+     */
     public ArrayList<Agent> getCraftedAgents() {
         return craftedAgents;
     }
 
+    /**
+     * Getter for learntCodes.
+     * @return learntCodes
+     */
     public ArrayList<GeneticCode> getGeneticCodes() {
-        return new ArrayList<>();
+        return learntCodes;
     }
 }
