@@ -76,6 +76,25 @@ public class Resource implements Collectable {
         this.type = type;
     }
 
+    public int addAmount(int maxAmount, int addedAmount) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "addAmount",
+                OutputObject.generateParamsArray(maxAmount, addedAmount)
+        );
+        Initializer.returnWrite(new OutputObject(0));
+        return 0;
+    }
+
+    public void removeAmount(int removedAmount) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "addAmount",
+                OutputObject.generateParamsArray(removedAmount)
+        );
+        Initializer.returnWrite(null);
+    }
+
     /**
      *
      * @param resources

@@ -1,13 +1,16 @@
 package main;
 
 import agents.Agent;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import equipments.Equipment;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
 import java.util.ArrayList;
 
+/**
+ * Inventory
+ *
+ */
 public class Inventory {
     private int maxResourceAmount;
     private Virologist virologist;
@@ -16,6 +19,10 @@ public class Inventory {
     private ArrayList<Agent> craftedAgents;
     private ArrayList<GeneticCode> learntCodes;
 
+    /**
+     * Constructor
+     * @param virologist
+     */
     public Inventory(Virologist virologist) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -32,6 +39,10 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Adds the genetic code to the learntCodes.
+     * @param gc
+     */
     public void addGeneticCode(GeneticCode gc){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -44,6 +55,11 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Adds the resource to the resources.
+     * @param res
+     * @return The added amount of resource.
+     */
     public Resource addResource(Resource res){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -51,13 +67,17 @@ public class Inventory {
                 OutputObject.generateParamsArray(res)
         );
 
-        // TODO ennek majd nem így kell lennie, ellenőrizni kell a maxot
-        resources.add(res);
+        int added = Resource.getResourceByType(resources, res.getType()).addAmount(maxResourceAmount, res.getAmount());
+        Resource ret = new Resource(added, res.getType());
 
-        Initializer.returnWrite(new OutputObject(res));
-        return null;
+        Initializer.returnWrite(new OutputObject(ret));
+        return ret;
     }
 
+    /**
+     * Adds the agent to craftedAgents.
+     * @param agent
+     */
     public void addCraftedAgent(Agent agent){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -70,6 +90,10 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Adds the equipment to pickedUpEquipments and its effect to the virologist.
+     * @param eq
+     */
     public void addEquipment(Equipment eq){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -83,6 +107,10 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Removes the genetic code from learntCodes.
+     * @param gc
+     */
     public void removeGeneticCode(GeneticCode gc){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -95,18 +123,26 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Removes the resource from resources.
+     * @param res
+     */
     public void removeResource(Resource res){
         Initializer.functionWrite(
                 new OutputObject(this),
                 "removeResource",
                 OutputObject.generateParamsArray(res)
         );
-        // TODO szintúgy
-        resources.remove(res);
+
+        Resource.getResourceByType(resources, res.getType()).removeAmount(res.getAmount());
 
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Removes the agent from craftedAgents
+     * @param agent
+     */
     public void removeCraftedAgent(Agent agent){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -119,6 +155,11 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Removes the equipment from pickedUpEquipments and its effect from the virologist.
+     * @param eq
+     * @return
+     */
     public boolean removeEquipment(Equipment eq){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -134,6 +175,10 @@ public class Inventory {
         return false;
     }
 
+    /**
+     * Getter for maxResourceAmount.
+     * @return maxResourceAmount
+     */
     public int getMaxResourceAmount(){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -144,10 +189,24 @@ public class Inventory {
         return maxResourceAmount;
     }
 
+    /**
+     * Getter for resources.
+     * @return resources
+     */
     public ArrayList<Resource> getResources() {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "getResources",
+                null
+        );
+        Initializer.returnWrite(new OutputObject(resources));
         return resources;
     }
 
+    /**
+     * Setter for maxResourceAmount.
+     * @param amount
+     */
     public void setMaxResourceAmount(int amount){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -160,6 +219,10 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Getter for pickedUpEquipments.
+     * @return pickedUpEquipments
+     */
     public ArrayList<Equipment> getEquipments() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -170,6 +233,13 @@ public class Inventory {
         return pickedUpEquipments;
     }
 
+    /**
+     * Stealing from another player (or rather from their inventory).
+     * It removes all the stolen equipment and resource from the other virologists inventory
+     * and adds it to this inventory.
+     * @param v2Inv
+     * @param eq
+     */
     public void steal(Inventory v2Inv, Equipment eq) {
         Initializer.functionWrite(
                 new OutputObject(this),
