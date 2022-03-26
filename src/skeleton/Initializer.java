@@ -8,6 +8,8 @@ import main.Inventory;
 import main.Virologist;
 import tiles.EmptyTile;
 import tiles.Laboratory;
+import tiles.Safehouse;
+import tiles.Warehouse;
 
 import java.io.IOException;
 import java.util.*;
@@ -229,19 +231,39 @@ public class Initializer {
     }
 
     public static void pickUpBag() {
+        Safehouse s = new Safehouse(1, "SafeHouse1");
+        Virologist v = new Virologist("Virologist1");
+        v.setActiveTile(s);
+        s.addVirologist(v);
 
+        s.collectItem(v.getInventory());
     }
 
     public static void pickUpCloak() {
+        Safehouse s = new Safehouse(1, "SafeHouse1");
+        Virologist v = new Virologist("Virologist1");
+        v.setActiveTile(s);
+        s.addVirologist(v);
 
+        s.collectItem(v.getInventory());
     }
 
     public static void pickUpGlove() {
+        Safehouse s = new Safehouse(1, "SafeHouse1");
+        Virologist v = new Virologist("Virologist1");
+        v.setActiveTile(s);
+        s.addVirologist(v);
 
+        s.collectItem(v.getInventory());
     }
 
     public static void pickUpResource() {
+        Warehouse s = new Warehouse(1, "WareHouse1");
+        Virologist v = new Virologist("Virologist1");
+        v.setActiveTile(s);
+        s.addVirologist(v);
 
+        s.collectItem(v.getInventory());
     }
 
     public static void learnGeneticCode() {
