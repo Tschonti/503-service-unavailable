@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class Inventory {
     private int maxResourceAmount;
-    private Virologist virologist;
-    private ArrayList<Resource> resources;
-    private ArrayList<Equipment> pickedUpEquipments;
-    private ArrayList<Agent> craftedAgents;
-    private ArrayList<GeneticCode> learntCodes;
+    private final Virologist virologist;
+    private final ArrayList<Resource> resources;
+    private final ArrayList<Equipment> pickedUpEquipments;
+    private final ArrayList<Agent> craftedAgents;
+    private final ArrayList<GeneticCode> learntCodes;
 
     /**
      * Constructor
@@ -34,6 +34,7 @@ public class Inventory {
         pickedUpEquipments = new ArrayList<>();
         craftedAgents = new ArrayList<>();
         learntCodes = new ArrayList<>();
+        Resource.initializeResourceArray(resources);
 
         Initializer.returnWrite(null);
     }
@@ -245,10 +246,11 @@ public class Inventory {
                 "steal",
                 OutputObject.generateParamsArray(v2Inv, eq)
         );
-
-        v2Inv.removeEquipment(eq);
-        addEquipment(eq);
-        eq.onTurnImpact(virologist);
+        if (eq != null) {
+            v2Inv.removeEquipment(eq);
+            addEquipment(eq);
+            eq.onTurnImpact(virologist);
+        }
         ArrayList<Resource> inv2Resources =  v2Inv.getResources();
         for (Resource res : inv2Resources) {
             Resource addedResource = addResource(res);
