@@ -1,6 +1,7 @@
 package main;
 
 import agents.Agent;
+import agents.VitusDanceVirus;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
@@ -16,6 +17,7 @@ public class GeneticCode implements Collectable {
                 "constructor",
                 null
         );
+        agent = new VitusDanceVirus();
         Initializer.returnWrite(null);
     }
 
@@ -25,7 +27,15 @@ public class GeneticCode implements Collectable {
                 "collect",
                 OutputObject.generateParamsArray(inv)
         );
+        inv.addGeneticCode(this);
         Initializer.returnWrite(null);
+    }
+
+    public Collectable clone() {
+        GeneticCode newGc = new GeneticCode();
+        newGc.setAgent(agent.create());
+        newGc.setPrice(price);
+        return newGc;
     }
 
     public boolean isCraftable(Inventory inv) {

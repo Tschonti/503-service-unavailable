@@ -15,8 +15,7 @@ public abstract class Equipment implements Effect, Collectable {
                 "collect",
                 OutputObject.generateParamsArray(inv)
         );
-        Equipment cloned=this.clone();
-        inv.addEquipment(cloned);
+        inv.addEquipment(this);
         Initializer.returnWrite(null);
     }
 
@@ -66,5 +65,5 @@ public abstract class Equipment implements Effect, Collectable {
         Initializer.returnWrite(null);
     }
 
-    protected abstract Equipment clone();
+    public abstract Collectable clone();
 }

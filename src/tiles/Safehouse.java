@@ -1,14 +1,24 @@
 package tiles;
 
 import equipments.Equipment;
+import equipments.Glove;
 import main.Collectable;
 import main.Inventory;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
+/**
+ * A safehouse tile where players can pick up equipments
+ */
 public class Safehouse extends Tile {
-    private Equipment equipment;
+    private final Equipment equipment;
 
+    /**
+     * Contructor
+     * Creates a new equipment
+     * @param id Unique identifier of the tile
+     * @param name Name of the tile
+     */
     public Safehouse(int id, String name) {
         super(id, name);
 
@@ -17,18 +27,30 @@ public class Safehouse extends Tile {
                 "constructor",
                 null
         );
+        equipment = new Glove();
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Clones the collectable of the field and calls its collect method,
+     * that'll eventually put the new collectable into the inventory.
+     * In this case, it clones the equipmentand calls its collect method.
+     * @param inv The clone of the Collectable has to be stored in this inventory.
+     */
     public void collectItem(Inventory inv) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "collectItem",
                 null
         );
-        inv.addEquipment(equipment);
+        equipment.clone().collect(inv);
         Initializer.returnWrite(null);
     }
+
+    /**
+     * Returns the collectable that can be picked up from this tile.
+     * @return The equipment that can be picked up here
+     */
     public Collectable getCollectableItem() {
         Initializer.functionWrite(
                 new OutputObject(this),

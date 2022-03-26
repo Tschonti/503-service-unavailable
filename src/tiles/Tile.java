@@ -9,17 +9,33 @@ import skeleton.OutputObject;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract class for the fields of the game.
+ * Keeps track of the players that are currently on the tile.
+ * Players can pick up various items here.
+ */
 public abstract class Tile {
-    protected int id;
-    protected String name;
+    protected final int id;
+    protected final String name;
     private final ArrayList<Tile> neighbours;
     private final ArrayList<Virologist> players;
 
+    /**
+     * Constructor
+     * @param id Unique identifier of the tile
+     * @param name Name of the tile
+     */
     public Tile(int id, String name) {
+        this.id = id;
+        this.name = name;
         players = new ArrayList<>();
         neighbours = new ArrayList<>();
     }
 
+    /**
+     * Return the virologist from players that have an effect applied to them that allows stealing.
+     * @return Virologists that can be robbed.
+     */
     public ArrayList<Virologist> getPlayersToStealFrom(){
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -34,15 +50,28 @@ public abstract class Tile {
             }
         }
 
-        //TODO:
         Initializer.returnWrite(new OutputObject(result));
         return result;
     }
 
+    /**
+     * Clones the collectable of the field and calls its collect method,
+     * that'll eventually put the new collectable into the inventory.
+     * @param inv The clone of the Collectable has to be stored in this inventory.
+     */
     public abstract void collectItem(Inventory inv);
 
+    /**
+     * Getter for the collectable of the field
+     * @return collectable of the field
+     */
     public abstract Collectable getCollectableItem();
 
+    /**
+     * Adds the virologist to the players list.
+     * Called when a virologist moves to this field.
+     * @param player The player to be added
+     */
     public void addVirologist(Virologist player) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -52,6 +81,12 @@ public abstract class Tile {
         players.add(player);
         Initializer.returnWrite(null);
     }
+
+    /**
+     * Removes the virologist from the players list.
+     * Called when a virologist moves from this field.
+     * @param player The player to be removed.
+     */
     public void removeVirologist(Virologist player) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -62,6 +97,10 @@ public abstract class Tile {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Getter for the ID
+     * @return unique identifier
+     */
     public int getId() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -73,6 +112,10 @@ public abstract class Tile {
         return id;
     }
 
+    /**
+     * Getter for the name.
+     * @return Name of the tile
+     */
     public String getName() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -84,6 +127,10 @@ public abstract class Tile {
         return name;
     }
 
+    /**
+     * Getter for the neighbours list.
+     * @return List of neighbouring tiles
+     */
     public ArrayList<Tile> getNeighbours() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -95,6 +142,10 @@ public abstract class Tile {
         return neighbours;
     }
 
+    /**
+     * Adds a tile as a neighbour to this tile
+     * @param t Tile to be added as neigbour
+     */
     public void addNeighbour(Tile t) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -106,6 +157,10 @@ public abstract class Tile {
         neighbours.add(t);
     }
 
+    /**
+     * Returns the list of players that are currently on this tile
+     * @return  List of players on this tile
+     */
     public ArrayList<Virologist> getPlayers() {
         Initializer.functionWrite(
                 new OutputObject(this),
