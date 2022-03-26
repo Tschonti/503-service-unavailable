@@ -14,8 +14,13 @@ public class Virologist {
     private Tile activeTile;
     private final Inventory inventory;
     private final ArrayList<Effect> activeEffects;
+    private String name = "";
 
-    public Virologist() {
+    /**
+     *
+     * @param name
+     */
+    public Virologist(String name) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",
@@ -23,9 +28,14 @@ public class Virologist {
         );
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
+        this.name = name;
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param effect
+     */
     public void addEffect(Effect effect) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -36,6 +46,10 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param effect
+     */
     public void removeEffect(Effect effect) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -47,24 +61,52 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     */
     public void pass() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "pass",
                 null
         );
+        actionsLeft = 0;
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     */
     public void myTurn() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "myTurn",
                 null
         );
+
+        //active effects impact
+        for (Effect e : activeEffects) {
+            e.onTurnImpact(this);
+            e.endTurnImpact(this);
+        }
+
+        //active effects decrement
+        for (Effect e : activeEffects) {
+            e.decrement(this);
+        }
+
+        //active agents decrement
+        ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
+        for (Agent a : craftedAgents) {
+            a.decrement(this);
+        }
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param newTile
+     */
     //TODO this should be private, but we need to use it for some tests
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
@@ -78,6 +120,9 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     */
     public void pickUp() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -87,6 +132,11 @@ public class Virologist {
         activeTile.collectItem(inventory);
         Initializer.returnWrite(null);
     }
+
+    /**
+     *
+     * @param code
+     */
     public void craft(GeneticCode code) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -97,15 +147,42 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param agent
+     * @param v
+     */
     public void useAgent(Agent agent, Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "useAgent",
                 OutputObject.generateParamsArray(agent, v)
         );
+
+        ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
+        ArrayList<String> craftedAgentsStr = new ArrayList<>();
+        for (Agent a : craftedAgents) {
+            craftedAgentsStr.add(a.toString());
+        }
+        int idxAgent = Initializer.questionListWrite("Select the agent to use", craftedAgentsStr).getIndex();
+
+        ArrayList<Virologist> nearbyVirologists = activeTile.getPlayers();
+        ArrayList<String> nearVirologistStr = new ArrayList<>();
+        for (Virologist vir : nearbyVirologists) {
+            nearVirologistStr.add(vir.getName());
+        }
+
+        int idxPlayer = Initializer.questionListWrite("Select the virologist to put agent on it", nearVirologistStr).getIndex();
+
+        craftedAgents.get(idxAgent).use(this, nearbyVirologists.get(idxPlayer));
+
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param v
+     */
     public void steal(Virologist v) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -123,6 +200,10 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @return
+     */
     private ArrayList<Tile> getNeighbours() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -133,17 +214,34 @@ public class Virologist {
 
         return activeTile.getNeighbours();
     }
+
+    /**
+     *
+     * @return
+     */
     private ArrayList<GeneticCode> getCraftables() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "getCraftables",
                 null
         );
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
 
-        return new ArrayList<>();
+        ArrayList<GeneticCode> geneticCodes = inventory.getGeneticCodes();
+        ArrayList<GeneticCode> craftables = new ArrayList<>();
+        for (GeneticCode c : geneticCodes) {
+            if (c.isCraftable(inventory)) {
+                craftables.add(c);
+            }
+        }
+        Initializer.returnWrite(new OutputObject(craftables));
+
+        return craftables;
     }
+
+    /**
+     *
+     * @return
+     */
     private ArrayList<Agent> getCraftedAgents() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -151,12 +249,16 @@ public class Virologist {
                 null
         );
 
-        getCraftables();
-        //TODO:
-        Initializer.returnWrite(new OutputObject(new ArrayList<>()));
-        return new ArrayList<>();
+        ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
+
+        Initializer.returnWrite(new OutputObject(craftedAgents));
+        return craftedAgents;
     }
 
+    /**
+     *
+     * @return
+     */
     private ArrayList<Virologist> getNearbyVirologists() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -170,6 +272,10 @@ public class Virologist {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     private ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -183,6 +289,10 @@ public class Virologist {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getActionsLeft() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -194,6 +304,10 @@ public class Virologist {
         return actionsLeft;
     }
 
+    /**
+     *
+     * @return
+     */
     public Tile getActiveTile() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -205,6 +319,10 @@ public class Virologist {
         return activeTile;
     }
 
+    /**
+     *
+     * @param activeTile
+     */
     public void setActiveTile(Tile activeTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -216,6 +334,10 @@ public class Virologist {
         this.activeTile = activeTile;
     }
 
+    /**
+     *
+     * @return
+     */
     public Inventory getInventory() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -227,7 +349,10 @@ public class Virologist {
         return inventory;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public ArrayList<Effect> getActiveEffects() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -237,6 +362,34 @@ public class Virologist {
         Initializer.returnWrite(new OutputObject(activeEffects));
 
         return activeEffects;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getName() {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "getName",
+                null
+        );
+        Initializer.returnWrite(new OutputObject(name));
+        return name;
+    }
+
+    /**
+     *
+     * @param name
+     */
+    public void setName (String name) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "setName",
+                OutputObject.generateParamsArray(name)
+        );
+        this.name = name;
+        Initializer.returnWrite(null);
     }
 
     public static void setController(Controller controller) {

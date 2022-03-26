@@ -9,6 +9,11 @@ public class Resource implements Collectable {
     private int amount;
     private ResourceType type;
 
+    /**
+     *
+     * @param a
+     * @param t
+     */
     public Resource(int a, ResourceType t) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -18,9 +23,14 @@ public class Resource implements Collectable {
 
         amount = a;
         type = t;
+
         Initializer.returnWrite(null);
     }
 
+    /**
+     *
+     * @param inv
+     */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -29,6 +39,7 @@ public class Resource implements Collectable {
         );
 
         inv.addResource(this);
+
         Initializer.returnWrite(null);
     }
 
@@ -44,17 +55,26 @@ public class Resource implements Collectable {
         return clone;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAmount() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "getAmount",
                 null
         );
+
         Initializer.returnWrite(new OutputObject(amount));
 
         return amount;
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void setAmount(int amount) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -66,6 +86,10 @@ public class Resource implements Collectable {
         this.amount = amount;
     }
 
+    /**
+     *
+     * @return
+     */
     public ResourceType getType() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -77,15 +101,19 @@ public class Resource implements Collectable {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(ResourceType type) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "setType",
                 OutputObject.generateParamsArray(type)
         );
-        Initializer.returnWrite(null);
-
         this.type = type;
+
+        Initializer.returnWrite(null);
     }
 
     public int addAmount(int maxAmount, int addedAmount) {
