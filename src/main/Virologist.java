@@ -65,6 +65,7 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    //TODO this should be private, but we need to use it for some tests
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
