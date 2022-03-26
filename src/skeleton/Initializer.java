@@ -511,8 +511,6 @@ public class Initializer {
         Inventory v2Inv = v2.getInventory();
         objects.put(v2Inv, "v2Inv");
         v2Inv.addEquipment(g);
-        v2Inv.addResource(new Resource(10, ResourceType.Aminoacid));
-
         v1.steal(v2);
     }
 
