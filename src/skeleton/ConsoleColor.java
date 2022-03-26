@@ -11,6 +11,9 @@ public enum ConsoleColor {
     BOLD("\u001b[1m");
     public final String c;
     ConsoleColor(String label) {
-        this.c = label;
+        String classPath = System.getProperty("java.class.path");
+        if(classPath.contains("idea_rt.jar")) {
+            this.c = label;
+        }else this.c="";
     }
 }

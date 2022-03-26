@@ -1,11 +1,9 @@
 package main;
 
 import agents.Agent;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import equipments.Equipment;
 import skeleton.Initializer;
 import skeleton.OutputObject;
-
 import java.util.ArrayList;
 
 public class Inventory {
