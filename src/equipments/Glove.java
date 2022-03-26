@@ -4,9 +4,13 @@ import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
-
+/**
+ * An Equipment, which throws back a thrown Agent to the thrower Virologist.
+ */
 public class Glove extends Equipment {
-
+    /**
+     * Constructor
+     */
     public Glove() {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -16,6 +20,13 @@ public class Glove extends Equipment {
         Initializer.returnWrite(new OutputObject(this));
     }
 
+    /**
+     * The Gloves impact in case of a Virologist throws an Agent on another Virologist.
+     * Removes the used Agent from the thrown Virologists effects, and adds it to the thrower Virologists effects.
+     * @param agent The used Agent.
+     * @param from The throwing Virologist.
+     * @param to The Virologist, who gets thrown.
+     */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -27,14 +38,17 @@ public class Glove extends Equipment {
         Initializer.returnWrite(null);
     }
 
-    protected Equipment clone() {
+    /**
+     * Creates a new Glove and returns it.
+     * @return The new Glove.
+     */
+    protected Equipment cloneEq() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",
                 null
         );
         Initializer.returnWrite(new OutputObject(new Glove()));
-
         return new Glove();
     }
 }

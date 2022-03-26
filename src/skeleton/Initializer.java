@@ -12,14 +12,33 @@ import tiles.Laboratory;
 import java.io.IOException;
 import java.util.*;
 
-
+/**
+ * Handles the test cases of the project, initializes them, and then starts them.
+ */
 public class Initializer {
-
+    /**
+     * True, if the user wants to quit the testing.
+     */
     static private boolean quit=false;
+    /**
+     * Stores the current indentation of the testcase.
+     */
     static private int tabs = 0;
+    /**
+     * Stores the objects in the current testcase with their identifier names.
+     */
     private static final HashMap<Object, String> objects = new HashMap<>();
+    /**
+     * Stores the testcase names with their functions.
+     */
     static HashMap<String, TestCase> testcases = new HashMap<>();
 
+    /**
+     * Asks a yes/no question from the user, and waits for their answer. The answer needs to be written in the Console,
+     * yes is 'y' and no is 'n'.
+     * @param question The full text of the question.
+     * @return Returns the answer to the question, true means yes, false means no.
+     */
     public static boolean questionWrite(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
         char reply = ' ';
@@ -31,6 +50,13 @@ public class Initializer {
         return reply == 'y';
     }
 
+    /**
+     * Asks a multiple choice question from the user, and waits for their answer.
+     * Each option has an associated number from 1 to the number of the options. The user has to write this number in the console.
+     * @param question The full text of the question.
+     * @param options The possible answers to the question.
+     * @return The number associated to the chosen answer.
+     */
     public static InputObject questionListWrite(String question, ArrayList<String> options) {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
@@ -59,11 +85,17 @@ public class Initializer {
         return result;
     }
 
-    public static void functionWrite(OutputObject caller, String methodName, OutputObject[] params) {
+    /**
+     * Writes an objects name, methods name, and parameters to the console.
+     * @param called The called objects reference.
+     * @param methodName The called functions name.
+     * @param params The parameters of the function.
+     */
+    public static void functionWrite(OutputObject called, String methodName, OutputObject[] params) {
         doTabs();
         System.out.print(
                 "[" +
-                ConsoleColor.RED.c + outputObjectToString(caller) +
+                ConsoleColor.RED.c + outputObjectToString(called) +
                 ConsoleColor.RESET.c +
                 "] [" +
                 ConsoleColor.CYAN.c + methodName + ConsoleColor.RESET.c +
@@ -79,6 +111,10 @@ public class Initializer {
         tabs++;
     }
 
+    /**
+     * Writes a functions return type and the value to the Console.
+     * @param returned The returned functions object.
+     */
     public static void returnWrite(OutputObject returned) {
         tabs--;
         doTabs();
@@ -93,18 +129,30 @@ public class Initializer {
 
     }
 
+    /**
+     * Writes tabulators to the terminal. The number of tabulators is stored in the tabs variable.
+     */
     private static void doTabs() {
         for(int i=0; i<tabs; i++){
             System.out.print(("\t"));
         }
     }
 
+    /**
+     * TODO..............................................................................................................
+     * @param o valami
+     * @return valami
+     */
     private static String outputObjectToString(OutputObject o) {
         if (o == null) return "void";
         String id = objects.get(o.ref);
         return o.className + ((id == null) ? "" : " " + id);
     }
 
+    /**
+     * Creates every testcase and lists them on the console. The user chooses one, and then runs the chosen testcase.
+     * This loops until the user quit.
+     */
     public static void test() {
         testcases.put("moveToEmptyTile", Initializer::moveToEmptyTile);
         testcases.put("moveToLaboratory", Initializer::moveToLaboratory);
@@ -132,14 +180,20 @@ public class Initializer {
 
         ArrayList<String> tests = new ArrayList<>();
         testcases.forEach((name, object) -> tests.add(name));
-        tests.sort(Initializer::sort);
+        tests.sort(Initializer::compareOrder);
         while (!quit) {
             InputObject input = questionListWrite("Which test case would you like to run?", tests);
             testcases.get(input.getName()).run();
         }
     }
 
-    public static int sort(String a, String b)
+    /**
+     * Tells between two testcasename which got put earlier in the testcases.
+     * @param a A testcase name
+     * @param b B testcase name
+     * @return positive, if 'a' parameter got put earlier, negative, if 'b' parameter.
+     */
+    public static int compareOrder(String a, String b)
     {
         String[] s1=testcases.get(a).toString().split("\\$");
         String[] s2=testcases.get(b).toString().split("\\$");
@@ -148,10 +202,19 @@ public class Initializer {
         return i1-i2;
     }
 
+    /**
+     * An interface for all the testcases.
+     */
     public interface TestCase {
+        /**
+         * Starts the testcase.
+         */
         void run();
     }
 
+    /**
+     * Testcase for the creation of a StunVirus.
+     */
     public static void craftStun() {
         objects.clear();
         Virologist v=new Virologist();
@@ -167,6 +230,9 @@ public class Initializer {
         v.craft(gC);
     }
 
+    /**
+     * Testcase for the creation of an AmnesiaVirus.
+     */
     public static void craftAmnesia() {
         objects.clear();
         Virologist v = new Virologist();
@@ -182,6 +248,9 @@ public class Initializer {
         v.craft(gC);
     }
 
+    /**
+     * Testcase for the creation of an VitusDanceVirus.
+     */
     public static void craftVitusDance() {
         objects.clear();
         Virologist v = new Virologist();
@@ -197,6 +266,9 @@ public class Initializer {
         v.craft(gC);
     }
 
+    /**
+     * Testcase for the creation of a VaccineVirus.
+     */
     public static void craftVaccine() {
         objects.clear();
         Virologist v = new Virologist();
