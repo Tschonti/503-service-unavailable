@@ -4,10 +4,7 @@ import agents.*;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import main.Controller;
-import main.GeneticCode;
-import main.Inventory;
-import main.Virologist;
+import main.*;
 import tiles.EmptyTile;
 import tiles.Laboratory;
 import tiles.Safehouse;
@@ -72,7 +69,7 @@ public class Initializer {
                 reply = s.nextInt();
                 try {
                     String choice = options.get(reply - 1);
-                    result = new InputObject(reply, choice);
+                    result = new InputObject(reply - 1, choice);
                     ready = true;
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Invalid choice");
@@ -88,7 +85,7 @@ public class Initializer {
 
     /**
      * Writes an objects name, methods name, and parameters to the console.
-     * @param called The called objects reference.
+     * @param caller The called objects reference.
      * @param methodName The called functions name.
      * @param params The parameters of the function.
      */
@@ -375,7 +372,7 @@ public class Initializer {
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
         Virologist.setController(c);
-        //c.addPlayer(v); TODO
+        c.addPlayer(v);
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");
         l.addVirologist(v);
@@ -510,8 +507,9 @@ public class Initializer {
         v2.addEffect(s);
 
         Glove g = new Glove();
-        v2.getInventory().addEquipment(g);
-
+        Inventory v2Inv = v2.getInventory();
+        objects.put(v2Inv, "v2Inv");
+        v2Inv.addEquipment(g);
         v1.steal(v2);
     }
 

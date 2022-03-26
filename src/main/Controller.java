@@ -57,6 +57,10 @@ public class Controller {
                 "checkWinner",
                 OutputObject.generateParamsArray(v)
         );
+        if (Initializer.questionWrite("Was this the last genetic code to collect?")) {
+            System.out.println(v.getName() + " is the winner!");
+            System.exit(0);
+        }
         Initializer.returnWrite(null);
     }
 
@@ -74,6 +78,20 @@ public class Controller {
             player.myTurn();
         }
 
+        Initializer.returnWrite(null);
+    }
+
+    /**
+     *
+     * @param v
+     */
+    public void addPlayer(Virologist v) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "addPlayer",
+                OutputObject.generateParamsArray(v)
+        );
+        players[0] = v;
         Initializer.returnWrite(null);
     }
 }

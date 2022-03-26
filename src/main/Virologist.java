@@ -130,6 +130,7 @@ public class Virologist {
                 null
         );
         activeTile.collectItem(inventory);
+        controller.checkWinner(this);
         Initializer.returnWrite(null);
     }
 
@@ -191,12 +192,18 @@ public class Virologist {
         );
 
         Inventory inv = v.getInventory();
-        ArrayList<Equipment> equipments = inv.getEquipments();
-        ArrayList<String> equipmentsString = new ArrayList<>();
-        for (Equipment e : equipments)
-            equipmentsString.add(e.toString());
-        int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
-        inventory.steal(inv, equipments.get(result));
+        if (Initializer.questionYesOrNo("Does the virologist that is trying to steal have space for more equipments?")  &&
+                Initializer.questionYesOrNo("Does the virologist that is being robbed have any equipments?")) {
+            ArrayList<Equipment> equipments = inv.getEquipments();
+            ArrayList<String> equipmentsString = new ArrayList<>();
+            for (Equipment e : equipments)
+                equipmentsString.add(e.toString());
+            int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
+            inventory.steal(inv, equipments.get(result));
+        } else {
+            inventory.steal(inv, null);
+        }
+
         Initializer.returnWrite(null);
     }
 
