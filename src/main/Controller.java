@@ -57,7 +57,7 @@ public class Controller {
                 "checkWinner",
                 OutputObject.generateParamsArray(v)
         );
-        if (Initializer.questionWrite("Was this the last genetic code to collect?")) {
+        if (Initializer.questionYesOrNo("Was this the last genetic code to collect?")) {
             System.out.println(v.getName() + " is the winner!");
             System.exit(0);
         }
