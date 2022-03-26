@@ -139,4 +139,12 @@ public class Inventory {
         );
         Initializer.returnWrite(null);
     }
+
+    public ArrayList<Agent> getCraftedAgents() {
+        return craftedAgents;
+    }
+
+    public ArrayList<GeneticCode> getGeneticCodes() {
+        return new ArrayList<>();
+    }
 }

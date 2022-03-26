@@ -154,7 +154,7 @@ public class Initializer {
 
     public static void craftStun() {
         objects.clear();
-        Virologist v=new Virologist();
+        Virologist v=new Virologist("Virologist1");
         objects.put(v,"v");
         Agent sV=new StunVirus();
         objects.put(sV,"sV");
@@ -169,7 +169,7 @@ public class Initializer {
 
     public static void craftAmnesia() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
         Agent aV = new AmnesiaVirus();
         objects.put(aV, "aV");
@@ -184,7 +184,7 @@ public class Initializer {
 
     public static void craftVitusDance() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
         Agent vDV = new VitusDanceVirus();
         objects.put(vDV, "vDV");
@@ -199,7 +199,7 @@ public class Initializer {
 
     public static void craftVaccine() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
         Agent vac = new Vaccine();
         objects.put(vac, "vac");
@@ -266,10 +266,10 @@ public class Initializer {
 
     public static void robVirologist() {
         objects.clear();
-        Virologist v1 = new Virologist();
+        Virologist v1 = new Virologist("Virologist1");
         objects.put(v1, "v1");
 
-        Virologist v2 = new Virologist();
+        Virologist v2 = new Virologist("Virologist2");
         objects.put(v2, "v2");
 
         StunVirus s = new StunVirus();
@@ -285,7 +285,7 @@ public class Initializer {
 
     public static void forgetCodes() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
 
         GeneticCode gc = new GeneticCode();
@@ -305,7 +305,7 @@ public class Initializer {
 
     public static void enlargeTheBag() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
         Bag b = new Bag();
         objects.put(b, "b");
@@ -316,7 +316,7 @@ public class Initializer {
 
     public static void stunnedMissesTurn() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
         StunVirus sv = new StunVirus();
         objects.put(sv, "sv");
@@ -327,7 +327,7 @@ public class Initializer {
 
     public static void playerVitusDances() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
 
         EmptyTile et = new EmptyTile(1, "et");
