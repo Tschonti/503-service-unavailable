@@ -16,15 +16,15 @@ import java.util.ArrayList;
  */
 public class Inventory {
     private int maxResourceAmount;
-    private Virologist virologist;
-    private ArrayList<Resource> resources;
-    private ArrayList<Equipment> pickedUpEquipments;
-    private ArrayList<Agent> craftedAgents;
-    private ArrayList<GeneticCode> learntCodes;
+    private final Virologist virologist;
+    private final ArrayList<Resource> resources;
+    private final ArrayList<Equipment> pickedUpEquipments;
+    private final ArrayList<Agent> craftedAgents;
+    private final ArrayList<GeneticCode> learntCodes;
 
     /**
      * Constructor
-     * @param virologist
+     * @param virologist The virologist this inventory belongs to.
      */
     public Inventory(Virologist virologist) {
         Initializer.functionWrite(
@@ -38,13 +38,14 @@ public class Inventory {
         pickedUpEquipments = new ArrayList<>();
         craftedAgents = new ArrayList<>();
         learntCodes = new ArrayList<>();
+        Resource.initializeResourceArray(resources);
 
         Initializer.returnWrite(null);
     }
 
     /**
      * Adds the genetic code to the learntCodes.
-     * @param gc
+     * @param gc The genetic code to be added to this inventory.
      */
     public void addGeneticCode(GeneticCode gc){
         Initializer.functionWrite(
@@ -60,7 +61,7 @@ public class Inventory {
 
     /**
      * Adds the resource to the resources.
-     * @param res
+     * @param res The resource to be added to this inventory.
      * @return The added amount of resource.
      */
     public Resource addResource(Resource res){
@@ -82,7 +83,7 @@ public class Inventory {
 
     /**
      * Adds the agent to craftedAgents.
-     * @param agent
+     * @param agent The agent to be added to this inventory.
      */
     public void addCraftedAgent(Agent agent){
         Initializer.functionWrite(
@@ -98,7 +99,7 @@ public class Inventory {
 
     /**
      * Adds the equipment to pickedUpEquipments and its effect to the virologist.
-     * @param eq
+     * @param eq The equipment to be added to this inventory.
      */
     public void addEquipment(Equipment eq){
         Initializer.functionWrite(
@@ -115,7 +116,7 @@ public class Inventory {
 
     /**
      * Removes the genetic code from learntCodes.
-     * @param gc
+     * @param gc The genetic code to be removed from this inventory.
      */
     public void removeGeneticCode(GeneticCode gc){
         Initializer.functionWrite(
@@ -131,7 +132,7 @@ public class Inventory {
 
     /**
      * Removes the resource from resources.
-     * @param res
+     * @param res The resource to be removed from this inventory.
      */
     public void removeResource(Resource res){
         Initializer.functionWrite(
@@ -147,7 +148,7 @@ public class Inventory {
 
     /**
      * Removes the agent from craftedAgents
-     * @param agent
+     * @param agent The agent to be removed from this inventory.
      */
     public void removeCraftedAgent(Agent agent){
         Initializer.functionWrite(
@@ -163,8 +164,8 @@ public class Inventory {
 
     /**
      * Removes the equipment from pickedUpEquipments and its effect from the virologist.
-     * @param eq
-     * @return
+     * @param eq The equipment to be removed from this inventory.
+     * @return Whether the removal was successful.
      */
     public boolean removeEquipment(Equipment eq){
         Initializer.functionWrite(
@@ -211,7 +212,7 @@ public class Inventory {
 
     /**
      * Setter for maxResourceAmount.
-     * @param amount
+     * @param amount The new resource amount.
      */
     public void setMaxResourceAmount(int amount){
         Initializer.functionWrite(
@@ -243,8 +244,8 @@ public class Inventory {
      * Stealing from another player (or rather from their inventory).
      * It removes all the stolen equipment and resource from the other virologists inventory
      * and adds it to this inventory.
-     * @param v2Inv
-     * @param eq
+     * @param v2Inv The inventory of the virologist, which this inventory steals from.
+     * @param eq The equipment this inventory tries to steal.
      */
     public void steal(Inventory v2Inv, Equipment eq) {
         Initializer.functionWrite(
@@ -252,10 +253,11 @@ public class Inventory {
                 "steal",
                 OutputObject.generateParamsArray(v2Inv, eq)
         );
-
-        v2Inv.removeEquipment(eq);
-        addEquipment(eq);
-        eq.onTurnImpact(virologist);
+        if (eq != null) {
+            v2Inv.removeEquipment(eq);
+            addEquipment(eq);
+            eq.onTurnImpact(virologist);
+        }
         ArrayList<Resource> inv2Resources =  v2Inv.getResources();
         for (Resource res : inv2Resources) {
             Resource addedResource = addResource(res);

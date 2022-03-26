@@ -4,6 +4,7 @@ import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 import tiles.Tile;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,7 +43,8 @@ public class VitusDanceVirus extends Agent{
             Tile t = to.getActiveTile();
             ArrayList<Tile> tileList = t.getNeighbours();
             Random r = new Random();
-            Tile rT = tileList.get(r.nextInt(tileList.size()));
+            int randomInt = tileList.size() == 1 ? 0 : r.nextInt(tileList.size() - 1);
+            Tile rT = tileList.get(randomInt);
             to.moveTo(rT);
             t.removeVirologist(to);
             rT.addVirologist(to);

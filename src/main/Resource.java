@@ -43,7 +43,7 @@ public class Resource implements Collectable {
         Initializer.returnWrite(null);
     }
 
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",
@@ -143,8 +143,8 @@ public class Resource implements Collectable {
      */
     public static Resource getResourceByType(ArrayList<Resource> resources, ResourceType type) {
         Initializer.functionWrite(
-                new OutputObject(Resource.class),
-                "getResourcesByType",
+                new OutputObject("Resource", true),
+                "static getResourcesByType",
                 OutputObject.generateParamsArray(resources, type)
         );
 
@@ -158,5 +158,12 @@ public class Resource implements Collectable {
 
         Initializer.returnWrite(null);
         return null;
+    }
+
+    // TODO full nem szerepelt szekvenciákon úgyhogy ne írjuk ki szerintem de jó ha van
+    public static void initializeResourceArray(ArrayList<Resource> resources) {
+        for (ResourceType t : ResourceType.values()) {
+            resources.add(new Resource(0, t));
+        }
     }
 }

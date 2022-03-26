@@ -43,7 +43,7 @@ public class Glove extends Equipment {
      * Creates a new Glove and returns it.
      * @return The new Glove.
      */
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",
