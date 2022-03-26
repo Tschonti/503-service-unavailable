@@ -43,8 +43,8 @@ public class GeneticCode implements Collectable {
     }
 
     /**
-     * Clones itself to the inventory it gets
-     * @param inv
+     * Clones itself to the inventory it gets.
+     * @param inv The inventory, that will get the clone of this genetic code.
      */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
@@ -56,7 +56,7 @@ public class GeneticCode implements Collectable {
         Initializer.returnWrite(null);
     }
 
-    public Collectable clone() {
+    public Collectable cloneCollectable() {
         GeneticCode newGc = new GeneticCode();
         newGc.setAgent(agent.create());
         newGc.setPrice(price);
@@ -65,7 +65,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Checks, if its agent can be crafted from the resources of the inventory.
-     * @param inv
+     * @param inv The checked inventory.
      * @return whether the agent can be crafted
      */
     public boolean isCraftable(Inventory inv) {
@@ -81,7 +81,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Crafts the agent into the inventory and removes the necessary resources from it.
-     * @param inv
+     * @param inv The inventory, into which we craft the agent that can be crafted from this genetic code.
      */
     public void craft(Inventory inv) {
         Initializer.functionWrite(
@@ -115,7 +115,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Setter for agent.
-     * @param agent
+     * @param agent The new agent.
      */
     public void setAgent(Agent agent) {
         Initializer.functionWrite(
@@ -146,7 +146,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Setter for price.
-     * @param price
+     * @param price The new price.
      */
     public void setPrice(ArrayList<Resource> price) {
         Initializer.functionWrite(
