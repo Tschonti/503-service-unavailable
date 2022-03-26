@@ -1,5 +1,6 @@
 package equipments;
 import agents.Agent;
+import main.Collectable;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
@@ -32,7 +33,7 @@ public class ProtectiveCloak extends Equipment {
 
     }
 
-    protected Equipment clone() {
+    public Collectable clone() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",

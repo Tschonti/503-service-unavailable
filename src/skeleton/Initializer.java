@@ -3,6 +3,7 @@ package skeleton;
 import agents.*;
 import equipments.Bag;
 import equipments.Glove;
+import main.Controller;
 import main.GeneticCode;
 import main.Inventory;
 import main.Virologist;
@@ -245,7 +246,19 @@ public class Initializer {
     }
 
     public static void learnGeneticCode() {
+        objects.clear();
+        Controller c = new Controller();
+        objects.put(c, "c");
+        Virologist v = new Virologist();
+        objects.put(v, "v");
+        Virologist.setController(c);
+        //c.addPlayer(v); TODO
+        Laboratory l = new Laboratory(1, "lab");
+        objects.put(l, "l");
+        l.addVirologist(v);
+        v.setActiveTile(l);
 
+        v.pickUp();
     }
 
     public static void useStunVirus() {

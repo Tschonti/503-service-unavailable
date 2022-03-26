@@ -237,4 +237,14 @@ public class Virologist {
 
         return activeEffects;
     }
+
+    public static void setController(Controller controller) {
+        Initializer.functionWrite(
+                new OutputObject("Virologist", true),
+                "static setController",
+                null
+        );
+        Virologist.controller = controller;
+        Initializer.returnWrite(null);
+    }
 }

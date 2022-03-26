@@ -15,10 +15,10 @@ public class Resource implements Collectable {
                 "constructor",
                 OutputObject.generateParamsArray(a, t)
         );
-        Initializer.returnWrite(null);
 
         amount = a;
         type = t;
+        Initializer.returnWrite(null);
     }
 
     public void collect(Inventory inv) {
@@ -27,9 +27,21 @@ public class Resource implements Collectable {
                 "collect",
                 OutputObject.generateParamsArray(inv)
         );
-        Initializer.returnWrite(null);
 
         inv.addResource(this);
+        Initializer.returnWrite(null);
+    }
+
+    public Collectable clone() {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "clone",
+                null
+        );
+
+        Collectable clone = new Resource(amount, type);
+        Initializer.returnWrite(new OutputObject(clone));
+        return clone;
     }
 
     public int getAmount() {

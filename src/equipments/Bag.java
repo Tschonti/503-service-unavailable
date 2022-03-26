@@ -1,4 +1,5 @@
 package equipments;
+import main.Collectable;
 import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
@@ -39,7 +40,7 @@ public class Bag extends Equipment {
         Initializer.returnWrite(null);
     }
 
-    protected Equipment clone() {
+    public Collectable clone() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "clone",
