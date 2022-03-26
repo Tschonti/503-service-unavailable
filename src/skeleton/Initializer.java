@@ -98,7 +98,7 @@ public class Initializer {
         doTabs();
         System.out.print(
                 "[" +
-                ConsoleColor.RED.c + outputObjectToString(caller) + ConsoleColor.RESET.c +
+                ConsoleColor.RED.c + outputObjectToString(called) + ConsoleColor.RESET.c +
                 "] [" +
                 ConsoleColor.CYAN.c + methodName + ConsoleColor.RESET.c +
                 "("
@@ -288,7 +288,7 @@ public class Initializer {
 
     public static void moveToEmptyTile() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("v");
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
         EmptyTile tile2 = new EmptyTile(1, "to");
@@ -300,7 +300,7 @@ public class Initializer {
 
     public static void moveToLaboratory() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("v");
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
         Laboratory tile2 = new Laboratory(1, "to");
@@ -312,7 +312,7 @@ public class Initializer {
 
     public static void moveToSafeHouse() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("v");
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
         Safehouse tile2 = new Safehouse(1, "to");
@@ -324,7 +324,7 @@ public class Initializer {
 
     public static void moveToWareHouse() {
         objects.clear();
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("v");
         objects.put(v, "v");
         EmptyTile tile = new EmptyTile(0, "from");
         Warehouse tile2 = new Warehouse(1, "to");
@@ -374,7 +374,7 @@ public class Initializer {
         objects.clear();
         Controller c = new Controller();
         objects.put(c, "c");
-        Virologist v = new Virologist();
+        Virologist v = new Virologist("v");
         objects.put(v, "v");
         Virologist.setController(c);
         //c.addPlayer(v); TODO
@@ -388,9 +388,9 @@ public class Initializer {
 
     public static void useStunVirus() {
         objects.clear();
-        Virologist v1 = new Virologist();
+        Virologist v1 = new Virologist("v1");
         AmnesiaVirus sv = new AmnesiaVirus();
-        Virologist v2 = new Virologist();
+        Virologist v2 = new Virologist("v2");
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -416,9 +416,9 @@ public class Initializer {
 
     public static void useAmnesiaVirus() {
         objects.clear();
-        Virologist v1 = new Virologist();
+        Virologist v1 = new Virologist("v1");
         AmnesiaVirus av = new AmnesiaVirus();
-        Virologist v2 = new Virologist();
+        Virologist v2 = new Virologist("v2");
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -444,9 +444,9 @@ public class Initializer {
 
     public static void useVitusDanceVirus() {
         objects.clear();
-        Virologist v1 = new Virologist();
+        Virologist v1 = new Virologist("v1");
         AmnesiaVirus vdv = new AmnesiaVirus();
-        Virologist v2 = new Virologist();
+        Virologist v2 = new Virologist("v2");
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -472,9 +472,9 @@ public class Initializer {
 
     public static void useVaccine() {
         objects.clear();
-        Virologist v1 = new Virologist();
+        Virologist v1 = new Virologist("v1");
         AmnesiaVirus v = new AmnesiaVirus();
-        Virologist v2 = new Virologist();
+        Virologist v2 = new Virologist("v2");
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");

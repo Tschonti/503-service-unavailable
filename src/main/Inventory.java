@@ -65,8 +65,11 @@ public class Inventory {
                 "addResource",
                 OutputObject.generateParamsArray(res)
         );
-
-        int added = Resource.getResourceByType(resources, res.getType()).addAmount(maxResourceAmount, res.getAmount());
+        Resource resToAdd=Resource.getResourceByType(resources, res.getType());
+        if(resToAdd==null){
+            resToAdd=new Resource(0,res.getType());
+        }
+        int added = resToAdd.addAmount(maxResourceAmount, res.getAmount());
         Resource ret = new Resource(added, res.getType());
 
         Initializer.returnWrite(new OutputObject(ret));

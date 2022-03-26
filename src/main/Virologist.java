@@ -196,7 +196,7 @@ public class Virologist {
         for (Equipment e : equipments)
             equipmentsString.add(e.toString());
         int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
-        inventory.steal(inv, equipments.get(result));
+        inventory.steal(inv, equipments.get(result-1));
         Initializer.returnWrite(null);
     }
 
