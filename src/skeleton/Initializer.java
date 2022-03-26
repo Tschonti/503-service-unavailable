@@ -392,7 +392,7 @@ public class Initializer {
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");
         l.addVirologist(v);
-        v.setActiveTile(l);
+        v.setActiveTile(l); //TODO for Samu, ez nincs rajt a kommunikációson
 
         v.pickUp();
     }
@@ -528,6 +528,7 @@ public class Initializer {
         Inventory v2Inv = v2.getInventory();
         objects.put(v2Inv, "v2Inv");
         v2Inv.addEquipment(g);
+
         v1.steal(v2);
     }
 
