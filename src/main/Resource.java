@@ -9,7 +9,14 @@ import java.util.ArrayList;
  * This class represents the Resources in the game. It can be collected by virologists from warehouses
  */
 public class Resource implements Collectable {
+    /**
+     * Resource's amount
+     */
     private int amount;
+
+    /**
+     * Resource's type
+     */
     private ResourceType type;
 
     /**
