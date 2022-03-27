@@ -1,4 +1,5 @@
 package equipments;
+
 import main.Collectable;
 import main.Inventory;
 import main.Virologist;
@@ -9,15 +10,12 @@ import skeleton.OutputObject;
  * An Equipment, witch doubles a Virologists maximum collectable amount of resources.
  */
 public class Bag extends Equipment {
+
     /**
      * Constructor
      */
     public Bag() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -28,13 +26,13 @@ public class Bag extends Equipment {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
-        Inventory i=to.getInventory();
-        int maxAmount=i.getMaxResourceAmount();
-        i.setMaxResourceAmount(2*maxAmount);
+        Inventory i = to.getInventory();
+        int maxAmount = i.getMaxResourceAmount();
+        i.setMaxResourceAmount(2 * maxAmount);
         Initializer.returnWrite(null);
     }
 
@@ -45,13 +43,13 @@ public class Bag extends Equipment {
      */
     public void endTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "endTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "endTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
-        Inventory i=to.getInventory();
-        int maxAmount=i.getMaxResourceAmount();
-        i.setMaxResourceAmount(maxAmount/2);
+        Inventory i = to.getInventory();
+        int maxAmount = i.getMaxResourceAmount();
+        i.setMaxResourceAmount(maxAmount / 2);
         Initializer.returnWrite(null);
     }
 
@@ -60,11 +58,7 @@ public class Bag extends Equipment {
      * @return The new Bag.
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "clone",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "clone", null);
         Collectable newBag = new Bag();
         Initializer.returnWrite(new OutputObject(newBag));
         return newBag;

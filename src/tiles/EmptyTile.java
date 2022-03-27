@@ -9,6 +9,7 @@ import skeleton.OutputObject;
  * An empty tile of the game where no collectable can be picked up.
  */
 public class EmptyTile extends Tile {
+
     /**
      * Constructor
      * @param id Unique identifier of the tile
@@ -16,11 +17,10 @@ public class EmptyTile extends Tile {
      */
     public EmptyTile(int id, String name) {
         super(id, name);
-
         Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(id, name)
+            new OutputObject(this),
+            "constructor",
+            OutputObject.generateParamsArray(id, name)
         );
         Initializer.returnWrite(null);
     }
@@ -33,9 +33,9 @@ public class EmptyTile extends Tile {
      */
     public void collectItem(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collectItem",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collectItem",
+            OutputObject.generateParamsArray(inv)
         );
 
         Initializer.returnWrite(null);
@@ -46,11 +46,7 @@ public class EmptyTile extends Tile {
      * @return null, since nothing can be picked up from here
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getCollectableItem",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
         Initializer.returnWrite(null);
 
         return null;

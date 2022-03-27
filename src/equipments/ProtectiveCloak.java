@@ -1,4 +1,5 @@
 package equipments;
+
 import agents.Agent;
 import main.Collectable;
 import main.Virologist;
@@ -9,15 +10,12 @@ import skeleton.OutputObject;
  * An Equipment, saves a thrown Virologist from the Effect with 82.3% chance.
  */
 public class ProtectiveCloak extends Equipment {
+
     /**
      * Constructor
      */
     public ProtectiveCloak() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -28,14 +26,16 @@ public class ProtectiveCloak extends Equipment {
      * @param from The throwing Virologist.
      * @param to The Virologist, who gets thrown.
      */
-    public void counterImpact(Agent agent, Virologist from, Virologist to){
+    public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "counterImpact",
-                OutputObject.generateParamsArray(agent, from, to)
+            new OutputObject(this),
+            "counterImpact",
+            OutputObject.generateParamsArray(agent, from, to)
         );
-        boolean saved=Initializer.questionYesOrNo("Do you want the ProtectiveCloak to save its owner?");
-        if(saved){
+        boolean saved = Initializer.questionYesOrNo(
+            "Do you want the ProtectiveCloak to save its owner?"
+        );
+        if (saved) {
             to.removeEffect(agent);
         }
         Initializer.returnWrite(null);
@@ -46,11 +46,7 @@ public class ProtectiveCloak extends Equipment {
      * @return The new ProtectiveCloak.
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "clone",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "clone", null);
         Collectable newCloak = new ProtectiveCloak();
         Initializer.returnWrite(new OutputObject(newCloak));
         return newCloak;

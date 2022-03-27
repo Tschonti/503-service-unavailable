@@ -1,14 +1,14 @@
 package main;
 
+import java.util.ArrayList;
 import skeleton.Initializer;
 import skeleton.OutputObject;
-
-import java.util.ArrayList;
 
 /**
  * This class represents the Resources in the game. It can be collected by virologists from warehouses
  */
 public class Resource implements Collectable {
+
     /**
      * Resource's amount
      */
@@ -26,9 +26,9 @@ public class Resource implements Collectable {
      */
     public Resource(int a, ResourceType t) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(a, t)
+            new OutputObject(this),
+            "constructor",
+            OutputObject.generateParamsArray(a, t)
         );
 
         amount = a;
@@ -43,9 +43,9 @@ public class Resource implements Collectable {
      */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collect",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collect",
+            OutputObject.generateParamsArray(inv)
         );
 
         //A clone will be collected
@@ -60,11 +60,7 @@ public class Resource implements Collectable {
      * @return Clone of this resource
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "cloneCollectable",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "cloneCollectable", null);
 
         Collectable clone = new Resource(amount, type);
         Initializer.returnWrite(new OutputObject(clone));
@@ -76,11 +72,7 @@ public class Resource implements Collectable {
      * @return Resource's amount
      */
     public int getAmount() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getAmount",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getAmount", null);
 
         Initializer.returnWrite(new OutputObject(amount));
 
@@ -93,9 +85,9 @@ public class Resource implements Collectable {
      */
     public void setAmount(int amount) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setAmount",
-                OutputObject.generateParamsArray(amount)
+            new OutputObject(this),
+            "setAmount",
+            OutputObject.generateParamsArray(amount)
         );
         Initializer.returnWrite(null);
 
@@ -107,11 +99,7 @@ public class Resource implements Collectable {
      * @return Resource's type
      */
     public ResourceType getType() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getType",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getType", null);
         Initializer.returnWrite(new OutputObject(type));
 
         return type;
@@ -125,9 +113,9 @@ public class Resource implements Collectable {
      */
     public int addAmount(int maxAmount, int addedAmount) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addAmount",
-                OutputObject.generateParamsArray(maxAmount, addedAmount)
+            new OutputObject(this),
+            "addAmount",
+            OutputObject.generateParamsArray(maxAmount, addedAmount)
         );
 
         int overload = 0;
@@ -148,9 +136,9 @@ public class Resource implements Collectable {
      */
     public void removeAmount(int removedAmount) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addAmount",
-                OutputObject.generateParamsArray(removedAmount)
+            new OutputObject(this),
+            "addAmount",
+            OutputObject.generateParamsArray(removedAmount)
         );
 
         amount -= removedAmount;
@@ -169,9 +157,9 @@ public class Resource implements Collectable {
      */
     public static Resource getResourceByType(ArrayList<Resource> resources, ResourceType type) {
         Initializer.functionWrite(
-                new OutputObject("Resource", true),
-                "static getResourcesByType",
-                OutputObject.generateParamsArray(resources, type)
+            new OutputObject("Resource", true),
+            "static getResourcesByType",
+            OutputObject.generateParamsArray(resources, type)
         );
 
         for (Resource r : resources) {

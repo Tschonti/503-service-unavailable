@@ -4,26 +4,26 @@ import agents.*;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
+import java.util.*;
 import main.*;
 import tiles.EmptyTile;
 import tiles.Laboratory;
 import tiles.Safehouse;
 import tiles.Warehouse;
 
-import java.util.*;
-
 /**
  * Handles the test cases of the project, initializes them, and then starts them.
  */
 public class Initializer {
+
     /**
      * True, if the user wants to quit the testing.
      */
-    static private boolean quit=false;
+    private static boolean quit = false;
     /**
      * Stores the current indentation of the testcase.
      */
-    static private int tabs = 0;
+    private static int tabs = 0;
     /**
      * Stores the objects in the current testcase with their identifier names.
      */
@@ -40,14 +40,16 @@ public class Initializer {
      * @return Returns the answer to the question, true means yes, false means no.
      */
     public static boolean questionYesOrNo(String question) {
-        System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
+        System.out.println(
+            ConsoleColor.BLUE.c + question + ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c
+        );
         char reply = ' ';
         Scanner sc = new Scanner(System.in);
         boolean finished = false;
-        while(!finished){
+        while (!finished) {
             reply = sc.next().charAt(0);
-            finished = reply == 'y' || reply =='n';
-            if(!finished){
+            finished = reply == 'y' || reply == 'n';
+            if (!finished) {
                 System.out.println("Invalid choice");
             }
         }
@@ -65,8 +67,12 @@ public class Initializer {
         System.out.println(ConsoleColor.BLUE.c + question + ConsoleColor.RESET.c);
         int reply;
         for (int i = 0; i < options.size(); i++) {
-            String c = (options.get(i).equals("quit program")) ? ConsoleColor.RED.c : ConsoleColor.BLUE.c;
-            System.out.println(c + ConsoleColor.BOLD.c + (i+1) + ". " + options.get(i) + ConsoleColor.RESET.c);
+            String c = (options.get(i).equals("quit program"))
+                ? ConsoleColor.RED.c
+                : ConsoleColor.BLUE.c;
+            System.out.println(
+                c + ConsoleColor.BOLD.c + (i + 1) + ". " + options.get(i) + ConsoleColor.RESET.c
+            );
         }
         Scanner s = new Scanner(System.in);
         InputObject result = null;
@@ -85,7 +91,6 @@ public class Initializer {
                 System.out.println("Invalid choice");
                 s.next();
             }
-
         }
 
         return result;
@@ -100,19 +105,27 @@ public class Initializer {
     public static void functionWrite(OutputObject caller, String methodName, OutputObject[] params) {
         doTabs();
         System.out.print(
-                "[" +
-                ConsoleColor.RED.c + outputObjectToString(caller) + ConsoleColor.RESET.c +
-                "] [" +
-                ConsoleColor.CYAN.c + methodName + ConsoleColor.RESET.c +
-                "("
+            "[" +
+            ConsoleColor.RED.c +
+            outputObjectToString(caller) +
+            ConsoleColor.RESET.c +
+            "] [" +
+            ConsoleColor.CYAN.c +
+            methodName +
+            ConsoleColor.RESET.c +
+            "("
         );
-        int i=0;
+        int i = 0;
         if (params != null) {
             for (OutputObject o : params) {
-                System.out.print(ConsoleColor.GREEN.c + outputObjectToString(o) + ((params.length-1 == (i++)) ? "" : ", " ));
+                System.out.print(
+                    ConsoleColor.GREEN.c +
+                    outputObjectToString(o) +
+                    ((params.length - 1 == (i++)) ? "" : ", ")
+                );
             }
         }
-        System.out.print(ConsoleColor.RESET.c + ")" + ConsoleColor.RESET.c +"]\n");
+        System.out.print(ConsoleColor.RESET.c + ")" + ConsoleColor.RESET.c + "]\n");
         tabs++;
     }
 
@@ -124,21 +137,23 @@ public class Initializer {
         tabs--;
         doTabs();
         System.out.println(
-            ConsoleColor.YELLOW.c + ConsoleColor.BOLD.c + "return "+ ConsoleColor.RESET.c +
-                    "[" +
-                    ConsoleColor.MAGENTA.c +
-                    (returned == null ? "void" : returned.className) +
-                    ConsoleColor.RESET.c +
-                    "]"
+            ConsoleColor.YELLOW.c +
+            ConsoleColor.BOLD.c +
+            "return " +
+            ConsoleColor.RESET.c +
+            "[" +
+            ConsoleColor.MAGENTA.c +
+            (returned == null ? "void" : returned.className) +
+            ConsoleColor.RESET.c +
+            "]"
         );
-
     }
 
     /**
      * Writes tabulators to the terminal. The number of tabulators is stored in the tabs variable.
      */
     private static void doTabs() {
-        for(int i=0; i<tabs; i++){
+        for (int i = 0; i < tabs; i++) {
             System.out.print(("\t"));
         }
     }
@@ -181,7 +196,13 @@ public class Initializer {
         testcases.put("enlargeTheBag", Initializer::enlargeTheBag);
         testcases.put("stunnedPlayerMissesTurn", Initializer::stunnedMissesTurn);
         testcases.put("playerVitusDances", Initializer::playerVitusDances);
-        testcases.put("quit program",()->{quit=true; System.out.println("Bye");});
+        testcases.put(
+            "quit program",
+            () -> {
+                quit = true;
+                System.out.println("Bye");
+            }
+        );
 
         ArrayList<String> tests = new ArrayList<>();
         testcases.forEach((name, object) -> tests.add(name));
@@ -198,13 +219,12 @@ public class Initializer {
      * @param b B test case's name
      * @return positive, if 'a' parameter got put earlier, negative, if 'b' parameter.
      */
-    public static int compareOrder(String a, String b)
-    {
-        String[] s1=testcases.get(a).toString().split("\\$");
-        String[] s2=testcases.get(b).toString().split("\\$");
-        int i1=Integer.parseInt(s1[s1.length - 1].split("/")[0]);
-        int i2=Integer.parseInt(s2[s2.length - 1].split("/")[0]);
-        return i1-i2;
+    public static int compareOrder(String a, String b) {
+        String[] s1 = testcases.get(a).toString().split("\\$");
+        String[] s2 = testcases.get(b).toString().split("\\$");
+        int i1 = Integer.parseInt(s1[s1.length - 1].split("/")[0]);
+        int i2 = Integer.parseInt(s2[s2.length - 1].split("/")[0]);
+        return i1 - i2;
     }
 
     /**
@@ -222,15 +242,15 @@ public class Initializer {
      */
     public static void craftStun() {
         objects.clear();
-        Virologist v=new Virologist("Virologist1");
-        objects.put(v,"v");
-        Agent sV=new StunVirus();
-        objects.put(sV,"sV");
-        GeneticCode gC=new GeneticCode();
-        objects.put(gC,"gC");
+        Virologist v = new Virologist("Virologist1");
+        objects.put(v, "v");
+        Agent sV = new StunVirus();
+        objects.put(sV, "sV");
+        GeneticCode gC = new GeneticCode();
+        objects.put(gC, "gC");
         gC.setAgent(sV);
-        Inventory i=v.getInventory();
-        objects.put(i,"i");
+        Inventory i = v.getInventory();
+        objects.put(i, "i");
         i.addGeneticCode(gC);
         v.craft(gC);
     }
@@ -430,17 +450,25 @@ public class Initializer {
         Inventory inv = v1.getInventory();
         objects.put(inv, "inv");
         inv.addCraftedAgent(sv);
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a Vaccine effect?"
+            )
+        ) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
+        if (Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a ProtectiveCloak?"
+            )
+        ) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -460,17 +488,25 @@ public class Initializer {
         Inventory inv = v1.getInventory();
         inv.addCraftedAgent(av);
         objects.put(inv, "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
+        if (Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a Vaccine effect?"
+            )
+        ) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a ProtectiveCloak?"
+            )
+        ) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
@@ -490,22 +526,30 @@ public class Initializer {
         Inventory inv = v1.getInventory();
         inv.addCraftedAgent(vdv);
         objects.put(inv, "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a Vaccine effect?"
+            )
+        ) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
+        if (Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a ProtectiveCloak?"
+            )
+        ) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);
         }
-        inv.getCraftedAgents().get(0).use(v1,v2);
+        inv.getCraftedAgents().get(0).use(v1, v2);
     }
 
     public static void useVaccine() {
@@ -520,17 +564,25 @@ public class Initializer {
         Inventory inv = v1.getInventory();
         inv.addCraftedAgent(v);
         objects.put(inv, "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a Vaccine effect?"
+            )
+        ) {
             Vaccine vac = new Vaccine();
             objects.put(vac, "vac");
             v2.addEffect(vac);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
+        if (Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a ProtectiveCloak?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Should the Virologist who gets thrown at have a ProtectiveCloak?"
+            )
+        ) {
             ProtectiveCloak p1 = new ProtectiveCloak();
             objects.put(p1, "p1");
             v2.addEffect(p1);

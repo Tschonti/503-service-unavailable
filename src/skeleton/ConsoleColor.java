@@ -24,7 +24,7 @@ public enum ConsoleColor {
      */
     ConsoleColor(String label) {
         String classPath = System.getProperty("java.class.path");
-        if(classPath.contains("idea_rt.jar")) {
+        if (classPath.contains("idea_rt.jar")) {
             this.c = label;
         } else {
             this.c = "";

@@ -1,10 +1,9 @@
 package main;
 
 import agents.*;
+import java.util.ArrayList;
 import skeleton.Initializer;
 import skeleton.OutputObject;
-
-import java.util.ArrayList;
 
 /**
  * It is found in Laboratories and can be collected by Virologists.
@@ -12,6 +11,7 @@ import java.util.ArrayList;
  * A Virologist can win the game by collecting all genetic codes.
  */
 public class GeneticCode implements Collectable {
+
     /**
      * The agent that can be crafted from this genetic code.
      */
@@ -28,13 +28,9 @@ public class GeneticCode implements Collectable {
      * The type of the agent is random
      */
     public GeneticCode() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
 
-        int random = (int)(Math.random()*10);
+        int random = (int) (Math.random() * 10);
         if (random < 3) {
             agent = new StunVirus();
         } else if (random < 6) {
@@ -55,9 +51,9 @@ public class GeneticCode implements Collectable {
      */
     public GeneticCode(Agent a) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(a)
+            new OutputObject(this),
+            "constructor",
+            OutputObject.generateParamsArray(a)
         );
 
         agent = a;
@@ -72,20 +68,16 @@ public class GeneticCode implements Collectable {
      */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collect",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collect",
+            OutputObject.generateParamsArray(inv)
         );
         inv.addGeneticCode(this);
         Initializer.returnWrite(null);
     }
 
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "cloneCollectable",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "cloneCollectable", null);
 
         GeneticCode newGc = new GeneticCode(agent.create());
         newGc.setPrice(price);
@@ -100,9 +92,9 @@ public class GeneticCode implements Collectable {
      */
     public boolean isCraftable(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "isCraftable",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "isCraftable",
+            OutputObject.generateParamsArray(inv)
         );
 
         Initializer.returnWrite(new OutputObject(false));
@@ -115,9 +107,9 @@ public class GeneticCode implements Collectable {
      */
     public void craft(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "craft",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "craft",
+            OutputObject.generateParamsArray(inv)
         );
 
         for (Resource res : price) {
@@ -133,11 +125,7 @@ public class GeneticCode implements Collectable {
      * @return agent
      */
     public Agent getAgent() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getAgent",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getAgent", null);
         Initializer.returnWrite(new OutputObject(agent));
 
         return agent;
@@ -149,9 +137,9 @@ public class GeneticCode implements Collectable {
      */
     public void setAgent(Agent agent) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setAgent",
-                OutputObject.generateParamsArray(agent)
+            new OutputObject(this),
+            "setAgent",
+            OutputObject.generateParamsArray(agent)
         );
 
         this.agent = agent;
@@ -164,11 +152,7 @@ public class GeneticCode implements Collectable {
      * @return price
      */
     public ArrayList<Resource> getPrice() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getPrice",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getPrice", null);
         Initializer.returnWrite(new OutputObject(price));
 
         return price;
@@ -180,9 +164,9 @@ public class GeneticCode implements Collectable {
      */
     public void setPrice(ArrayList<Resource> price) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setPrice",
-                OutputObject.generateParamsArray(price)
+            new OutputObject(this),
+            "setPrice",
+            OutputObject.generateParamsArray(price)
         );
         this.price = price;
         Initializer.returnWrite(null);

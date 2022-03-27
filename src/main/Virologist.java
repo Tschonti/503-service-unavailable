@@ -2,16 +2,16 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
+import java.util.ArrayList;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 import tiles.Tile;
-
-import java.util.ArrayList;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions
  */
 public class Virologist {
+
     /**
      * Zhe number of actions remaining in this round
      */
@@ -47,11 +47,7 @@ public class Virologist {
      * @param name Virologist's unique name
      */
     public Virologist(String name) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
@@ -65,9 +61,9 @@ public class Virologist {
      */
     public void addEffect(Effect effect) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addEffect",
-                OutputObject.generateParamsArray(effect)
+            new OutputObject(this),
+            "addEffect",
+            OutputObject.generateParamsArray(effect)
         );
         activeEffects.add(effect);
         Initializer.returnWrite(null);
@@ -79,9 +75,9 @@ public class Virologist {
      */
     public void removeEffect(Effect effect) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "removeEffect",
-                OutputObject.generateParamsArray(effect)
+            new OutputObject(this),
+            "removeEffect",
+            OutputObject.generateParamsArray(effect)
         );
 
         activeEffects.remove(effect);
@@ -92,11 +88,7 @@ public class Virologist {
      * An actions with no impact
      */
     public void pass() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "pass",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "pass", null);
         actionsLeft--;
         Initializer.returnWrite(null);
     }
@@ -105,11 +97,7 @@ public class Virologist {
      * All active effects do their impacts and decrement the lifetimes
      */
     public void myTurn() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "myTurn",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "myTurn", null);
 
         //active effects onTurnImpact
         for (Effect e : activeEffects) {
@@ -140,9 +128,9 @@ public class Virologist {
      */
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "moveTo",
-                OutputObject.generateParamsArray(newTile)
+            new OutputObject(this),
+            "moveTo",
+            OutputObject.generateParamsArray(newTile)
         );
 
         activeTile.removeVirologist(this);
@@ -155,11 +143,7 @@ public class Virologist {
      * Virologist picks up the collectible item from a tile
      */
     public void pickUp() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "pickUp",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "pickUp", null);
         activeTile.collectItem(inventory);
         controller.checkWinner(this);
         Initializer.returnWrite(null);
@@ -171,9 +155,9 @@ public class Virologist {
      */
     public void craft(GeneticCode code) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "craft",
-                OutputObject.generateParamsArray(code)
+            new OutputObject(this),
+            "craft",
+            OutputObject.generateParamsArray(code)
         );
         code.craft(inventory);
         Initializer.returnWrite(null);
@@ -186,9 +170,9 @@ public class Virologist {
      */
     public void useAgent(Agent agent, Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "useAgent",
-                OutputObject.generateParamsArray(agent, v)
+            new OutputObject(this),
+            "useAgent",
+            OutputObject.generateParamsArray(agent, v)
         );
 
         ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
@@ -196,14 +180,18 @@ public class Virologist {
         for (Agent a : craftedAgents) {
             craftedAgentsStr.add(a.toString());
         }
-        int idxAgent = Initializer.questionListWrite("Select the agent to use", craftedAgentsStr).getIndex();
+        int idxAgent = Initializer
+            .questionListWrite("Select the agent to use", craftedAgentsStr)
+            .getIndex();
 
         ArrayList<Virologist> nearbyVirologists = activeTile.getPlayers();
         ArrayList<String> nearVirologistStr = new ArrayList<>();
         for (Virologist vir : nearbyVirologists) {
             nearVirologistStr.add(vir.getName());
         }
-        int idxPlayer = Initializer.questionListWrite("Select the virologist to put agent on it", nearVirologistStr).getIndex();
+        int idxPlayer = Initializer
+            .questionListWrite("Select the virologist to put agent on it", nearVirologistStr)
+            .getIndex();
 
         craftedAgents.get(idxAgent).use(this, nearbyVirologists.get(idxPlayer));
 
@@ -216,20 +204,28 @@ public class Virologist {
      */
     public void steal(Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "steal",
-                OutputObject.generateParamsArray(v)
+            new OutputObject(this),
+            "steal",
+            OutputObject.generateParamsArray(v)
         );
 
         Inventory inv = v.getInventory();
-        if (Initializer.questionYesOrNo("Does the virologist that is trying to steal have space for more equipments?")  &&
-                Initializer.questionYesOrNo("Does the virologist that is being robbed have any equipments?")) {
+        if (
+            Initializer.questionYesOrNo(
+                "Does the virologist that is trying to steal have space for more equipments?"
+            ) &&
+            Initializer.questionYesOrNo(
+                "Does the virologist that is being robbed have any equipments?"
+            )
+        ) {
             ArrayList<Equipment> equipments = inv.getEquipments();
             ArrayList<String> equipmentsString = new ArrayList<>();
             for (Equipment e : equipments) {
                 equipmentsString.add(OutputObject.objectToName(e));
             }
-            int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
+            int result = Initializer
+                .questionListWrite("Which equipment would you like to steal?", equipmentsString)
+                .getIndex();
             inventory.steal(inv, equipments.get(result));
         } else {
             inventory.steal(inv, null);
@@ -243,11 +239,7 @@ public class Virologist {
      * @return Tiles where virologist can move to
      */
     private ArrayList<Tile> getNeighbours() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getNeighbours",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getNeighbours", null);
         Initializer.returnWrite(new OutputObject(activeTile.getNeighbours()));
 
         return activeTile.getNeighbours();
@@ -258,11 +250,7 @@ public class Virologist {
      * @return Genetic codes that virologist can craft
      */
     private ArrayList<GeneticCode> getCraftables() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getCraftables",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getCraftables", null);
 
         ArrayList<GeneticCode> geneticCodes = inventory.getLearntCodes();
         ArrayList<GeneticCode> craftables = new ArrayList<>();
@@ -281,11 +269,7 @@ public class Virologist {
      * @return Crafted agents
      */
     private ArrayList<Agent> getCraftedAgents() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getCraftedAgents",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getCraftedAgents", null);
 
         ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
 
@@ -298,11 +282,7 @@ public class Virologist {
      * @return Virologists that this virologist can touch
      */
     private ArrayList<Virologist> getNearbyVirologists() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getNearbyVirologist",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getNearbyVirologist", null);
 
         //Virologist remove itself from the list. A new list is needed because of the reference
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
@@ -317,11 +297,7 @@ public class Virologist {
      * @return Virologists that this virologist can steal from
      */
     private ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getNearbyVirologistToStealFrom",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getNearbyVirologistToStealFrom", null);
 
         //Virologist remove itself from the list. A new list is needed because of the reference
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayersToStealFrom());
@@ -336,11 +312,7 @@ public class Virologist {
      * @return The number of actions remaining in this round
      */
     public int getActionsLeft() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getActionsLeft",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getActionsLeft", null);
         Initializer.returnWrite(new OutputObject(actionsLeft));
 
         return actionsLeft;
@@ -351,11 +323,7 @@ public class Virologist {
      * @return Tile that this virologist is on
      */
     public Tile getActiveTile() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getActiveTile",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getActiveTile", null);
         Initializer.returnWrite(new OutputObject(activeTile));
 
         return activeTile;
@@ -367,9 +335,9 @@ public class Virologist {
      */
     public void setActiveTile(Tile activeTile) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setActiveTile",
-                OutputObject.generateParamsArray(activeTile)
+            new OutputObject(this),
+            "setActiveTile",
+            OutputObject.generateParamsArray(activeTile)
         );
         Initializer.returnWrite(null);
 
@@ -381,11 +349,7 @@ public class Virologist {
      * @return Virologist's inventory
      */
     public Inventory getInventory() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getInventory",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getInventory", null);
         Initializer.returnWrite(new OutputObject(inventory));
 
         return inventory;
@@ -396,11 +360,7 @@ public class Virologist {
      * @return Active effects are on this virologist
      */
     public ArrayList<Effect> getActiveEffects() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getActiveEffects",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getActiveEffects", null);
         Initializer.returnWrite(new OutputObject(activeEffects));
 
         return activeEffects;
@@ -411,11 +371,7 @@ public class Virologist {
      * @return Virologist's name
      */
     public String getName() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getName",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getName", null);
         Initializer.returnWrite(new OutputObject(name));
         return name;
     }
@@ -424,11 +380,11 @@ public class Virologist {
      * Setter for virologist's name
      * @param name Virologist's name
      */
-    public void setName (String name) {
+    public void setName(String name) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setName",
-                OutputObject.generateParamsArray(name)
+            new OutputObject(this),
+            "setName",
+            OutputObject.generateParamsArray(name)
         );
         this.name = name;
         Initializer.returnWrite(null);
@@ -440,9 +396,9 @@ public class Virologist {
      */
     public static void setController(Controller controller) {
         Initializer.functionWrite(
-                new OutputObject("Virologist", true),
-                "static setController",
-                null
+            new OutputObject("Virologist", true),
+            "static setController",
+            null
         );
         Virologist.controller = controller;
         Initializer.returnWrite(null);

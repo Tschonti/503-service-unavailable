@@ -1,4 +1,5 @@
 package agents;
+
 import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
@@ -15,12 +16,7 @@ public class AmnesiaVirus extends Agent {
      */
     public AmnesiaVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -30,11 +26,7 @@ public class AmnesiaVirus extends Agent {
      */
     public AmnesiaVirus(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -43,11 +35,7 @@ public class AmnesiaVirus extends Agent {
      * @return AmnesiaVirus
      */
     public Agent create() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "create",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "create", null);
         Agent newAgent = new AmnesiaVirus();
         Initializer.returnWrite(new OutputObject(newAgent));
 
@@ -62,9 +50,9 @@ public class AmnesiaVirus extends Agent {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
         Inventory inv = to.getInventory();
         inv.getLearntCodes().clear();

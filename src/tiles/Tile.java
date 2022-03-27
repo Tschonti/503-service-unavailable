@@ -1,5 +1,6 @@
 package tiles;
 
+import java.util.ArrayList;
 import main.Collectable;
 import main.Effect;
 import main.Inventory;
@@ -7,14 +8,13 @@ import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
-import java.util.ArrayList;
-
 /**
  * Abstract class for the fields of the game.
  * Keeps track of the players that are currently on the tile.
  * Players can pick up various items here.
  */
 public abstract class Tile {
+
     /**
      * Unique identifier of the tile
      */
@@ -48,12 +48,8 @@ public abstract class Tile {
      * Return the virologist from players that have an effect applied to them that allows stealing.
      * @return Virologists that can be robbed.
      */
-    public ArrayList<Virologist> getPlayersToStealFrom(){
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getPlayersToStealFrom",
-                null
-        );
+    public ArrayList<Virologist> getPlayersToStealFrom() {
+        Initializer.functionWrite(new OutputObject(this), "getPlayersToStealFrom", null);
 
         ArrayList<Virologist> result = new ArrayList<>();
         for (Virologist v : players) {
@@ -86,9 +82,9 @@ public abstract class Tile {
      */
     public void addVirologist(Virologist player) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addVirologist",
-                OutputObject.generateParamsArray(player)
+            new OutputObject(this),
+            "addVirologist",
+            OutputObject.generateParamsArray(player)
         );
         players.add(player);
         Initializer.returnWrite(null);
@@ -101,9 +97,9 @@ public abstract class Tile {
      */
     public void removeVirologist(Virologist player) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "removeVirologist",
-                OutputObject.generateParamsArray(player)
+            new OutputObject(this),
+            "removeVirologist",
+            OutputObject.generateParamsArray(player)
         );
         players.remove(player);
         Initializer.returnWrite(null);
@@ -114,11 +110,7 @@ public abstract class Tile {
      * @return unique identifier
      */
     public int getId() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getId",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getId", null);
         Initializer.returnWrite(new OutputObject(id));
 
         return id;
@@ -129,11 +121,7 @@ public abstract class Tile {
      * @return Name of the tile
      */
     public String getName() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getName",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getName", null);
         Initializer.returnWrite(new OutputObject(name));
 
         return name;
@@ -144,11 +132,7 @@ public abstract class Tile {
      * @return List of neighbouring tiles
      */
     public ArrayList<Tile> getNeighbours() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getNeighbours",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getNeighbours", null);
         Initializer.returnWrite(new OutputObject(neighbours));
 
         return neighbours;
@@ -160,9 +144,9 @@ public abstract class Tile {
      */
     public void addNeighbour(Tile t) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addNeighbour",
-                OutputObject.generateParamsArray(t)
+            new OutputObject(this),
+            "addNeighbour",
+            OutputObject.generateParamsArray(t)
         );
         Initializer.returnWrite(null);
 
@@ -174,11 +158,7 @@ public abstract class Tile {
      * @return  List of players on this tile
      */
     public ArrayList<Virologist> getPlayers() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getPlayers",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getPlayers", null);
         Initializer.returnWrite(new OutputObject(players));
 
         return players;

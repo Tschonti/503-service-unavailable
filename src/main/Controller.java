@@ -8,6 +8,7 @@ import skeleton.OutputObject;
  * It starts the game, manages the rounds and checks for winners.
  */
 public class Controller {
+
     /**
      * The player, that is
      */
@@ -32,11 +33,7 @@ public class Controller {
      * Constructor
      */
     public Controller() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
 
         activePlayer = 0;
         map = new Map();
@@ -50,11 +47,7 @@ public class Controller {
      * Starts the game.
      */
     public void startGame() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "startGame",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "startGame", null);
 
         map.createMap();
 
@@ -67,9 +60,9 @@ public class Controller {
      */
     public void checkWinner(Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "checkWinner",
-                OutputObject.generateParamsArray(v)
+            new OutputObject(this),
+            "checkWinner",
+            OutputObject.generateParamsArray(v)
         );
         if (Initializer.questionYesOrNo("Was this the last genetic code to collect?")) {
             System.out.println(v.getName() + " is the winner!");
@@ -82,11 +75,7 @@ public class Controller {
      * Starts the next round and calls myTurn() on all players
      */
     private void nextRound() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "nextRound",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "nextRound", null);
 
         for (Virologist player : players) {
             player.myTurn();
@@ -101,9 +90,9 @@ public class Controller {
      */
     public void addPlayer(Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "addPlayer",
-                OutputObject.generateParamsArray(v)
+            new OutputObject(this),
+            "addPlayer",
+            OutputObject.generateParamsArray(v)
         );
         players[0] = v;
         Initializer.returnWrite(null);

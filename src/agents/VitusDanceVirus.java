@@ -1,29 +1,24 @@
 package agents;
 
+import java.util.ArrayList;
+import java.util.Random;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 import tiles.Tile;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
  * for it's time left in a Virologist's inventory.
  */
 public class VitusDanceVirus extends Agent {
+
     /**
      * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public VitusDanceVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -33,11 +28,7 @@ public class VitusDanceVirus extends Agent {
      */
     public VitusDanceVirus(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -47,9 +38,9 @@ public class VitusDanceVirus extends Agent {
      */
     public Agent create() {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "create",
-                OutputObject.generateParamsArray()
+            new OutputObject(this),
+            "create",
+            OutputObject.generateParamsArray()
         );
         Agent newAgent = new VitusDanceVirus();
         Initializer.returnWrite(new OutputObject(newAgent));
@@ -65,9 +56,9 @@ public class VitusDanceVirus extends Agent {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
 
         while (to.getActionsLeft() > 0) {

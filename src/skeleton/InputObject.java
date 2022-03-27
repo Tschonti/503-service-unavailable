@@ -5,6 +5,7 @@ package skeleton;
  * Wraps the options index and content as a single object.
  */
 public class InputObject {
+
     private final int index;
     private final String name;
 

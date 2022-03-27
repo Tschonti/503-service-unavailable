@@ -1,9 +1,10 @@
 package equipments;
-import main.Effect;
-import main.Collectable;
-import main.Virologist;
-import main.Inventory;
+
 import agents.Agent;
+import main.Collectable;
+import main.Effect;
+import main.Inventory;
+import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
@@ -11,15 +12,16 @@ import skeleton.OutputObject;
  * An abstract class, which is the parent of all the different Equipments in the game.
  */
 public abstract class Equipment implements Effect, Collectable {
+
     /**
      * Creates a clone of itself, and puts it in the received inventory.
      * @param inv The Inventory, where the Equipment puts the clone.
      */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collect",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collect",
+            OutputObject.generateParamsArray(inv)
         );
         inv.addEquipment(this);
         Initializer.returnWrite(null);
@@ -33,9 +35,9 @@ public abstract class Equipment implements Effect, Collectable {
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "counterImpact",
-                OutputObject.generateParamsArray(agent, from, to)
+            new OutputObject(this),
+            "counterImpact",
+            OutputObject.generateParamsArray(agent, from, to)
         );
         Initializer.returnWrite(null);
     }
@@ -46,9 +48,9 @@ public abstract class Equipment implements Effect, Collectable {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
         Initializer.returnWrite(null);
     }
@@ -59,9 +61,9 @@ public abstract class Equipment implements Effect, Collectable {
      */
     public void endTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "endTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "endTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
         Initializer.returnWrite(null);
     }
@@ -72,11 +74,7 @@ public abstract class Equipment implements Effect, Collectable {
      * @return true, if a Virologist with this Equipment can be stolen from.
      */
     public boolean allowStealing() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "allowStealing",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "allowStealing", null);
         Initializer.returnWrite(new OutputObject(false));
         return false;
     }
@@ -87,9 +85,9 @@ public abstract class Equipment implements Effect, Collectable {
      */
     public void decrement(Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "decrement",
-                OutputObject.generateParamsArray(v)
+            new OutputObject(this),
+            "decrement",
+            OutputObject.generateParamsArray(v)
         );
         Initializer.returnWrite(null);
     }

@@ -9,17 +9,13 @@ import skeleton.OutputObject;
  * for it's time left in a Virologist's inventory.
  */
 public class Vaccine extends Agent {
+
     /**
      * Vaccine constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public Vaccine() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -29,11 +25,7 @@ public class Vaccine extends Agent {
      */
     public Vaccine(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -42,11 +34,7 @@ public class Vaccine extends Agent {
      * @return Vaccine
      */
     public Agent create() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "create",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "create", null);
         Agent newAgent = new Vaccine();
         Initializer.returnWrite(new OutputObject(newAgent));
 
@@ -63,9 +51,9 @@ public class Vaccine extends Agent {
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "counterImpact",
-                OutputObject.generateParamsArray(agent, from, to)
+            new OutputObject(this),
+            "counterImpact",
+            OutputObject.generateParamsArray(agent, from, to)
         );
         to.removeEffect(agent);
         Initializer.returnWrite(null);

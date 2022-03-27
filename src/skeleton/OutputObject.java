@@ -4,6 +4,7 @@ package skeleton;
  * A helper class for the Initializer class that stores an objects reference and its classname.
  */
 public class OutputObject {
+
     Object ref;
     String className;
 
@@ -72,7 +73,7 @@ public class OutputObject {
      * @return Classname of the object
      */
     public static String objectToName(Object o) {
-        String[] regex =  o.getClass().toString().split("\\.");
+        String[] regex = o.getClass().toString().split("\\.");
         return regex[regex.length - 1];
     }
 

@@ -1,25 +1,21 @@
 package agents;
+
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
-
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
  * for its time left in a Virologist's inventory.
  */
 public class StunVirus extends Agent {
+
     /**
      * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public StunVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory.
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -29,11 +25,7 @@ public class StunVirus extends Agent {
      */
     public StunVirus(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -42,11 +34,7 @@ public class StunVirus extends Agent {
      * @return StunVirus
      */
     public Agent create() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "create",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "create", null);
         Agent newAgent = new StunVirus();
         Initializer.returnWrite(new OutputObject(newAgent));
 
@@ -61,9 +49,9 @@ public class StunVirus extends Agent {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
 
         while (to.getActionsLeft() > 0) {

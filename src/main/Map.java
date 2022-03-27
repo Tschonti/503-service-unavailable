@@ -9,6 +9,7 @@ import tiles.Tile;
  * It can create a map and store its tiles.
  */
 public class Map {
+
     /**
      * Tiles of the map.
      */
@@ -18,11 +19,7 @@ public class Map {
      * Constructor
      */
     public Map() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         Initializer.returnWrite(null);
     }
 
@@ -30,11 +27,7 @@ public class Map {
      * Creates a new map.
      */
     public void createMap() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "createMap",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "createMap", null);
         Initializer.returnWrite(null);
     }
 }

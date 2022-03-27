@@ -4,17 +4,17 @@ import equipments.Bag;
 import equipments.Equipment;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
+import java.util.Random;
 import main.Collectable;
 import main.Inventory;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
-import java.util.Random;
-
 /**
  * A safehouse tile where players can pick up equipments
  */
 public class Safehouse extends Tile {
+
     /**
      * The equipment that can be picked up here
      */
@@ -28,12 +28,7 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name) {
         super(id, name);
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
 
         Random rnd = new Random();
         switch (rnd.nextInt(3)) {
@@ -60,12 +55,7 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name, Equipment eq) {
         super(id, name);
-
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         equipment = eq;
 
         Initializer.returnWrite(null);
@@ -80,13 +70,9 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name, Class c) {
         super(id, name);
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         try {
-            equipment = (Equipment)c.newInstance();
+            equipment = (Equipment) c.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -102,9 +88,9 @@ public class Safehouse extends Tile {
      */
     public void collectItem(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collectItem",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collectItem",
+            OutputObject.generateParamsArray(inv)
         );
         equipment.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);
@@ -115,11 +101,7 @@ public class Safehouse extends Tile {
      * @return The equipment that can be picked up here
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getCollectableItem",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
         Initializer.returnWrite(new OutputObject(equipment));
 
         return equipment;

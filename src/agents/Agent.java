@@ -1,16 +1,16 @@
 package agents;
 
+import java.util.ArrayList;
 import main.Effect;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
-import java.util.ArrayList;
-
 /**
  * This abstract class represents a basic Agent. The more specific agents extend this class.
  */
 public abstract class Agent implements Effect {
+
     /**
      * Stores info, how many rounds the effect will last.
      */
@@ -25,11 +25,7 @@ public abstract class Agent implements Effect {
     }
 
     public int getRoundsLeft() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getRoundLeft",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getRoundLeft", null);
         Initializer.returnWrite(new OutputObject(roundsLeft));
 
         return roundsLeft;
@@ -41,9 +37,9 @@ public abstract class Agent implements Effect {
      */
     public void setRoundsLeft(int rLeft) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "setRoundLeft",
-                OutputObject.generateParamsArray(rLeft)
+            new OutputObject(this),
+            "setRoundLeft",
+            OutputObject.generateParamsArray(rLeft)
         );
         Initializer.returnWrite(null);
 
@@ -57,16 +53,15 @@ public abstract class Agent implements Effect {
      */
     public void use(Virologist from, Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "use",
-                OutputObject.generateParamsArray(from, to)
+            new OutputObject(this),
+            "use",
+            OutputObject.generateParamsArray(from, to)
         );
         ArrayList<Effect> activeEffects = new ArrayList<>(to.getActiveEffects());
         to.addEffect(this);
-        if(from != to)
-            for(Effect e : activeEffects) {
-                e.counterImpact(this, from, to);
-            }
+        if (from != to) for (Effect e : activeEffects) {
+            e.counterImpact(this, from, to);
+        }
         Initializer.returnWrite(null);
     }
 
@@ -79,9 +74,9 @@ public abstract class Agent implements Effect {
      */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "onTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "onTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
         Initializer.returnWrite(null);
     }
@@ -92,9 +87,9 @@ public abstract class Agent implements Effect {
      */
     public void endTurnImpact(Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "endTurnImpact",
-                OutputObject.generateParamsArray(to)
+            new OutputObject(this),
+            "endTurnImpact",
+            OutputObject.generateParamsArray(to)
         );
         Initializer.returnWrite(null);
     }
@@ -107,9 +102,9 @@ public abstract class Agent implements Effect {
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "counterImpact",
-                OutputObject.generateParamsArray(agent, from, to)
+            new OutputObject(this),
+            "counterImpact",
+            OutputObject.generateParamsArray(agent, from, to)
         );
         Initializer.returnWrite(null);
     }
@@ -119,11 +114,7 @@ public abstract class Agent implements Effect {
      * @return Can be robbed?
      */
     public boolean allowStealing() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "allowStealing",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "allowStealing", null);
         Initializer.returnWrite(new OutputObject(false));
         return false;
     }
@@ -134,12 +125,12 @@ public abstract class Agent implements Effect {
      */
     public void decrement(Virologist v) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "decrement",
-                OutputObject.generateParamsArray(v)
+            new OutputObject(this),
+            "decrement",
+            OutputObject.generateParamsArray(v)
         );
         roundsLeft--;
-        if(roundsLeft == 0) {
+        if (roundsLeft == 0) {
             v.getInventory().removeCraftedAgent(this);
             v.removeEffect(this);
         }

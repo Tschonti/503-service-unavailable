@@ -11,6 +11,7 @@ import skeleton.OutputObject;
  * A laboratory tile where virologists can learn genetic codes
  */
 public class Laboratory extends Tile {
+
     /**
      * The code that can be learnt here
      */
@@ -24,11 +25,10 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name) {
         super(id, name);
-
         Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(id, name)
+            new OutputObject(this),
+            "constructor",
+            OutputObject.generateParamsArray(id, name)
         );
         code = new GeneticCode();
         Initializer.returnWrite(null);
@@ -43,11 +43,10 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name, Agent a) {
         super(id, name);
-
         Initializer.functionWrite(
-                new OutputObject(this),
-                "constructor",
-                OutputObject.generateParamsArray(id, name, a)
+            new OutputObject(this),
+            "constructor",
+            OutputObject.generateParamsArray(id, name, a)
         );
         code = new GeneticCode(a);
         Initializer.returnWrite(null);
@@ -61,9 +60,9 @@ public class Laboratory extends Tile {
      */
     public void collectItem(Inventory inv) {
         Initializer.functionWrite(
-                new OutputObject(this),
-                "collectItem",
-                OutputObject.generateParamsArray(inv)
+            new OutputObject(this),
+            "collectItem",
+            OutputObject.generateParamsArray(inv)
         );
         code.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);
@@ -74,11 +73,7 @@ public class Laboratory extends Tile {
      * @return The genetic code that can be learnt here
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "getCollectableItem",
-                null
-        );
+        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
         Initializer.returnWrite(new OutputObject(code));
         return code;
     }
