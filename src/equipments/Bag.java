@@ -33,8 +33,8 @@ public class Bag extends Equipment {
                 OutputObject.generateParamsArray(to)
         );
         Inventory i=to.getInventory();
-        int amount=i.getMaxResourceAmount();
-        i.setMaxResourceAmount(2*amount);
+        int maxAmount=i.getMaxResourceAmount();
+        i.setMaxResourceAmount(2*maxAmount);
         Initializer.returnWrite(null);
     }
 
@@ -50,8 +50,8 @@ public class Bag extends Equipment {
                 OutputObject.generateParamsArray(to)
         );
         Inventory i=to.getInventory();
-        int amount=i.getMaxResourceAmount();
-        i.setMaxResourceAmount(amount/2);
+        int maxAmount=i.getMaxResourceAmount();
+        i.setMaxResourceAmount(maxAmount/2);
         Initializer.returnWrite(null);
     }
 

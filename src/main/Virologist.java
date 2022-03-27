@@ -84,9 +84,13 @@ public class Virologist {
                 null
         );
 
-        //active effects impact
+        //active effects onTurnImpact
         for (Effect e : activeEffects) {
             e.onTurnImpact(this);
+        }
+
+        //active effects endTurnImpact
+        for (Effect e : activeEffects) {
             e.endTurnImpact(this);
         }
 
@@ -167,12 +171,12 @@ public class Virologist {
         }
         int idxAgent = Initializer.questionListWrite("Select the agent to use", craftedAgentsStr).getIndex();
 
+        //TODO for Ádám, erre van külön függvény, az kell egyáltalán?
         ArrayList<Virologist> nearbyVirologists = activeTile.getPlayers();
         ArrayList<String> nearVirologistStr = new ArrayList<>();
         for (Virologist vir : nearbyVirologists) {
             nearVirologistStr.add(vir.getName());
         }
-
         int idxPlayer = Initializer.questionListWrite("Select the virologist to put agent on it", nearVirologistStr).getIndex();
 
         craftedAgents.get(idxAgent).use(this, nearbyVirologists.get(idxPlayer));
@@ -196,8 +200,9 @@ public class Virologist {
                 Initializer.questionYesOrNo("Does the virologist that is being robbed have any equipments?")) {
             ArrayList<Equipment> equipments = inv.getEquipments();
             ArrayList<String> equipmentsString = new ArrayList<>();
-            for (Equipment e : equipments)
+            for (Equipment e : equipments) {
                 equipmentsString.add(e.toString());
+            }
             int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
             inventory.steal(inv, equipments.get(result));
         } else {

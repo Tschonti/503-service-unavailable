@@ -293,11 +293,15 @@ public class Initializer {
         objects.clear();
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
-        EmptyTile tile = new EmptyTile(0, "from");
         EmptyTile tile2 = new EmptyTile(1, "to");
-        objects.put(tile, "activeTile");
         objects.put(tile2, "e");
-        v.setActiveTile(tile);
+        EmptyTile activeTile = new EmptyTile(0, "from");
+        objects.put(activeTile, "activeTile");
+        v.setActiveTile(activeTile);
+        tile2.addNeighbour(activeTile);
+        activeTile.addNeighbour(tile2);
+        activeTile.addVirologist(v);
+
         v.moveTo(tile2);
     }
 
@@ -305,11 +309,15 @@ public class Initializer {
         objects.clear();
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
-        EmptyTile tile = new EmptyTile(0, "from");
         Laboratory tile2 = new Laboratory(1, "to");
-        objects.put(tile, "activeTile");
         objects.put(tile2, "l");
-        v.setActiveTile(tile);
+        EmptyTile activeTile = new EmptyTile(0, "from");
+        objects.put(activeTile, "activeTile");
+        v.setActiveTile(activeTile);
+        tile2.addNeighbour(activeTile);
+        activeTile.addNeighbour(tile2);
+        activeTile.addVirologist(v);
+
         v.moveTo(tile2);
     }
 
@@ -317,11 +325,15 @@ public class Initializer {
         objects.clear();
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
-        EmptyTile tile = new EmptyTile(0, "from");
         Safehouse tile2 = new Safehouse(1, "to");
-        objects.put(tile, "activeTile");
         objects.put(tile2, "s");
-        v.setActiveTile(tile);
+        EmptyTile activeTile = new EmptyTile(0, "from");
+        objects.put(activeTile, "activeTile");
+        v.setActiveTile(activeTile);
+        tile2.addNeighbour(activeTile);
+        activeTile.addNeighbour(tile2);
+        activeTile.addVirologist(v);
+
         v.moveTo(tile2);
     }
 
@@ -329,11 +341,15 @@ public class Initializer {
         objects.clear();
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
-        EmptyTile tile = new EmptyTile(0, "from");
         Warehouse tile2 = new Warehouse(1, "to");
-        objects.put(tile, "activeTile");
         objects.put(tile2, "w");
-        v.setActiveTile(tile);
+        EmptyTile activeTile = new EmptyTile(0, "from");
+        objects.put(activeTile, "activeTile");
+        v.setActiveTile(activeTile);
+        tile2.addNeighbour(activeTile);
+        activeTile.addNeighbour(tile2);
+        activeTile.addVirologist(v);
+
         v.moveTo(tile2);
     }
 
@@ -384,11 +400,13 @@ public class Initializer {
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");
         l.addVirologist(v);
-        v.setActiveTile(l);
+        v.setActiveTile(l); //TODO for Samu, ez nincs rajt a kommunikációson
 
         v.pickUp();
     }
 
+    //TODO for Zsombi, a kommunikációs diagramm szerinti sorrendben kell történnie a dolgoknak
+    //TODO for Zsomni, a kérdések legyenek angolul
     public static void useStunVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
@@ -518,6 +536,7 @@ public class Initializer {
         Inventory v2Inv = v2.getInventory();
         objects.put(v2Inv, "v2Inv");
         v2Inv.addEquipment(g);
+
         v1.steal(v2);
     }
 

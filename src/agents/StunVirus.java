@@ -34,9 +34,11 @@ public class StunVirus extends Agent {
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
-        int aL = to.getActionsLeft();
-        for(int i = 0; i < aL; i++)
+
+        for(int i = 0; i < to.getActionsLeft(); i++) {
             to.pass();
+        }
+
         Initializer.returnWrite(null);
     }
 }
