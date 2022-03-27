@@ -103,7 +103,7 @@ public class Safehouse extends Tile {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "collectItem",
-                null
+                OutputObject.generateParamsArray(inv)
         );
         equipment.cloneCollectable().collect(inv);
         Initializer.returnWrite(null);

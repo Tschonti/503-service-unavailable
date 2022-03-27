@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class VitusDanceVirus extends Agent{
-
+    /**
+     * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
+     */
     public VitusDanceVirus() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
 
@@ -19,28 +21,38 @@ public class VitusDanceVirus extends Agent{
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
-
+    /**
+     * Creates an instance of a VitusDanceVirus
+     * @return VitusDanceVirus
+     */
     public Agent create() {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "create",
                 OutputObject.generateParamsArray()
         );
-        Initializer.returnWrite(new OutputObject(new VitusDanceVirus()));
+        Agent newAgent = new VitusDanceVirus();
+        Initializer.returnWrite(new OutputObject(newAgent));
 
-        return new VitusDanceVirus();
+        return newAgent;
     }
 
     /* Effect functions */
+    /**
+     * This function gets called at the beginning of an affected Virologist's turn.
+     * Makes the virologist move randomly.
+     * @param to the Virologist that is affected.
+     */
     public void onTurnImpact(Virologist to) {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
-        for(int i = 0; i < Constants.numberOfActions; i++) {
+        int actionsLeft = to.getActionsLeft();
+        for(int i = 0; i < actionsLeft; i++) {
             Tile t = to.getActiveTile();
             ArrayList<Tile> tileList = t.getNeighbours();
             Random r = new Random();

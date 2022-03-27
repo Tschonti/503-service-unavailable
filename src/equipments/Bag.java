@@ -18,7 +18,7 @@ public class Bag extends Equipment {
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
@@ -65,7 +65,8 @@ public class Bag extends Equipment {
                 "clone",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new Bag()));
-        return new Bag();
+        Collectable newBag = new Bag();
+        Initializer.returnWrite(new OutputObject(newBag));
+        return newBag;
     }
 }

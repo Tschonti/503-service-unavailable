@@ -29,6 +29,7 @@ public class Virologist {
                 "constructor",
                 null
         );
+        actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
         this.name = name;
@@ -123,6 +124,7 @@ public class Virologist {
 
         activeTile.removeVirologist(this);
         newTile.addVirologist(this);
+        actionsLeft--;
         Initializer.returnWrite(null);
     }
 

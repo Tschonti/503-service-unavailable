@@ -41,7 +41,7 @@ public class Initializer {
      */
     public static boolean questionYesOrNo(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
-        char reply = ' '; //TODO samu??????
+        char reply = ' ';
         Scanner sc = new Scanner(System.in);
         boolean finished = false;
         while(!finished){
@@ -409,10 +409,11 @@ public class Initializer {
         objects.put(v, "v");
         Virologist.setController(c);
         c.addPlayer(v);
+        //questionListWrite("What kind of agent should be craftable from the genetic code?")
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");
         l.addVirologist(v);
-        v.setActiveTile(l); //TODO for Samu, ez nincs rajt a kommunikációson
+        v.setActiveTile(l);
 
         v.pickUp();
     }
@@ -422,13 +423,15 @@ public class Initializer {
     public static void useStunVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus sv = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        StunVirus sv = new StunVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
         objects.put(sv, "sv");
-        objects.put(v1.getInventory(), "inv");
+        Inventory inv = v1.getInventory();
+        objects.put(inv, "inv");
+        inv.addCraftedAgent(sv);
         if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
@@ -444,25 +447,27 @@ public class Initializer {
             objects.put(p1, "p1");
             v2.addEffect(p1);
         }
-        sv.use(v1, v2);
+        inv.getCraftedAgents().get(0).use(v1, v2);
     }
 
     public static void useAmnesiaVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus av = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        AmnesiaVirus av = new AmnesiaVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
         objects.put(av, "av");
-        objects.put(v1.getInventory(), "inv");
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
+        Inventory inv = v1.getInventory();
+        inv.addCraftedAgent(av);
+        objects.put(inv, "inv");
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
             Glove g1 = new Glove();
             objects.put(g1, "g1");
             v2.addEffect(g1);
         }
-        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Glove?")) {
+        if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
             v2.addEffect(v);
@@ -472,19 +477,21 @@ public class Initializer {
             objects.put(p1, "p1");
             v2.addEffect(p1);
         }
-        av.use(v1, v2);
+        inv.getCraftedAgents().get(0).use(v1, v2);
     }
 
     public static void useVitusDanceVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus vdv = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        VitusDanceVirus vdv = new VitusDanceVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
         objects.put(vdv, "vdv");
-        objects.put(v1.getInventory(), "inv");
+        Inventory inv = v1.getInventory();
+        inv.addCraftedAgent(vdv);
+        objects.put(inv, "inv");
         if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine v = new Vaccine();
             objects.put(v, "v");
@@ -500,19 +507,21 @@ public class Initializer {
             objects.put(p1, "p1");
             v2.addEffect(p1);
         }
-        vdv.use(v1, v2);
+        inv.getCraftedAgents().get(0).use(v1,v2);
     }
 
     public static void useVaccine() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus v = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        Vaccine v = new Vaccine();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
         objects.put(v, "v");
-        objects.put(v1.getInventory(), "inv");
+        Inventory inv = v1.getInventory();
+        inv.addCraftedAgent(v);
+        objects.put(inv, "inv");
         if(Initializer.questionYesOrNo("Should the Virologist who gets thrown at have a Vaccine effect?")) {
             Vaccine vac = new Vaccine();
             objects.put(vac, "vac");
@@ -528,7 +537,7 @@ public class Initializer {
             objects.put(p1, "p1");
             v2.addEffect(p1);
         }
-        v.use(v1, v2);
+        inv.getCraftedAgents().get(0).use(v1, v2);
     }
 
     public static void robVirologist() {
