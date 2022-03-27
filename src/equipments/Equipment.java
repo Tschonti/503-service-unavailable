@@ -52,6 +52,7 @@ public abstract class Equipment implements Effect, Collectable {
         );
         Initializer.returnWrite(null);
     }
+
     /**
      * The Equipments impact at the end of the Virologists turn.
      * @param to The Virologist on turn.
