@@ -26,6 +26,8 @@ participant "g: Glove" as g
             return
         return
         v1Inv -> v1Inv ++ : addEquipment(g)
+            v1Inv -> v1 ++ : addEffect(g)
+            return
         return
         v1Inv -> g ++ : onTurnImpact(v1)
         return

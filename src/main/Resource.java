@@ -118,21 +118,6 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Setter for this resource's amount
-     * @param type Resource's type
-     */
-    public void setType(ResourceType type) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "setType",
-                OutputObject.generateParamsArray(type)
-        );
-        this.type = type;
-
-        Initializer.returnWrite(null);
-    }
-
-    /**
      * Add an amount of resource to this resource
      * @param maxAmount Maximum amount of resource
      * @param addedAmount Resource amount
@@ -201,6 +186,11 @@ public class Resource implements Collectable {
         return null;
     }
 
+    /**
+     * Adds a new resource object of every type with 0 as the amount to the array.
+     * Should be called on an empty list.
+     * @param resources The resource array to be initialized.
+     */
     public static void initializeResourceArray(ArrayList<Resource> resources) {
         for (ResourceType t : ResourceType.values()) {
             resources.add(new Resource(0, t));

@@ -16,17 +16,17 @@ public class Controller {
     /**
      * All the players in the game.
      */
-    private Virologist[] players;
+    private final Virologist[] players;
 
     /**
      * The map of the game.
      */
-    private Map map;
+    private final Map map;
 
     /**
      * All the genetic codes in the game.
      */
-    private GeneticCode[] codes;
+    private final GeneticCode[] codes;
 
     /**
      * Constructor

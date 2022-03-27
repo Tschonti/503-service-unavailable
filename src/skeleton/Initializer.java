@@ -145,8 +145,8 @@ public class Initializer {
 
     /**
      * Converts an OutputObject to string based on its id stored in the hash map.
-     * @param o valami
-     * @return valami
+     * @param o OutputObject to be converted to string
+     * @return the result of the conversion
      */
     private static String outputObjectToString(OutputObject o) {
         if (o == null) return "void";
@@ -552,6 +552,7 @@ public class Initializer {
         v2.addEffect(s);
 
         Glove g = new Glove();
+        objects.put(g, "g");
         Inventory v2Inv = v2.getInventory();
         objects.put(v2Inv, "v2Inv");
         v2Inv.addEquipment(g);
