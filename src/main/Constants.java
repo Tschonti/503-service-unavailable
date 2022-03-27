@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Stores all the constants.
+ * All the constants in the program.
  */
 public class Constants {
     public static int numberOfActions = 2;

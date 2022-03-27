@@ -3,8 +3,15 @@ package main;
 import skeleton.ConsoleColor;
 import skeleton.Initializer;
 
+/**
+ * The Main class.
+ */
 public class Main {
 
+    /**
+     * The main function.
+     * @param args arguments
+     */
     static public void main(String[] args) {
         System.out.println(ConsoleColor.BOLD.c + "Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the\n" +
                 "outbreak and cure your fellow humans. Be aware! There are other Virologists among you \n"+
