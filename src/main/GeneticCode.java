@@ -18,6 +18,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Constructor
+     * The type of the agent is random
      */
     public GeneticCode() {
         Initializer.functionWrite(
@@ -26,7 +27,6 @@ public class GeneticCode implements Collectable {
                 null
         );
 
-        //TODO random for now
         int random = (int)(Math.random()*10);
         if (random < 3) {
             agent = new StunVirus();
@@ -37,6 +37,23 @@ public class GeneticCode implements Collectable {
         } else {
             agent = new Vaccine();
         }
+        price = new ArrayList<>();
+
+        Initializer.returnWrite(null);
+    }
+
+    /**
+     * Constructor
+     * @param a The agent that can be crafted by learning this code
+     */
+    public GeneticCode(Agent a) {
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                OutputObject.generateParamsArray(a)
+        );
+
+        agent = a;
         price = new ArrayList<>();
 
         Initializer.returnWrite(null);
@@ -57,9 +74,15 @@ public class GeneticCode implements Collectable {
     }
 
     public Collectable cloneCollectable() {
-        GeneticCode newGc = new GeneticCode();
-        newGc.setAgent(agent.create());
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "cloneCollectable",
+                null
+        );
+
+        GeneticCode newGc = new GeneticCode(agent.create());
         newGc.setPrice(price);
+        Initializer.returnWrite(new OutputObject(newGc));
         return newGc;
     }
 

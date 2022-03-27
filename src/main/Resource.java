@@ -55,7 +55,7 @@ public class Resource implements Collectable {
     public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
-                "clone",
+                "cloneCollectable",
                 null
         );
 

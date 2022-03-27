@@ -18,7 +18,7 @@ public class AmnesiaVirus extends Agent {
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
@@ -31,9 +31,10 @@ public class AmnesiaVirus extends Agent {
                 "create",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new AmnesiaVirus()));
+        Agent newAgent = new AmnesiaVirus();
+        Initializer.returnWrite(new OutputObject(newAgent));
 
-        return new AmnesiaVirus();
+        return newAgent;
     }
 
     /* Effect functions */
@@ -49,9 +50,7 @@ public class AmnesiaVirus extends Agent {
                 OutputObject.generateParamsArray(to)
         );
         Inventory inv = to.getInventory();
-        for(GeneticCode gc : inv.getLearntCodes()) {
-            inv.removeGeneticCode(gc);
-        }
+        inv.getGeneticCodes().clear();
         Initializer.returnWrite(null);
     }
 }

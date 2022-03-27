@@ -15,7 +15,7 @@ public class StunVirus extends Agent {
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
@@ -28,9 +28,10 @@ public class StunVirus extends Agent {
                 "create",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new StunVirus()));
+        Agent newAgent = new StunVirus();
+        Initializer.returnWrite(new OutputObject(newAgent));
 
-        return new StunVirus();
+        return newAgent;
     }
 
     /* Effect functions */

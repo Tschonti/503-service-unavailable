@@ -16,7 +16,7 @@ public class Vaccine extends Agent{
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
     /**
      * Creates an instance of a Vaccine
@@ -28,9 +28,10 @@ public class Vaccine extends Agent{
                 "create",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new Vaccine()));
+        Agent newAgent = new Vaccine();
+        Initializer.returnWrite(new OutputObject(newAgent));
 
-        return new Vaccine();
+        return newAgent;
     }
 
     /* Effect functions */

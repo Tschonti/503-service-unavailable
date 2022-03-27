@@ -18,7 +18,7 @@ public class Glove extends Equipment {
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
@@ -49,7 +49,8 @@ public class Glove extends Equipment {
                 "clone",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new Glove()));
-        return new Glove();
+        Collectable newGlove = new Glove();
+        Initializer.returnWrite(new OutputObject(newGlove));
+        return newGlove;
     }
 }
