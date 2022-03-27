@@ -12,7 +12,15 @@ import java.util.ArrayList;
  * A Virologist can win the game by collecting all genetic codes.
  */
 public class GeneticCode implements Collectable {
+    /**
+     * The agent that can be crafted from this genetic code.
+     */
     private Agent agent;
+
+    /**
+     * The price of crafting the agent from this genetic code.
+     * It stores all the required resources.
+     */
     private ArrayList<Resource> price;
 
     /**

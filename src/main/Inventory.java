@@ -14,11 +14,34 @@ import java.util.ArrayList;
  * and does the stealing mechanic.
  */
 public class Inventory {
+    /**
+     * The max amount of resource this inventory can hold.
+     */
     private int maxResourceAmount;
+
+    /**
+     * The virologist that has this inventory.
+     */
     private final Virologist virologist;
+
+    /**
+     * The resources this inventory holds.
+     */
     private final ArrayList<Resource> resources;
+
+    /**
+     * All the picked up equipments this inventory holds.
+     */
     private final ArrayList<Equipment> pickedUpEquipments;
+
+    /**
+     * All the agents that have been crafted.
+     */
     private final ArrayList<Agent> craftedAgents;
+
+    /**
+     * All the codes that the virologist has learnt.
+     */
     private final ArrayList<GeneticCode> learntCodes;
 
     /**
@@ -42,7 +65,13 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
-    public ArrayList<GeneticCode> getLearntCodes() { return learntCodes; }
+    /**
+     * Getter for learntCodes.
+     * @return learntCodes
+     */
+    public ArrayList<GeneticCode> getLearntCodes() {
+        return learntCodes;
+    }
 
     /**
      * Adds the genetic code to the learntCodes.
@@ -274,13 +303,5 @@ public class Inventory {
      */
     public ArrayList<Agent> getCraftedAgents() {
         return craftedAgents;
-    }
-
-    /**
-     * Getter for learntCodes.
-     * @return learntCodes
-     */
-    public ArrayList<GeneticCode> getGeneticCodes() {
-        return learntCodes;
     }
 }

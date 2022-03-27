@@ -264,7 +264,7 @@ public class Virologist {
                 null
         );
 
-        ArrayList<GeneticCode> geneticCodes = inventory.getGeneticCodes();
+        ArrayList<GeneticCode> geneticCodes = inventory.getLearntCodes();
         ArrayList<GeneticCode> craftables = new ArrayList<>();
         for (GeneticCode c : geneticCodes) {
             if (c.isCraftable(inventory)) {

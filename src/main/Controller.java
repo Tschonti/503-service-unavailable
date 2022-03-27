@@ -8,9 +8,24 @@ import skeleton.OutputObject;
  * It starts the game, manages the rounds and checks for winners.
  */
 public class Controller {
+    /**
+     * The player, that is
+     */
     private int activePlayer;
+
+    /**
+     * All the players in the game.
+     */
     private Virologist[] players;
+
+    /**
+     * The map of the game.
+     */
     private Map map;
+
+    /**
+     * All the genetic codes in the game.
+     */
     private GeneticCode[] codes;
 
     /**
@@ -81,8 +96,8 @@ public class Controller {
     }
 
     /**
-     *
-     * @param v
+     * Adds a player to the players.
+     * @param v The new player.
      */
     public void addPlayer(Virologist v) {
         Initializer.functionWrite(
