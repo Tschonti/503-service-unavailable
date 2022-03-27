@@ -8,8 +8,22 @@ public class StunVirus extends Agent {
      * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public StunVirus() {
-        super(3); //Rounds left of the Agent in the Virologist's Inventory
+        super(3); //Rounds left of the Agent in the Virologist's Inventory.
 
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                null
+        );
+        Initializer.returnWrite(null);
+    }
+
+    /**
+     * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
+     * @param rLeft number of turns until it expires.
+     */
+    public StunVirus(int rLeft) {
+        super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
         Initializer.functionWrite(
                 new OutputObject(this),
                 "constructor",

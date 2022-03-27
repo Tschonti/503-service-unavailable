@@ -23,6 +23,21 @@ public class VitusDanceVirus extends Agent{
         );
         Initializer.returnWrite(null);
     }
+
+    /**
+     * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
+     * @param rLeft number of turns until it expires.
+     */
+    public VitusDanceVirus(int rLeft) {
+        super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                null
+        );
+        Initializer.returnWrite(null);
+    }
+
     /**
      * Creates an instance of a VitusDanceVirus
      * @return VitusDanceVirus

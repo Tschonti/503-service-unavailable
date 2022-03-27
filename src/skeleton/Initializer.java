@@ -418,8 +418,6 @@ public class Initializer {
         v.pickUp();
     }
 
-    //TODO for Zsombi, a kommunikációs diagramm szerinti sorrendben kell történnie a dolgoknak
-    //TODO for Zsomni, a kérdések legyenek angolul
     public static void useStunVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");

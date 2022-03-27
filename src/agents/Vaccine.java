@@ -18,6 +18,21 @@ public class Vaccine extends Agent{
         );
         Initializer.returnWrite(null);
     }
+
+    /**
+     * Vaccine constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
+     * @param rLeft number of turns until it expires.
+     */
+    public Vaccine(int rLeft) {
+        super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                null
+        );
+        Initializer.returnWrite(null);
+    }
+
     /**
      * Creates an instance of a Vaccine
      * @return Vaccine
