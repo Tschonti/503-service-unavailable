@@ -6,7 +6,7 @@ import skeleton.OutputObject;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
- * for its time left.
+ * for its time left in a Virologist's inventory.
  */
 public class AmnesiaVirus extends Agent {
 

@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
- * for it's time left.
+ * for it's time left in a Virologist's inventory.
  */
 public class VitusDanceVirus extends Agent {
     /**
