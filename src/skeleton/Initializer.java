@@ -172,8 +172,8 @@ public class Initializer {
         testcases.put("craftAmnesiaVirus", Initializer::craftAmnesia);
         testcases.put("craftVitusDanceVirus", Initializer::craftVitusDance);
         testcases.put("craftVaccine", Initializer::craftVaccine);
-        testcases.put("useStunVirus", Initializer::useStunVirus);
         testcases.put("useAmnesiaVirus", Initializer::useAmnesiaVirus);
+        testcases.put("useStunVirus", Initializer::useStunVirus);
         testcases.put("useVitusDanceVirus", Initializer::useVitusDanceVirus);
         testcases.put("useVaccine", Initializer::useVaccine);
         testcases.put("robVirologist", Initializer::robVirologist);

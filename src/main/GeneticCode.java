@@ -45,7 +45,9 @@ public class GeneticCode implements Collectable {
             agent = new Vaccine();
         }
         price = new ArrayList<>();
-
+        for(ResourceType rT : ResourceType.values()) {
+            price.add(new Resource(0, rT));
+        }
         Initializer.returnWrite(null);
     }
 
