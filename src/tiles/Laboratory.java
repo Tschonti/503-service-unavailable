@@ -11,7 +11,7 @@ import skeleton.OutputObject;
  * A laboratory tile where virologists can learn genetic codes
  */
 public class Laboratory extends Tile {
-    private final GeneticCode code;
+    private final GeneticCode code;     // The code that can be learnt here
 
     /**
      * Constructor
