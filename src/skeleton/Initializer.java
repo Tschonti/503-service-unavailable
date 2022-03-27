@@ -392,8 +392,8 @@ public class Initializer {
     public static void useStunVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus sv = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        AmnesiaVirus sv = new AmnesiaVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -420,8 +420,8 @@ public class Initializer {
     public static void useAmnesiaVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus av = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        AmnesiaVirus av = new AmnesiaVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -448,8 +448,8 @@ public class Initializer {
     public static void useVitusDanceVirus() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus vdv = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        AmnesiaVirus vdv = new AmnesiaVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -476,8 +476,8 @@ public class Initializer {
     public static void useVaccine() {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
-        AmnesiaVirus v = new AmnesiaVirus();
         Virologist v2 = new Virologist("Vir2");
+        AmnesiaVirus v = new AmnesiaVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
