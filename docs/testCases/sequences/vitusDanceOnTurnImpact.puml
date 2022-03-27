@@ -36,7 +36,9 @@ participant "l: Laboratory" as l
     return
     note across : The player will choose their actions here in the real game
 
-    v -> vd ++ : endTurnImpact()
+    v -> vd ++ : endTurnImpact(v)
+    return
+    v -> vd ++ : decrement(v)
     return
 return
 @enduml

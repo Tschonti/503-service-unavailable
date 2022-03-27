@@ -66,7 +66,7 @@ public class StunVirus extends Agent {
                 OutputObject.generateParamsArray(to)
         );
 
-        for(int i = 0; i < to.getActionsLeft(); i++) {
+        while (to.getActionsLeft() > 0) {
             to.pass();
         }
 

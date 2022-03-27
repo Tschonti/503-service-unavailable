@@ -22,12 +22,14 @@ participant "i: Inventory" as i
     note across : The player will choose their actions here in the real game
 
     v -> b ++ : endTurnImpact(v)
-            b -> v ++ : getInventory()
-            return i
-            b -> i ++ : getMaxResourceAmount()
-            return x
-            b -> i ++ : setMaxResourceAmount(x/2)
-            return
+        b -> v ++ : getInventory()
+        return i
+        b -> i ++ : getMaxResourceAmount()
+        return x
+        b -> i ++ : setMaxResourceAmount(x/2)
         return
+    return
+    v -> b ++ : decrement(v)
+    return
 return
 @enduml

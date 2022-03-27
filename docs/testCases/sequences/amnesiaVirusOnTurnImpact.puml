@@ -19,8 +19,10 @@ participant "i: Inventory" as i
         end
     return
     note across : The player will choose their actions here in the real game
+
     v -> av ++ : endTurnImpact(v)
     return
-
+    v -> av ++ : decrement(v)
+    return
 return
 @enduml

@@ -22,7 +22,9 @@ participant "sv: StunVirus" as sv
 
     note across : The player will choose their actions here in the real game
 
-    v -> sv ++ : endTurnImpact()
+    v -> sv ++ : endTurnImpact(v)
+    return
+    v -> sv ++ : decrement(v)
     return
 return
 @enduml

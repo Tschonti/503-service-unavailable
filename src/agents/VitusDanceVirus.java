@@ -69,8 +69,8 @@ public class VitusDanceVirus extends Agent {
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
-        int actionsLeft = to.getActionsLeft();
-        for(int i = 0; i < actionsLeft; i++) {
+
+        while (to.getActionsLeft() > 0) {
             Tile t = to.getActiveTile();
             ArrayList<Tile> tileList = t.getNeighbours();
             Random r = new Random();
@@ -78,6 +78,7 @@ public class VitusDanceVirus extends Agent {
             Tile randomTile = tileList.get(randomInt);
             to.moveTo(randomTile);
         }
+
         Initializer.returnWrite(null);
     }
 }
