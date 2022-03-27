@@ -18,7 +18,7 @@ public class ProtectiveCloak extends Equipment {
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
@@ -53,7 +53,8 @@ public class ProtectiveCloak extends Equipment {
                 "clone",
                 null
         );
-        Initializer.returnWrite(new OutputObject(new ProtectiveCloak()));
-        return new ProtectiveCloak();
+        Collectable newCloak = new ProtectiveCloak();
+        Initializer.returnWrite(new OutputObject(newCloak));
+        return newCloak;
     }
 }

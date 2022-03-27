@@ -26,6 +26,7 @@ public class Virologist {
                 "constructor",
                 null
         );
+        actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
         this.name = name;
@@ -111,7 +112,6 @@ public class Virologist {
      *
      * @param newTile
      */
-    //TODO this should be private, but we need to use it for some tests
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -121,6 +121,7 @@ public class Virologist {
 
         activeTile.removeVirologist(this);
         newTile.addVirologist(this);
+        actionsLeft--;
         Initializer.returnWrite(null);
     }
 

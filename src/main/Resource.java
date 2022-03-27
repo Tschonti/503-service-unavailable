@@ -46,7 +46,7 @@ public class Resource implements Collectable {
     public Collectable cloneCollectable() {
         Initializer.functionWrite(
                 new OutputObject(this),
-                "clone",
+                "cloneCollectable",
                 null
         );
 
@@ -160,7 +160,6 @@ public class Resource implements Collectable {
         return null;
     }
 
-    // TODO full nem szerepelt szekvenciákon úgyhogy ne írjuk ki szerintem de jó ha van
     public static void initializeResourceArray(ArrayList<Resource> resources) {
         for (ResourceType t : ResourceType.values()) {
             resources.add(new Resource(0, t));

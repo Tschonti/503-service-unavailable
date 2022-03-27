@@ -19,7 +19,7 @@ public class VitusDanceVirus extends Agent{
                 "constructor",
                 null
         );
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     public Agent create() {
@@ -28,9 +28,10 @@ public class VitusDanceVirus extends Agent{
                 "create",
                 OutputObject.generateParamsArray()
         );
-        Initializer.returnWrite(new OutputObject(new VitusDanceVirus()));
+        Agent newAgent = new VitusDanceVirus();
+        Initializer.returnWrite(new OutputObject(newAgent));
 
-        return new VitusDanceVirus();
+        return newAgent;
     }
 
     /* Effect functions */
@@ -40,7 +41,8 @@ public class VitusDanceVirus extends Agent{
                 "onTurnImpact",
                 OutputObject.generateParamsArray(to)
         );
-        for(int i = 0; i < Constants.numberOfActions; i++) {
+        int actionsLeft = to.getActionsLeft();
+        for(int i = 0; i < actionsLeft; i++) {
             Tile t = to.getActiveTile();
             ArrayList<Tile> tileList = t.getNeighbours();
             Random r = new Random();

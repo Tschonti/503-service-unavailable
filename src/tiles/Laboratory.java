@@ -1,5 +1,6 @@
 package tiles;
 
+import agents.Agent;
 import main.Collectable;
 import main.GeneticCode;
 import main.Inventory;
@@ -27,6 +28,18 @@ public class Laboratory extends Tile {
                 OutputObject.generateParamsArray(id, name)
         );
         code = new GeneticCode();
+        Initializer.returnWrite(null);
+    }
+
+    public Laboratory(int id, String name, Agent a) {
+        super(id, name);
+
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                OutputObject.generateParamsArray(id, name, a)
+        );
+        code = new GeneticCode(a);
         Initializer.returnWrite(null);
     }
 

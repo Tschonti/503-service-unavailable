@@ -41,7 +41,7 @@ public class Initializer {
      */
     public static boolean questionYesOrNo(String question) {
         System.out.println(ConsoleColor.BLUE.c + question+ ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c);
-        char reply = ' '; //TODO samu??????
+        char reply = ' ';
         Scanner sc = new Scanner(System.in);
         boolean finished = false;
         while(!finished){
@@ -397,10 +397,11 @@ public class Initializer {
         objects.put(v, "v");
         Virologist.setController(c);
         c.addPlayer(v);
+        //questionListWrite("What kind of agent should be craftable from the genetic code?")
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");
         l.addVirologist(v);
-        v.setActiveTile(l); //TODO for Samu, ez nincs rajt a kommunikációson
+        v.setActiveTile(l);
 
         v.pickUp();
     }

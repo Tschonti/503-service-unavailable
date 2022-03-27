@@ -29,7 +29,7 @@ public class Controller {
         players = new Virologist[20];
         codes = new GeneticCode[20];
 
-        Initializer.returnWrite(new OutputObject(this));
+        Initializer.returnWrite(null);
     }
 
     /**
