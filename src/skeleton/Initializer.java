@@ -393,7 +393,7 @@ public class Initializer {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
         Virologist v2 = new Virologist("Vir2");
-        AmnesiaVirus sv = new AmnesiaVirus();
+        StunVirus sv = new StunVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -449,7 +449,7 @@ public class Initializer {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
         Virologist v2 = new Virologist("Vir2");
-        AmnesiaVirus vdv = new AmnesiaVirus();
+        VitusDanceVirus vdv = new VitusDanceVirus();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
@@ -477,7 +477,7 @@ public class Initializer {
         objects.clear();
         Virologist v1 = new Virologist("Vir1");
         Virologist v2 = new Virologist("Vir2");
-        AmnesiaVirus v = new AmnesiaVirus();
+        Vaccine v = new Vaccine();
 
         objects.put(v1, "v1");
         objects.put(v2, "v2");
