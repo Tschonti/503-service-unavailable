@@ -4,7 +4,6 @@ import skeleton.Initializer;
 import skeleton.OutputObject;
 
 /**
- * Controller
  * It's responsible for controlling the game.
  * It starts the game, manages the rounds and checks for winners.
  */

@@ -7,7 +7,6 @@ import skeleton.OutputObject;
 import java.util.ArrayList;
 
 /**
- * Inventory
  * Every Virologist has an inventory and the other way around as well.
  * It stores the collected resources, equipments, agents and genetic codes.
  * It also has a maxResourceAmount and stores the virologist too.

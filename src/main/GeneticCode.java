@@ -7,7 +7,6 @@ import skeleton.OutputObject;
 import java.util.ArrayList;
 
 /**
- * GeneticCode
  * It is found in Laboratories and can be collected by Virologists.
  * Only one type of agent can be crafted from a genetic code.
  * A Virologist can win the game by collecting all genetic codes.
