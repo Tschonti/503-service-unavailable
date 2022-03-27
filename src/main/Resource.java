@@ -138,14 +138,16 @@ public class Resource implements Collectable {
                 OutputObject.generateParamsArray(maxAmount, addedAmount)
         );
 
+        int overload = 0;
         amount += addedAmount;
         if (amount > maxAmount) {
+            overload = amount - maxAmount;
             amount = maxAmount;
         }
 
         Initializer.returnWrite(new OutputObject(amount));
 
-        return amount;
+        return overload;
     }
 
     /**
@@ -192,7 +194,6 @@ public class Resource implements Collectable {
         return null;
     }
 
-    // TODO full nem szerepelt szekvenciákon úgyhogy ne írjuk ki szerintem de jó ha van
     public static void initializeResourceArray(ArrayList<Resource> resources) {
         for (ResourceType t : ResourceType.values()) {
             resources.add(new Resource(0, t));

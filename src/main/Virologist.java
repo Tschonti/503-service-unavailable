@@ -73,7 +73,7 @@ public class Virologist {
                 "pass",
                 null
         );
-        actionsLeft = 0;
+        actionsLeft--;
         Initializer.returnWrite(null);
     }
 
@@ -110,7 +110,6 @@ public class Virologist {
      * Moves the virologist to another tile.
      * @param newTile The new tile where the virologist moves to
      */
-    //TODO this should be private, but we need to use it for some tests
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -278,7 +277,7 @@ public class Virologist {
 
         //Virologist remove itself from the list. A new list is needed because of the reference
         ArrayList<Virologist> result = new ArrayList<>();
-        result.addAll(activeTile.getPlayersToStealFrom());
+        result.addAll(activeTile.getPlayers());
         result.remove(this);
         Initializer.returnWrite(new OutputObject(result));
 
