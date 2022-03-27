@@ -338,8 +338,11 @@ public class Initializer {
     }
 
     public static void pickUpBag() {
-        Safehouse s = new Safehouse(1, "SafeHouse1");
+        objects.clear();
+        Safehouse s = new Safehouse(1, "SafeHouse1", Bag.class);
+        objects.put(s, "s");
         Virologist v = new Virologist("Virologist1");
+        objects.put(v, "v");
         v.setActiveTile(s);
         s.addVirologist(v);
 
@@ -347,8 +350,11 @@ public class Initializer {
     }
 
     public static void pickUpCloak() {
-        Safehouse s = new Safehouse(1, "SafeHouse1");
+        objects.clear();
+        Safehouse s = new Safehouse(1, "SafeHouse1", ProtectiveCloak.class);
+        objects.put(s, "s");
         Virologist v = new Virologist("Virologist1");
+        objects.put(v, "v");
         v.setActiveTile(s);
         s.addVirologist(v);
 
@@ -356,8 +362,11 @@ public class Initializer {
     }
 
     public static void pickUpGlove() {
-        Safehouse s = new Safehouse(1, "SafeHouse1");
+        objects.clear();
+        Safehouse s = new Safehouse(1, "SafeHouse1", Glove.class);
+        objects.put(s, "s");
         Virologist v = new Virologist("Virologist1");
+        objects.put(v, "v");
         v.setActiveTile(s);
         s.addVirologist(v);
 
@@ -365,8 +374,11 @@ public class Initializer {
     }
 
     public static void pickUpResource() {
+        objects.clear();
         Warehouse s = new Warehouse(1, "WareHouse1");
+        objects.put(s, "s");
         Virologist v = new Virologist("Virologist1");
+        objects.put(v, "v");
         v.setActiveTile(s);
         s.addVirologist(v);
 
