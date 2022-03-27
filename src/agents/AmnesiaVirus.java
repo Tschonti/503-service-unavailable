@@ -22,6 +22,20 @@ public class AmnesiaVirus extends Agent {
     }
 
     /**
+     * AmnesiaVirus constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
+     * @param rLeft number of turns until it expires.
+     */
+    public AmnesiaVirus(int rLeft) {
+        super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
+        Initializer.functionWrite(
+                new OutputObject(this),
+                "constructor",
+                null
+        );
+        Initializer.returnWrite(null);
+    }
+
+    /**
      * Creates an instance of an AmnesiaVirus
      * @return AmnesiaVirus
      */
