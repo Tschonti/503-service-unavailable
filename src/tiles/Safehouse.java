@@ -15,7 +15,7 @@ import java.util.Random;
  * A safehouse tile where players can pick up equipments
  */
 public class Safehouse extends Tile {
-    private Equipment equipment;
+    private Equipment equipment;        // The equipment that can be picked up here
 
     /**
      * Constructor

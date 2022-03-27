@@ -12,11 +12,34 @@ import java.util.ArrayList;
  * This class represents the player. Virologist class responsible for their movements, inventories and actions
  */
 public class Virologist {
+    /**
+     * Zhe number of actions remaining in this round
+     */
     private int actionsLeft;
+
+    /**
+     * Static game controller
+     */
     private static Controller controller;
+
+    /**
+     * The tile that this virologist is on
+     */
     private Tile activeTile;
+
+    /**
+     * Virologist's inventory
+     */
     private final Inventory inventory;
+
+    /**
+     * The active effects are on this virologist
+     */
     private final ArrayList<Effect> activeEffects;
+
+    /**
+     * Virologist's unique name
+     */
     private String name;
 
     /**
@@ -357,7 +380,7 @@ public class Virologist {
     }
 
     /**
-     * Getter for this virologist inventory
+     * Getter for this virologist's inventory
      * @return Virologist's inventory
      */
     public Inventory getInventory() {
