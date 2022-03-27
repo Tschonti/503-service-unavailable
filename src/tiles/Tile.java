@@ -15,10 +15,22 @@ import java.util.ArrayList;
  * Players can pick up various items here.
  */
 public abstract class Tile {
-    protected final int id;                         // Unique identifier of the tile
-    protected final String name;                    // Name of the tile
-    private final ArrayList<Tile> neighbours;       // List of neighbouring tiles
-    private final ArrayList<Virologist> players;    // List of players that are currently on this tile
+    /**
+     * Unique identifier of the tile
+     */
+    protected final int id;
+    /**
+     * Name of the tile
+     */
+    protected final String name;
+    /**
+     * List of neighbouring tiles
+     */
+    private final ArrayList<Tile> neighbours;
+    /**
+     * List of players that are currently on this tile
+     */
+    private final ArrayList<Virologist> players;
 
     /**
      * Constructor

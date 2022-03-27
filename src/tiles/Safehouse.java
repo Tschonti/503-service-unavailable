@@ -15,7 +15,10 @@ import java.util.Random;
  * A safehouse tile where players can pick up equipments
  */
 public class Safehouse extends Tile {
-    private Equipment equipment;        // The equipment that can be picked up here
+    /**
+     * The equipment that can be picked up here
+     */
+    private Equipment equipment;
 
     /**
      * Constructor
@@ -84,9 +87,7 @@ public class Safehouse extends Tile {
         );
         try {
             equipment = (Equipment)c.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

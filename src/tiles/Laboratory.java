@@ -11,7 +11,10 @@ import skeleton.OutputObject;
  * A laboratory tile where virologists can learn genetic codes
  */
 public class Laboratory extends Tile {
-    private final GeneticCode code;     // The code that can be learnt here
+    /**
+     * The code that can be learnt here
+     */
+    private final GeneticCode code;
 
     /**
      * Constructor
@@ -31,6 +34,13 @@ public class Laboratory extends Tile {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Constructor
+     * Creates a new genetic code with the given agent
+     * @param id Unique identifier of the tile
+     * @param name Name of the tile
+     * @param a The agent that will be created by crafting from this code
+     */
     public Laboratory(int id, String name, Agent a) {
         super(id, name);
 

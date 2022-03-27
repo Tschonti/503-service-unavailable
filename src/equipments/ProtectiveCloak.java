@@ -32,15 +32,13 @@ public class ProtectiveCloak extends Equipment {
         Initializer.functionWrite(
                 new OutputObject(this),
                 "counterImpact",
-                null
+                OutputObject.generateParamsArray(agent, from, to)
         );
         boolean saved=Initializer.questionYesOrNo("Do you want the ProtectiveCloak to save its owner?");
         if(saved){
             to.removeEffect(agent);
         }
         Initializer.returnWrite(null);
-
-
     }
 
     /**

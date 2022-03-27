@@ -144,7 +144,7 @@ public class Initializer {
     }
 
     /**
-     * TODO..............................................................................................................
+     * Converts an OutputObject to string based on its id stored in the hash map.
      * @param o valami
      * @return valami
      */

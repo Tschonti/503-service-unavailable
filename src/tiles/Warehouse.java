@@ -11,7 +11,10 @@ import skeleton.OutputObject;
  * Warehouse field where virologists can pick up resources
  */
 public class Warehouse extends Tile {
-    private final Resource collectable;     // The resource that can be picked up here
+    /**
+     * The resource that can be picked up here
+     */
+    private final Resource collectable;
 
     /**
      * Constructor

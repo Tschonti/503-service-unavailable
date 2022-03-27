@@ -198,7 +198,6 @@ public class Virologist {
         }
         int idxAgent = Initializer.questionListWrite("Select the agent to use", craftedAgentsStr).getIndex();
 
-        //TODO for Ádám, erre van külön függvény, az kell egyáltalán?
         ArrayList<Virologist> nearbyVirologists = activeTile.getPlayers();
         ArrayList<String> nearVirologistStr = new ArrayList<>();
         for (Virologist vir : nearbyVirologists) {
@@ -306,8 +305,7 @@ public class Virologist {
         );
 
         //Virologist remove itself from the list. A new list is needed because of the reference
-        ArrayList<Virologist> result = new ArrayList<>();
-        result.addAll(activeTile.getPlayers());
+        ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
         result.remove(this);
         Initializer.returnWrite(new OutputObject(result));
 
@@ -326,8 +324,7 @@ public class Virologist {
         );
 
         //Virologist remove itself from the list. A new list is needed because of the reference
-        ArrayList<Virologist> result = new ArrayList<>();
-        result.addAll(activeTile.getPlayersToStealFrom());
+        ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayersToStealFrom());
         result.remove(this);
         Initializer.returnWrite(new OutputObject(result));
 
