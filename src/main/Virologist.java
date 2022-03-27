@@ -8,17 +8,20 @@ import tiles.Tile;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the player. Virologist class responsible for their movements, inventories and actions
+ */
 public class Virologist {
     private int actionsLeft;
     private static Controller controller;
     private Tile activeTile;
     private final Inventory inventory;
     private final ArrayList<Effect> activeEffects;
-    private String name = "";
+    private String name;
 
     /**
-     *
-     * @param name
+     * Constructor
+     * @param name Virologist's unique name
      */
     public Virologist(String name) {
         Initializer.functionWrite(
@@ -33,8 +36,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param effect
+     * Adds an effect to the virologist's active effects
+     * @param effect Effect will be added to the active effects
      */
     public void addEffect(Effect effect) {
         Initializer.functionWrite(
@@ -47,8 +50,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param effect
+     * Remove an effect from the virologist's active effects
+     * @param effect Effect will be removed from the active effects
      */
     public void removeEffect(Effect effect) {
         Initializer.functionWrite(
@@ -62,7 +65,7 @@ public class Virologist {
     }
 
     /**
-     *
+     * An actions with no impact
      */
     public void pass() {
         Initializer.functionWrite(
@@ -70,12 +73,12 @@ public class Virologist {
                 "pass",
                 null
         );
-        actionsLeft = 0;
+        actionsLeft--;
         Initializer.returnWrite(null);
     }
 
     /**
-     *
+     * All active effects do their impacts and decrement the lifetimes
      */
     public void myTurn() {
         Initializer.functionWrite(
@@ -108,10 +111,9 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param newTile
+     * Moves the virologist to another tile.
+     * @param newTile The new tile where the virologist moves to
      */
-    //TODO this should be private, but we need to use it for some tests
     public void moveTo(Tile newTile) {
         Initializer.functionWrite(
                 new OutputObject(this),
@@ -125,7 +127,7 @@ public class Virologist {
     }
 
     /**
-     *
+     * Virologist picks up the collectible item from a tile
      */
     public void pickUp() {
         Initializer.functionWrite(
@@ -139,8 +141,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param code
+     * Craft an agent from a genetic code
+     * @param code Agent will be crafted from this genetic code
      */
     public void craft(GeneticCode code) {
         Initializer.functionWrite(
@@ -153,9 +155,9 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param agent
-     * @param v
+     * Use agent to a target virologist. That can be another virologist or themselves
+     * @param agent Agent that will be used
+     * @param v Virologist to use the agent on
      */
     public void useAgent(Agent agent, Virologist v) {
         Initializer.functionWrite(
@@ -185,8 +187,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param v
+     * Steal from another Virologist
+     * @param v Virologist to steal from
      */
     public void steal(Virologist v) {
         Initializer.functionWrite(
@@ -213,8 +215,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Returns the tiles where the virologist can move to
+     * @return Tiles where virologist can move to
      */
     private ArrayList<Tile> getNeighbours() {
         Initializer.functionWrite(
@@ -228,8 +230,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Returns the collected genetic codes that the  virologist can craft
+     * @return Genetic codes that virologist can craft
      */
     private ArrayList<GeneticCode> getCraftables() {
         Initializer.functionWrite(
@@ -251,8 +253,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Returns the crafted agents from the inventory
+     * @return Crafted agents
      */
     private ArrayList<Agent> getCraftedAgents() {
         Initializer.functionWrite(
@@ -268,8 +270,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Returns the virologists that this virologist can touch
+     * @return Virologists that this virologist can touch
      */
     private ArrayList<Virologist> getNearbyVirologists() {
         Initializer.functionWrite(
@@ -278,15 +280,18 @@ public class Virologist {
                 null
         );
 
-        ArrayList<Virologist> result = activeTile.getPlayers();
+        //Virologist remove itself from the list. A new list is needed because of the reference
+        ArrayList<Virologist> result = new ArrayList<>();
+        result.addAll(activeTile.getPlayers());
+        result.remove(this);
         Initializer.returnWrite(new OutputObject(result));
 
         return result;
     }
 
     /**
-     *
-     * @return
+     * Returns the virologists that this virologist can steal from
+     * @return Virologists that this virologist can steal from
      */
     private ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
         Initializer.functionWrite(
@@ -295,15 +300,18 @@ public class Virologist {
                 null
         );
 
-        ArrayList<Virologist> result = activeTile.getPlayersToStealFrom();
+        //Virologist remove itself from the list. A new list is needed because of the reference
+        ArrayList<Virologist> result = new ArrayList<>();
+        result.addAll(activeTile.getPlayersToStealFrom());
+        result.remove(this);
         Initializer.returnWrite(new OutputObject(result));
 
         return result;
     }
 
     /**
-     *
-     * @return
+     * Getter for the number of actions remaining in this round
+     * @return The number of actions remaining in this round
      */
     public int getActionsLeft() {
         Initializer.functionWrite(
@@ -317,8 +325,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Getter for the tile that this virologist is on
+     * @return Tile that this virologist is on
      */
     public Tile getActiveTile() {
         Initializer.functionWrite(
@@ -332,8 +340,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param activeTile
+     * Setter for the tile that this virologist is on
+     * @param activeTile Tile that this virologist is on
      */
     public void setActiveTile(Tile activeTile) {
         Initializer.functionWrite(
@@ -347,8 +355,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Getter for this virologist inventory
+     * @return Virologist's inventory
      */
     public Inventory getInventory() {
         Initializer.functionWrite(
@@ -362,8 +370,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Returns with the active effects are on this virologist
+     * @return Active effects are on this virologist
      */
     public ArrayList<Effect> getActiveEffects() {
         Initializer.functionWrite(
@@ -377,8 +385,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @return
+     * Getter for virologist's name
+     * @return Virologist's name
      */
     public String getName() {
         Initializer.functionWrite(
@@ -391,8 +399,8 @@ public class Virologist {
     }
 
     /**
-     *
-     * @param name
+     * Setter for virologist's name
+     * @param name Virologist's name
      */
     public void setName (String name) {
         Initializer.functionWrite(
@@ -404,6 +412,10 @@ public class Virologist {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Setter for the static controller
+     * @param controller The main controller of the game
+     */
     public static void setController(Controller controller) {
         Initializer.functionWrite(
                 new OutputObject("Virologist", true),
