@@ -147,7 +147,7 @@ public class Resource implements Collectable {
 
         Initializer.returnWrite(new OutputObject(amount));
 
-        return overload;
+        return addedAmount - overload;
     }
 
     /**
