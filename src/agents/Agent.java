@@ -7,6 +7,9 @@ import skeleton.OutputObject;
 
 import java.util.ArrayList;
 
+/**
+ * This abstract class represents a basic Agent. The more specific agents extend this class.
+ */
 public abstract class Agent implements Effect {
     /**
      * Stores info, how many rounds the effect will last.

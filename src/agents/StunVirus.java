@@ -3,6 +3,11 @@ import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
+
+/**
+ * This class is responsible for it's effect when it is applied to a Virologist. It is also responsible
+ * for it's time left.
+ */
 public class StunVirus extends Agent {
     /**
      * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.

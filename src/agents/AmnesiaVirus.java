@@ -1,10 +1,13 @@
 package agents;
-import main.GeneticCode;
 import main.Inventory;
 import main.Virologist;
 import skeleton.Initializer;
 import skeleton.OutputObject;
 
+/**
+ * This class is responsible for it's effect when it is applied to a Virologist. It is also responsible
+ * for it's time left.
+ */
 public class AmnesiaVirus extends Agent {
 
     /**
