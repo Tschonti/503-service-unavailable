@@ -43,6 +43,8 @@ public class Inventory {
         Initializer.returnWrite(null);
     }
 
+    public ArrayList<GeneticCode> getLearntCodes() { return learntCodes; }
+
     /**
      * Adds the genetic code to the learntCodes.
      * @param gc The genetic code to be added to this inventory.
