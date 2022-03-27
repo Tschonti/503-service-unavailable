@@ -227,7 +227,7 @@ public class Virologist {
             ArrayList<Equipment> equipments = inv.getEquipments();
             ArrayList<String> equipmentsString = new ArrayList<>();
             for (Equipment e : equipments) {
-                equipmentsString.add(e.toString());
+                equipmentsString.add(OutputObject.objectToName(e));
             }
             int result = Initializer.questionListWrite("Which equipment would you like to steal?", equipmentsString).getIndex();
             inventory.steal(inv, equipments.get(result));
