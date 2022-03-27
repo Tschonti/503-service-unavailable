@@ -87,8 +87,8 @@ public abstract class Agent implements Effect {
     }
 
     /**
-     * This is the function that the descendant override depending on their end turn impact.
-     * @param to
+     * This is the function that the descendants override depending on their end turn impact.
+     * @param to The Virologist on turn.
      */
     public void endTurnImpact(Virologist to) {
         Initializer.functionWrite(
@@ -101,7 +101,9 @@ public abstract class Agent implements Effect {
 
     /**
      * This is the function that the descendants override depending on their counter impact.
-     * @param to
+     * @param agent The used Agent.
+     * @param from The throwing Virologist.
+     * @param to The Virologist, who gets thrown.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         Initializer.functionWrite(

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * This class is responsible for it's effect when it is applied to a Virologist. It is also responsible
+ * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
  * for it's time left.
  */
-public class VitusDanceVirus extends Agent{
+public class VitusDanceVirus extends Agent {
     /**
      * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
