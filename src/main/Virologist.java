@@ -3,7 +3,6 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import skeleton.Initializer;
 import skeleton.OutputObject;
