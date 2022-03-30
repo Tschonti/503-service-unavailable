@@ -3,7 +3,7 @@
 hide footbox
 skinparam sequenceMessageAlign center
 
-mainframe 5.3.19 Virologist forgets their genetic codes by Amnesiavirus
+mainframe 5.3.19 Virologist forgets their genetic codes by AmnesiaVirus
 
 participant "v: Virologist" as v
 participant "av: AmnesiaVirus" as av

@@ -3,26 +3,26 @@ left to right direction
 actor Player as P
 'actor Controller as C
 
-'kérdés mindegyikre: magadra vagy másra?
-'van e más játékos a mezőn?
-'kérdések counterimpactben: van e azon, akin alkalmazták, cloak, glove vagy vaccine
+'Question on all: On yourself or on others?
+'Does the tile have other players?
+'Question in counterImpact: Does the virologist, who has been thrown at, have cloak, glove or vaccine
 (useAmnesiaVirus) as uAv
 (useStunVirus) as uSv
 (useVitusDanceVirus) as uVdv
 (useVaccine) as uV
 
-(forgetCodesViaAmnesiaVirus) as fcvav
-(enlargeTheBag) as purweb
-(stunnedPlayerMissesTurn) as spmt
+(forgetCodesViaAmnesiaVirus) as fca
+(enlargeTheBag) as etb
+(stunnedPlayerMissesTurn) as spm
 (playerVitusDances) as pvd
 
-/' Vírusokat craftol (szerintem nem kell mindegyiket külön)'/
+/' Crafts viruses (I don't think we need all of them separately)'/
 (craftVaccine) as cV
 (craftVitusDance) as cVd
 (craftAmnesia) as cA
 (craftStun) as cS
 
-/' Mező típusokra lép '/
+/' Moves to tile types '/
 (pickUpBag) as pB
 (pickUpCloak) as pC
 (pickUpGlove) as pG
@@ -49,9 +49,9 @@ P -up-> uSv
 P -up-> uVdv
 P -up-> uV
 
-P -up-> fcvav
-P -up-> purweb
-P -down-> spmt
+P -up-> fca
+P -up-> etb
+P -down-> spm
 P -down-> pvd
 
 P -right-> cA
