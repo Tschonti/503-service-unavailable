@@ -45,6 +45,13 @@ class VitusDanceVirus extends Agent{
     {static} +create(): Agent
     +onTurnImpact(to: Virologist)
 }
+class BearDanceVirus extends Agent {
+    {static} +create(): Agent
+    +onTurnImpact(to: Virologist)
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist)
+    +infect(infector: Virologist)
+    +decrement(v: Virologist)
+}
 class Vaccine extends Agent{
     {static} +create(): Agent
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
@@ -58,6 +65,7 @@ class Virologist {
     -moveTo(newTile: Tile)
     -pickUp()
     -craft(code: GeneticCode)
+    -dropEquipment(eq: Equipment)
     -useAgent(agent: Agent, v: Virologist)
     -steal(Virologist v)
     +pass()
@@ -124,6 +132,7 @@ GeneticCode *-- "-agent, 1" Agent
 Virologist "-players, 0..*" -- "-activeTile, 1" Tile
 
 abstract class Equipment implements Effect, Collectable {
+    #usesLeft: int
     +collect(inv: Inventory)
     /'             Effekt interface            '/
     +onTurnImpact(to: Virologist): void
@@ -196,6 +205,7 @@ class Controller {
     +startGame(): void
     +checkWinner(v: Virologist): void
     -nextRound(): void
+    +removeVirologist(v: Virologist)
 }
 Controller *-- "-map, 1" Map
 Controller "-controller" -- "-players, 2..M" Virologist
