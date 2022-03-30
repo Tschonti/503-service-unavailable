@@ -1,0 +1,23 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe 7.0.3.4 bearDanceVirus infects Virologists on Tile
+
+participant "bdv: BearDanceVirus" as bdv
+participant "v: Virologist" as v
+participant "activeTile : Tile" as activeTile
+participant "vX: Virologist" as vX
+
+-> bdv ++ : infect(v)
+    bdv -> v ++: getActiveTile()
+    return activeTile
+    bdv -> activeTile ++ : getPlayers()
+    return players
+    loop for all vX in players
+        bdv -> vX ++ : use(null, vX)
+        return
+    end
+return
+
+@enduml

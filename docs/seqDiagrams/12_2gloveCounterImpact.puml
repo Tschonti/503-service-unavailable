@@ -13,10 +13,22 @@ participant "v2: Virologist" as v2
 
 note over a, g : This function gets called in virologistUsesAgent
 a-> g ++: counterImpact(a, v1, v2)
-    g -> v2 ++: removeEffect(a)
-    return
-    g -> v1 ++: addEffect(a)
-    return
+    opt v1 != null
+        g -> v2 ++: removeEffect(a)
+        return
+        g -> v1 ++: addEffect(a)
+        return
+        g -> g ++: durabilityDecreases(v) /'Should have an unbreaking enchantment'/
+        opt usesLeft == 0
+            g -> v1 ++: removeEffect(g)
+            return
+            g -> v1 ++ : getInventory()
+            return v1Inv
+            g -> v1Inv ++ : removeEquipment(g)
+            return
+        end
+        return
+    end
 return
 
 @enduml

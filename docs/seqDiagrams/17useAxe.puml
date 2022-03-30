@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe 7.0.3.6 Virologist uses an axe to kill another player
+
+actor Player
+participant "v1: Virologist" as v1
+participant "a: Axe" as a
+participant "v2: Virologist" as v2
+participant "controller: Controller" as c
+
+
+Player -> v1 ++: getNearbyVirologists()
+return virologists
+note over Player, v1: Player chooses v2 from virologists
+Player -> v1 ++: useEquipment(a, v2)
+    v1-> a ++ : use(v2)
+        a ->v2 ++: die()
+            v2 -> c ++: removeVirologist(v2)
+            return
+        return
+        a->a++:durabilityDecreases()
+        return
+    return
+return
+
+
+return
+@enduml

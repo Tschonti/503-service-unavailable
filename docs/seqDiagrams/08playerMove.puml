@@ -19,6 +19,14 @@ p -> v ++: moveTo(t2)
     v -> t1 ++ : removeVirologist(v)
     return
     v -> t2 ++ : addVirologist(v)
+        loop for all vX : t2.players
+            t2 -> vX ++ : getActiveEffects()
+            return activeEffects
+            loop for all e : activeEffects
+                t2 -> e ++ : infect(vX)
+                return
+            end
+        end
     return
 return
 @enduml

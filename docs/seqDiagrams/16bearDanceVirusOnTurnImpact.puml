@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe 7.0.3.5 Virologist is affected by Bear Dance Virus
+
+participant "v: Virologist" as v
+participant "bv: BearDanceVirus" as bv
+participant "t: Tile" as t
+
+note over v, bv : This function gets called in myTurn
+v -> bv ++: onTurnImpact(v)
+    bv -> v ++: getActionsLeft()
+    return actionsLeft
+    loop actionsLeft > 0
+        bv -> v ++: getActiveTile()
+        return t: Tile
+        bv -> t ++: getNeighbours()
+        return neighbours: Tile[]
+        note over bv: A number is generated between 0\n and the number of neighbours - 1
+        bv -> v ++: moveTo(neighbours[randomNumber])
+        return
+
+        bv -> v ++: getActionsLeft()
+        return actionsLeft
+    end
+return
+@enduml

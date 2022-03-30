@@ -27,7 +27,8 @@ abstract class Agent implements Effect {
     +endTurnImpact(to: Virologist): void
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
-    +decrement(Virologist v): void
+    +decrement(v: Virologist): void
+    +infect(infector: Virologist)
 }
 
 class AmnesiaVirus extends Agent{
@@ -75,18 +76,23 @@ class Inventory {
     +addEquipment(eq: Equipment)
     +addCraftedAgent(agent: Agent)
     +addResource(res: Resource)
+    +addUsableEquipment(UsableEquipment ue)
     +removeGeneticCode(gc: GeneticCode)
     +removeEquipment(eq: Equipment): boolean
     +removeCraftedAgent(agent: Agent)
     +removeResource(res: Resource)
+    +removeUsableEquipment(UsableEquipment ue)
     +steal(from: Inventory, what: Equipment)
 }
+
+
 interface Effect {
     +onTurnImpact(to: Virologist)
     +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
-    +decrement(Virologist v): void
+    +decrement(Virologist v)
+    +infect(infector: Virologist)
 }
 class GeneticCode implements Collectable {
     +collect(inv: Inventory) /'Collectable'/
@@ -124,7 +130,7 @@ abstract class Equipment implements Effect, Collectable {
     +endTurnImpact(to: Virologist): void
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
-    +decrement(Virologist v): void
+    +decrement(Virologist v)
 }
 class ProtectiveCloak extends Equipment {
     +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
@@ -135,7 +141,7 @@ class Bag extends Equipment{
     +endTurnImpact(to: Virologist): void /'Equipment'/
 }
 class Glove extends Equipment {
-    +counterImpact(agent: Agent, from: Virologist, to: Virologist): void /'Equipment'/
+    +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
 }
 
 abstract class Tile {
@@ -147,10 +153,19 @@ abstract class Tile {
     +addVirologist(player: Virologist)
     +removeVirologist(player: Virologist)
 }
-class Laboratory extends Tile {
-    +collectItem(inv: Inventory)
-    +getCollectableItem(): Collectable
+
+together {
+    class Laboratory extends Tile {
+        +collectItem(inv: Inventory)
+        +getCollectableItem(): Collectable
+    }
+
+    class InfectedLaboratory extends Laboratory {
+         +addVirologist(player: Virologist)
+    }
 }
+
+Agent " -agent, 1" *-- InfectedLaboratory
 
 class Safehouse extends Tile {
     +collectItem(inv: Inventory)
@@ -169,7 +184,7 @@ class Map {
     +createMap()
 }
 
-Laboratory *-- "-code, 1" GeneticCode
+Laboratory *-- " #code, 1" GeneticCode
 Safehouse *-- "-equipment, 1\n" Equipment
 Warehouse *-- "-collectable, 1" Resource
 
