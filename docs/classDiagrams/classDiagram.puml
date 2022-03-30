@@ -134,9 +134,10 @@ Virologist "-players, 0..*" -- "-activeTile, 1" Tile
 abstract class Equipment implements Effect, Collectable {
     #usesLeft: int
     +collect(inv: Inventory)
-    /'             Effekt interface            '/
-    +onTurnImpact(to: Virologist): void
-    +endTurnImpact(to: Virologist): void
+    /'             Effect interface            '/
+    +onTurnImpact(to: Virologist)
+    +endTurnImpact(to: Virologist)
+    +infect(infector: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
     +decrement(Virologist v)
@@ -151,6 +152,12 @@ class Bag extends Equipment{
 }
 class Glove extends Equipment {
     +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
+}
+'new
+class Axe extends Equipment implements UsableEquipment {
+    +use(v: Virologist)
+    +onTurnImpact(to: Virologist
+    +endTurnImpact(to: Virologist)
 }
 
 abstract class Tile {
