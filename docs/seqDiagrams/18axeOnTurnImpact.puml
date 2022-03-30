@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe 4.4.24 Axe Impacts
+
+participant "a: Axe" as a
+participant "v: Virologist" as v
+participant "v1Inv: Inventory" as v1Inv
+
+
+-> a ++: onTurnImpact(v)
+    a -> v ++ : getInventory()
+    return v1Inv
+    a -> v1Inv ++ : addUsableEquipment(a)
+    return
+return
+
+...
+
+-> a ++: endTurnImpact(v)
+   a -> v ++ : getInventory()
+   return v1Inv
+   a -> v1Inv ++ : removeUsableEquipment(a)
+   return
+return
+@enduml

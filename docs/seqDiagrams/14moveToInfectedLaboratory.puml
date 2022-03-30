@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+skinparam sequenceMessageAlign center
+mainframe  4.4.19 moveToInfectedLaboratory
+
+actor Player as p
+participant "v: Virologist" as v
+participant "activeTile: Tile" as t
+participant "il: InfectedLaboratory" as il
+participant "bd: BearDanceVirus" as bd
+participant  "e: Effect" as e
+
+p -> v ++: moveTo(il)
+    v -> t ++ : removeVirologist(v)
+    return
+    v -> il ++ : addVirologist(v)
+        il -> bd ++ : use(null, v)
+          bd -> v ++: getActiveEffects()
+            return activeEffects
+            bd -> v ++: addEffect(bd)
+            return
+            loop for all e : activeEffects
+                bd -> e ++: counterImpact(bd, null, v)
+                return
+            end
+        return
+    return
+return
+@enduml

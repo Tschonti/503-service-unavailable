@@ -9,6 +9,8 @@ actor Player as p
 participant "v: Virologist" as v
 participant "activeTile: Tile" as t1
 participant "t2: Tile" as t2
+participant "vX: Virologist" as vX
+participant "e: Effect" as e
 
 p -> v++ : move()
     v -> t1 ++ : getNeighbours()

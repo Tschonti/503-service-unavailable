@@ -75,7 +75,7 @@ class Virologist {
     -getCraftedAgents(): Agent[]
     -getNearbyVirologists(): Virologist[]
     -getNearbyVirologistsToStealFrom(): Virologist[]
-    +myTurn()        /' A játékos mikor sorra kerül ezek történnek '/
+    +myTurn()
 }
 
 class Inventory {
@@ -214,6 +214,13 @@ class Controller {
     -nextRound(): void
     +removeVirologist(v: Virologist)
 }
+
+interface UsableEquipment {
+    use(v: Virologist)
+}
+
+Inventory *-- "-usableEquipments, 0..*" UsableEquipment
+
 Controller *-- "-map, 1" Map
 Controller "-controller" -- "-players, 2..M" Virologist
 Controller *-- "-codes, J" GeneticCode

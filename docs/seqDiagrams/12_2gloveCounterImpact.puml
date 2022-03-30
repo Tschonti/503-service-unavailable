@@ -10,6 +10,7 @@ participant "a: Agent" as a
 participant "g: Glove" as g
 participant "v1: Virologist" as v1
 participant "v2: Virologist" as v2
+participant "v1Inv: Inventory" as v1Inv
 
 note over a, g : This function gets called in virologistUsesAgent
 a-> g ++: counterImpact(a, v1, v2)
