@@ -31,7 +31,8 @@ public class Initializer {
     /**
      * Stores the testcase names with their functions.
      */
-    static HashMap<String, TestCase> testcases = new HashMap<>();
+    private final static HashMap<String, TestCase> testcases = new HashMap<>();
+    static final Scanner s = new Scanner(System.in);
 
     /**
      * Asks a yes/no question from the user, and waits for their answer. The answer needs to be written in the Console,
@@ -44,10 +45,9 @@ public class Initializer {
             ConsoleColor.BLUE.c + question + ConsoleColor.BOLD.c + " (y/n)" + ConsoleColor.RESET.c
         );
         char reply = ' ';
-        Scanner sc = new Scanner(System.in);
         boolean finished = false;
         while (!finished) {
-            reply = sc.next().charAt(0);
+            reply = s.next().charAt(0);
             finished = reply == 'y' || reply == 'n';
             if (!finished) {
                 System.out.println("Invalid choice");
@@ -74,7 +74,6 @@ public class Initializer {
                 c + ConsoleColor.BOLD.c + (i + 1) + ". " + options.get(i) + ConsoleColor.RESET.c
             );
         }
-        Scanner s = new Scanner(System.in);
         InputObject result = null;
         boolean ready = false;
         while (!ready) {
@@ -89,7 +88,11 @@ public class Initializer {
                 }
             } else {
                 System.out.println("Invalid choice");
-                s.next();
+                if (s.hasNext()) {
+                    s.next();
+                } else {
+                    return null;
+                }
             }
         }
 
@@ -209,7 +212,12 @@ public class Initializer {
         tests.sort(Initializer::compareOrder);
         while (!quit) {
             InputObject input = questionListWrite("Which test case would you like to run?", tests);
-            testcases.get(input.getName()).run();
+            if (input != null) {
+                testcases.get(input.getName()).run();
+            } else {
+                quit = true;
+                System.out.println("Bye");
+            }
         }
     }
 

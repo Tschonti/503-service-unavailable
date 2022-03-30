@@ -1,0 +1,1428 @@
+Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the
+outbreak and cure your fellow humans. Be aware! There are other Virologists among you 
+that are not so friendly and attack you in humanity's last hours!
+Save our world, mighty traveller!
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[Virologist v] [setActiveTile(EmptyTile activeTile)]
+return [void]
+[EmptyTile e] [addNeighbour(EmptyTile activeTile)]
+return [void]
+[EmptyTile activeTile] [addNeighbour(EmptyTile e)]
+return [void]
+[EmptyTile activeTile] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [moveTo(EmptyTile e)]
+	[EmptyTile activeTile] [removeVirologist(Virologist v)]
+	return [void]
+	[EmptyTile e] [addVirologist(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Laboratory] [constructor(Integer, String)]
+	[GeneticCode] [constructor()]
+		[StunVirus] [constructor()]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[Virologist v] [setActiveTile(EmptyTile activeTile)]
+return [void]
+[Laboratory l] [addNeighbour(EmptyTile activeTile)]
+return [void]
+[EmptyTile activeTile] [addNeighbour(Laboratory l)]
+return [void]
+[EmptyTile activeTile] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [moveTo(Laboratory l)]
+	[EmptyTile activeTile] [removeVirologist(Virologist v)]
+	return [void]
+	[Laboratory l] [addVirologist(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Safehouse] [constructor()]
+	[Bag] [constructor()]
+	return [void]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[Virologist v] [setActiveTile(EmptyTile activeTile)]
+return [void]
+[Safehouse s] [addNeighbour(EmptyTile activeTile)]
+return [void]
+[EmptyTile activeTile] [addNeighbour(Safehouse s)]
+return [void]
+[EmptyTile activeTile] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [moveTo(Safehouse s)]
+	[EmptyTile activeTile] [removeVirologist(Virologist v)]
+	return [void]
+	[Safehouse s] [addVirologist(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Warehouse] [constructor()]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[Virologist v] [setActiveTile(EmptyTile activeTile)]
+return [void]
+[Warehouse w] [addNeighbour(EmptyTile activeTile)]
+return [void]
+[EmptyTile activeTile] [addNeighbour(Warehouse w)]
+return [void]
+[EmptyTile activeTile] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [moveTo(Warehouse w)]
+	[EmptyTile activeTile] [removeVirologist(Virologist v)]
+	return [void]
+	[Warehouse w] [addVirologist(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Safehouse] [constructor()]
+	[Bag] [constructor()]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist v] [setActiveTile(Safehouse s)]
+return [void]
+[Safehouse s] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Safehouse s] [collectItem(Inventory)]
+	[Bag] [clone()]
+		[Bag] [constructor()]
+		return [void]
+	return [Bag]
+	[Bag] [collect(Inventory)]
+		[Inventory] [addEquipment(Bag)]
+			[Virologist v] [addEffect(Bag)]
+			return [void]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Safehouse] [constructor()]
+	[ProtectiveCloak] [constructor()]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist v] [setActiveTile(Safehouse s)]
+return [void]
+[Safehouse s] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Safehouse s] [collectItem(Inventory)]
+	[ProtectiveCloak] [clone()]
+		[ProtectiveCloak] [constructor()]
+		return [void]
+	return [ProtectiveCloak]
+	[ProtectiveCloak] [collect(Inventory)]
+		[Inventory] [addEquipment(ProtectiveCloak)]
+			[Virologist v] [addEffect(ProtectiveCloak)]
+			return [void]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Safehouse] [constructor()]
+	[Glove] [constructor()]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist v] [setActiveTile(Safehouse s)]
+return [void]
+[Safehouse s] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Safehouse s] [collectItem(Inventory)]
+	[Glove] [clone()]
+		[Glove] [constructor()]
+		return [void]
+	return [Glove]
+	[Glove] [collect(Inventory)]
+		[Inventory] [addEquipment(Glove)]
+			[Virologist v] [addEffect(Glove)]
+			return [void]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Warehouse] [constructor()]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist v] [setActiveTile(Warehouse s)]
+return [void]
+[Warehouse s] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Warehouse s] [collectItem(Inventory)]
+	[Resource] [cloneCollectable()]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [Resource]
+	[Resource] [collect(Inventory)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Inventory] [addResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer, Integer)]
+			return [int]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [constructor(Integer, ResourceType)]
+			return [void]
+		return [Resource]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Controller] [constructor()]
+	[Map] [constructor()]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [static setController()]
+return [void]
+[Controller c] [addPlayer(Virologist v)]
+return [void]
+[Laboratory] [constructor(Integer, String)]
+	[GeneticCode] [constructor()]
+		[StunVirus] [constructor()]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Laboratory l] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [setActiveTile(Laboratory l)]
+return [void]
+[Virologist v] [pickUp()]
+	[Laboratory l] [collectItem(Inventory)]
+		[GeneticCode] [cloneCollectable()]
+			[StunVirus] [create()]
+				[StunVirus] [constructor()]
+				return [void]
+			return [StunVirus]
+			[GeneticCode] [constructor(StunVirus)]
+			return [void]
+			[GeneticCode] [setPrice(ArrayList)]
+			return [void]
+		return [GeneticCode]
+		[GeneticCode] [collect(Inventory)]
+			[Inventory] [addGeneticCode(GeneticCode)]
+			return [void]
+		return [void]
+	return [void]
+	[Controller c] [checkWinner(Virologist v)]
+Was this the last genetic code to collect? (y/n)
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[StunVirus] [constructor()]
+return [void]
+[GeneticCode] [constructor()]
+	[VitusDanceVirus] [constructor()]
+	return [void]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[GeneticCode gC] [setAgent(StunVirus sV)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory i] [addGeneticCode(GeneticCode gC)]
+return [void]
+[Virologist v] [craft(GeneticCode gC)]
+	[GeneticCode gC] [craft(Inventory i)]
+		[Inventory i] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+		[StunVirus sV] [create()]
+			[StunVirus] [constructor()]
+			return [void]
+		return [StunVirus]
+		[Inventory i] [addCraftedAgent(StunVirus)]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[AmnesiaVirus] [constructor()]
+return [void]
+[GeneticCode] [constructor()]
+	[Vaccine] [constructor()]
+	return [void]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[GeneticCode gC] [setAgent(AmnesiaVirus aV)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory i] [addGeneticCode(GeneticCode gC)]
+return [void]
+[Virologist v] [craft(GeneticCode gC)]
+	[GeneticCode gC] [craft(Inventory i)]
+		[Inventory i] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+		[AmnesiaVirus aV] [create()]
+			[AmnesiaVirus] [constructor()]
+			return [void]
+		return [AmnesiaVirus]
+		[Inventory i] [addCraftedAgent(AmnesiaVirus)]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[VitusDanceVirus] [constructor()]
+return [void]
+[GeneticCode] [constructor()]
+	[StunVirus] [constructor()]
+	return [void]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[GeneticCode gC] [setAgent(VitusDanceVirus vDV)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory i] [addGeneticCode(GeneticCode gC)]
+return [void]
+[Virologist v] [craft(GeneticCode gC)]
+	[GeneticCode gC] [craft(Inventory i)]
+		[Inventory i] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+		[VitusDanceVirus vDV] [create()]
+			[VitusDanceVirus] [constructor()]
+			return [void]
+		return [VitusDanceVirus]
+		[Inventory i] [addCraftedAgent(VitusDanceVirus)]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Vaccine] [constructor()]
+return [void]
+[GeneticCode] [constructor()]
+	[AmnesiaVirus] [constructor()]
+	return [void]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[GeneticCode gC] [setAgent(Vaccine vac)]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory i] [addGeneticCode(GeneticCode gC)]
+return [void]
+[Virologist v] [craft(GeneticCode gC)]
+	[GeneticCode gC] [craft(Inventory i)]
+		[Inventory i] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+		[Vaccine vac] [create()]
+			[Vaccine] [constructor()]
+			return [void]
+		return [Vaccine]
+		[Inventory i] [addCraftedAgent(Vaccine)]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[AmnesiaVirus] [constructor()]
+return [void]
+[Virologist v1] [getInventory()]
+return [Inventory]
+[Inventory] [addCraftedAgent(AmnesiaVirus av)]
+return [void]
+Should the Virologist who gets thrown at have a Glove? (y/n)
+Should the Virologist who gets thrown at have a Vaccine effect? (y/n)
+Should the Virologist who gets thrown at have a ProtectiveCloak? (y/n)
+[AmnesiaVirus av] [use(Virologist v1, Virologist v2)]
+	[Virologist v2] [getActiveEffects()]
+	return [ArrayList]
+	[Virologist v2] [addEffect(AmnesiaVirus av)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[StunVirus] [constructor()]
+return [void]
+[Virologist v1] [getInventory()]
+return [Inventory]
+[Inventory inv] [addCraftedAgent(StunVirus sv)]
+return [void]
+Should the Virologist who gets thrown at have a Vaccine effect? (y/n)
+Should the Virologist who gets thrown at have a Glove? (y/n)
+Should the Virologist who gets thrown at have a ProtectiveCloak? (y/n)
+[StunVirus sv] [use(Virologist v1, Virologist v2)]
+	[Virologist v2] [getActiveEffects()]
+	return [ArrayList]
+	[Virologist v2] [addEffect(StunVirus sv)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[VitusDanceVirus] [constructor()]
+return [void]
+[Virologist v1] [getInventory()]
+return [Inventory]
+[Inventory] [addCraftedAgent(VitusDanceVirus vdv)]
+return [void]
+Should the Virologist who gets thrown at have a Vaccine effect? (y/n)
+Should the Virologist who gets thrown at have a Glove? (y/n)
+Should the Virologist who gets thrown at have a ProtectiveCloak? (y/n)
+[VitusDanceVirus vdv] [use(Virologist v1, Virologist v2)]
+	[Virologist v2] [getActiveEffects()]
+	return [ArrayList]
+	[Virologist v2] [addEffect(VitusDanceVirus vdv)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Vaccine] [constructor()]
+return [void]
+[Virologist v1] [getInventory()]
+return [Inventory]
+[Inventory] [addCraftedAgent(Vaccine v)]
+return [void]
+Should the Virologist who gets thrown at have a Vaccine effect? (y/n)
+Should the Virologist who gets thrown at have a Glove? (y/n)
+Should the Virologist who gets thrown at have a ProtectiveCloak? (y/n)
+[Vaccine v] [use(Virologist v1, Virologist v2)]
+	[Virologist v2] [getActiveEffects()]
+	return [ArrayList]
+	[Virologist v2] [addEffect(Vaccine v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[StunVirus] [constructor()]
+return [void]
+[Virologist v2] [addEffect(StunVirus s)]
+return [void]
+[Glove] [constructor()]
+return [void]
+[Virologist v2] [getInventory()]
+return [Inventory]
+[Inventory v2Inv] [addEquipment(Glove g)]
+	[Virologist v2] [addEffect(Glove g)]
+	return [void]
+return [void]
+[Virologist v1] [steal(Virologist v2)]
+	[Virologist v2] [getInventory()]
+	return [Inventory]
+Does the virologist that is trying to steal have space for more equipments? (y/n)
+Does the virologist that is being robbed have any equipments? (y/n)
+	[Inventory v2Inv] [getEquipments()]
+	return [ArrayList]
+Which equipment would you like to steal?
+1. Glove
+	[Inventory] [steal(Inventory v2Inv, Glove g)]
+		[Inventory v2Inv] [removeEquipment(Glove g)]
+			[Virologist v2] [removeEffect(Glove g)]
+			return [void]
+		return [boolean]
+		[Inventory] [addEquipment(Glove g)]
+			[Virologist v1] [addEffect(Glove g)]
+			return [void]
+		return [void]
+		[Glove g] [onTurnImpact(Virologist v1)]
+		return [void]
+		[Inventory v2Inv] [getResources()]
+		return [ArrayList]
+		[Inventory] [addResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer, Integer)]
+			return [int]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [constructor(Integer, ResourceType)]
+			return [void]
+		return [Resource]
+		[Inventory v2Inv] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+		[Inventory] [addResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer, Integer)]
+			return [int]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [constructor(Integer, ResourceType)]
+			return [void]
+		return [Resource]
+		[Inventory v2Inv] [removeResource(Resource)]
+			[Resource] [getType()]
+			return [ResourceType]
+			[Resource] [static getResourcesByType(ArrayList, ResourceType)]
+				[Resource] [getType()]
+				return [ResourceType]
+				[Resource] [getType()]
+				return [ResourceType]
+			return [Resource]
+			[Resource] [getAmount()]
+			return [int]
+			[Resource] [addAmount(Integer)]
+			return [void]
+		return [void]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[GeneticCode] [constructor()]
+	[AmnesiaVirus] [constructor()]
+	return [void]
+	[Resource] [constructor(Integer, ResourceType)]
+	return [void]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory i] [addGeneticCode(GeneticCode gc)]
+return [void]
+[AmnesiaVirus] [constructor()]
+return [void]
+[Virologist v] [addEffect(AmnesiaVirus av)]
+return [void]
+[Virologist v] [myTurn()]
+	[AmnesiaVirus av] [onTurnImpact(Virologist v)]
+		[Virologist v] [getInventory()]
+		return [Inventory]
+	return [void]
+	[AmnesiaVirus av] [endTurnImpact(Virologist v)]
+	return [void]
+	[AmnesiaVirus av] [decrement(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[Bag] [constructor()]
+return [void]
+[Virologist v] [getInventory()]
+return [Inventory]
+[Inventory] [addEquipment(Bag b)]
+	[Virologist v] [addEffect(Bag b)]
+	return [void]
+return [void]
+[Virologist v] [myTurn()]
+	[Bag b] [onTurnImpact(Virologist v)]
+		[Virologist v] [getInventory()]
+		return [Inventory]
+		[Inventory] [getMaxResourceAmount()]
+		return [int]
+		[Inventory] [setMaxResourceAmount(Integer)]
+		return [void]
+	return [void]
+	[Bag b] [endTurnImpact(Virologist v)]
+		[Virologist v] [getInventory()]
+		return [Inventory]
+		[Inventory] [getMaxResourceAmount()]
+		return [int]
+		[Inventory] [setMaxResourceAmount(Integer)]
+		return [void]
+	return [void]
+	[Bag b] [decrement(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[StunVirus] [constructor()]
+return [void]
+[Virologist v] [addEffect(StunVirus sv)]
+return [void]
+[Virologist v] [myTurn()]
+	[StunVirus sv] [onTurnImpact(Virologist v)]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+		[Virologist v] [pass()]
+		return [void]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+		[Virologist v] [pass()]
+		return [void]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+	return [void]
+	[StunVirus sv] [endTurnImpact(Virologist v)]
+	return [void]
+	[StunVirus sv] [decrement(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+[Virologist] [constructor()]
+	[Inventory] [constructor(Virologist)]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[EmptyTile] [constructor(Integer, String)]
+return [void]
+[Laboratory] [constructor(Integer, String)]
+	[GeneticCode] [constructor()]
+		[StunVirus] [constructor()]
+		return [void]
+		[Resource] [constructor(Integer, ResourceType)]
+		return [void]
+	return [void]
+return [void]
+[EmptyTile et] [addNeighbour(Laboratory l)]
+return [void]
+[Laboratory l] [addNeighbour(EmptyTile et)]
+return [void]
+[EmptyTile et] [addVirologist(Virologist v)]
+return [void]
+[Virologist v] [setActiveTile(EmptyTile et)]
+return [void]
+[VitusDanceVirus] [constructor()]
+return [void]
+[Virologist v] [addEffect(VitusDanceVirus vd)]
+return [void]
+[Virologist v] [myTurn()]
+	[VitusDanceVirus vd] [onTurnImpact(Virologist v)]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+		[Virologist v] [getActiveTile()]
+		return [EmptyTile]
+		[EmptyTile et] [getNeighbours()]
+		return [ArrayList]
+		[Virologist v] [moveTo(Laboratory l)]
+			[EmptyTile et] [removeVirologist(Virologist v)]
+			return [void]
+			[Laboratory l] [addVirologist(Virologist v)]
+			return [void]
+		return [void]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+		[Virologist v] [getActiveTile()]
+		return [EmptyTile]
+		[EmptyTile et] [getNeighbours()]
+		return [ArrayList]
+		[Virologist v] [moveTo(Laboratory l)]
+			[EmptyTile et] [removeVirologist(Virologist v)]
+			return [void]
+			[Laboratory l] [addVirologist(Virologist v)]
+			return [void]
+		return [void]
+		[Virologist v] [getActionsLeft()]
+		return [int]
+	return [void]
+	[VitusDanceVirus vd] [endTurnImpact(Virologist v)]
+	return [void]
+	[VitusDanceVirus vd] [decrement(Virologist v)]
+	return [void]
+return [void]
+Which test case would you like to run?
+1. moveToEmptyTile
+2. moveToLaboratory
+3. moveToSafeHouse
+4. moveToWareHouse
+5. pickUpBag
+6. pickUpCloak
+7. pickUpGlove
+8. pickUpResource
+9. learnGeneticCode
+10. craftStunVirus
+11. craftAmnesiaVirus
+12. craftVitusDanceVirus
+13. craftVaccine
+14. useAmnesiaVirus
+15. useStunVirus
+16. useVitusDanceVirus
+17. useVaccine
+18. robVirologist
+19. forgetCodesViaAmnesiaVirus
+20. enlargeTheBag
+21. stunnedPlayerMissesTurn
+22. playerVitusDances
+23. quit program
+Bye
