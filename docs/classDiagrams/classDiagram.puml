@@ -61,7 +61,7 @@ class Virologist {
     -actionsLeft: int
     +addEffect(effect: Effect)
     +removeEffect(effect:Effect)
-    'az alap useCase-ek:
+    'default useCases:
     -moveTo(newTile: Tile)
     -pickUp()
     -craft(code: GeneticCode)
@@ -69,7 +69,7 @@ class Virologist {
     -useAgent(agent: Agent, v: Virologist)
     -steal(Virologist v)
     +pass()
-    'usecase wrapperek
+    'useCase wrappers
     -getNeighbours(): Tile[]
     -getCraftables(): GeneticCode[]
     -getCraftedAgents(): Agent[]
@@ -99,7 +99,7 @@ interface Effect {
     +endTurnImpact(to: Virologist)
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
-    +decrement(Virologist v)
+    +decrement(v: Virologist)
     +infect(infector: Virologist)
 }
 class GeneticCode implements Collectable {

@@ -17,7 +17,7 @@ public class Resource implements Collectable {
     /**
      * Resource's type
      */
-    private ResourceType type;
+    private final ResourceType type;
 
     /**
      * Constructor
