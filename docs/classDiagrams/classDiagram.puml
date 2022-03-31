@@ -141,6 +141,7 @@ abstract class Equipment implements Effect, Collectable {
     +counterImpact(agent: Agent, from: Virologist, to: Virologist)
     +allowStealing(): boolean
     +decrement(Virologist v)
+    +durabilityDecreases(v: Virologist)
 }
 class ProtectiveCloak extends Equipment {
     +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
@@ -152,6 +153,7 @@ class Bag extends Equipment{
 }
 class Glove extends Equipment {
     +counterImpact(agent: Agent, from: Virologist, to: Virologist) /'Equipment'/
+    +durabilityDecreases(v: Virologist)
 }
 'new
 class Axe extends Equipment implements UsableEquipment {
