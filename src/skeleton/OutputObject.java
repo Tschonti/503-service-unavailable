@@ -9,9 +9,9 @@ public class OutputObject {
     String className;
 
     /**
-     * Constructor for non-primitive objects
-     * Generates the classname automatically
-     * @param o the reference to the object
+     * Constructor for non-primitive objects.
+     * Generates the classname automatically.
+     * @param o The reference to the object.
      */
     public OutputObject(Object o) {
         ref = o;
@@ -32,15 +32,15 @@ public class OutputObject {
     /**
      * Constructor for strings.
      * Reference is not stored, because the Initializer object will never know this variable.
-     * @param s String variable
+     * @param s String variable.
      */
     public OutputObject(String s) {
         className = "string";
     }
 
     /**
-     * Constructor when the method (whose caller should be displayed) is static
-     * @param s Classname to be displayed in the terminal
+     * Constructor when the method (whose caller should be displayed) is static.
+     * @param s Classname to be displayed in the terminal.
      * @param isStatic  Whether the method is static. If it isn't, this constructor shouldn't be used.
      */
     public OutputObject(String s, boolean isStatic) {
@@ -50,7 +50,7 @@ public class OutputObject {
     }
 
     /**
-     * Constructor for integers
+     * Constructor for integers.
      * Reference is not stored, because the Initializer object will never know this variable.
      * @param i integer variable
      */
@@ -59,7 +59,7 @@ public class OutputObject {
     }
 
     /**
-     * Constructor for doubles
+     * Constructor for doubles.
      * Reference is not stored, because the Initializer object will never know this variable.
      * @param d double variable
      */
@@ -69,8 +69,8 @@ public class OutputObject {
 
     /**
      * Returns the classname of the objects default toString implementation.
-     * @param o an object
-     * @return Classname of the object
+     * @param o An object.
+     * @return Classname of the object.
      */
     public static String objectToName(Object o) {
         String[] regex = o.getClass().toString().split("\\.");
@@ -80,8 +80,8 @@ public class OutputObject {
     /**
      * Generates an OutputObjects array to which each parameter is passed as an OutputObject.
      * We can display the parameters of a method easily with this method.
-     * @param params Any number of objects, all the parameters of the method we want to display
-     * @return OutputObject array with all the params as OutputObject
+     * @param params Any number of objects, all the parameters of the method we want to display.
+     * @return OutputObject array with all the params as OutputObject.
      */
     public static OutputObject[] generateParamsArray(Object... params) {
         OutputObject[] res = new OutputObject[params.length];

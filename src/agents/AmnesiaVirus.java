@@ -31,7 +31,7 @@ public class AmnesiaVirus extends Agent {
     }
 
     /**
-     * Creates an instance of an AmnesiaVirus
+     * Creates an instance of an AmnesiaVirus.
      * @return AmnesiaVirus
      */
     public Agent create() {

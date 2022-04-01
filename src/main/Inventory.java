@@ -178,7 +178,7 @@ public class Inventory {
     }
 
     /**
-     * Removes the agent from craftedAgents
+     * Removes the agent from craftedAgents.
      * @param agent The agent to be removed from this inventory.
      */
     public void removeCraftedAgent(Agent agent) {

@@ -11,8 +11,8 @@ public class InputObject {
 
     /**
      * Constructor
-     * @param index Index of the option
-     * @param name  Name (content) of the option
+     * @param index Index of the option.
+     * @param name  Name (content) of the option.
      */
     public InputObject(int index, String name) {
         this.index = index;
@@ -20,7 +20,7 @@ public class InputObject {
     }
 
     /**
-     * Getter for the index
+     * Getter for the index.
      * @return index
      */
     public int getIndex() {
@@ -28,7 +28,7 @@ public class InputObject {
     }
 
     /**
-     * Getter for the name
+     * Getter for the name.
      * @return name
      */
     public String getName() {

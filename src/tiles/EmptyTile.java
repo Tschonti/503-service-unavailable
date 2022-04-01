@@ -12,8 +12,8 @@ public class EmptyTile extends Tile {
 
     /**
      * Constructor
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
      */
     public EmptyTile(int id, String name) {
         super(id, name);
@@ -43,7 +43,7 @@ public class EmptyTile extends Tile {
 
     /**
      * Returns the collectable that can be picked up from this tile.
-     * @return null, since nothing can be picked up from here
+     * @return Null, since nothing can be picked up from here.
      */
     public Collectable getCollectableItem() {
         Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);

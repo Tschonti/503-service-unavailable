@@ -5,24 +5,24 @@ import skeleton.Initializer;
 import skeleton.OutputObject;
 
 /**
- * This class represents the Resources in the game. It can be collected by virologists from warehouses
+ * This class represents the Resources in the game. It can be collected by virologists from warehouses.
  */
 public class Resource implements Collectable {
 
     /**
-     * Resource's amount
+     * Resource's amount.
      */
     private int amount;
 
     /**
-     * Resource's type
+     * Resource's type.
      */
     private final ResourceType type;
 
     /**
      * Constructor
-     * @param a Amount of the Resource
-     * @param t Type of the Resource
+     * @param a Amount of the Resource.
+     * @param t Type of the Resource.
      */
     public Resource(int a, ResourceType t) {
         Initializer.functionWrite(
@@ -38,8 +38,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Add a clone of this resource to a virologist's inventory
-     * @param inv Inventory to add the resource
+     * Add a clone of this resource to a virologist's inventory.
+     * @param inv Inventory to add the resource.
      */
     public void collect(Inventory inv) {
         Initializer.functionWrite(
@@ -56,8 +56,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Makes a clone of this resource
-     * @return Clone of this resource
+     * Makes a clone of this resource.
+     * @return Clone of this resource.
      */
     public Collectable cloneCollectable() {
         Initializer.functionWrite(new OutputObject(this), "cloneCollectable", null);
@@ -68,8 +68,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Getter for this resource's amount
-     * @return Resource's amount
+     * Getter for this resource's amount.
+     * @return Resource's amount.
      */
     public int getAmount() {
         Initializer.functionWrite(new OutputObject(this), "getAmount", null);
@@ -80,8 +80,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Setter for this resource's amount
-     * @param amount Resource's amount
+     * Setter for this resource's amount.
+     * @param amount Resource's amount.
      */
     public void setAmount(int amount) {
         Initializer.functionWrite(
@@ -95,8 +95,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Getter for this resource's type
-     * @return Resource's type
+     * Getter for this resource's type.
+     * @return Resource's type.
      */
     public ResourceType getType() {
         Initializer.functionWrite(new OutputObject(this), "getType", null);
@@ -106,10 +106,10 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Add an amount of resource to this resource
-     * @param maxAmount Maximum amount of resource
-     * @param addedAmount Resource amount
-     * @return New amount of resource
+     * Add an amount of resource to this resource.
+     * @param maxAmount Maximum amount of resource.
+     * @param addedAmount Resource amount.
+     * @return New amount of resource.
      */
     public int addAmount(int maxAmount, int addedAmount) {
         Initializer.functionWrite(
@@ -131,8 +131,8 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Subtract an amount of resource from this resource
-     * @param removedAmount Resource amount to subtract
+     * Subtract an amount of resource from this resource.
+     * @param removedAmount Resource amount to subtract.
      */
     public void removeAmount(int removedAmount) {
         Initializer.functionWrite(
@@ -150,10 +150,10 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Selects a specific resource from a resource list
-     * @param resources List to select the specific resource from
-     * @param type specific resource type
-     * @return specific recourse or if it's not exist in the array --> null
+     * Selects a specific resource from a resource list.
+     * @param resources List to select the specific resource from.
+     * @param type Specific resource type.
+     * @return Specific resource or null, if it doesn't exist in the array.
      */
     public static Resource getResourceByType(ArrayList<Resource> resources, ResourceType type) {
         Initializer.functionWrite(

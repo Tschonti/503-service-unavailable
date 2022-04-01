@@ -10,7 +10,7 @@ import skeleton.OutputObject;
 public class Controller {
 
     /**
-     * The player, that is
+     * The player, that is active.
      */
     private int activePlayer;
 
@@ -72,7 +72,7 @@ public class Controller {
     }
 
     /**
-     * Starts the next round and calls myTurn() on all players
+     * Starts the next round and calls myTurn() on all players.
      */
     private void nextRound() {
         Initializer.functionWrite(new OutputObject(this), "nextRound", null);

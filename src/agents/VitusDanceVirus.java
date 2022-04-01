@@ -33,7 +33,7 @@ public class VitusDanceVirus extends Agent {
     }
 
     /**
-     * Creates an instance of a VitusDanceVirus
+     * Creates an instance of a VitusDanceVirus.
      * @return VitusDanceVirus
      */
     public Agent create() {

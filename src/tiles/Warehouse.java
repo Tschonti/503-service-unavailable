@@ -8,20 +8,20 @@ import skeleton.Initializer;
 import skeleton.OutputObject;
 
 /**
- * Warehouse field where virologists can pick up resources
+ * Warehouse field where virologists can pick up resources.
  */
 public class Warehouse extends Tile {
 
     /**
-     * The resource that can be picked up here
+     * The resource that can be picked up here.
      */
     private final Resource collectable;
 
     /**
      * Constructor
-     * Creates a new resource object
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
+     * Creates a new resource object.
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
      */
     public Warehouse(int id, String name) {
         super(id, name);
@@ -48,7 +48,7 @@ public class Warehouse extends Tile {
 
     /**
      * Returns the collectable that can be picked up from this tile.
-     * @return The resource that can be picked up here
+     * @return The resource that can be picked up here.
      */
     public Collectable getCollectableItem() {
         Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);

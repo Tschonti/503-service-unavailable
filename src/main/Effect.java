@@ -27,7 +27,6 @@ public interface Effect {
 
     /**
      * Tells if with this Equipment a Virologist is allowed to be robbed.
-     * Always returns false
      * @return true, if a Virologist with this Equipment can be stolen from.
      */
     boolean allowStealing();

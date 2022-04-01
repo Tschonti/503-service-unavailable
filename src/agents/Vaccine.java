@@ -30,7 +30,7 @@ public class Vaccine extends Agent {
     }
 
     /**
-     * Creates an instance of a Vaccine
+     * Creates an instance of a Vaccine.
      * @return Vaccine
      */
     public Agent create() {

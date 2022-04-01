@@ -11,20 +11,20 @@ import skeleton.Initializer;
 import skeleton.OutputObject;
 
 /**
- * A safehouse tile where players can pick up equipments
+ * A safehouse tile where players can pick up equipments.
  */
 public class Safehouse extends Tile {
 
     /**
-     * The equipment that can be picked up here
+     * The equipment that can be picked up here.
      */
     private Equipment equipment;
 
     /**
      * Constructor
-     * Creates a new equipment
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
+     * Creates a new equipment.
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
      */
     public Safehouse(int id, String name) {
         super(id, name);
@@ -48,10 +48,10 @@ public class Safehouse extends Tile {
 
     /**
      * Constructor
-     * Creates a new equipment
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
-     * @param eq Equipment on the tile
+     * Creates a new equipment.
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
+     * @param eq Equipment on the tile.
      */
     public Safehouse(int id, String name, Equipment eq) {
         super(id, name);
@@ -62,11 +62,11 @@ public class Safehouse extends Tile {
     }
 
     /**
-     * Constructor for skeleton
-     * Creates a new equipment
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
-     * @param c Class of the equipment on the tile
+     * Constructor for skeleton.
+     * Creates new equipment.
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
+     * @param c Class of the equipment on the tile.
      */
     public Safehouse(int id, String name, Class c) {
         super(id, name);
@@ -98,7 +98,7 @@ public class Safehouse extends Tile {
 
     /**
      * Returns the collectable that can be picked up from this tile.
-     * @return The equipment that can be picked up here
+     * @return The equipment that can be picked up here.
      */
     public Collectable getCollectableItem() {
         Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);

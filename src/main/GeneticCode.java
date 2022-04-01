@@ -25,7 +25,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Constructor
-     * The type of the agent is random
+     * The type of the agent is random.
      */
     public GeneticCode() {
         Initializer.functionWrite(new OutputObject(this), "constructor", null);
@@ -47,7 +47,7 @@ public class GeneticCode implements Collectable {
 
     /**
      * Constructor
-     * @param a The agent that can be crafted by learning this code
+     * @param a The agent that can be crafted by learning this code.
      */
     public GeneticCode(Agent a) {
         Initializer.functionWrite(
@@ -88,7 +88,7 @@ public class GeneticCode implements Collectable {
     /**
      * Checks, if its agent can be crafted from the resources of the inventory.
      * @param inv The checked inventory.
-     * @return whether the agent can be crafted
+     * @return Whether the agent can be crafted.
      */
     public boolean isCraftable(Inventory inv) {
         Initializer.functionWrite(

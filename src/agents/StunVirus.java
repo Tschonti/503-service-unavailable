@@ -30,7 +30,7 @@ public class StunVirus extends Agent {
     }
 
     /**
-     * Creates an instance of a StunVirus
+     * Creates an instance of a StunVirus.
      * @return StunVirus
      */
     public Agent create() {

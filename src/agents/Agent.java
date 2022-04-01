@@ -65,6 +65,10 @@ public abstract class Agent implements Effect {
         Initializer.returnWrite(null);
     }
 
+    /**
+     * Creates an instance of the Agent.
+     * @return Agent
+     */
     public abstract Agent create();
 
     /* Effect functions */

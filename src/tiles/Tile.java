@@ -16,26 +16,26 @@ import skeleton.OutputObject;
 public abstract class Tile {
 
     /**
-     * Unique identifier of the tile
+     * Unique identifier of the tile.
      */
     protected final int id;
     /**
-     * Name of the tile
+     * Name of the tile.
      */
     protected final String name;
     /**
-     * List of neighbouring tiles
+     * List of neighbouring tiles.
      */
     private final ArrayList<Tile> neighbours;
     /**
-     * List of players that are currently on this tile
+     * List of players that are currently on this tile.
      */
     private final ArrayList<Virologist> players;
 
     /**
      * Constructor
-     * @param id Unique identifier of the tile
-     * @param name Name of the tile
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
      */
     public Tile(int id, String name) {
         this.id = id;
@@ -70,15 +70,15 @@ public abstract class Tile {
     public abstract void collectItem(Inventory inv);
 
     /**
-     * Getter for the collectable of the field
-     * @return collectable of the field
+     * Getter for the collectable of the field.
+     * @return Collectable of the field.
      */
     public abstract Collectable getCollectableItem();
 
     /**
      * Adds the virologist to the players list.
      * Called when a virologist moves to this field.
-     * @param player The player to be added
+     * @param player The player to be added.
      */
     public void addVirologist(Virologist player) {
         Initializer.functionWrite(
@@ -106,8 +106,8 @@ public abstract class Tile {
     }
 
     /**
-     * Getter for the ID
-     * @return unique identifier
+     * Getter for the ID.
+     * @return Unique identifier.
      */
     public int getId() {
         Initializer.functionWrite(new OutputObject(this), "getId", null);
@@ -118,7 +118,7 @@ public abstract class Tile {
 
     /**
      * Getter for the name.
-     * @return Name of the tile
+     * @return Name of the tile.
      */
     public String getName() {
         Initializer.functionWrite(new OutputObject(this), "getName", null);
@@ -129,7 +129,7 @@ public abstract class Tile {
 
     /**
      * Getter for the neighbours list.
-     * @return List of neighbouring tiles
+     * @return List of neighbouring tiles.
      */
     public ArrayList<Tile> getNeighbours() {
         Initializer.functionWrite(new OutputObject(this), "getNeighbours", null);
@@ -139,8 +139,8 @@ public abstract class Tile {
     }
 
     /**
-     * Adds a tile as a neighbour to this tile
-     * @param t Tile to be added as neighbour
+     * Adds a tile as a neighbour to this tile.
+     * @param t Tile to be added as neighbour.
      */
     public void addNeighbour(Tile t) {
         Initializer.functionWrite(
@@ -154,8 +154,8 @@ public abstract class Tile {
     }
 
     /**
-     * Returns the list of players that are currently on this tile
-     * @return  List of players on this tile
+     * Returns the list of players that are currently on this tile.
+     * @return  List of players on this tile.
      */
     public ArrayList<Virologist> getPlayers() {
         Initializer.functionWrite(new OutputObject(this), "getPlayers", null);
