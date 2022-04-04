@@ -4,6 +4,7 @@ import agents.AmnesiaVirus;
 import agents.StunVirus;
 import agents.Vaccine;
 import agents.VitusDanceVirus;
+import equipments.Axe;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
