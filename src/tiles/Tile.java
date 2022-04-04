@@ -26,7 +26,7 @@ public abstract class Tile {
     /**
      * List of neighbouring tiles.
      */
-    private final ArrayList<Tile> neighbours;
+    private ArrayList<Tile> neighbours;
     /**
      * List of players that are currently on this tile.
      */

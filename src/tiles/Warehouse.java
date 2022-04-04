@@ -15,7 +15,7 @@ public class Warehouse extends Tile {
     /**
      * The resource that can be picked up here.
      */
-    private final Resource collectable;
+    private Resource collectable;
 
     /**
      * Constructor
@@ -24,6 +24,19 @@ public class Warehouse extends Tile {
      * @param name Name of the tile.
      */
     public Warehouse(int id, String name) {
+        super(id, name);
+        Initializer.functionWrite(new OutputObject(this), "constructor", null);
+        collectable = new Resource(10, ResourceType.AminoAcid);
+        Initializer.returnWrite(null);
+    }
+
+    /**
+     * Constructor that takes resource from parameter.
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
+     * @param collectable The resource that can be picked up from this tile
+     */
+    public Warehouse(int id, String name, Resource collectable) {
         super(id, name);
         Initializer.functionWrite(new OutputObject(this), "constructor", null);
         collectable = new Resource(10, ResourceType.AminoAcid);
