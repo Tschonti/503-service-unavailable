@@ -37,8 +37,9 @@ public class Map {
     /**
      * Creates a new map.
      */
-    public void createMap() {
+    public GeneticCode[] createMap() {
         Initializer.functionWrite(new OutputObject(this), "createMap", null);
+        GeneticCode[] gcs = new GeneticCode[5];
         tiles = new Tile[38];
         tiles[0] = new Warehouse(0, "Albania", new Resource(100, ResourceType.Nucleotide));
         tiles[1] = new EmptyTile(1, "Andorra");
@@ -99,9 +100,15 @@ public class Map {
         borders.put(0, new ArrayList<>(Arrays.asList(tiles[23], tiles[32], tiles[25], tiles[14])));
         borders.put(0, new ArrayList<>(Arrays.asList(tiles[23], tiles[32], tiles[25], tiles[14])));
 
-
+        // ez csúnya tudom de egyelőre jó
+        gcs[0] = (GeneticCode) tiles[6].getCollectableItem();
+        gcs[1] = (GeneticCode) tiles[23].getCollectableItem();
+        gcs[2] = (GeneticCode) tiles[25].getCollectableItem();
+        gcs[3] = (GeneticCode) tiles[29].getCollectableItem();
+        gcs[4] = (GeneticCode) tiles[32].getCollectableItem();
 
         Initializer.returnWrite(null);
+        return gcs;
     }
 
 }
