@@ -2,8 +2,6 @@ package tiles;
 
 import main.Collectable;
 import main.Inventory;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * An empty tile of the game where no collectable can be picked up.

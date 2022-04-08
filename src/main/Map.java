@@ -8,8 +8,6 @@ import equipments.Axe;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 import tiles.*;
 
 import java.util.ArrayList;

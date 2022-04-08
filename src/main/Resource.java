@@ -1,8 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * This class represents the Resources in the game. It can be collected by virologists from warehouses.

@@ -5,8 +5,6 @@ import main.Collectable;
 import main.Effect;
 import main.Inventory;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * An abstract class, which is the parent of all the different Equipments in the game.

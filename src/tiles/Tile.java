@@ -1,12 +1,11 @@
 package tiles;
 
-import java.util.ArrayList;
 import main.Collectable;
 import main.Effect;
 import main.Inventory;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
+
+import java.util.ArrayList;
 
 /**
  * Abstract class for the fields of the game.

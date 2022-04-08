@@ -2,8 +2,6 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 import tiles.Tile;
 
 import java.util.ArrayList;

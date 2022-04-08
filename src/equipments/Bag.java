@@ -3,8 +3,6 @@ package equipments;
 import main.Collectable;
 import main.Inventory;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * An Equipment, witch doubles a Virologists maximum collectable amount of resources.

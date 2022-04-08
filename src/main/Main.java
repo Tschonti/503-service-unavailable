@@ -1,7 +1,6 @@
 package main;
 
 import skeleton.ConsoleColor;
-import skeleton.Initializer;
 
 /**
  * The Main class.

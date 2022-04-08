@@ -1,10 +1,9 @@
 package agents;
 
-import java.util.ArrayList;
 import main.Effect;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
+
+import java.util.ArrayList;
 
 /**
  * This abstract class represents a basic Agent. The more specific agents extend this class.

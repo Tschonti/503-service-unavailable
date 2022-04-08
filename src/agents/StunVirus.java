@@ -1,8 +1,6 @@
 package agents;
 
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible

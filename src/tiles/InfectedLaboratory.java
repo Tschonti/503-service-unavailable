@@ -1,7 +1,6 @@
 package tiles;
 
 import agents.Agent;
-import agents.Vaccine;
 
 public class InfectedLaboratory extends Laboratory{
     Agent agent;

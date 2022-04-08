@@ -4,11 +4,10 @@ import equipments.Bag;
 import equipments.Equipment;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import java.util.Random;
 import main.Collectable;
 import main.Inventory;
-import skeleton.Initializer;
-import skeleton.OutputObject;
+
+import java.util.Random;
 
 /**
  * A safehouse tile where players can pick up equipments.

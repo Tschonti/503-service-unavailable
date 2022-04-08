@@ -3,8 +3,6 @@ package equipments;
 import agents.Agent;
 import main.Collectable;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * An Equipment, which throws back a thrown Agent to the thrower Virologist.

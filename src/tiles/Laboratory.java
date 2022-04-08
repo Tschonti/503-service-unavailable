@@ -4,8 +4,6 @@ import agents.Agent;
 import main.Collectable;
 import main.GeneticCode;
 import main.Inventory;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * A laboratory tile where virologists can learn genetic codes.

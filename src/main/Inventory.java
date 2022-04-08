@@ -2,9 +2,8 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
+
 import java.util.ArrayList;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * Every Virologist has an inventory and the other way around as well.

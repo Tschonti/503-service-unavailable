@@ -3,8 +3,6 @@ package equipments;
 import agents.Agent;
 import main.Collectable;
 import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * An Equipment, saves a thrown Virologist from the Effect with 82.3% chance.

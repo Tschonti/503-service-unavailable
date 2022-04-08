@@ -4,12 +4,17 @@ import agents.*;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import java.util.*;
-import main.*;
+import main.GeneticCode;
+import main.Inventory;
+import main.Virologist;
 import tiles.EmptyTile;
 import tiles.Laboratory;
 import tiles.Safehouse;
 import tiles.Warehouse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Handles the test cases of the project, initializes them, and then starts them.

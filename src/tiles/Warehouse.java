@@ -4,8 +4,6 @@ import main.Collectable;
 import main.Inventory;
 import main.Resource;
 import main.ResourceType;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * Warehouse field where virologists can pick up resources.

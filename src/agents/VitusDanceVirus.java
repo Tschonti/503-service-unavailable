@@ -1,11 +1,10 @@
 package agents;
 
+import main.Virologist;
+import tiles.Tile;
+
 import java.util.ArrayList;
 import java.util.Random;
-import main.Virologist;
-import skeleton.Initializer;
-import skeleton.OutputObject;
-import tiles.Tile;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible

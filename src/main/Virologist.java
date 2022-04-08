@@ -2,11 +2,9 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
-import java.util.ArrayList;
-
-import skeleton.Initializer;
-import skeleton.OutputObject;
 import tiles.Tile;
+
+import java.util.ArrayList;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
@@ -159,10 +157,10 @@ public class Virologist {
         Inventory inv = v.getInventory();
         if (true) { //TODO, kérdések voltak
             ArrayList<Equipment> equipments = inv.getEquipments();
-            ArrayList<String> equipmentsString = new ArrayList<>();
+            /*ArrayList<String> equipmentsString = new ArrayList<>();
             for (Equipment e : equipments) {
                 equipmentsString.add(OutputObject.objectToName(e));
-            }
+            }*/
             int result = 0; //TODO, ez eddig kérdés volt
             inventory.steal(inv, equipments.get(result));
         } else {

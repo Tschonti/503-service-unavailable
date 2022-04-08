@@ -1,9 +1,8 @@
 package main;
 
 import agents.*;
+
 import java.util.ArrayList;
-import skeleton.Initializer;
-import skeleton.OutputObject;
 
 /**
  * It is found in Laboratories and can be collected by Virologists.
