@@ -28,8 +28,7 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name) {
         super(id, name);
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-
+        //TODO??
         Random rnd = new Random();
         switch (rnd.nextInt(3)) {
             case 0:
@@ -42,8 +41,6 @@ public class Safehouse extends Tile {
                 equipment = new ProtectiveCloak();
                 break;
         }
-
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -55,10 +52,7 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name, Equipment eq) {
         super(id, name);
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         equipment = eq;
-
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -70,14 +64,12 @@ public class Safehouse extends Tile {
      */
     public Safehouse(int id, String name, Class c) {
         super(id, name);
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
+        //TODO?
         try {
             equipment = (Equipment) c.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -87,13 +79,7 @@ public class Safehouse extends Tile {
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
     public void collectItem(Inventory inv) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "collectItem",
-            OutputObject.generateParamsArray(inv)
-        );
         equipment.cloneCollectable().collect(inv);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -101,9 +87,6 @@ public class Safehouse extends Tile {
      * @return The equipment that can be picked up here.
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
-        Initializer.returnWrite(new OutputObject(equipment));
-
         return equipment;
     }
 }

@@ -14,10 +14,7 @@ public class Glove extends Equipment {
     /**
      * Constructor
      */
-    public Glove() {
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
-    }
+    public Glove() {}
 
     /**
      * The Gloves impact in case of a Virologist throws an Agent on another Virologist.
@@ -27,14 +24,8 @@ public class Glove extends Equipment {
      * @param to The Virologist, who gets thrown.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "counterImpact",
-            OutputObject.generateParamsArray(agent, from, to)
-        );
         to.removeEffect(agent);
         from.addEffect(agent);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -42,9 +33,6 @@ public class Glove extends Equipment {
      * @return The new Glove.
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(new OutputObject(this), "clone", null);
-        Collectable newGlove = new Glove();
-        Initializer.returnWrite(new OutputObject(newGlove));
-        return newGlove;
+        return new Glove();
     }
 }

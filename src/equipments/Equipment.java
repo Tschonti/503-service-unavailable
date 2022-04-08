@@ -18,13 +18,7 @@ public abstract class Equipment implements Effect, Collectable {
      * @param inv The Inventory, where the Equipment puts the clone.
      */
     public void collect(Inventory inv) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "collect",
-            OutputObject.generateParamsArray(inv)
-        );
         inv.addEquipment(this);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -33,40 +27,19 @@ public abstract class Equipment implements Effect, Collectable {
      * @param from The throwing Virologist.
      * @param to The Virologist, who gets thrown.
      */
-    public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "counterImpact",
-            OutputObject.generateParamsArray(agent, from, to)
-        );
-        Initializer.returnWrite(null);
-    }
+    public void counterImpact(Agent agent, Virologist from, Virologist to) {}
 
     /**
      * The Equipments impact at the start of the Virologists turn.
      * @param to The Virologist on turn.
      */
-    public void onTurnImpact(Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "onTurnImpact",
-            OutputObject.generateParamsArray(to)
-        );
-        Initializer.returnWrite(null);
-    }
+    public void onTurnImpact(Virologist to) {}
 
     /**
      * The Equipments impact at the end of the Virologists turn.
      * @param to The Virologist on turn.
      */
-    public void endTurnImpact(Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "endTurnImpact",
-            OutputObject.generateParamsArray(to)
-        );
-        Initializer.returnWrite(null);
-    }
+    public void endTurnImpact(Virologist to) {}
 
     /**
      * Tells if with this Equipment a Virologist is allowed to be robbed.
@@ -74,8 +47,6 @@ public abstract class Equipment implements Effect, Collectable {
      * @return true, if a Virologist with this Equipment can be stolen from.
      */
     public boolean allowStealing() {
-        Initializer.functionWrite(new OutputObject(this), "allowStealing", null);
-        Initializer.returnWrite(new OutputObject(false));
         return false;
     }
 
@@ -83,14 +54,7 @@ public abstract class Equipment implements Effect, Collectable {
      * Decrements the Equipments time. If it expires, removes itself from the Virologist.
      * @param v The owner Virologist.
      */
-    public void decrement(Virologist v) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "decrement",
-            OutputObject.generateParamsArray(v)
-        );
-        Initializer.returnWrite(null);
-    }
+    public void decrement(Virologist v) {}
 
     /**
      * Creates a new standard Equipment and returns it.

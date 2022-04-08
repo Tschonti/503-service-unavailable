@@ -25,9 +25,7 @@ public class Warehouse extends Tile {
      */
     public Warehouse(int id, String name) {
         super(id, name);
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
         collectable = new Resource(10, ResourceType.AminoAcid);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -38,9 +36,8 @@ public class Warehouse extends Tile {
      */
     public Warehouse(int id, String name, Resource collectable) {
         super(id, name);
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
+        //TODO???
         collectable = new Resource(10, ResourceType.AminoAcid);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -50,13 +47,7 @@ public class Warehouse extends Tile {
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
     public void collectItem(Inventory inv) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "collectItem",
-            OutputObject.generateParamsArray(inv)
-        );
         collectable.cloneCollectable().collect(inv);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -64,9 +55,6 @@ public class Warehouse extends Tile {
      * @return The resource that can be picked up here.
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
-        Initializer.returnWrite(new OutputObject(collectable));
-
         return collectable;
     }
 }

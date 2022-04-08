@@ -14,10 +14,7 @@ public class ProtectiveCloak extends Equipment {
     /**
      * Constructor
      */
-    public ProtectiveCloak() {
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
-    }
+    public ProtectiveCloak() {}
 
     /**
      * The ProtectiveCloaks impact in case of a Virologist throws an Agent on another Virologist.
@@ -27,18 +24,8 @@ public class ProtectiveCloak extends Equipment {
      * @param to The Virologist, who gets thrown.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "counterImpact",
-            OutputObject.generateParamsArray(agent, from, to)
-        );
-        boolean saved = Initializer.questionYesOrNo(
-            "Do you want the ProtectiveCloak to save its owner?"
-        );
-        if (saved) {
-            to.removeEffect(agent);
-        }
-        Initializer.returnWrite(null);
+        //TODO
+        to.removeEffect(agent);
     }
 
     /**
@@ -46,9 +33,6 @@ public class ProtectiveCloak extends Equipment {
      * @return The new ProtectiveCloak.
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(new OutputObject(this), "clone", null);
-        Collectable newCloak = new ProtectiveCloak();
-        Initializer.returnWrite(new OutputObject(newCloak));
-        return newCloak;
+        return new ProtectiveCloak();
     }
 }

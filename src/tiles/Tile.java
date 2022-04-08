@@ -49,8 +49,6 @@ public abstract class Tile {
      * @return Virologists that can be robbed.
      */
     public ArrayList<Virologist> getPlayersToStealFrom() {
-        Initializer.functionWrite(new OutputObject(this), "getPlayersToStealFrom", null);
-
         ArrayList<Virologist> result = new ArrayList<>();
         for (Virologist v : players) {
             for (Effect e : v.getActiveEffects()) {
@@ -58,7 +56,6 @@ public abstract class Tile {
             }
         }
 
-        Initializer.returnWrite(new OutputObject(result));
         return result;
     }
 
@@ -81,13 +78,7 @@ public abstract class Tile {
      * @param player The player to be added.
      */
     public void addVirologist(Virologist player) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "addVirologist",
-            OutputObject.generateParamsArray(player)
-        );
         players.add(player);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -96,13 +87,7 @@ public abstract class Tile {
      * @param player The player to be removed.
      */
     public void removeVirologist(Virologist player) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "removeVirologist",
-            OutputObject.generateParamsArray(player)
-        );
         players.remove(player);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -110,9 +95,6 @@ public abstract class Tile {
      * @return Unique identifier.
      */
     public int getId() {
-        Initializer.functionWrite(new OutputObject(this), "getId", null);
-        Initializer.returnWrite(new OutputObject(id));
-
         return id;
     }
 
@@ -121,9 +103,6 @@ public abstract class Tile {
      * @return Name of the tile.
      */
     public String getName() {
-        Initializer.functionWrite(new OutputObject(this), "getName", null);
-        Initializer.returnWrite(new OutputObject(name));
-
         return name;
     }
 
@@ -132,9 +111,6 @@ public abstract class Tile {
      * @return List of neighbouring tiles.
      */
     public ArrayList<Tile> getNeighbours() {
-        Initializer.functionWrite(new OutputObject(this), "getNeighbours", null);
-        Initializer.returnWrite(new OutputObject(neighbours));
-
         return neighbours;
     }
 
@@ -143,13 +119,6 @@ public abstract class Tile {
      * @param t Tile to be added as neighbour.
      */
     public void addNeighbour(Tile t) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "addNeighbour",
-            OutputObject.generateParamsArray(t)
-        );
-        Initializer.returnWrite(null);
-
         neighbours.add(t);
     }
 
@@ -158,9 +127,6 @@ public abstract class Tile {
      * @return  List of players on this tile.
      */
     public ArrayList<Virologist> getPlayers() {
-        Initializer.functionWrite(new OutputObject(this), "getPlayers", null);
-        Initializer.returnWrite(new OutputObject(players));
-
         return players;
     }
 }

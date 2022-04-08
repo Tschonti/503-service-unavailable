@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 public interface View {
     /**
-     * Waits for addig players and all other actions befor starting the game.
+     * Waits for adding players and all other actions before starting the game.
      */
     void menu();
 
-    /**
-     *
-     */
     void chooseAction();
 
     int chooseOption(ArrayList<String> list);

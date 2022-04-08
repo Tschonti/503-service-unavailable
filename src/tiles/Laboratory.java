@@ -25,13 +25,7 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name) {
         super(id, name);
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "constructor",
-            OutputObject.generateParamsArray(id, name)
-        );
         code = new GeneticCode();
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -43,13 +37,7 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name, Agent a) {
         super(id, name);
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "constructor",
-            OutputObject.generateParamsArray(id, name, a)
-        );
         code = new GeneticCode(a);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -59,13 +47,7 @@ public class Laboratory extends Tile {
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
     public void collectItem(Inventory inv) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "collectItem",
-            OutputObject.generateParamsArray(inv)
-        );
         code.cloneCollectable().collect(inv);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -73,8 +55,6 @@ public class Laboratory extends Tile {
      * @return The genetic code that can be learnt here.
      */
     public Collectable getCollectableItem() {
-        Initializer.functionWrite(new OutputObject(this), "getCollectableItem", null);
-        Initializer.returnWrite(new OutputObject(code));
         return code;
     }
 }

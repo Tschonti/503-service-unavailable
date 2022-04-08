@@ -14,10 +14,7 @@ public class Bag extends Equipment {
     /**
      * Constructor
      */
-    public Bag() {
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
-    }
+    public Bag() {}
 
     /**
      * The Bags impact at the start of the Virologists turn.
@@ -25,15 +22,9 @@ public class Bag extends Equipment {
      * @param to The Virologist on turn.
      */
     public void onTurnImpact(Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "onTurnImpact",
-            OutputObject.generateParamsArray(to)
-        );
         Inventory i = to.getInventory();
         int maxAmount = i.getMaxResourceAmount();
         i.setMaxResourceAmount(2 * maxAmount);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -42,15 +33,9 @@ public class Bag extends Equipment {
      * @param to The Virologist on turn.
      */
     public void endTurnImpact(Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "endTurnImpact",
-            OutputObject.generateParamsArray(to)
-        );
         Inventory i = to.getInventory();
         int maxAmount = i.getMaxResourceAmount();
         i.setMaxResourceAmount(maxAmount / 2);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -58,9 +43,6 @@ public class Bag extends Equipment {
      * @return The new Bag.
      */
     public Collectable cloneCollectable() {
-        Initializer.functionWrite(new OutputObject(this), "clone", null);
-        Collectable newBag = new Bag();
-        Initializer.returnWrite(new OutputObject(newBag));
-        return newBag;
+        return new Bag();
     }
 }

@@ -42,24 +42,18 @@ public class Controller {
      * Constructor
      */
     public Controller(View newView) {
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-
         activePlayer = null;
         map = new Map();
         players = new ArrayList<>();
         codes = map.createMap();
         view = newView;
-
-        Initializer.returnWrite(null);
     }
 
 
     /**
-     * Calls myTurn() on all players.
+     *
      */
     private void gameLoop() {
-        Initializer.functionWrite(new OutputObject(this), "nextRound", null);
-
         while(!endOfGame) {
             for (Virologist player : players) {
                 activePlayer = player;
@@ -72,8 +66,6 @@ public class Controller {
         }
 
         view.gameOver(activePlayer);
-
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -81,21 +73,9 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "checkWinner",
-                OutputObject.generateParamsArray(v)
-        );
-
         if(activePlayer.getInventory().getLearntCodes().size() == codes.length) {
             endOfGame = true;
         }
-
-        if (Initializer.questionYesOrNo("Was this the last genetic code to collect?")) {
-            System.out.println(v.getName() + " is the winner!");
-            System.exit(0);
-        }
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -103,15 +83,8 @@ public class Controller {
      * @param v The new player.
      */
     public void removeVirologist(Virologist v) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "removeVirologist",
-                OutputObject.generateParamsArray(v)
-        );
         players.remove(v);
-        Initializer.returnWrite(null);
     }
-
 
     public Virologist getPlayerByName(String name) {
         for (Virologist player : players) {
@@ -137,12 +110,6 @@ public class Controller {
      * @param v The new player.
      */
     public void addPlayer(Virologist v, String tileName) {
-        Initializer.functionWrite(
-                new OutputObject(this),
-                "addPlayer",
-                OutputObject.generateParamsArray(v)
-        );
-
         if (players.contains(v)) {
             throw new IllegalArgumentException("Player is already in the game!");
         }
@@ -154,8 +121,6 @@ public class Controller {
             throw new IllegalArgumentException("Tile doesn't exist!");
         }
         players.add(v);
-
-        Initializer.returnWrite(null);
     }
 
 
@@ -221,7 +186,7 @@ public class Controller {
         activePlayer = null;
     }
 
-    public  void quit() {
+    public void quit() {
         System.exit(0);
     }
 }

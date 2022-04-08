@@ -30,16 +30,12 @@ public class Map {
     /**
      * Constructor
      */
-    public Map() {
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
-    }
+    public Map() {}
 
     /**
      * Creates a new map.
      */
     public GeneticCode[] createMap() {
-        Initializer.functionWrite(new OutputObject(this), "createMap", null);
         GeneticCode[] gcs = new GeneticCode[5];
         tiles = new Tile[38];
         tiles[0] = new Warehouse(0, "Albania", new Resource(100, ResourceType.Nucleotide));
@@ -108,7 +104,6 @@ public class Map {
         gcs[3] = (GeneticCode) tiles[29].getCollectableItem();
         gcs[4] = (GeneticCode) tiles[32].getCollectableItem();
 
-        Initializer.returnWrite(null);
         return gcs;
     }
 

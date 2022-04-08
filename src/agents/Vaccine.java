@@ -15,8 +15,6 @@ public class Vaccine extends Agent {
      */
     public Vaccine() {
         super(3); //Rounds left of the Agent in the Virologist's Inventory
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -25,8 +23,6 @@ public class Vaccine extends Agent {
      */
     public Vaccine(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
-        Initializer.functionWrite(new OutputObject(this), "constructor", null);
-        Initializer.returnWrite(null);
     }
 
     /**
@@ -34,11 +30,7 @@ public class Vaccine extends Agent {
      * @return Vaccine
      */
     public Agent create() {
-        Initializer.functionWrite(new OutputObject(this), "create", null);
-        Agent newAgent = new Vaccine();
-        Initializer.returnWrite(new OutputObject(newAgent));
-
-        return newAgent;
+        return new Vaccine();
     }
 
     /* Effect functions */
@@ -50,12 +42,6 @@ public class Vaccine extends Agent {
      * @param to the Virologist that is being infected.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        Initializer.functionWrite(
-            new OutputObject(this),
-            "counterImpact",
-            OutputObject.generateParamsArray(agent, from, to)
-        );
         to.removeEffect(agent);
-        Initializer.returnWrite(null);
     }
 }
