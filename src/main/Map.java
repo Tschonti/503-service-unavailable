@@ -35,7 +35,7 @@ public class Map {
      */
     public GeneticCode[] createMap() {
         GeneticCode[] gcs = new GeneticCode[5];
-        tiles = new Tile[38];
+        tiles = new Tile[42];
         tiles[0] = new Warehouse(0, "Albania", new Resource(100, ResourceType.Nucleotide));
         tiles[1] = new EmptyTile(1, "Andorra");
         tiles[2] = new Safehouse(2, "Austria", new Axe());
