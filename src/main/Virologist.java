@@ -146,7 +146,6 @@ public class Virologist {
     public void pickUp() {
         Initializer.functionWrite(new OutputObject(this), "pickUp", null);
         activeTile.collectItem(inventory);
-        controller.checkWinner(this);
         Initializer.returnWrite(null);
     }
 
@@ -239,7 +238,7 @@ public class Virologist {
      * Returns the tiles where the virologist can move to.
      * @return Tiles where virologist can move to.
      */
-    private ArrayList<Tile> getNeighbours() {
+    public ArrayList<Tile> getNeighbours() {
         Initializer.functionWrite(new OutputObject(this), "getNeighbours", null);
         Initializer.returnWrite(new OutputObject(activeTile.getNeighbours()));
 
@@ -269,7 +268,7 @@ public class Virologist {
      * Returns the crafted agents from the inventory.
      * @return Crafted agents.
      */
-    private ArrayList<Agent> getCraftedAgents() {
+    public ArrayList<Agent> getCraftedAgents() {
         Initializer.functionWrite(new OutputObject(this), "getCraftedAgents", null);
 
         ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
@@ -282,7 +281,7 @@ public class Virologist {
      * Returns the virologists that this virologist can touch.
      * @return Virologists that this virologist can touch.
      */
-    private ArrayList<Virologist> getNearbyVirologists() {
+    public ArrayList<Virologist> getNearbyVirologists() {
         Initializer.functionWrite(new OutputObject(this), "getNearbyVirologist", null);
 
         //Virologist remove itself from the list. A new list is needed because of the reference
@@ -297,7 +296,7 @@ public class Virologist {
      * Returns the virologists that this virologist can steal from.
      * @return Virologists that this virologist can steal from.
      */
-    private ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
+    public ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
         Initializer.functionWrite(new OutputObject(this), "getNearbyVirologistToStealFrom", null);
 
         //Virologist remove itself from the list. A new list is needed because of the reference
@@ -403,5 +402,18 @@ public class Virologist {
         );
         Virologist.controller = controller;
         Initializer.returnWrite(null);
+    }
+
+
+    public void drop(Equipment eq) {
+        //TODO
+    }
+
+    public void startTurn() {
+        //TODO
+    }
+
+    public void endTurn() {
+        //TODO
     }
 }

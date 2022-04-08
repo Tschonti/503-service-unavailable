@@ -431,12 +431,12 @@ public class Initializer {
 
     public static void learnGeneticCode() {
         objects.clear();
-        Controller c = new Controller();
-        objects.put(c, "c");
+        //Controller c = new Controller();
+        //objects.put(c, "c");
         Virologist v = new Virologist("Vir");
         objects.put(v, "v");
-        Virologist.setController(c);
-        c.addPlayer(v);
+        //Virologist.setController(c);
+        //c.addPlayer(v);
         //questionListWrite("What kind of agent should be craftable from the genetic code?")
         Laboratory l = new Laboratory(1, "lab");
         objects.put(l, "l");

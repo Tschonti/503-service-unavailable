@@ -210,7 +210,7 @@ Map  *-- "-tiles, L" Tile
 Tile <-- "-neighbours, 1..K" Tile
 
 class Controller {
-    -activePlayer: int
+    -activePlayer: Virologist
     +startGame(): void
     +checkWinner(v: Virologist): void
     -nextRound(): void

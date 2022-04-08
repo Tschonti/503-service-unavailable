@@ -21,6 +21,10 @@ public class Main {
             "Save our world, mighty traveller!" +
             ConsoleColor.RESET.c
         );
-        Initializer.test();
+        //Initializer.test();
+
+        ConsoleView consoleView = new ConsoleView();
+        consoleView.menu();
+
     }
 }

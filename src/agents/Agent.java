@@ -61,6 +61,8 @@ public abstract class Agent implements Effect {
         to.addEffect(this);
         if (from != to) for (Effect e : activeEffects) {
             e.counterImpact(this, from, to);
+        } else {
+            this.onTurnImpact(from);
         }
         Initializer.returnWrite(null);
     }

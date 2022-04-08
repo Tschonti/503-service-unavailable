@@ -23,3 +23,15 @@ nem igazán todo, de ne vesszen el
 - UseAxe sequence diagram
 - MoveTo infectedLaboratory
 - AxeOnTurnImpact sequence diagram
+
+## GenCode, Inv, Controller kérdések, TODOk
+Controllerben 
+- akkor most nem kell addPlayer, hanem helyette van a removeVirologist?????
+- attribútumokon is változtattam kicsit a remove miatt, ezeket classdiagramba?
+- startGame mit fog csinálni?
+
+
+GeneticCodeban
+- a cloneCollectable fv nincs fent classdiagramon, doksiba gondolom akkor is kell
+
+UsableEquipment nincs bent a kódban

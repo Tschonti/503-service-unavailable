@@ -141,6 +141,7 @@ public class Inventory {
 
         pickedUpEquipments.add(eq);
         virologist.addEffect(eq);
+        eq.onTurnImpact(virologist);
 
         Initializer.returnWrite(null);
     }

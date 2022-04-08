@@ -112,4 +112,12 @@ public class Map {
         return gcs;
     }
 
+    Tile getTile(String name) {
+        for (Tile tile : tiles) {
+            if(tile.getName().equals(name)) {
+                return tile;
+            }
+        }
+        return null;
+    }
 }
