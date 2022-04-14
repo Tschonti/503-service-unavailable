@@ -24,31 +24,11 @@ public class GeneticCode implements Collectable {
 
     /**
      * Constructor
-     * The type of the agent is random.
-     */
-    public GeneticCode() {
-        //TODO?
-        int random = (int) (Math.random() * 10);
-        if (random < 3) {
-            agent = new StunVirus();
-        } else if (random < 6) {
-            agent = new AmnesiaVirus();
-        } else if (random < 8) {
-            agent = new VitusDanceVirus();
-        } else {
-            agent = new Vaccine();
-        }
-        price = new ArrayList<>();
-        price.add(new Resource(10, ResourceType.AminoAcid));
-    }
-
-    /**
-     * Constructor
      * @param a The agent that can be crafted by learning this code.
      */
-    public GeneticCode(Agent a) {
+    public GeneticCode(Agent a, ArrayList<Resource> p) {
         agent = a;
-        price = new ArrayList<>();
+        price = p;
     }
 
     /**
@@ -56,14 +36,13 @@ public class GeneticCode implements Collectable {
      * @param inv The inventory, that will get the clone of this genetic code.
      */
     public void collect(Inventory inv) {
-        //TODO, ha már bent van ne rakjuk bele
-        inv.addGeneticCode(this);
+        if (!inv.getLearntCodes().contains(this)) {
+            inv.addGeneticCode(this);
+        }
     }
 
     public Collectable cloneCollectable() {
-        GeneticCode newGc = new GeneticCode(agent.create());
-        newGc.setPrice(price);
-        return newGc;
+        return new GeneticCode(agent.create(), price);
     }
 
     /**
@@ -72,8 +51,14 @@ public class GeneticCode implements Collectable {
      * @return Whether the agent can be crafted.
      */
     public boolean isCraftable(Inventory inv) {
-        //TODO
-        return false;
+        ArrayList<Resource> invRes = inv.getResources();
+        for (Resource res : price) {
+            int invAmount = Resource.getResourceByType(invRes, res.getType()).getAmount();
+            if (invAmount < res.getAmount()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

@@ -34,7 +34,7 @@ public class Controller {
 
     private boolean endOfGame;
 
-    private View view;
+    private final View view;
 
     /**
      * Constructor
@@ -102,7 +102,7 @@ public class Controller {
     }
 
 
-    //**********************************parancs függvények**********************************
+    //**********************************command functions**********************************
     /**
      * Adds a player to the players.
      * @param v The new player.
@@ -130,7 +130,7 @@ public class Controller {
         }
     }
 
-    public void collect() { //checkwinner
+    public void collect() {
         if (activePlayer.getActiveTile().getCollectableItem() != null) {
             activePlayer.pickUp();
             checkWinner(activePlayer);
