@@ -1,9 +1,12 @@
 package tiles;
 
 import agents.Agent;
+import agents.Vaccine;
 import main.Collectable;
 import main.GeneticCode;
 import main.Inventory;
+
+import java.util.ArrayList;
 
 /**
  * A laboratory tile where virologists can learn genetic codes.
@@ -23,7 +26,7 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name) {
         super(id, name);
-        code = new GeneticCode();
+        code = new GeneticCode(new Vaccine(), new ArrayList<>());//TODO
     }
 
     /**
@@ -35,7 +38,7 @@ public class Laboratory extends Tile {
      */
     public Laboratory(int id, String name, Agent a) {
         super(id, name);
-        code = new GeneticCode(a);
+        code = new GeneticCode(a, new ArrayList<>());//TODO
     }
 
     /**

@@ -259,7 +259,7 @@ public class Initializer {
         objects.put(v, "v");
         Agent sV = new StunVirus();
         objects.put(sV, "sV");
-        GeneticCode gC = new GeneticCode();
+        GeneticCode gC = new GeneticCode(new StunVirus(), new ArrayList<>());//TODO ezt szerintem csak ki kell szedni
         objects.put(gC, "gC");
         gC.setAgent(sV);
         Inventory i = v.getInventory();
@@ -277,7 +277,7 @@ public class Initializer {
         objects.put(v, "v");
         Agent aV = new AmnesiaVirus();
         objects.put(aV, "aV");
-        GeneticCode gC = new GeneticCode();
+        GeneticCode gC = new GeneticCode(new AmnesiaVirus(), new ArrayList<>());
         objects.put(gC, "gC");
         gC.setAgent(aV);
         Inventory i = v.getInventory();
@@ -295,7 +295,7 @@ public class Initializer {
         objects.put(v, "v");
         Agent vDV = new VitusDanceVirus();
         objects.put(vDV, "vDV");
-        GeneticCode gC = new GeneticCode();
+        GeneticCode gC = new GeneticCode(new VitusDanceVirus(), new ArrayList<>());
         objects.put(gC, "gC");
         gC.setAgent(vDV);
         Inventory i = v.getInventory();
@@ -313,7 +313,7 @@ public class Initializer {
         objects.put(v, "v");
         Agent vac = new Vaccine();
         objects.put(vac, "vac");
-        GeneticCode gC = new GeneticCode();
+        GeneticCode gC = new GeneticCode(new Vaccine(), new ArrayList<>());
         objects.put(gC, "gC");
         gC.setAgent(vac);
         Inventory i = v.getInventory();
@@ -630,7 +630,7 @@ public class Initializer {
         Virologist v = new Virologist("Virologist1");
         objects.put(v, "v");
 
-        GeneticCode gc = new GeneticCode();
+        GeneticCode gc = new GeneticCode(new VitusDanceVirus(), new ArrayList<>());
         objects.put(gc, "gc");
 
         Inventory i = v.getInventory();

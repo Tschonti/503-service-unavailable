@@ -7,6 +7,8 @@ import skeleton.ConsoleColor;
  */
 public class Main {
 
+    private static boolean debugMode=false;
+
     /**
      * The main function.
      * @param args arguments
@@ -22,8 +24,14 @@ public class Main {
         );
         //Initializer.test();
 
+        if(args.length>0 && args[0].equals("debug")){
+            debugMode=true;
+        }
         ConsoleView consoleView = new ConsoleView();
         consoleView.menu();
+    }
 
+    public static boolean getDebugMode(){
+        return debugMode;
     }
 }

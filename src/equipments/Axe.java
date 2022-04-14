@@ -7,4 +7,8 @@ public class Axe extends Equipment{
     public Collectable cloneCollectable() {
         return new Axe();
     }
+
+    public void use(){
+
+    }
 }
