@@ -134,4 +134,12 @@ public abstract class Tile {
     public ArrayList<Virologist> getPlayers() {
         return players;
     }
+
+    /**
+     * This is how the object will appear in the ConsoleView
+     * @return the name of the tile
+     */
+    public String toString() {
+        return name;
+    }
 }
