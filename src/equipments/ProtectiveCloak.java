@@ -2,6 +2,7 @@ package equipments;
 
 import agents.Agent;
 import main.Collectable;
+import main.SRandom;
 import main.Virologist;
 
 /**
@@ -22,8 +23,9 @@ public class ProtectiveCloak extends Equipment {
      * @param to The Virologist, who gets thrown.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        //TODO
-        to.removeEffect(agent);
+        if(SRandom.nextRandom(1000)<823) {
+            to.removeEffect(agent);
+        }
     }
 
     /**

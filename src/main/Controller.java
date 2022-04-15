@@ -187,4 +187,8 @@ public class Controller {
     public void quit() {
         System.exit(0);
     }
+
+    public Virologist getActivePlayer(){
+        return activePlayer;
+    }
 }
