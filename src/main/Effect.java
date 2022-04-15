@@ -36,4 +36,6 @@ public interface Effect {
      * @param v The owner Virologist.
      */
     void decrement(Virologist v);
+
+    void infect(Virologist v);
 }

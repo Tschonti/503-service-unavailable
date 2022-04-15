@@ -9,9 +9,9 @@ public class ConsoleView implements View {
     private HashMap<String, Command> menu;
     private HashMap<String, Command> actions;
     private String[] commandlist;
-    private final Scanner scanner=new Scanner(System.in);
-    private boolean quitMenu=false;
-    private boolean quitGame=false;
+    private final Scanner scanner = new Scanner(System.in);
+    private boolean quitMenu = false;
+    private boolean quitGame = false;
 
     public ConsoleView(){
         menu=new HashMap<>();
