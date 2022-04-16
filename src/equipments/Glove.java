@@ -39,4 +39,9 @@ public class Glove extends Equipment {
     public Collectable cloneCollectable() {
         return new Glove();
     }
+
+    @Override
+    public String toString() {
+        return "Glove: "+ usesLeft +" uses left";
+    }
 }

@@ -20,7 +20,7 @@ public class ConsoleView implements View {
     public ConsoleView(){
         controller = new Controller(this);
         menu=new HashMap<>();
-        menu.put("start", this::chooseAction);
+        menu.put("start", controller::gameLoop);
         menu.put("add", ConsoleView::add);
         menu.put("quit", ()->quitMenu=true);
 
@@ -161,12 +161,41 @@ public class ConsoleView implements View {
     }
 
     private static void info(){//TODO
-        int i=0;
+        int i=1;
+        boolean setObject=false;
+        Virologist virologist=null;
+        ArrayList<Integer> numbers=new ArrayList<>();
         while(i<commandList.length){
+            if(commandList[i].equals("--o")){
+                setObject=true;
+                virologist=controller.getPlayerByName(commandList[++i]);
+                if(virologist!=null){
+                    Tile tile=controller.getTileByName(commandList[i]);
+                }
+            }
+            else if(commandList[i].equals("--f")){
+                System.out.println("filename: " + commandList[++i]);
+                //TODO
+            }
+            else if(commandList[i].equals("--n")){
+                while(++i<commandList.length && !commandList[i].contains("--")){
+                    numbers.add(Integer.parseInt(commandList[i]));
+                }
+            }
             i++;
         }
+
+        if(!setObject){
+            virologist = controller.getActivePlayer();
+        }
         System.out.println("Készítés alatt.");
-        System.out.println(controller.getActivePlayer().getName());
+        System.out.println("számok:");
+        for (Integer n: numbers) {{
+            System.out.println(n);
+        }
+
+        }
+        System.out.println(virologist.getName());
     }
 
     private static void setNextRandom(){

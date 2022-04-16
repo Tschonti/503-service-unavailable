@@ -28,4 +28,9 @@ public class Axe extends Equipment implements UsableEquipment {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Axe: "+ usesLeft +" uses left";
+    }
 }

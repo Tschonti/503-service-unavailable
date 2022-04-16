@@ -35,4 +35,9 @@ public class ProtectiveCloak extends Equipment {
     public Collectable cloneCollectable() {
         return new ProtectiveCloak();
     }
+
+    @Override
+    public String toString() {
+        return "ProtectiveCloak";
+    }
 }

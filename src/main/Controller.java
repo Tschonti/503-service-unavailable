@@ -51,7 +51,7 @@ public class Controller {
     /**
      *
      */
-    private void gameLoop() {
+    public void gameLoop() {
         while(!endOfGame) {
             for (Virologist player : players) {
                 activePlayer = player;

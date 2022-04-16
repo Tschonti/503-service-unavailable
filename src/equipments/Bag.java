@@ -43,4 +43,9 @@ public class Bag extends Equipment {
     public Collectable cloneCollectable() {
         return new Bag();
     }
+
+    @Override
+    public String toString() {
+        return "Bag";
+    }
 }
