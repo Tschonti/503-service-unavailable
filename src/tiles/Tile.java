@@ -6,6 +6,8 @@ import main.Inventory;
 import main.Virologist;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Abstract class for the fields of the game.
@@ -25,11 +27,11 @@ public abstract class Tile {
     /**
      * List of neighbouring tiles.
      */
-    private ArrayList<Tile> neighbours;
+    private final ArrayList<Tile> neighbours;
     /**
      * List of players that are currently on this tile.
      */
-    private final ArrayList<Virologist> players;
+    protected final ArrayList<Virologist> players;
 
     /**
      * Constructor
@@ -47,15 +49,10 @@ public abstract class Tile {
      * Return the virologist from players that have an effect applied to them that allows stealing.
      * @return Virologists that can be robbed.
      */
-    public ArrayList<Virologist> getPlayersToStealFrom() {
-        ArrayList<Virologist> result = new ArrayList<>();
-        for (Virologist v : players) {
-            for (Effect e : v.getActiveEffects()) {
-                e.allowStealing();
-            }
-        }
-
-        return result;
+    public List<Virologist> getPlayersToStealFrom() {
+        return players.stream()
+                .filter(player -> player.getActiveEffects().stream().anyMatch(Effect::allowStealing))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -74,10 +71,12 @@ public abstract class Tile {
     /**
      * Adds the virologist to the players list.
      * Called when a virologist moves to this field.
+     * Calls infect on all the effects of all the players on this Tile.
      * @param player The player to be added.
      */
     public void addVirologist(Virologist player) {
         players.add(player);
+        players.forEach(p -> p.getActiveEffects().forEach(e -> e.infect(p)));
     }
 
     /**
@@ -88,6 +87,13 @@ public abstract class Tile {
     public void removeVirologist(Virologist player) {
         players.remove(player);
     }
+
+    /**
+     * A method to destroy the collectable of the tile.
+     * Here it does nothing, so only those classes have to
+     * implement it that actually use it.
+     */
+    public void destroyCollectable() {}
 
     /**
      * Getter for the ID.
@@ -127,5 +133,13 @@ public abstract class Tile {
      */
     public ArrayList<Virologist> getPlayers() {
         return players;
+    }
+
+    /**
+     * This is how the object will appear in the ConsoleView
+     * @return the name of the tile
+     */
+    public String toString() {
+        return name;
     }
 }

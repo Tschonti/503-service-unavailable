@@ -1,12 +1,8 @@
 package tiles;
 
-import agents.Agent;
-import agents.Vaccine;
 import main.Collectable;
 import main.GeneticCode;
 import main.Inventory;
-
-import java.util.ArrayList;
 
 /**
  * A laboratory tile where virologists can learn genetic codes.
@@ -16,29 +12,18 @@ public class Laboratory extends Tile {
     /**
      * The code that can be learnt here.
      */
-    private final GeneticCode code;
+    protected final GeneticCode code;
 
     /**
      * Constructor
-     * Creates a new genetic code.
+     * Sets the code to be the one received as a parameter.
      * @param id Unique identifier of the tile.
      * @param name Name of the tile.
+     * @param gc The GeneticCode that can be learnt here
      */
-    public Laboratory(int id, String name) {
+    public Laboratory(int id, String name, GeneticCode gc) {
         super(id, name);
-        code = new GeneticCode(new Vaccine(), new ArrayList<>());//TODO
-    }
-
-    /**
-     * Constructor
-     * Creates a new genetic code with the given agent.
-     * @param id Unique identifier of the tile.
-     * @param name Name of the tile.
-     * @param a The agent that will be created by crafting from this code.
-     */
-    public Laboratory(int id, String name, Agent a) {
-        super(id, name);
-        code = new GeneticCode(a, new ArrayList<>());//TODO
+        code = gc;
     }
 
     /**

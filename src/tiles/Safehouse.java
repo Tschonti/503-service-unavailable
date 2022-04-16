@@ -1,9 +1,6 @@
 package tiles;
 
-import equipments.Bag;
-import equipments.Equipment;
-import equipments.Glove;
-import equipments.ProtectiveCloak;
+import equipments.*;
 import main.Collectable;
 import main.Inventory;
 
@@ -17,34 +14,11 @@ public class Safehouse extends Tile {
     /**
      * The equipment that can be picked up here.
      */
-    private Equipment equipment;
+    private final Equipment equipment;
 
     /**
      * Constructor
-     * Creates a new equipment.
-     * @param id Unique identifier of the tile.
-     * @param name Name of the tile.
-     */
-    public Safehouse(int id, String name) {
-        super(id, name);
-        //TODO??
-        Random rnd = new Random();
-        switch (rnd.nextInt(3)) {
-            case 0:
-                equipment = new Bag();
-                break;
-            case 1:
-                equipment = new Glove();
-                break;
-            case 2:
-                equipment = new ProtectiveCloak();
-                break;
-        }
-    }
-
-    /**
-     * Constructor
-     * Creates a new equipment.
+     * Sets to collectable equipment to be the one received as a paramter.
      * @param id Unique identifier of the tile.
      * @param name Name of the tile.
      * @param eq Equipment on the tile.
@@ -52,23 +26,6 @@ public class Safehouse extends Tile {
     public Safehouse(int id, String name, Equipment eq) {
         super(id, name);
         equipment = eq;
-    }
-
-    /**
-     * Constructor for skeleton.
-     * Creates new equipment.
-     * @param id Unique identifier of the tile.
-     * @param name Name of the tile.
-     * @param c Class of the equipment on the tile.
-     */
-    public Safehouse(int id, String name, Class c) {
-        super(id, name);
-        //TODO?
-        try {
-            equipment = (Equipment) c.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
