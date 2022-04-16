@@ -34,6 +34,11 @@ public abstract class Tile {
     protected final ArrayList<Virologist> players;
 
     /**
+     * The collectable that can be picked up from this tile.
+     */
+    protected Collectable collectable = null;
+
+    /**
      * Constructor
      * @param id Unique identifier of the tile.
      * @param name Name of the tile.
@@ -43,6 +48,17 @@ public abstract class Tile {
         this.name = name;
         players = new ArrayList<>();
         neighbours = new ArrayList<>();
+    }
+
+    /**
+     * Constructor that also sets the Collectable
+     * @param id Unique identifier of the tile.
+     * @param name Name of the tile.
+     * @param c The collectable that can be picked up from this tile
+     */
+    public Tile(int id, String name, Collectable c) {
+        this(id, name);
+        collectable = c;
     }
 
     /**
@@ -60,13 +76,19 @@ public abstract class Tile {
      * that'll eventually put the new collectable into the inventory.
      * @param inv The clone of the Collectable has to be stored in this inventory.
      */
-    public abstract void collectItem(Inventory inv);
+    public void collectItem(Inventory inv) {
+        if (collectable != null) {
+            collectable.cloneCollectable().collect(inv);
+        }
+    }
 
     /**
      * Getter for the collectable of the field.
      * @return Collectable of the field.
      */
-    public abstract Collectable getCollectableItem();
+    public Collectable getCollectableItem() {
+        return collectable;
+    }
 
     /**
      * Adds the virologist to the players list.

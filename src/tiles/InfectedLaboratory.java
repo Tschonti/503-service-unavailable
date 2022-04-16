@@ -28,6 +28,7 @@ public class InfectedLaboratory extends Laboratory {
      * Infects the player that moved here with the agent of the tile.
      * @param player The player to be added.
      */
+    @Override
     public void addVirologist(Virologist player) {
         players.add(player);
         infectable.use(null, player);
