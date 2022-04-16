@@ -12,6 +12,11 @@ import main.Virologist;
 public abstract class Equipment implements Effect, Collectable {
 
     /**
+     * How many times the Equipment can be used without breaking down.
+     */
+    protected int usesLeft;
+
+    /**
      * Creates a clone of itself, and puts it in the received inventory.
      * @param inv The Inventory, where the Equipment puts the clone.
      */
@@ -54,6 +59,12 @@ public abstract class Equipment implements Effect, Collectable {
      */
     public void decrement(Virologist v) {}
 
+    /**
+     * Decreases the value of the usesLeft variable.
+     */
+    public void durabilityDecreases(){
+        usesLeft--;
+    }
     /**
      * Creates a new standard Equipment and returns it.
      * @return The new Equipment.

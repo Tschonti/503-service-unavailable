@@ -1,7 +1,9 @@
 package main;
 
 import agents.Agent;
+import equipments.Axe;
 import equipments.Equipment;
+import equipments.UsableEquipment;
 
 import java.util.ArrayList;
 
@@ -142,6 +144,8 @@ public class Inventory {
         return false;
     }
 
+
+
     /**
      * Getter for maxResourceAmount.
      * @return maxResourceAmount
@@ -200,5 +204,14 @@ public class Inventory {
      */
     public ArrayList<Agent> getCraftedAgents() {
         return craftedAgents;
+    }
+
+
+    public void addUsableEquipment(UsableEquipment usableEquipment) {
+        //TODO
+    }
+
+    public void removeUsableEquipment(UsableEquipment usableEquipment){
+        //TODO
     }
 }

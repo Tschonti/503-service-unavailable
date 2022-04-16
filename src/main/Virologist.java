@@ -300,4 +300,8 @@ public class Virologist {
     public void endTurn() {
         //TODO
     }
+
+    public static Controller getController() {
+        return controller;
+    }
 }

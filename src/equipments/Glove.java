@@ -12,7 +12,9 @@ public class Glove extends Equipment {
     /**
      * Constructor
      */
-    public Glove() {}
+    public Glove() {
+        usesLeft=3;
+    }
 
     /**
      * The Gloves impact in case of a Virologist throws an Agent on another Virologist.
@@ -24,6 +26,10 @@ public class Glove extends Equipment {
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         to.removeEffect(agent);
         from.addEffect(agent);
+        durabilityDecreases();
+        if(usesLeft==0){
+            to.getInventory().removeEquipment(this);
+        }
     }
 
     /**
@@ -32,5 +38,10 @@ public class Glove extends Equipment {
      */
     public Collectable cloneCollectable() {
         return new Glove();
+    }
+
+    @Override
+    public String toString() {
+        return "Glove: "+ usesLeft +" uses left";
     }
 }

@@ -51,7 +51,7 @@ public class Controller {
     /**
      *
      */
-    private void gameLoop() {
+    public void gameLoop() {
         while(!endOfGame) {
             for (Virologist player : players) {
                 activePlayer = player;
@@ -186,5 +186,9 @@ public class Controller {
 
     public void quit() {
         System.exit(0);
+    }
+
+    public Virologist getActivePlayer(){
+        return activePlayer;
     }
 }
