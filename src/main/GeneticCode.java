@@ -14,19 +14,22 @@ public class GeneticCode implements Collectable {
     /**
      * The agent that can be crafted from this genetic code.
      */
-    private Agent agent;
+    private final Agent agent;
 
     /**
      * The price of crafting the agent from this genetic code.
      * It stores all the required resources.
      */
-    private ArrayList<Resource> price;
+    private final ArrayList<Resource> price;
+
+    private final int id;
 
     /**
      * Constructor
      * @param a The agent that can be crafted by learning this code.
      */
-    public GeneticCode(Agent a, ArrayList<Resource> p) {
+    public GeneticCode(int newId, Agent a, ArrayList<Resource> p) {
+        id = newId;
         agent = a;
         price = p;
     }
@@ -36,13 +39,20 @@ public class GeneticCode implements Collectable {
      * @param inv The inventory, that will get the clone of this genetic code.
      */
     public void collect(Inventory inv) {
-        if (!inv.getLearntCodes().contains(this)) {
+        boolean contains = false;
+        for (GeneticCode gc : inv.getLearntCodes()) {
+            if (gc.getId() == id) {
+                contains = true;
+                break;
+            }
+        }
+        if (!contains) {
             inv.addGeneticCode(this);
         }
     }
 
     public Collectable cloneCollectable() {
-        return new GeneticCode(agent.create(), price);
+        return new GeneticCode(id, agent.create(), price);
     }
 
     /**
@@ -81,14 +91,6 @@ public class GeneticCode implements Collectable {
     }
 
     /**
-     * Setter for agent.
-     * @param agent The new agent.
-     */
-    public void setAgent(Agent agent) {
-        this.agent = agent;
-    }
-
-    /**
      * Getter for price.
      * @return price
      */
@@ -96,11 +98,12 @@ public class GeneticCode implements Collectable {
         return price;
     }
 
-    /**
-     * Setter for price.
-     * @param price The new price.
-     */
-    public void setPrice(ArrayList<Resource> price) {
-        this.price = price;
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "GeneticCode:" + agent + ", " + price + ", " + id;
     }
 }

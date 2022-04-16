@@ -1,7 +1,6 @@
 package main;
 
 import agents.Agent;
-import equipments.Axe;
 import equipments.Equipment;
 import equipments.UsableEquipment;
 
@@ -144,8 +143,6 @@ public class Inventory {
         return false;
     }
 
-
-
     /**
      * Getter for maxResourceAmount.
      * @return maxResourceAmount
@@ -209,9 +206,22 @@ public class Inventory {
 
     public void addUsableEquipment(UsableEquipment usableEquipment) {
         //TODO
+
     }
 
     public void removeUsableEquipment(UsableEquipment usableEquipment){
         //TODO
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "maxResourceAmount=" + maxResourceAmount +
+                ", virologist=" + virologist +
+                ", resources=" + resources +
+                ", pickedUpEquipments=" + pickedUpEquipments +
+                ", craftedAgents=" + craftedAgents +
+                ", learntCodes=" + learntCodes +
+                '}';
     }
 }
