@@ -47,6 +47,11 @@ public class Inventory {
     private final ArrayList<GeneticCode> learntCodes;
 
     /**
+     * All the usable equipments that the virologist has picked up.
+     */
+    private final ArrayList<UsableEquipment> usableEquipments;
+
+    /**
      * Constructor
      * @param virologist The virologist this inventory belongs to.
      */
@@ -56,6 +61,7 @@ public class Inventory {
         pickedUpEquipments = new ArrayList<>();
         craftedAgents = new ArrayList<>();
         learntCodes = new ArrayList<>();
+        usableEquipments = new ArrayList<>();
         Resource.initializeResourceArray(resources);
     }
 
@@ -213,5 +219,13 @@ public class Inventory {
 
     public void removeUsableEquipment(UsableEquipment usableEquipment){
         //TODO
+    }
+
+    /**
+     * Getter for usableEquipments
+     * @return usableEquipments
+     */
+    public ArrayList<UsableEquipment> getUsableEquipments() {
+        return usableEquipments;
     }
 }

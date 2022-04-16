@@ -2,6 +2,7 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
+import equipments.UsableEquipment;
 import tiles.Tile;
 
 import java.util.ArrayList;
@@ -121,7 +122,6 @@ public class Controller {
         players.add(v);
     }
 
-
     public void move(Tile t) {
         if (activePlayer.getNeighbours().contains(t)) {
             activePlayer.moveTo(t);
@@ -157,6 +157,10 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You don't have this agent!");
         }
+    }
+
+    public void use(UsableEquipment ue, Virologist v) {
+        //TODO előzőhöz hasonló, csak siker esetén meg kell ölni v-t
     }
 
     public void steal(Virologist v) {
