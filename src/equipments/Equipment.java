@@ -70,4 +70,12 @@ public abstract class Equipment implements Effect, Collectable {
      * @return The new Equipment.
      */
     public abstract Collectable cloneCollectable();
+
+    /**
+     * Getter for the usesLeft field
+     * @return usesLeft
+     */
+    public int getUsesLeft() {
+        return usesLeft;
+    }
 }

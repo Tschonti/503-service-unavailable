@@ -18,6 +18,20 @@ public class ConsoleView implements View {
     private final Scanner scanner = new Scanner(System.in);
     private boolean quitMenu = false;
     private boolean quitGame = false;
+    private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
+            OutputGenerator::generateName, OutputGenerator::generateActionsLeft,
+            OutputGenerator::generateTile, OutputGenerator::generateNeighbours ,
+            OutputGenerator::generateVirologistsOnTile, OutputGenerator::generateStunnedVirologists,
+            OutputGenerator::generateCollectable, OutputGenerator::generateResources,
+            OutputGenerator::generateGeneticCodes, OutputGenerator::generateUsables,
+            OutputGenerator::generateEquipments, OutputGenerator::generateEffects
+    };
+    private static final OutputGenerator.TileInfoItem[] tileInfoItems = {
+            OutputGenerator::generateName, OutputGenerator::generateID,
+            OutputGenerator::generateType, OutputGenerator::generateNeighbours,
+            OutputGenerator::generateCollectable
+    };
+
 
     public ConsoleView(){
         controller = new Controller(this);
@@ -152,7 +166,7 @@ public class ConsoleView implements View {
         controller.pass();
     }
 
-    private static void info(){//TODO
+    private static void info(){
         int i=1;
         boolean setObject=false;
         Virologist virologist=null;
@@ -179,39 +193,26 @@ public class ConsoleView implements View {
             virologist = controller.getActivePlayer();
         }
 
+        StringBuilder output = new StringBuilder();
         if (virologist != null) {
-            InfoItem[] items = {ConsoleView::generateName, ConsoleView::generateActionsLeft, ConsoleView::generateTile, ConsoleView::generateNeighbours };
-            StringBuilder output = new StringBuilder();
             Virologist finalVirologist = virologist;
-            numbers.forEach(n -> output.append(items[n].generate(finalVirologist)));
-            System.out.print(output);
+            numbers.forEach(n -> {
+                if (n < 0 || n > virologistInfoItems.length - 1) {
+                    throw new IllegalArgumentException("Invalid parameter to info command!");
+                }
+                output.append(virologistInfoItems[n].generate(finalVirologist));
+            });
         } else {
-            // TODO ha tileról kell infó
+            Tile finalTile = tile;
+            numbers.forEach(n -> {
+                if (n < 0 || n > tileInfoItems.length - 1) {
+                    throw new IllegalArgumentException("Invalid parameter to info command!");
+                }
+                output.append(tileInfoItems[n].generate(finalTile));
+            });
         }
+        System.out.print(output);
     }
-
-    private interface InfoItem {
-        String generate(Virologist v);
-    }
-
-    private static String generateName(Virologist v) {
-        return "Name:\n\t" + v.getName() + "\n";
-    }
-
-    private static String generateActionsLeft(Virologist v) {
-        return "Actions left:\n\t" + v.getActionsLeft() + "/2\n";
-    }
-
-    private static String generateTile(Virologist v) {
-        return "Tile:\n\t" + v.getActiveTile() + "\n";
-    }
-
-    private static String generateNeighbours(Virologist v) {
-        StringBuilder s = new StringBuilder("Neighbour tiles:\n");
-        v.getNeighbours().forEach(t -> s.append("\t").append(t).append("\n"));
-        return s.append("\n").toString();
-    }
-    //TODO  a maradék
 
     private static void setNextRandom(){
         parameterCountCheck(2, 2);

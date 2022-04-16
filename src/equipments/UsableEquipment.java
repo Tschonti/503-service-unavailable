@@ -4,4 +4,5 @@ import main.Virologist;
 
 public interface UsableEquipment {
     void use(Virologist from, Virologist to);
+    int getUsesLeft();  //TODO
 }
