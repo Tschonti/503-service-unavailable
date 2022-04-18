@@ -48,7 +48,6 @@ public class Controller {
         view = newView;
     }
 
-
     /**
      *
      */
@@ -72,7 +71,7 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        if(activePlayer.getInventory().getLearntCodes().size() == codes.length) {
+        if(v.getInventory().getLearntCodes().size() == codes.length) {
             endOfGame = true;
         }
     }
