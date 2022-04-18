@@ -234,10 +234,10 @@ public class ConsoleView implements View {
                 }
             }
             numbers.forEach(n -> {
-                if (n < 0 || n > tileInfoItems.length - 1) {
+                if (n < 1 || n > tileInfoItems.length) {
                     throw new IllegalArgumentException("Invalid parameter to info command!");
                 }
-                output.append(tileInfoItems[n].generate(finalTile));
+                output.append(tileInfoItems[n - 1].generate(finalTile));
             });
         }
         System.out.print(output);
