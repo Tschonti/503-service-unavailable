@@ -3,7 +3,6 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-
 import java.util.ArrayList;
 
 /**
@@ -207,25 +206,32 @@ public class Inventory {
         return craftedAgents;
     }
 
-
     public void addUsableEquipment(UsableEquipment usableEquipment) {
         usableEquipments.add(usableEquipment);
     }
 
-    public void removeUsableEquipment(UsableEquipment usableEquipment){
+    public void removeUsableEquipment(UsableEquipment usableEquipment) {
         usableEquipments.remove(usableEquipment);
     }
 
     @Override
     public String toString() {
-        return "Inventory{" +
-                "maxResourceAmount=" + maxResourceAmount +
-                ", virologist=" + virologist +
-                ", resources=" + resources +
-                ", pickedUpEquipments=" + pickedUpEquipments +
-                ", craftedAgents=" + craftedAgents +
-                ", learntCodes=" + learntCodes +
-                '}';
+        return (
+            "Inventory{" +
+            "maxResourceAmount=" +
+            maxResourceAmount +
+            ", virologist=" +
+            virologist +
+            ", resources=" +
+            resources +
+            ", pickedUpEquipments=" +
+            pickedUpEquipments +
+            ", craftedAgents=" +
+            craftedAgents +
+            ", learntCodes=" +
+            learntCodes +
+            '}'
+        );
     }
 
     /**

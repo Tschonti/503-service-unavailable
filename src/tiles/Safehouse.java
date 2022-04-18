@@ -1,10 +1,9 @@
 package tiles;
 
 import equipments.*;
+import java.util.Random;
 import main.Collectable;
 import main.Inventory;
-
-import java.util.Random;
 
 /**
  * A safehouse tile where players can pick up equipments.

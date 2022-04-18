@@ -5,11 +5,10 @@ import equipments.Axe;
 import equipments.Bag;
 import equipments.Glove;
 import equipments.ProtectiveCloak;
-import tiles.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import tiles.*;
 
 /**
  * The map of the game.
@@ -91,43 +90,180 @@ public class Map {
         HashMap<Integer, ArrayList<Tile>> borders = new HashMap<>();
         borders.put(0, new ArrayList<>(Arrays.asList(tiles[23], tiles[42], tiles[25], tiles[14])));
         borders.put(1, new ArrayList<>(Arrays.asList(tiles[12], tiles[35])));
-        borders.put(2, new ArrayList<>(Arrays.asList(tiles[15], tiles[33], tiles[8], tiles[13], tiles[37], tiles[18], tiles[16], tiles[33])));
-        borders.put(3, new ArrayList<>(Arrays.asList(tiles[30], tiles[17], tiles[19], tiles[27], tiles[38])));
+        borders.put(
+            2,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[15],
+                    tiles[33],
+                    tiles[8],
+                    tiles[13],
+                    tiles[37],
+                    tiles[18],
+                    tiles[16],
+                    tiles[33]
+                )
+            )
+        );
+        borders.put(
+            3,
+            new ArrayList<>(Arrays.asList(tiles[30], tiles[17], tiles[19], tiles[27], tiles[38]))
+        );
         borders.put(4, new ArrayList<>(Arrays.asList(tiles[24], tiles[12], tiles[20], tiles[13])));
         borders.put(5, new ArrayList<>(Arrays.asList(tiles[32], tiles[23], tiles[7])));
         borders.put(6, new ArrayList<>(Arrays.asList(tiles[14], tiles[25], tiles[32], tiles[29])));
-        borders.put(7, new ArrayList<>(Arrays.asList(tiles[32], tiles[5], tiles[23], tiles[34], tiles[15])));
+        borders.put(
+            7,
+            new ArrayList<>(Arrays.asList(tiles[32], tiles[5], tiles[23], tiles[34], tiles[15]))
+        );
         borders.put(8, new ArrayList<>(Arrays.asList(tiles[27], tiles[33], tiles[2], tiles[13])));
         borders.put(9, new ArrayList<>(Arrays.asList(tiles[36], tiles[13])));
         borders.put(10, new ArrayList<>(Arrays.asList(tiles[30], tiles[17])));
         borders.put(11, new ArrayList<>(Arrays.asList(tiles[30], tiles[36], tiles[26])));
-        borders.put(12, new ArrayList<>(Arrays.asList(tiles[4], tiles[20], tiles[13], tiles[37], tiles[16], tiles[22], tiles[35], tiles[1], tiles[41])));
-        borders.put(13, new ArrayList<>(Arrays.asList(tiles[27], tiles[8], tiles[2], tiles[37], tiles[12], tiles[20], tiles[4], tiles[24], tiles[9])));
+        borders.put(
+            12,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[4],
+                    tiles[20],
+                    tiles[13],
+                    tiles[37],
+                    tiles[16],
+                    tiles[22],
+                    tiles[35],
+                    tiles[1],
+                    tiles[41]
+                )
+            )
+        );
+        borders.put(
+            13,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[27],
+                    tiles[8],
+                    tiles[2],
+                    tiles[37],
+                    tiles[12],
+                    tiles[20],
+                    tiles[4],
+                    tiles[24],
+                    tiles[9]
+                )
+            )
+        );
         borders.put(14, new ArrayList<>(Arrays.asList(tiles[0], tiles[25], tiles[6])));
-        borders.put(15, new ArrayList<>(Arrays.asList(tiles[38], tiles[29], tiles[32], tiles[7], tiles[34], tiles[2], tiles[33])));
-        borders.put(16, new ArrayList<>(Arrays.asList(tiles[34], tiles[31], tiles[39], tiles[12], tiles[37], tiles[2])));
+        borders.put(
+            15,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[38],
+                    tiles[29],
+                    tiles[32],
+                    tiles[7],
+                    tiles[34],
+                    tiles[2],
+                    tiles[33]
+                )
+            )
+        );
+        borders.put(
+            16,
+            new ArrayList<>(
+                Arrays.asList(tiles[34], tiles[31], tiles[39], tiles[12], tiles[37], tiles[2])
+            )
+        );
         borders.put(17, new ArrayList<>(Arrays.asList(tiles[30], tiles[19], tiles[10])));
         borders.put(18, new ArrayList<>(Arrays.asList(tiles[2], tiles[37])));
         borders.put(19, new ArrayList<>(Arrays.asList(tiles[3], tiles[27], tiles[30], tiles[17])));
         borders.put(20, new ArrayList<>(Arrays.asList(tiles[13], tiles[12], tiles[4])));
         borders.put(21, new ArrayList<>(Arrays.asList(tiles[38], tiles[29])));
         borders.put(22, new ArrayList<>(Arrays.asList(tiles[12])));
-        borders.put(23, new ArrayList<>(Arrays.asList(tiles[32], tiles[42], tiles[0], tiles[7], tiles[5])));
+        borders.put(
+            23,
+            new ArrayList<>(Arrays.asList(tiles[32], tiles[42], tiles[0], tiles[7], tiles[5]))
+        );
         borders.put(24, new ArrayList<>(Arrays.asList(tiles[13], tiles[4])));
-        borders.put(25, new ArrayList<>(Arrays.asList(tiles[6], tiles[14], tiles[0], tiles[42], tiles[32])));
+        borders.put(
+            25,
+            new ArrayList<>(Arrays.asList(tiles[6], tiles[14], tiles[0], tiles[42], tiles[32]))
+        );
         borders.put(26, new ArrayList<>(Arrays.asList(tiles[30], tiles[11], tiles[36])));
-        borders.put(27, new ArrayList<>(Arrays.asList(tiles[19], tiles[3], tiles[38], tiles[33], tiles[8], tiles[13], tiles[30])));
+        borders.put(
+            27,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[19],
+                    tiles[3],
+                    tiles[38],
+                    tiles[33],
+                    tiles[8],
+                    tiles[13],
+                    tiles[30]
+                )
+            )
+        );
         borders.put(28, new ArrayList<>(Arrays.asList(tiles[35])));
-        borders.put(29, new ArrayList<>(Arrays.asList(tiles[21], tiles[38], tiles[6], tiles[32], tiles[15])));
-        borders.put(30, new ArrayList<>(Arrays.asList(tiles[38], tiles[3], tiles[19], tiles[27], tiles[17], tiles[10], tiles[11], tiles[26])));
+        borders.put(
+            29,
+            new ArrayList<>(Arrays.asList(tiles[21], tiles[38], tiles[6], tiles[32], tiles[15]))
+        );
+        borders.put(
+            30,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[38],
+                    tiles[3],
+                    tiles[19],
+                    tiles[27],
+                    tiles[17],
+                    tiles[10],
+                    tiles[11],
+                    tiles[26]
+                )
+            )
+        );
         borders.put(31, new ArrayList<>(Arrays.asList(tiles[16])));
-        borders.put(32, new ArrayList<>(Arrays.asList(tiles[29], tiles[6], tiles[25], tiles[42], tiles[23], tiles[5], tiles[7], tiles[15])));
-        borders.put(33, new ArrayList<>(Arrays.asList(tiles[38], tiles[15], tiles[2], tiles[8], tiles[27])));
+        borders.put(
+            32,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[29],
+                    tiles[6],
+                    tiles[25],
+                    tiles[42],
+                    tiles[23],
+                    tiles[5],
+                    tiles[7],
+                    tiles[15]
+                )
+            )
+        );
+        borders.put(
+            33,
+            new ArrayList<>(Arrays.asList(tiles[38], tiles[15], tiles[2], tiles[8], tiles[27]))
+        );
         borders.put(34, new ArrayList<>(Arrays.asList(tiles[15], tiles[7], tiles[16], tiles[2])));
         borders.put(35, new ArrayList<>(Arrays.asList(tiles[28], tiles[12], tiles[1])));
         borders.put(36, new ArrayList<>(Arrays.asList(tiles[11], tiles[9], tiles[26])));
-        borders.put(37, new ArrayList<>(Arrays.asList(tiles[2], tiles[18], tiles[16], tiles[12], tiles[13])));
-        borders.put(38, new ArrayList<>(Arrays.asList(tiles[30], tiles[21], tiles[29], tiles[15], tiles[33], tiles[27], tiles[3])));
+        borders.put(
+            37,
+            new ArrayList<>(Arrays.asList(tiles[2], tiles[18], tiles[16], tiles[12], tiles[13]))
+        );
+        borders.put(
+            38,
+            new ArrayList<>(
+                Arrays.asList(
+                    tiles[30],
+                    tiles[21],
+                    tiles[29],
+                    tiles[15],
+                    tiles[33],
+                    tiles[27],
+                    tiles[3]
+                )
+            )
+        );
         borders.put(39, new ArrayList<>(Arrays.asList(tiles[16])));
         borders.put(40, new ArrayList<>(Arrays.asList(tiles[41])));
         borders.put(41, new ArrayList<>(Arrays.asList(tiles[12], tiles[40])));
@@ -141,7 +277,7 @@ public class Map {
 
     Tile getTile(String name) {
         for (Tile tile : tiles) {
-            if(tile.getName().equalsIgnoreCase(name)) {
+            if (tile.getName().equalsIgnoreCase(name)) {
                 return tile;
             }
         }

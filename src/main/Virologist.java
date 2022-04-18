@@ -2,9 +2,8 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
-import tiles.Tile;
-
 import java.util.ArrayList;
+import tiles.Tile;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
@@ -152,7 +151,6 @@ public class Virologist {
                 r.removeAmount(r.getAmount() - maxAmount);
             }
         }
-
     }
 
     /**

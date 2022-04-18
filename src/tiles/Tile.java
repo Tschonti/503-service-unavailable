@@ -1,13 +1,12 @@
 package tiles;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import main.Collectable;
 import main.Effect;
 import main.Inventory;
 import main.Virologist;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Abstract class for the fields of the game.
@@ -50,9 +49,10 @@ public abstract class Tile {
      * @return Virologists that can be robbed.
      */
     public List<Virologist> getPlayersToStealFrom() {
-        return players.stream()
-                .filter(player -> player.getActiveEffects().stream().anyMatch(Effect::allowStealing))
-                .collect(Collectors.toList());
+        return players
+            .stream()
+            .filter(player -> player.getActiveEffects().stream().anyMatch(Effect::allowStealing))
+            .collect(Collectors.toList());
     }
 
     /**

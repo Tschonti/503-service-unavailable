@@ -3,9 +3,8 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import tiles.Tile;
-
 import java.util.ArrayList;
+import tiles.Tile;
 
 /**
  * It's responsible for controlling the game.
@@ -57,11 +56,11 @@ public class Controller {
      */
     public void gameLoop() {
         endOfGame = players.isEmpty();
-        while(!endOfGame) {
+        while (!endOfGame) {
             for (Virologist player : players) {
                 activePlayer = player;
                 activePlayer.startTurn();
-                while (activePlayer.getActionsLeft() > 0)  {
+                while (activePlayer.getActionsLeft() > 0) {
                     view.chooseAction();
                     if (endOfGame) {
                         break;
@@ -86,7 +85,7 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        if(v.getInventory().getLearntCodes().size() == codes.length - 1) { //TODO az a -1 csak a medve miatt van
+        if (v.getInventory().getLearntCodes().size() == codes.length - 1) { //TODO az a -1 csak a medve miatt van
             endOfGame = true;
             isWinner = true;
         }
@@ -116,7 +115,6 @@ public class Controller {
         }
         throw new IllegalArgumentException("There is no tile called " + name);
     }
-
 
     //**********************************command functions**********************************
     /**
@@ -169,7 +167,9 @@ public class Controller {
             if (activePlayer.getNearbyVirologists().contains(v)) {
                 activePlayer.useAgent(agent, v);
             } else {
-                throw new IllegalArgumentException("You can't use this agent on " + v.getName() + "!");
+                throw new IllegalArgumentException(
+                    "You can't use this agent on " + v.getName() + "!"
+                );
             }
         } else {
             throw new IllegalArgumentException("You don't have this agent!");
@@ -181,7 +181,9 @@ public class Controller {
             if (activePlayer.getNearbyVirologists().contains(v)) {
                 ue.use(activePlayer, v);
             } else {
-                throw new IllegalArgumentException("You can't use this UsableEquipment on " + v.getName() + "!");
+                throw new IllegalArgumentException(
+                    "You can't use this UsableEquipment on " + v.getName() + "!"
+                );
             }
         } else {
             throw new IllegalArgumentException("You don't have this UsableEquipment!");
@@ -192,7 +194,7 @@ public class Controller {
         if (v.getNearbyVirologistsToStealFrom().contains(v)) {
             activePlayer.steal(v, eq);
         } else {
-            throw new IllegalArgumentException("You can't steal from " + v.getName() +"!");
+            throw new IllegalArgumentException("You can't steal from " + v.getName() + "!");
         }
     }
 
@@ -218,7 +220,7 @@ public class Controller {
         System.exit(0);
     }
 
-    public Virologist getActivePlayer(){
+    public Virologist getActivePlayer() {
         return activePlayer;
     }
 

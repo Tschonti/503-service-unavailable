@@ -28,17 +28,22 @@ public class OutputGenerator {
 
     public static String generateVirologistsOnTile(Virologist v) {
         StringBuilder s = new StringBuilder("Virologists on the same Tile:\n");
-        v.getActiveTile().getPlayers().forEach(vir -> {
-            if (vir != v) {
-                s.append("\t").append(vir.getName()).append("\n");
-            }
-        });
+        v
+            .getActiveTile()
+            .getPlayers()
+            .forEach(vir -> {
+                if (vir != v) {
+                    s.append("\t").append(vir.getName()).append("\n");
+                }
+            });
         return s.toString();
     }
 
     public static String generateStunnedVirologists(Virologist v) {
         StringBuilder s = new StringBuilder("Stunned Virologists:\n");
-        v.getNearbyVirologistsToStealFrom().forEach(vir -> s.append("\t").append(vir.getName()).append("\n"));
+        v
+            .getNearbyVirologistsToStealFrom()
+            .forEach(vir -> s.append("\t").append(vir.getName()).append("\n"));
         return s.toString();
     }
 
@@ -53,10 +58,17 @@ public class OutputGenerator {
 
     public static String generateResources(Virologist v) {
         StringBuilder s = new StringBuilder("Resources:\n");
-        v.getInventory().getResources().forEach(r ->
-                s.append("\t").append(r).append("/")
-                .append(v.getInventory().getMaxResourceAmount()).append("\n")
-        );
+        v
+            .getInventory()
+            .getResources()
+            .forEach(r ->
+                s
+                    .append("\t")
+                    .append(r)
+                    .append("/")
+                    .append(v.getInventory().getMaxResourceAmount())
+                    .append("\n")
+            );
         return s.toString();
     }
 
@@ -84,7 +96,6 @@ public class OutputGenerator {
         v.getActiveEffects().forEach(e -> s.append("\t").append(e).append("\n"));
         return s.toString();
     }
-
 
     public interface TileInfoItem {
         String generate(Tile t);

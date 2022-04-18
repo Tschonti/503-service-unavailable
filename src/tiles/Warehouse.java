@@ -1,11 +1,10 @@
 package tiles;
 
+import java.util.ArrayList;
 import main.Collectable;
 import main.Inventory;
 import main.Resource;
 import main.ResourceType;
-
-import java.util.ArrayList;
 
 /**
  * Warehouse field where virologists can pick up resources.
@@ -47,7 +46,6 @@ public class Warehouse extends Tile {
     public Collectable getCollectableItem() {
         return collectable;
     }
-
 
     /**
      * A method to destroy the collectable of the tile.

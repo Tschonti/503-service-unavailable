@@ -13,7 +13,7 @@ public class Glove extends Equipment {
      * Constructor
      */
     public Glove() {
-        usesLeft=3;
+        usesLeft = 3;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Glove extends Equipment {
         to.removeEffect(agent);
         from.addEffect(agent);
         durabilityDecreases();
-        if(usesLeft==0){
+        if (usesLeft == 0) {
             to.getInventory().removeEquipment(this);
         }
     }
@@ -42,6 +42,6 @@ public class Glove extends Equipment {
 
     @Override
     public String toString() {
-        return "Glove: "+ usesLeft +" uses left";
+        return "Glove: " + usesLeft + " uses left";
     }
 }

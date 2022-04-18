@@ -23,7 +23,7 @@ public class ProtectiveCloak extends Equipment {
      * @param to The Virologist, who gets thrown.
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
-        if(SRandom.nextRandom(1000)<823) {
+        if (SRandom.nextRandom(1000) < 823) {
             to.removeEffect(agent);
         }
     }

@@ -1,0 +1,4 @@
+add v1 Greece
+add v2 Greece
+start
+steal v2

@@ -1,11 +1,10 @@
 package agents;
 
+import java.util.ArrayList;
+import java.util.Random;
 import main.SRandom;
 import main.Virologist;
 import tiles.Tile;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
@@ -43,7 +42,7 @@ public class VitusDanceVirus extends Agent {
      * @param to the Virologist that is affected.
      */
     public void onTurnImpact(Virologist to) {
-        while(to.getActionsLeft() != 0) {
+        while (to.getActionsLeft() != 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
             to.moveTo(neighbours.get(new SRandom().nextRandom(neighbours.size() - 1)));
         }

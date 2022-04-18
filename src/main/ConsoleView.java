@@ -3,15 +3,15 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import tiles.Tile;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import tiles.Tile;
 
 public class ConsoleView implements View {
+
     static Controller controller;
     private final HashMap<String, Command> menu;
     private final HashMap<String, Command> actions;
@@ -19,28 +19,35 @@ public class ConsoleView implements View {
     private static final Scanner scanner = new Scanner(System.in);
     private boolean quitMenu = false;
     private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
-            OutputGenerator::generateName, OutputGenerator::generateActionsLeft,
-            OutputGenerator::generateTile, OutputGenerator::generateNeighbours ,
-            OutputGenerator::generateVirologistsOnTile, OutputGenerator::generateStunnedVirologists,
-            OutputGenerator::generateCollectable, OutputGenerator::generateResources,
-            OutputGenerator::generateGeneticCodes, OutputGenerator::generateUsables,
-            OutputGenerator::generateEquipments, OutputGenerator::generateEffects
+        OutputGenerator::generateName,
+        OutputGenerator::generateActionsLeft,
+        OutputGenerator::generateTile,
+        OutputGenerator::generateNeighbours,
+        OutputGenerator::generateVirologistsOnTile,
+        OutputGenerator::generateStunnedVirologists,
+        OutputGenerator::generateCollectable,
+        OutputGenerator::generateResources,
+        OutputGenerator::generateGeneticCodes,
+        OutputGenerator::generateUsables,
+        OutputGenerator::generateEquipments,
+        OutputGenerator::generateEffects,
     };
     private static final OutputGenerator.TileInfoItem[] tileInfoItems = {
-            OutputGenerator::generateName, OutputGenerator::generateID,
-            OutputGenerator::generateType, OutputGenerator::generateNeighbours,
-            OutputGenerator::generateCollectable
+        OutputGenerator::generateName,
+        OutputGenerator::generateID,
+        OutputGenerator::generateType,
+        OutputGenerator::generateNeighbours,
+        OutputGenerator::generateCollectable,
     };
 
-
-    public ConsoleView(){
+    public ConsoleView() {
         controller = new Controller(this);
-        menu=new HashMap<>();
+        menu = new HashMap<>();
         menu.put("start", controller::gameLoop);
         menu.put("add", ConsoleView::add);
-        menu.put("quit", ()->quitMenu=true);
+        menu.put("quit", () -> quitMenu = true);
 
-        actions=new HashMap<>();
+        actions = new HashMap<>();
         actions.put("collect", ConsoleView::collect);
         actions.put("move", ConsoleView::move);
         actions.put("use", ConsoleView::use);
@@ -49,7 +56,7 @@ public class ConsoleView implements View {
         actions.put("drop", ConsoleView::drop);
         actions.put("pass", ConsoleView::pass);
         actions.put("info", ConsoleView::info);
-        if(Main.getDebugMode()){
+        if (Main.getDebugMode()) {
             actions.put("setnextrandom", ConsoleView::setNextRandom);
         }
         actions.put("end", controller::endGame);
@@ -64,7 +71,7 @@ public class ConsoleView implements View {
     }
 
     public void menu() {
-        while(!quitMenu){
+        while (!quitMenu) {
             writeMenu();
             try {
                 getNextLine();
@@ -72,11 +79,10 @@ public class ConsoleView implements View {
                 if (toRun != null) {
                     toRun.run();
                 }
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     public void writeMenu() {
@@ -95,7 +101,7 @@ public class ConsoleView implements View {
     }
 
     public void chooseAction() {
-        while(true){
+        while (true) {
             try {
                 getNextLine();
                 Command toRun = actions.get(commandList[0]);
@@ -103,7 +109,7 @@ public class ConsoleView implements View {
                     toRun.run();
                     break;
                 }
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -136,7 +142,7 @@ public class ConsoleView implements View {
     public static void add() {
         parameterCountCheck(2, 3);
         Virologist virologist = new Virologist(commandList[1]);
-        if(commandList.length==3){
+        if (commandList.length == 3) {
             controller.addPlayer(virologist, commandList[2]);
         } else {
             controller.addPlayer(virologist, "Hungary");
@@ -149,7 +155,7 @@ public class ConsoleView implements View {
 
     private static void move() {
         parameterCountCheck(2, 2);
-        Tile tile=controller.getTileByName(commandList[1]);
+        Tile tile = controller.getTileByName(commandList[1]);
         controller.move(tile);
     }
 
@@ -158,14 +164,14 @@ public class ConsoleView implements View {
         Virologist to = controller.getPlayerByName(commandList[2]);
         Inventory fromInv = controller.getActivePlayer().getInventory();
 
-        for (Agent agent: fromInv.getCraftedAgents()){
-            if(agent.toString().toLowerCase().contains(commandList[1])){
+        for (Agent agent : fromInv.getCraftedAgents()) {
+            if (agent.toString().toLowerCase().contains(commandList[1])) {
                 controller.use(agent, to);
                 return;
             }
         }
-        for (UsableEquipment ue: fromInv.getUsableEquipments()) {
-            if(ue.toString().contains(commandList[1])){
+        for (UsableEquipment ue : fromInv.getUsableEquipments()) {
+            if (ue.toString().contains(commandList[1])) {
                 controller.use(ue, to);
                 return;
             }
@@ -173,10 +179,13 @@ public class ConsoleView implements View {
         throw new IllegalArgumentException("Invalid agent or equipment!");
     }
 
-    private static void craft(){
+    private static void craft() {
         parameterCountCheck(2, 2);
-        for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()){
-            if(geneticCode.getAgent().toString().contains(commandList[1])){
+        for (GeneticCode geneticCode : controller
+            .getActivePlayer()
+            .getInventory()
+            .getLearntCodes()) {
+            if (geneticCode.getAgent().toString().contains(commandList[1])) {
                 controller.craft(geneticCode);
                 return;
             }
@@ -184,21 +193,24 @@ public class ConsoleView implements View {
         throw new IllegalArgumentException("Invalid agent!");
     }
 
-    private static void steal(){
+    private static void steal() {
         parameterCountCheck(2, 2);
         Virologist to = controller.getPlayerByName(commandList[1]);
         ArrayList<Equipment> eqs = to.getInventory().getEquipments();
         Equipment toSteal = null;
         if (eqs.size() != 0) {
-            toSteal = eqs.get(chooseOption(eqs.stream().map(Object::toString).collect(Collectors.toList())));
+            toSteal =
+                eqs.get(
+                    chooseOption(eqs.stream().map(Object::toString).collect(Collectors.toList()))
+                );
         }
         controller.steal(to, toSteal);
     }
 
-    private static void drop(){
+    private static void drop() {
         parameterCountCheck(2, 2);
-        for(Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()){
-            if(equipment.toString().contains(commandList[1])){
+        for (Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()) {
+            if (equipment.toString().contains(commandList[1])) {
                 controller.drop(equipment);
                 return;
             }
@@ -210,30 +222,29 @@ public class ConsoleView implements View {
         controller.pass();
     }
 
-    private static void info(){
-        int i=1;
-        boolean setObject=false;
-        Virologist virologist=null;
+    private static void info() {
+        int i = 1;
+        boolean setObject = false;
+        Virologist virologist = null;
         Tile tile = null;
-        ArrayList<Integer> numbers=new ArrayList<>();
-        while(i<commandList.length){
-            if(commandList[i].equals("--o")){
-                setObject=true;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        while (i < commandList.length) {
+            if (commandList[i].equals("--o")) {
+                setObject = true;
                 try {
-                    virologist=controller.getPlayerByName(commandList[++i]);
+                    virologist = controller.getPlayerByName(commandList[++i]);
                 } catch (IllegalArgumentException e) {
-                    tile=controller.getTileByName(commandList[i]);
+                    tile = controller.getTileByName(commandList[i]);
                 }
-            }
-            else if(commandList[i].equals("--n")){
-                while(++i<commandList.length && !commandList[i].contains("--")){
+            } else if (commandList[i].equals("--n")) {
+                while (++i < commandList.length && !commandList[i].contains("--")) {
                     numbers.add(Integer.parseInt(commandList[i]));
                 }
             }
             i++;
         }
 
-        if(!setObject){
+        if (!setObject) {
             virologist = controller.getActivePlayer();
         }
 
@@ -241,7 +252,7 @@ public class ConsoleView implements View {
         if (virologist != null) {
             Virologist finalVirologist = virologist;
             if (numbers.size() == 0) {
-                for (int j = 1; j < 13; j++ ) {
+                for (int j = 1; j < 13; j++) {
                     numbers.add(j);
                 }
             }
@@ -254,7 +265,7 @@ public class ConsoleView implements View {
         } else {
             Tile finalTile = tile;
             if (numbers.size() == 0) {
-                for (int j = 1; j < 6; j++ ) {
+                for (int j = 1; j < 6; j++) {
                     numbers.add(j);
                 }
             }
@@ -268,16 +279,16 @@ public class ConsoleView implements View {
         System.out.print(output);
     }
 
-    private static void setNextRandom(){
+    private static void setNextRandom() {
         parameterCountCheck(2, 2);
         SRandom.add(Integer.parseInt(commandList[1]));
     }
 
     private static void parameterCountCheck(int min, int max) {
-        if (commandList.length > max){
+        if (commandList.length > max) {
             throw new IllegalArgumentException("Too many arguments");
         }
-        if (commandList.length < min){
+        if (commandList.length < min) {
             throw new IllegalArgumentException("Not enough arguments");
         }
     }
@@ -292,7 +303,4 @@ public class ConsoleView implements View {
             System.exit(0);
         }
     }
-
 }
-
-

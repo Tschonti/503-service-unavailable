@@ -1,0 +1,55 @@
+Name: 
+	v1 
+Tile:  
+	Greece
+Name: 
+	v1 
+Tile:  
+	Bulgaria
+Genetic codes: 
+	StunVirus 50 Nucleotide
+Name: 
+	v2 
+Equipments: 
+	Glove
+Effects: 
+	Glove
+Name: 
+	v1
+Resources: 
+	AminoAcid 100/150
+	Nucleotide 50/150
+Usables: 
+	StunVirus 3
+Name: 
+	v1 
+Actions left: 
+	1/2
+Stunned Virologists: 
+	v2
+Usables: 
+Name: 
+	v2
+Effects: 
+	StunVirus 3
+Choose one:
+1.	Glove
+2.	Bag
+Name: 
+	v1
+Resources: 
+	AminoAcid 150/150 
+	Nucleotide 50/150
+Equipments: 
+	Glove 
+ Effects: 
+	Glove
+Name: 
+	v2
+Resources: 
+	AminoAcid 50/150 
+	Nucleotide 0/150 
+Equipments: 
+	Bag 
+ Effects: 
+	Bag

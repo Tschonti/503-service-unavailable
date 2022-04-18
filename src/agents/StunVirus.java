@@ -42,6 +42,7 @@ public class StunVirus extends Agent {
             to.pass();
         }
     }
+
     @Override
     public boolean allowStealing() {
         return true;

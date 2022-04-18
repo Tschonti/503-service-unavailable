@@ -62,9 +62,10 @@ public abstract class Equipment implements Effect, Collectable {
     /**
      * Decreases the value of the usesLeft variable.
      */
-    public void durabilityDecreases(){
+    public void durabilityDecreases() {
         usesLeft--;
     }
+
     /**
      * Creates a new standard Equipment and returns it.
      * @return The new Equipment.

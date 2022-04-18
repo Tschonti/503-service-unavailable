@@ -40,5 +40,4 @@ public class AmnesiaVirus extends Agent {
     public void onTurnImpact(Virologist to) {
         to.getInventory().getLearntCodes().clear();
     }
-
 }

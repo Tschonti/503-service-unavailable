@@ -5,6 +5,7 @@ import main.GeneticCode;
 import main.Virologist;
 
 public class InfectedLaboratory extends Laboratory {
+
     /**
      * The Agent that infects everyone who moves to this tile.
      */
