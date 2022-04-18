@@ -172,7 +172,11 @@ public class ConsoleView implements View {
         parameterCountCheck(2, 2);
         Virologist to = controller.getPlayerByName(commandList[1]);
         ArrayList<Equipment> eqs = to.getInventory().getEquipments();
-        controller.steal(to, eqs.get(chooseOption(eqs.stream().map(Object::toString).collect(Collectors.toList()))));
+        Equipment toSteal = null;
+        if (eqs.size() != 0) {
+            toSteal = eqs.get(chooseOption(eqs.stream().map(Object::toString).collect(Collectors.toList())));
+        }
+        controller.steal(to, toSteal);
     }
 
     private static void drop(){
