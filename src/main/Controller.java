@@ -86,7 +86,7 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        if(v.getInventory().getLearntCodes().size() == codes.length - 1) {
+        if(v.getInventory().getLearntCodes().size() == codes.length - 1) { //TODO az a -1 csak a medve miatt van
             endOfGame = true;
             isWinner = true;
         }
@@ -124,16 +124,17 @@ public class Controller {
      * @param v The new player.
      */
     public void addPlayer(Virologist v, String tileName) {
-        if (players.contains(v)) {
-            throw new IllegalArgumentException("Player is already in the game!");
+        String existsMessage = "Player with that name already exists!";
+        try {
+            getPlayerByName(v.getName());
+            throw new IllegalArgumentException(existsMessage);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().equals(existsMessage)) {
+                throw e;
+            }
         }
-
-        Tile tile = map.getTile(tileName);
-        if (tile != null) {
-            tile.addVirologist(v);
-        } else {
-            throw new IllegalArgumentException("Tile doesn't exist!");
-        }
+        Tile tile = getTileByName(tileName);
+        tile.addVirologist(v);
         players.add(v);
         v.setActiveTile(tile);
     }

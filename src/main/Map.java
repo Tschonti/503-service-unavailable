@@ -141,7 +141,7 @@ public class Map {
 
     Tile getTile(String name) {
         for (Tile tile : tiles) {
-            if(tile.getName().toLowerCase().equals(name.toLowerCase())) {
+            if(tile.getName().equalsIgnoreCase(name)) {
                 return tile;
             }
         }

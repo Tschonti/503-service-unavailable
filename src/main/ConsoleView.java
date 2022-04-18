@@ -52,8 +52,8 @@ public class ConsoleView implements View {
         if(Main.getDebugMode()){
             actions.put("setnextrandom", ConsoleView::setNextRandom);
         }
-        actions.put("end", controller::endGame);  //TODO lehet át kéne nevezni?
-        actions.put("quit", controller::quit);  //TODO lehet át kéne nevezni?
+        actions.put("end", controller::endGame);
+        actions.put("quit", controller::quit);
     }
 
     public interface Command {
@@ -139,7 +139,7 @@ public class ConsoleView implements View {
         if(commandList.length==3){
             controller.addPlayer(virologist, commandList[2]);
         } else {
-            controller.addPlayer(virologist, "Hungary");//TODO ez igy jo hogy fix mezore kerul?
+            controller.addPlayer(virologist, "Hungary");
         }
     }
 
