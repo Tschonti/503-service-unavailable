@@ -209,12 +209,11 @@ public class Inventory {
 
 
     public void addUsableEquipment(UsableEquipment usableEquipment) {
-        //TODO
-
+        usableEquipments.add(usableEquipment);
     }
 
     public void removeUsableEquipment(UsableEquipment usableEquipment){
-        //TODO
+        usableEquipments.remove(usableEquipment);
     }
 
     @Override

@@ -35,6 +35,8 @@ public class Controller {
 
     private boolean endOfGame;
 
+    private boolean isWinner;
+
     private final View view;
 
     /**
@@ -46,24 +48,37 @@ public class Controller {
         players = new ArrayList<>();
         codes = map.createMap();
         view = newView;
+        endOfGame = false;
+        isWinner = false;
     }
 
     /**
      *
      */
     public void gameLoop() {
+        endOfGame = players.isEmpty();
         while(!endOfGame) {
             for (Virologist player : players) {
                 activePlayer = player;
                 activePlayer.startTurn();
                 while (activePlayer.getActionsLeft() > 0)  {
                     view.chooseAction();
+                    if (endOfGame) {
+                        break;
+                    }
                 }
-                activePlayer.endTurn();
+                if (!endOfGame) {
+                    activePlayer.endTurn();
+                }
             }
         }
-
-        view.gameOver(activePlayer);
+        if (isWinner) {
+            view.gameOver(activePlayer);
+        }
+        activePlayer = null;
+        players.clear();
+        endOfGame = false;
+        isWinner = false;
     }
 
     /**
@@ -71,8 +86,9 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        if(v.getInventory().getLearntCodes().size() == codes.length) {
+        if(v.getInventory().getLearntCodes().size() == codes.length - 1) {
             endOfGame = true;
+            isWinner = true;
         }
     }
 
@@ -86,7 +102,7 @@ public class Controller {
 
     public Virologist getPlayerByName(String name) {
         for (Virologist player : players) {
-            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (player.getName().equalsIgnoreCase(name)) {
                 return player;
             }
         }
@@ -160,7 +176,15 @@ public class Controller {
     }
 
     public void use(UsableEquipment ue, Virologist v) {
-        //TODO előzőhöz hasonló, csak siker esetén meg kell ölni v-t
+        if (activePlayer.getInventory().getUsableEquipments().contains(ue)) {
+            if (activePlayer.getNearbyVirologists().contains(v)) {
+                ue.use(activePlayer, v);
+            } else {
+                throw new IllegalArgumentException("You can't use this UsableEquipment on " + v.getName() + "!");
+            }
+        } else {
+            throw new IllegalArgumentException("You don't have this UsableEquipment!");
+        }
     }
 
     public void steal(Virologist v, Equipment eq) {
@@ -185,14 +209,19 @@ public class Controller {
 
     public void endGame() {
         endOfGame = true;
+        isWinner = false;
         activePlayer = null;
     }
 
     public void quit() {
-        //TODO átnevezni, és ez force-quitteljen a gmaeLoopból valahogy
+        System.exit(0);
     }
 
     public Virologist getActivePlayer(){
         return activePlayer;
+    }
+
+    public ArrayList<Virologist> getPlayers() {
+        return players;
     }
 }

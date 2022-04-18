@@ -52,6 +52,7 @@ public class ConsoleView implements View {
         if(Main.getDebugMode()){
             actions.put("setnextrandom", ConsoleView::setNextRandom);
         }
+        actions.put("end", controller::endGame);  //TODO lehet át kéne nevezni?
         actions.put("quit", controller::quit);  //TODO lehet át kéne nevezni?
     }
 
@@ -64,6 +65,7 @@ public class ConsoleView implements View {
 
     public void menu() {
         while(!quitMenu){
+            writeMenu();
             try {
                 getNextLine();
                 Command toRun = menu.get(commandList[0]);
@@ -75,6 +77,21 @@ public class ConsoleView implements View {
             }
         }
 
+    }
+
+    public void writeMenu() {
+        System.out.println("--------MENU--------");
+        System.out.println("start");
+        System.out.println("add <player> (<tile>)");
+        System.out.println("quit");
+        System.out.println();
+        if (!controller.getPlayers().isEmpty()) {
+            System.out.println("Players in lobby:");
+            for (Virologist player : controller.getPlayers()) {
+                System.out.println("1. " + player.getName());
+            }
+            System.out.println();
+        }
     }
 
     public void chooseAction() {
@@ -121,8 +138,7 @@ public class ConsoleView implements View {
         Virologist virologist = new Virologist(commandList[1]);
         if(commandList.length==3){
             controller.addPlayer(virologist, commandList[2]);
-        }
-        else{
+        } else {
             controller.addPlayer(virologist, "Hungary");//TODO ez igy jo hogy fix mezore kerul?
         }
     }
