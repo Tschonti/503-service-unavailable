@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Virologist {
 
     /**
-     * The number of actions remaining in this round.
+     * The number of actions remaining in current round.
      */
     private int actionsLeft;
 
@@ -32,7 +32,7 @@ public class Virologist {
     private final Inventory inventory;
 
     /**
-     * The active effects are on this virologist.
+     * List of active effects are on this virologist.
      */
     private final ArrayList<Effect> activeEffects;
 
@@ -61,7 +61,7 @@ public class Virologist {
     }
 
     /**
-     * Remove an effect from the virologist's active effects.
+     * Removes an effect from the virologist's active effects.
      * @param effect Effect will be removed from the active effects.
      */
     public void removeEffect(Effect effect) {
@@ -76,28 +76,28 @@ public class Virologist {
     }
 
     /**
-     * All active effects do their impacts and decrement the lifetimes.
+     * This function is called before the virologist start it's round. It calls the active effects' impacts.
      */
-    public void myTurn() {
-        //active effects onTurnImpact
+    public void startTurn() {
         for (Effect e : activeEffects) {
             e.onTurnImpact(this);
         }
+    }
 
-        //active effects endTurnImpact
-        for (Effect e : activeEffects) {
-            e.endTurnImpact(this);
-        }
-
-        //active effects decrement
-        for (Effect e : activeEffects) {
-            e.decrement(this);
-        }
-
-        //active agents decrement
+    /**
+     * This function is called after the virologist finished with its round. It calls the decrement functions.
+     */
+    public void endTurn() {
+        //Call the crafted agents' decrement function
         ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
         for (Agent a : craftedAgents) {
             a.decrement(this);
+        }
+
+        //Active effects impact after the round and decrement their lifetime
+        for (Effect e : activeEffects) {
+            e.endTurnImpact(this);
+            e.decrement(this);
         }
     }
 
@@ -108,6 +108,7 @@ public class Virologist {
     public void moveTo(Tile newTile) {
         activeTile.removeVirologist(this);
         newTile.addVirologist(this);
+        activeTile = newTile;
         actionsLeft--;
     }
 
@@ -132,40 +133,34 @@ public class Virologist {
      * @param v Virologist to use the agent on.
      */
     public void useAgent(Agent agent, Virologist v) {
-        ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
-        ArrayList<String> craftedAgentsStr = new ArrayList<>();
-        for (Agent a : craftedAgents) {
-            craftedAgentsStr.add(a.toString());
-        }
-        int idxAgent = 0; //TODO, ez eddig kérdés volt
+        agent.use(this, v);
+    }
 
-        ArrayList<Virologist> nearbyVirologists = activeTile.getPlayers();
-        ArrayList<String> nearVirologistStr = new ArrayList<>();
-        for (Virologist vir : nearbyVirologists) {
-            nearVirologistStr.add(vir.getName());
-        }
-        int idxPlayer = 0; //TODO, ez eddig kérdés volt
+    /**
+     * Virologist drop its equipment.
+     * @param eq Equipment that will be removed.
+     */
+    public void drop(Equipment eq) {
+        inventory.removeEquipment(eq);
 
-        craftedAgents.get(idxAgent).use(this, nearbyVirologists.get(idxPlayer));
+        //If a bag was dropped we have to recalculate the resource amounts.
+        ArrayList<Resource> resources = inventory.getResources();
+        int maxAmount = inventory.getMaxResourceAmount();
+        for (Resource r : resources) {
+            if (r.getAmount() > maxAmount) {
+                r.removeAmount(r.getAmount() - maxAmount);
+            }
+        }
+
     }
 
     /**
      * Steal from another Virologist.
      * @param v Virologist to steal from.
      */
-    public void steal(Virologist v) {
+    public void steal(Virologist v, Equipment eq) {
         Inventory inv = v.getInventory();
-        if (true) { //TODO, kérdések voltak
-            ArrayList<Equipment> equipments = inv.getEquipments();
-            /*ArrayList<String> equipmentsString = new ArrayList<>();
-            for (Equipment e : equipments) {
-                equipmentsString.add(OutputObject.objectToName(e));
-            }*/
-            int result = 0; //TODO, ez eddig kérdés volt
-            inventory.steal(inv, equipments.get(result));
-        } else {
-            inventory.steal(inv, null);
-        }
+        inventory.steal(inv, eq);
     }
 
     /**
@@ -205,9 +200,9 @@ public class Virologist {
      * @return Virologists that this virologist can touch.
      */
     public ArrayList<Virologist> getNearbyVirologists() {
-        //Virologist remove itself from the list. A new list is needed because of the reference
+        //Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
-        result.remove(this);
+        //result.remove(this); //TODO: szerintem mégse vegye ki itt saját magát. Ha itt megjelenik saját maga is, akkor tud magára is kenni cuccot
 
         return result;
     }
@@ -217,7 +212,7 @@ public class Virologist {
      * @return Virologists that this virologist can steal from.
      */
     public ArrayList<Virologist> getNearbyVirologistsToStealFrom() {
-        //Virologist remove itself from the list. A new list is needed because of the reference
+        //Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayersToStealFrom());
         result.remove(this);
 
@@ -281,6 +276,14 @@ public class Virologist {
     }
 
     /**
+     * Returns with a string that describes this virologist.
+     * @return Virologist's unique name
+     */
+    public String toString() {
+        return name;
+    }
+
+    /**
      * Setter for the static controller.
      * @param controller The main controller of the game.
      */
@@ -288,19 +291,10 @@ public class Virologist {
         Virologist.controller = controller;
     }
 
-
-    public void drop(Equipment eq) {
-        //TODO
-    }
-
-    public void startTurn() {
-        //TODO
-    }
-
-    public void endTurn() {
-        //TODO
-    }
-
+    /**
+     * Getter for the static controller
+     * @return The main controller of the game
+     */
     public static Controller getController() {
         return controller;
     }

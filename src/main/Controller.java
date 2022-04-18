@@ -159,9 +159,9 @@ public class Controller {
         }
     }
 
-    public void steal(Virologist v) {
+    public void steal(Virologist v, Equipment eq) { //TODO: meg kell kapnia, hogy mit lopjon, beirtam ide
         if (v.getNearbyVirologistsToStealFrom().contains(v)) {
-            activePlayer.steal(v);
+            activePlayer.steal(v, eq);
         } else {
             throw new IllegalArgumentException("You can't steal from " + v.getName() +"!");
         }
