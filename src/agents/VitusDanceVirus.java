@@ -1,5 +1,6 @@
 package agents;
 
+import main.SRandom;
 import main.Virologist;
 import tiles.Tile;
 
@@ -42,12 +43,9 @@ public class VitusDanceVirus extends Agent {
      * @param to the Virologist that is affected.
      */
     public void onTurnImpact(Virologist to) {
-        while (to.getActionsLeft() > 0) {
-            ArrayList<Tile> tileList = to.getActiveTile().getNeighbours();
-            Random r = new Random();
-            int randomInt = tileList.size() == 1 ? 0 : r.nextInt(tileList.size() - 1);
-            Tile randomTile = tileList.get(randomInt);
-            to.moveTo(randomTile);
+        while(to.getActionsLeft() != 0) {
+            ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
+            to.moveTo(neighbours.get(new SRandom().nextRandom(neighbours.size() - 1)));
         }
     }
 }
