@@ -96,4 +96,6 @@ public abstract class Agent implements Effect {
             v.removeEffect(this);
         }
     }
+
+    public void infect(Virologist v) {}
 }
