@@ -1,0 +1,25 @@
+Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the
+outbreak and cure your fellow humans. Be aware! There are other Virologists among you 
+that are not so friendly and attack you in humanity's last hours!
+Save our world, mighty traveller!
+Name:
+	v1
+Tile:
+	Albania
+You can't move to this tile!
+You can't move to this tile!
+You can't move to this tile!
+Name:
+	v1
+Tile:
+	Montenegro
+Genetic codes:
+For input string: "12	"
+You can't move to this tile!
+Invalid agent!
+Name:
+	v1
+Resources:
+	AminoAcid: 0/0
+	Nucleotide: 0/0
+Usables:

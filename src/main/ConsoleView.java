@@ -13,12 +13,11 @@ import java.util.stream.Collectors;
 
 public class ConsoleView implements View {
     static Controller controller;
-    private HashMap<String, Command> menu;
-    private HashMap<String, Command> actions;
+    private final HashMap<String, Command> menu;
+    private final HashMap<String, Command> actions;
     private static String[] commandList;
     private static final Scanner scanner = new Scanner(System.in);
     private boolean quitMenu = false;
-    private boolean quitGame = false;
     private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
             OutputGenerator::generateName, OutputGenerator::generateActionsLeft,
             OutputGenerator::generateTile, OutputGenerator::generateNeighbours ,
@@ -67,8 +66,11 @@ public class ConsoleView implements View {
         while(!quitMenu){
             try {
                 getNextLine();
-                menu.get(commandList[0]).run();
-            }catch (Exception e){
+                Command toRun = menu.get(commandList[0]);
+                if (toRun != null) {
+                    toRun.run();
+                }
+            } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
@@ -79,8 +81,11 @@ public class ConsoleView implements View {
         while(true){
             try {
                 getNextLine();
-                actions.get(commandList[0]).run();
-                break;
+                Command toRun = actions.get(commandList[0]);
+                if (toRun != null) {
+                    toRun.run();
+                    break;
+                }
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
