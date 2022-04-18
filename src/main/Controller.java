@@ -86,7 +86,7 @@ public class Controller {
 
     public Virologist getPlayerByName(String name) {
         for (Virologist player : players) {
-            if (player.getName().equals(name)) {
+            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
                 return player;
             }
         }
@@ -119,6 +119,7 @@ public class Controller {
             throw new IllegalArgumentException("Tile doesn't exist!");
         }
         players.add(v);
+        v.setActiveTile(tile);
     }
 
     public void move(Tile t) {
@@ -162,7 +163,7 @@ public class Controller {
         //TODO előzőhöz hasonló, csak siker esetén meg kell ölni v-t
     }
 
-    public void steal(Virologist v, Equipment eq) { //TODO: meg kell kapnia, hogy mit lopjon, beirtam ide
+    public void steal(Virologist v, Equipment eq) {
         if (v.getNearbyVirologistsToStealFrom().contains(v)) {
             activePlayer.steal(v, eq);
         } else {

@@ -37,13 +37,13 @@ public class Map {
         onlyNucleotide.add(new Resource(50, ResourceType.Nucleotide));
 
         GeneticCode[] gcs = new GeneticCode[5];
-        gcs[0] = new GeneticCode(new StunVirus(), onlyNucleotide);
-        gcs[1] = new GeneticCode(new VitusDanceVirus(), onlyNucleotide);
-        gcs[2] = new GeneticCode(new Vaccine(), onlyNucleotide);
-        gcs[3] = new GeneticCode(new Vaccine(), onlyNucleotide);
-        gcs[4] = new GeneticCode(new AmnesiaVirus(), onlyNucleotide);
+        gcs[0] = new GeneticCode(6, new StunVirus(), onlyNucleotide);
+        gcs[1] = new GeneticCode(23, new VitusDanceVirus(), onlyNucleotide);
+        gcs[2] = new GeneticCode(25, new Vaccine(), onlyNucleotide);
+        gcs[3] = new GeneticCode(29, new Vaccine(), onlyNucleotide);
+        gcs[4] = new GeneticCode(32, new AmnesiaVirus(), onlyNucleotide);
 
-        tiles = new Tile[42];
+        tiles = new Tile[43];
         tiles[0] = new Warehouse(0, "Albania", new Resource(100, ResourceType.Nucleotide));
         tiles[1] = new EmptyTile(1, "Andorra");
         tiles[2] = new Safehouse(2, "Austria", new Axe());
@@ -73,7 +73,7 @@ public class Map {
         tiles[26] = new EmptyTile(26, "Norway");
         tiles[27] = new EmptyTile(27, "Poland");
         tiles[28] = new EmptyTile(28, "Portugal");
-        tiles[29] = new InfectedLaboratory(29, "Romania", gcs[3], new BearDanceVirus());
+        tiles[29] = new InfectedLaboratory(29, "Romania", gcs[3], new BearVirus());
         tiles[30] = new EmptyTile(30, "Russia");
         tiles[31] = new EmptyTile(31, "SanMarino");
         tiles[32] = new Laboratory(32, "Serbia", gcs[4]);
@@ -141,7 +141,7 @@ public class Map {
 
     Tile getTile(String name) {
         for (Tile tile : tiles) {
-            if(tile.getName().equals(name)) {
+            if(tile.getName().toLowerCase().equals(name.toLowerCase())) {
                 return tile;
             }
         }

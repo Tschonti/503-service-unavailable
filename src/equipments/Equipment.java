@@ -70,4 +70,10 @@ public abstract class Equipment implements Effect, Collectable {
      * @return The new Equipment.
      */
     public abstract Collectable cloneCollectable();
+
+    /**
+     * TODO
+     * @param v
+     */
+    public void infect(Virologist v) {}
 }

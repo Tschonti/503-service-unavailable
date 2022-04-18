@@ -144,9 +144,7 @@ public class Inventory {
      */
     public boolean removeEquipment(Equipment eq) {
         virologist.removeEffect(eq);
-        pickedUpEquipments.remove(eq);
-        //TODO???
-        return false;
+        return pickedUpEquipments.remove(eq);
     }
 
     /**

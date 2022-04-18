@@ -37,5 +37,9 @@ public interface Effect {
      */
     void decrement(Virologist v);
 
+    /**
+     * TODO
+     * @param v
+     */
     void infect(Virologist v);
 }

@@ -7,14 +7,16 @@ import tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ConsoleView implements View {
     static Controller controller;
     private HashMap<String, Command> menu;
     private HashMap<String, Command> actions;
     private static String[] commandList;
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private boolean quitMenu = false;
     private boolean quitGame = false;
     private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
@@ -79,14 +81,30 @@ public class ConsoleView implements View {
                 getNextLine();
                 actions.get(commandList[0]).run();
                 break;
-            } catch (Exception e){
+            } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int chooseOption(ArrayList<String> list) {
-        return 0;
+    public static int chooseOption(List<String> list) {
+        System.out.println("Choose one:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + list.get(i));
+        }
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                if (choice > 0 && choice <= list.size()) {
+                    return choice - 1;
+                } else {
+                    System.out.println("Invalid choice!");
+                }
+            } else {
+                scanner.next();
+                System.out.println("Invalid choice!");
+            }
+        }
     }
 
     public void gameOver(Virologist winner) {
@@ -147,7 +165,9 @@ public class ConsoleView implements View {
 
     private static void steal(){
         parameterCountCheck(2, 2);
-        controller.steal(controller.getPlayerByName(commandList[1]));
+        Virologist to = controller.getPlayerByName(commandList[1]);
+        ArrayList<Equipment> eqs = to.getInventory().getEquipments();
+        controller.steal(to, eqs.get(chooseOption(eqs.stream().map(Object::toString).collect(Collectors.toList()))));
     }
 
     private static void drop(){
@@ -195,14 +215,24 @@ public class ConsoleView implements View {
         StringBuilder output = new StringBuilder();
         if (virologist != null) {
             Virologist finalVirologist = virologist;
+            if (numbers.size() == 0) {
+                for (int j = 1; j < 13; j++ ) {
+                    numbers.add(j);
+                }
+            }
             numbers.forEach(n -> {
-                if (n < 0 || n > virologistInfoItems.length - 1) {
+                if (n < 1 || n > virologistInfoItems.length) {
                     throw new IllegalArgumentException("Invalid parameter to info command!");
                 }
-                output.append(virologistInfoItems[n].generate(finalVirologist));
+                output.append(virologistInfoItems[n - 1].generate(finalVirologist));
             });
         } else {
             Tile finalTile = tile;
+            if (numbers.size() == 0) {
+                for (int j = 1; j < 6; j++ ) {
+                    numbers.add(j);
+                }
+            }
             numbers.forEach(n -> {
                 if (n < 0 || n > tileInfoItems.length - 1) {
                     throw new IllegalArgumentException("Invalid parameter to info command!");

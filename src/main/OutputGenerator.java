@@ -37,7 +37,7 @@ public class OutputGenerator {
     }
 
     public static String generateStunnedVirologists(Virologist v) {
-        StringBuilder s = new StringBuilder("Virologists on the same Tile:\n");
+        StringBuilder s = new StringBuilder("Stunned Virologists:\n");
         v.getNearbyVirologistsToStealFrom().forEach(vir -> s.append("\t").append(vir.getName()).append("\n"));
         return s.toString();
     }

@@ -200,11 +200,12 @@ public class Virologist {
      * @return Virologists that this virologist can touch.
      */
     public ArrayList<Virologist> getNearbyVirologists() {
-        //Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
+        /*//Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
-        //result.remove(this); //TODO: szerintem mégse vegye ki itt saját magát. Ha itt megjelenik saját maga is, akkor tud magára is kenni cuccot
-
-        return result;
+        //result.remove(this);
+        return result;*/
+        return activeTile.getPlayers();
+        //TODO ez egy teljesen felesleges függvény
     }
 
     /**
