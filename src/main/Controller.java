@@ -189,7 +189,7 @@ public class Controller {
     }
 
     public void quit() {
-        System.exit(0);
+        //TODO átnevezni, és ez force-quitteljen a gmaeLoopból valahogy
     }
 
     public Virologist getActivePlayer(){

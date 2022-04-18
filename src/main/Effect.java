@@ -38,6 +38,4 @@ public interface Effect {
     void decrement(Virologist v);
 
     void infect(Virologist v);
-
-    int getDuration();  //TODO
 }

@@ -7,7 +7,6 @@ import tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleView implements View {
@@ -52,7 +51,7 @@ public class ConsoleView implements View {
         if(Main.getDebugMode()){
             actions.put("setnextrandom", ConsoleView::setNextRandom);
         }
-        actions.put("quit", ()->quitGame=true);
+        actions.put("quit", controller::quit);  //TODO lehet át kéne nevezni?
     }
 
     public interface Command {

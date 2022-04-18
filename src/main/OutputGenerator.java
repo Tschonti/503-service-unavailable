@@ -62,30 +62,26 @@ public class OutputGenerator {
 
     public static String generateGeneticCodes(Virologist v) {
         StringBuilder s = new StringBuilder("Genetic codes:\n");
-        v.getInventory().getLearntCodes().forEach(c -> {
-            s.append("\t").append(c.getAgent()).append(" ");
-            c.getPrice().forEach(r -> s.append(r).append(" "));
-            s.append("\n");
-        });
+        v.getInventory().getLearntCodes().forEach(c -> s.append("\t").append(c).append("\n"));
         return s.toString();
     }
 
     public static String generateUsables(Virologist v) {
         StringBuilder s = new StringBuilder("Usables:\n");
-        v.getInventory().getCraftedAgents().forEach(a -> s.append("\t").append(a).append(" ").append(a.getRoundsLeft()).append("\n"));
-        v.getInventory().getUsableEquipments().forEach(e -> s.append("\t").append(e).append(" ").append(e.getUsesLeft()).append("\n"));
+        v.getInventory().getCraftedAgents().forEach(a -> s.append("\t").append(a).append("\n"));
+        v.getInventory().getUsableEquipments().forEach(e -> s.append("\t").append(e).append("\n"));
         return s.toString();
     }
 
     public static String generateEquipments(Virologist v) {
         StringBuilder s = new StringBuilder("Equipments:\n");
-        v.getInventory().getEquipments().forEach(e -> s.append("\t").append(e).append(" ").append(e.getUsesLeft()).append("\n"));   // TODO mivan azokkal, akiknek nincs uses left?
+        v.getInventory().getEquipments().forEach(e -> s.append("\t").append(e).append("\n"));
         return s.toString();
     }
 
     public static String generateEffects(Virologist v) {
         StringBuilder s = new StringBuilder("Effects:\n");
-        v.getActiveEffects().forEach(e -> s.append("\t").append(e).append(" ").append(e.getDuration()).append("\n"));   // TODO mivan azokkal, akiknek nincs duration?
+        v.getActiveEffects().forEach(e -> s.append("\t").append(e).append("\n"));
         return s.toString();
     }
 
