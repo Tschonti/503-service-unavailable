@@ -2,6 +2,7 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
+import equipments.UsableEquipment;
 import tiles.Tile;
 
 import java.util.ArrayList;
@@ -121,7 +122,6 @@ public class Controller {
         players.add(v);
     }
 
-
     public void move(Tile t) {
         if (activePlayer.getNeighbours().contains(t)) {
             activePlayer.moveTo(t);
@@ -159,6 +159,10 @@ public class Controller {
         }
     }
 
+    public void use(UsableEquipment ue, Virologist v) {
+        //TODO előzőhöz hasonló, csak siker esetén meg kell ölni v-t
+    }
+
     public void steal(Virologist v) {
         if (v.getNearbyVirologistsToStealFrom().contains(v)) {
             activePlayer.steal(v);
@@ -185,7 +189,7 @@ public class Controller {
     }
 
     public void quit() {
-        System.exit(0);
+        //TODO átnevezni, és ez force-quitteljen a gmaeLoopból valahogy
     }
 
     public Virologist getActivePlayer(){

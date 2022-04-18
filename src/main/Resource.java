@@ -123,4 +123,8 @@ public class Resource implements Collectable {
             resources.add(new Resource(0, t));
         }
     }
+
+    public String toString() {
+        return type + ": " + amount;
+    }
 }
