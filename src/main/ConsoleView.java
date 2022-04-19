@@ -3,10 +3,9 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import tiles.Tile;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import tiles.Tile;
 
@@ -181,11 +180,8 @@ public class ConsoleView implements View {
 
     private static void craft() {
         parameterCountCheck(2, 2);
-        for (GeneticCode geneticCode : controller
-            .getActivePlayer()
-            .getInventory()
-            .getLearntCodes()) {
-            if (geneticCode.getAgent().toString().contains(commandList[1])) {
+        for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()){
+            if(geneticCode.getAgent().toString().toLowerCase().contains(commandList[1])){
                 controller.craft(geneticCode);
                 return;
             }
@@ -209,8 +205,8 @@ public class ConsoleView implements View {
 
     private static void drop() {
         parameterCountCheck(2, 2);
-        for (Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()) {
-            if (equipment.toString().contains(commandList[1])) {
+        for(Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()){
+            if(equipment.toString().toLowerCase().contains(commandList[1])){
                 controller.drop(equipment);
                 return;
             }

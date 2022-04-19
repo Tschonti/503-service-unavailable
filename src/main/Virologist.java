@@ -78,7 +78,7 @@ public class Virologist {
      * This function is called before the virologist start it's round. It calls the active effects' impacts.
      */
     public void startTurn() {
-        actionsLeft = 2;
+        actionsLeft = Constants.numberOfActions;
         for (Effect e : activeEffects) {
             e.onTurnImpact(this);
         }
@@ -142,7 +142,7 @@ public class Virologist {
      */
     public void drop(Equipment eq) {
         inventory.removeEquipment(eq);
-
+        eq.endTurnImpact(this);
         //If a bag was dropped we have to recalculate the resource amounts.
         ArrayList<Resource> resources = inventory.getResources();
         int maxAmount = inventory.getMaxResourceAmount();
