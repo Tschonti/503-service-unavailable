@@ -5,10 +5,7 @@ import equipments.Equipment;
 import equipments.UsableEquipment;
 import tiles.Tile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ConsoleView implements View {
@@ -160,7 +157,7 @@ public class ConsoleView implements View {
     private static void craft(){
         parameterCountCheck(2, 2);
         for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()){
-            if(geneticCode.getAgent().toString().contains(commandList[1])){
+            if(geneticCode.getAgent().toString().toLowerCase().contains(commandList[1])){
                 controller.craft(geneticCode);
                 return;
             }
@@ -182,7 +179,7 @@ public class ConsoleView implements View {
     private static void drop(){
         parameterCountCheck(2, 2);
         for(Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()){
-            if(equipment.toString().contains(commandList[1])){
+            if(equipment.toString().toLowerCase().contains(commandList[1])){
                 controller.drop(equipment);
                 return;
             }

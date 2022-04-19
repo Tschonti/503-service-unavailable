@@ -55,6 +55,7 @@ public class Inventory {
      * @param virologist The virologist this inventory belongs to.
      */
     public Inventory(Virologist virologist) {
+        this.maxResourceAmount = Constants.baseResAmount;
         this.virologist = virologist;
         resources = new ArrayList<>();
         pickedUpEquipments = new ArrayList<>();

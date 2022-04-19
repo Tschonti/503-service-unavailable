@@ -62,7 +62,6 @@ public class Controller {
                 activePlayer.endTurn();
             }
         }
-
         view.gameOver(activePlayer);
     }
 
