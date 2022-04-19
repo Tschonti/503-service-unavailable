@@ -1,19 +1,26 @@
+Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the
+outbreak and cure your fellow humans. Be aware! There are other Virologists among you 
+that are not so friendly and attack you in humanity's last hours!
+Save our world, mighty traveller!
 Name: 
 	v1 
 Tile:  
-	Greece
+	Albania
+Resources: 
+	AminoAcid 100/150
+	Nucleotide 0/150
 Name: 
 	v1 
 Tile:  
 	Bulgaria
 Genetic codes: 
-	StunVirus 50 Nucleotide
+	GeneticCode #6: StunVirus, [Nucleotide: 50]
 Name: 
 	v2 
 Equipments: 
-	Glove
+	ProtectiveCloak
 Effects: 
-	Glove
+	ProtectiveCloak
 Name: 
 	v1
 Resources: 
@@ -31,9 +38,11 @@ Usables:
 Name: 
 	v2
 Effects: 
+	ProtectiveCloak
+	Bag
 	StunVirus 3
 Choose one:
-1.	Glove
+1.	ProtectiveCloak
 2.	Bag
 Name: 
 	v1

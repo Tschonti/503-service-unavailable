@@ -148,10 +148,12 @@ public class ConsoleView implements View {
         while (true) {
             try {
                 getNextLine();
-                Command toRun = actions.get(commandList[0]);
-                if (toRun != null) {
-                    toRun.run();
-                    break;
+                if (commandList.length > 0) {
+                    Command toRun = actions.get(commandList[0]);
+                    if (toRun != null) {
+                        toRun.run();
+                        break;
+                    }
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -167,7 +169,7 @@ public class ConsoleView implements View {
     public static int chooseOption(List<String> list) {
         System.out.println("Choose one:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + list.get(i));
+            System.out.println((i + 1) + ". " + list.get(i));
         }
         while (true) {
             if (scanner.hasNextInt()) {

@@ -99,7 +99,7 @@ public class Virologist {
         //Active effects impact after the round and decrement their lifetime
         for (Effect e : activeEffects) {
             e.endTurnImpact(this);
-            e.decrement(this);
+            e.decrement(this);  //TODO ez kiveheti a listából, miközben loop-olunk a listán! -> exception
         }
     }
 

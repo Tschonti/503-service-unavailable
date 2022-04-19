@@ -253,7 +253,7 @@ public class Controller {
      * @param eq The equipment to be stolen.
      */
     public void steal(Virologist v, Equipment eq) {
-        if (v.getNearbyVirologistsToStealFrom().contains(v)) {
+        if (activePlayer.getNearbyVirologistsToStealFrom().contains(v)) {
             activePlayer.steal(v, eq);
         } else {
             throw new IllegalArgumentException("You can't steal from " + v.getName() + "!");

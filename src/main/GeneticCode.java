@@ -120,6 +120,6 @@ public class GeneticCode implements Collectable {
      */
     @Override
     public String toString() {
-        return "GeneticCode:" + agent + ", " + price + ", " + id;
+        return "GeneticCode #" + id + ": " + agent + ", " + price;
     }
 }
