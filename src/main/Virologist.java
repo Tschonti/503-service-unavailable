@@ -92,15 +92,22 @@ public class Virologist {
     public void endTurn() {
         //Call the crafted agents' decrement function
         ArrayList<Agent> craftedAgents = inventory.getCraftedAgents();
+        ArrayList<Agent> agentsToRemove = new ArrayList<>();
         for (Agent a : craftedAgents) {
-            a.decrement(this);
+            if (a.decrement(this)) {
+                agentsToRemove.add(a);
+            }
         }
-
         //Active effects impact after the round and decrement their lifetime
+        ArrayList<Effect> effectsToRemove = new ArrayList<>();
         for (Effect e : activeEffects) {
             e.endTurnImpact(this);
-            e.decrement(this);  //TODO ez kiveheti a listából, miközben loop-olunk a listán! -> exception
+            if (e.decrement(this)) {
+                effectsToRemove.add(e);
+            }
         }
+        effectsToRemove.forEach(this::removeEffect);
+        agentsToRemove.forEach(inventory::removeCraftedAgent);
     }
 
     /**

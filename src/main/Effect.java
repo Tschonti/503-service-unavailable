@@ -32,10 +32,11 @@ public interface Effect {
     boolean allowStealing();
 
     /**
-     * Decrements the Effect's time. If it expires, removes itself from the Virologist.
+     * Decrements the Effect's time. It returns true if it expires.
      * @param v The owner Virologist.
+     * @return True, if the effect is expired
      */
-    void decrement(Virologist v);
+    boolean decrement(Virologist v);
 
     /**
      * TODO
