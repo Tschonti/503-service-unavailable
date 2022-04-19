@@ -7,8 +7,8 @@ Name:
 Tile:  
 	Albania
 Resources: 
-	AminoAcid 100/150
-	Nucleotide 0/150
+	AminoAcid: 100/150
+	Nucleotide: 0/150
 Name: 
 	v1 
 Tile:  
@@ -24,8 +24,8 @@ Effects:
 Name: 
 	v1
 Resources: 
-	AminoAcid 100/150
-	Nucleotide 50/150
+	AminoAcid: 100/150
+	Nucleotide: 50/150
 Usables: 
 	StunVirus 3
 Name: 
@@ -47,17 +47,17 @@ Choose one:
 Name: 
 	v1
 Resources: 
-	AminoAcid 150/150 
-	Nucleotide 50/150
+	AminoAcid: 150/150 
+	Nucleotide: 50/150
 Equipments: 
-	Glove 
+	ProtectiveCloak
  Effects: 
-	Glove
+	ProtectiveCloak
 Name: 
 	v2
 Resources: 
-	AminoAcid 50/150 
-	Nucleotide 0/150 
+	AminoAcid: 50/150 
+	Nucleotide: 0/150 
 Equipments: 
 	Bag 
  Effects: 
