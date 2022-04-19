@@ -157,6 +157,8 @@ public class ConsoleView implements View {
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

@@ -114,7 +114,7 @@ public class Inventory {
             pickedUpEquipments.add(eq);
             virologist.addEffect(eq);
         } else {
-            throw new IndexOutOfBoundsException("You can't have more than " + maxNumOfEquipments + " equipments!");
+            throw new IllegalStateException("You can't have more than " + maxNumOfEquipments + " equipments!");
         }
     }
 
