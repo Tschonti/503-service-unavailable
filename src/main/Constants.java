@@ -14,4 +14,9 @@ public class Constants {
      * The starting max resource amount.
      */
     public static int baseResAmount = 150;
+
+    /**
+     * Max number of equipments that a player can hold at once.
+     */
+    public static int maxNumOfEquipments = 3;
 }

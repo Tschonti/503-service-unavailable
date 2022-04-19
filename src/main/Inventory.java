@@ -5,6 +5,8 @@ import equipments.Equipment;
 import equipments.UsableEquipment;
 import java.util.ArrayList;
 
+import static main.Constants.maxNumOfEquipments;
+
 /**
  * Every Virologist has an inventory and the other way around as well.
  * It stores the collected resources, equipments, agents and genetic codes.
@@ -108,8 +110,12 @@ public class Inventory {
      * @param eq The equipment to be added to this inventory.
      */
     public void addEquipment(Equipment eq) {
-        pickedUpEquipments.add(eq);
-        virologist.addEffect(eq);
+        if (pickedUpEquipments.size() < maxNumOfEquipments) {
+            pickedUpEquipments.add(eq);
+            virologist.addEffect(eq);
+        } else {
+            throw new IndexOutOfBoundsException("You can't have more than " + maxNumOfEquipments + " equipments!");
+        }
     }
 
     /**
@@ -210,7 +216,9 @@ public class Inventory {
      * @param usableEquipment The usable equipment we want to add.
      */
     public void addUsableEquipment(UsableEquipment usableEquipment) {
-        usableEquipments.add(usableEquipment);
+        if (pickedUpEquipments.size() < maxNumOfEquipments) {
+            usableEquipments.add(usableEquipment);
+        }
     }
 
     /**
