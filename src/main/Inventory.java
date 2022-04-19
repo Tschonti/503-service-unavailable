@@ -111,7 +111,6 @@ public class Inventory {
     public void addEquipment(Equipment eq) {
         pickedUpEquipments.add(eq);
         virologist.addEffect(eq);
-        eq.onTurnImpact(virologist);
     }
 
     /**
@@ -191,7 +190,6 @@ public class Inventory {
         if (eq != null) {
             v2Inv.removeEquipment(eq);
             addEquipment(eq);
-            eq.onTurnImpact(virologist);
         }
         ArrayList<Resource> inv2Resources = v2Inv.getResources();
         for (Resource res : inv2Resources) {

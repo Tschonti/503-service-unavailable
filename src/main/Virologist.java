@@ -58,6 +58,7 @@ public class Virologist {
      */
     public void addEffect(Effect effect) {
         activeEffects.add(effect);
+        effect.onTurnImpact(this);
     }
 
     /**
@@ -65,6 +66,7 @@ public class Virologist {
      * @param effect Effect will be removed from the active effects.
      */
     public void removeEffect(Effect effect) {
+        effect.endTurnImpact(this);
         activeEffects.remove(effect);
     }
 
@@ -118,6 +120,7 @@ public class Virologist {
      */
     public void pickUp() {
         activeTile.collectItem(inventory);
+        actionsLeft--;
     }
 
     /**
@@ -126,6 +129,7 @@ public class Virologist {
      */
     public void craft(GeneticCode code) {
         code.craft(inventory);
+        actionsLeft--;
     }
 
     /**
@@ -135,6 +139,7 @@ public class Virologist {
      */
     public void useAgent(Agent agent, Virologist v) {
         agent.use(this, v);
+        actionsLeft--;
     }
 
     /**
@@ -143,7 +148,6 @@ public class Virologist {
      */
     public void drop(Equipment eq) {
         inventory.removeEquipment(eq);
-        eq.endTurnImpact(this);
         //If a bag was dropped we have to recalculate the resource amounts.
         ArrayList<Resource> resources = inventory.getResources();
         int maxAmount = inventory.getMaxResourceAmount();
@@ -152,7 +156,7 @@ public class Virologist {
                 r.removeAmount(r.getAmount() - maxAmount);
             }
         }
-
+        actionsLeft--;
     }
 
     /**
@@ -162,6 +166,7 @@ public class Virologist {
     public void steal(Virologist v, Equipment eq) {
         Inventory inv = v.getInventory();
         inventory.steal(inv, eq);
+        actionsLeft--;
     }
 
     /**
