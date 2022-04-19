@@ -35,7 +35,7 @@ public interface Effect {
      * Decrements the Effect's time. If it expires, removes itself from the Virologist.
      * @param v The owner Virologist.
      */
-    void decrement(Virologist v);
+    boolean decrement(Virologist v);
 
     /**
      * TODO
