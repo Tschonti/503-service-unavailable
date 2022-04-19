@@ -86,15 +86,12 @@ public abstract class Agent implements Effect {
     }
 
     /**
-     * Decreases the agent's roundLeft Attribute. Removes it if it reaches 0.
+     * Decreases the agent's roundLeft Attribute. Returns true if it reaches 0.
      * @param v The Virologist that has this Effect/Agent.
+     * @return True, if the Agent is expired
      */
     public boolean decrement(Virologist v) {
         roundsLeft--;
-        /*if (roundsLeft == 0) {
-            v.getInventory().removeCraftedAgent(this);
-            v.removeEffect(this);
-        }*/
         return roundsLeft == 0;
     }
 

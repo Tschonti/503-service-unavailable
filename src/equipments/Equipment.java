@@ -54,8 +54,9 @@ public abstract class Equipment implements Effect, Collectable {
     }
 
     /**
-     * Decrements the Equipments time. If it expires, removes itself from the Virologist.
+     * Decrements the Equipments time. Returns true if it reaches 0.
      * @param v The owner Virologist.
+     * @return True, if the equipment is expired
      */
     public boolean decrement(Virologist v) { return false;}
 

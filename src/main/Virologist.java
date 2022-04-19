@@ -98,8 +98,8 @@ public class Virologist {
                 agentsToRemove.add(a);
             }
         }
-        ArrayList<Effect> effectsToRemove = new ArrayList<>();
         //Active effects impact after the round and decrement their lifetime
+        ArrayList<Effect> effectsToRemove = new ArrayList<>();
         for (Effect e : activeEffects) {
             e.endTurnImpact(this);
             if (e.decrement(this)) {
