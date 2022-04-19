@@ -46,7 +46,7 @@ public class Virologist {
      * @param name Virologist's unique name.
      */
     public Virologist(String name) {
-        actionsLeft = Constants.baseResAmount;
+        actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
         this.name = name;
