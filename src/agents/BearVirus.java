@@ -21,7 +21,7 @@ public class BearVirus extends Agent {
         while (to.getActionsLeft() != 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
             to.getActiveTile().destroyCollectable();
-            to.moveTo(neighbours.get(new SRandom().nextRandom(neighbours.size() - 1)));
+            to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
     }
 

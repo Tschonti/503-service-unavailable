@@ -1,7 +1,6 @@
 package tiles;
 
 import equipments.*;
-import java.util.Random;
 import main.Collectable;
 import main.Inventory;
 
@@ -17,7 +16,7 @@ public class Safehouse extends Tile {
 
     /**
      * Constructor
-     * Sets to collectable equipment to be the one received as a paramter.
+     * Sets to collectable equipment to be the one received as a parameter.
      * @param id Unique identifier of the tile.
      * @param name Name of the tile.
      * @param eq Equipment on the tile.

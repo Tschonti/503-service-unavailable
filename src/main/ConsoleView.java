@@ -7,16 +7,42 @@ import tiles.Tile;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import tiles.Tile;
 
 public class ConsoleView implements View {
 
+    /**
+     * Controller of the game.
+     */
     static Controller controller;
+
+    /**
+     *
+     */
     private final HashMap<String, Command> menu;
+
+    /**
+     *
+     */
     private final HashMap<String, Command> actions;
+
+    /**
+     *
+     */
     private static String[] commandList;
+
+    /**
+     *
+     */
     private static final Scanner scanner = new Scanner(System.in);
+
+    /**
+     *
+     */
     private boolean quitMenu = false;
+
+    /**
+     *
+     */
     private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
         OutputGenerator::generateName,
         OutputGenerator::generateActionsLeft,
@@ -31,6 +57,10 @@ public class ConsoleView implements View {
         OutputGenerator::generateEquipments,
         OutputGenerator::generateEffects,
     };
+
+    /**
+     *
+     */
     private static final OutputGenerator.TileInfoItem[] tileInfoItems = {
         OutputGenerator::generateName,
         OutputGenerator::generateID,
@@ -39,6 +69,9 @@ public class ConsoleView implements View {
         OutputGenerator::generateCollectable,
     };
 
+    /**
+     * Constructor
+     */
     public ConsoleView() {
         controller = new Controller(this);
         menu = new HashMap<>();
@@ -55,13 +88,16 @@ public class ConsoleView implements View {
         actions.put("drop", ConsoleView::drop);
         actions.put("pass", ConsoleView::pass);
         actions.put("info", ConsoleView::info);
+        actions.put("end", controller::endGame);
+        actions.put("quit", controller::quit);
         if (Main.getDebugMode()) {
             actions.put("setnextrandom", ConsoleView::setNextRandom);
         }
-        actions.put("end", controller::endGame);
-        actions.put("quit", controller::quit);
     }
 
+    /**
+     *
+     */
     public interface Command {
         /**
          * Starts the testcase.
@@ -69,6 +105,9 @@ public class ConsoleView implements View {
         void run();
     }
 
+    /**
+     * The menu loop of the game.
+     */
     public void menu() {
         while (!quitMenu) {
             writeMenu();
@@ -84,8 +123,11 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     * Writes a nice menu on the console.
+     */
     public void writeMenu() {
-        System.out.println("--------MENU--------");
+        System.out.println("---------MENU---------");
         System.out.println("start");
         System.out.println("add <player> (<tile>)");
         System.out.println("quit");
@@ -99,6 +141,9 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     *
+     */
     public void chooseAction() {
         while (true) {
             try {
@@ -114,6 +159,11 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     *
+     * @param list
+     * @return
+     */
     public static int chooseOption(List<String> list) {
         System.out.println("Choose one:");
         for (int i = 0; i < list.size(); i++) {
@@ -134,10 +184,17 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     * Writes out the winner of the game.
+     * @param winner
+     */
     public void gameOver(Virologist winner) {
         System.out.println("End of the game, winner: " + winner.getName());
     }
 
+    /**
+     * Add a new player to the game.
+     */
     public static void add() {
         parameterCountCheck(2, 3);
         Virologist virologist = new Virologist(commandList[1]);
@@ -148,16 +205,25 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     * Collect action.
+     */
     private static void collect() {
         controller.collect();
     }
 
+    /**
+     * Move action.
+     */
     private static void move() {
         parameterCountCheck(2, 2);
         Tile tile = controller.getTileByName(commandList[1]);
         controller.move(tile);
     }
 
+    /**
+     * Use action.
+     */
     private static void use() {
         parameterCountCheck(3, 3);
         Virologist to = controller.getPlayerByName(commandList[2]);
@@ -178,10 +244,13 @@ public class ConsoleView implements View {
         throw new IllegalArgumentException("Invalid agent or equipment!");
     }
 
+    /**
+     * Craft action.
+     */
     private static void craft() {
         parameterCountCheck(2, 2);
-        for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()){
-            if(geneticCode.getAgent().toString().toLowerCase().contains(commandList[1])){
+        for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()) {
+            if (geneticCode.getAgent().toString().toLowerCase().contains(commandList[1])) {
                 controller.craft(geneticCode);
                 return;
             }
@@ -189,6 +258,9 @@ public class ConsoleView implements View {
         throw new IllegalArgumentException("Invalid agent!");
     }
 
+    /**
+     * Steal action.
+     */
     private static void steal() {
         parameterCountCheck(2, 2);
         Virologist to = controller.getPlayerByName(commandList[1]);
@@ -203,6 +275,9 @@ public class ConsoleView implements View {
         controller.steal(to, toSteal);
     }
 
+    /**
+     * Drop action.
+     */
     private static void drop() {
         parameterCountCheck(2, 2);
         for(Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()){
@@ -214,10 +289,16 @@ public class ConsoleView implements View {
         throw new IllegalArgumentException("Invalid equipment!");
     }
 
+    /**
+     * Pass action.
+     */
     private static void pass() {
         controller.pass();
     }
 
+    /**
+     *
+     */
     private static void info() {
         int i = 1;
         boolean setObject = false;
@@ -275,11 +356,19 @@ public class ConsoleView implements View {
         System.out.print(output);
     }
 
+    /**
+     *
+     */
     private static void setNextRandom() {
         parameterCountCheck(2, 2);
         SRandom.add(Integer.parseInt(commandList[1]));
     }
 
+    /**
+     *
+     * @param min
+     * @param max
+     */
     private static void parameterCountCheck(int min, int max) {
         if (commandList.length > max) {
             throw new IllegalArgumentException("Too many arguments");
@@ -289,6 +378,9 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     *
+     */
     private void getNextLine() {
         if (scanner.hasNextLine()) {
             commandList = scanner.nextLine().split(" ");

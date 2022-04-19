@@ -116,7 +116,7 @@ public class Inventory {
      * Removes the genetic code from learntCodes.
      * @param gc The genetic code to be removed from this inventory.
      */
-    public void removeGeneticCode(GeneticCode gc) {
+    public void removeGeneticCode(GeneticCode gc) { //TODO remove if not needed
         learntCodes.remove(gc);
     }
 
@@ -141,7 +141,7 @@ public class Inventory {
      * @param eq The equipment to be removed from this inventory.
      * @return Whether the removal was successful.
      */
-    public boolean removeEquipment(Equipment eq) {
+    public boolean removeEquipment(Equipment eq) { //TODO remove return value if not needed
         virologist.removeEffect(eq);
         return pickedUpEquipments.remove(eq);
     }
@@ -205,14 +205,26 @@ public class Inventory {
         return craftedAgents;
     }
 
+    /**
+     * Adds a usable equipment to the usableEquipments.
+     * @param usableEquipment The usable equipment we want to add.
+     */
     public void addUsableEquipment(UsableEquipment usableEquipment) {
         usableEquipments.add(usableEquipment);
     }
 
+    /**
+     * Removes a usable equipment to the usableEquipments.
+     * @param usableEquipment The usable equipment we want to remove.
+     */
     public void removeUsableEquipment(UsableEquipment usableEquipment) {
         usableEquipments.remove(usableEquipment);
     }
 
+    /**
+     * toString method for the inventory.
+     * @return A string from the inventory.
+     */
     @Override
     public String toString() {
         return (
@@ -234,7 +246,7 @@ public class Inventory {
     }
 
     /**
-     * Getter for usableEquipments
+     * Getter for usableEquipments.
      * @return usableEquipments
      */
     public ArrayList<UsableEquipment> getUsableEquipments() {

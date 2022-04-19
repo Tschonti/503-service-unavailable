@@ -7,6 +7,7 @@ import equipments.Glove;
 import equipments.ProtectiveCloak;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import tiles.*;
 
@@ -178,7 +179,7 @@ public class Map {
         borders.put(19, new ArrayList<>(Arrays.asList(tiles[3], tiles[27], tiles[30], tiles[17])));
         borders.put(20, new ArrayList<>(Arrays.asList(tiles[13], tiles[12], tiles[4])));
         borders.put(21, new ArrayList<>(Arrays.asList(tiles[38], tiles[29])));
-        borders.put(22, new ArrayList<>(Arrays.asList(tiles[12])));
+        borders.put(22, new ArrayList<>(Collections.singletonList(tiles[12])));
         borders.put(
             23,
             new ArrayList<>(Arrays.asList(tiles[32], tiles[42], tiles[0], tiles[7], tiles[5]))
@@ -203,7 +204,7 @@ public class Map {
                 )
             )
         );
-        borders.put(28, new ArrayList<>(Arrays.asList(tiles[35])));
+        borders.put(28, new ArrayList<>(Collections.singletonList(tiles[35])));
         borders.put(
             29,
             new ArrayList<>(Arrays.asList(tiles[21], tiles[38], tiles[6], tiles[32], tiles[15]))
@@ -223,7 +224,7 @@ public class Map {
                 )
             )
         );
-        borders.put(31, new ArrayList<>(Arrays.asList(tiles[16])));
+        borders.put(31, new ArrayList<>(Collections.singletonList(tiles[16])));
         borders.put(
             32,
             new ArrayList<>(
@@ -264,17 +265,20 @@ public class Map {
                 )
             )
         );
-        borders.put(39, new ArrayList<>(Arrays.asList(tiles[16])));
-        borders.put(40, new ArrayList<>(Arrays.asList(tiles[41])));
+        borders.put(39, new ArrayList<>(Collections.singletonList(tiles[16])));
+        borders.put(40, new ArrayList<>(Collections.singletonList(tiles[41])));
         borders.put(41, new ArrayList<>(Arrays.asList(tiles[12], tiles[40])));
         borders.put(42, new ArrayList<>(Arrays.asList(tiles[32], tiles[25], tiles[0], tiles[23])));
 
-        borders.forEach((key, value) -> {
-            value.forEach(tile -> tiles[key].addNeighbour(tile));
-        });
+        borders.forEach((key, value) -> value.forEach(tile -> tiles[key].addNeighbour(tile)));
         return gcs;
     }
 
+    /**
+     * Gets the tile by the given name.
+     * @param name Name of the tile to get.
+     * @return tile
+     */
     Tile getTile(String name) {
         for (Tile tile : tiles) {
             if (tile.getName().equalsIgnoreCase(name)) {

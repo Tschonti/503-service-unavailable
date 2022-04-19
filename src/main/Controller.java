@@ -32,10 +32,19 @@ public class Controller {
      */
     private final GeneticCode[] codes;
 
+    /**
+     * True, if the game is over.
+     */
     private boolean endOfGame;
 
+    /**
+     * True, if the game ended by someone winning.
+     */
     private boolean isWinner;
 
+    /**
+     * The view for the game.
+     */
     private final View view;
 
     /**
@@ -52,7 +61,8 @@ public class Controller {
     }
 
     /**
-     *
+     * The main loop, in which the actual game runs.
+     * It manages rounds, events and actions.
      */
     public void gameLoop() {
         endOfGame = players.isEmpty();
@@ -85,7 +95,7 @@ public class Controller {
      * @param v The virologist (player) we check.
      */
     public void checkWinner(Virologist v) {
-        if (v.getInventory().getLearntCodes().size() == codes.length - 1) { //TODO az a -1 csak a medve miatt van
+        if (v.getInventory().getLearntCodes().size() == codes.length) {
             endOfGame = true;
             isWinner = true;
         }
@@ -99,6 +109,11 @@ public class Controller {
         players.remove(v);
     }
 
+    /**
+     * Gets the player with the given parameter name.
+     * @param name Name of the player.
+     * @return player
+     */
     public Virologist getPlayerByName(String name) {
         for (Virologist player : players) {
             if (player.getName().equalsIgnoreCase(name)) {
@@ -108,6 +123,11 @@ public class Controller {
         throw new IllegalArgumentException("There is no player named " + name);
     }
 
+    /**
+     * Gets the tile with given parameter name.
+     * @param name Name of the tile.
+     * @return tile
+     */
     public Tile getTileByName(String name) {
         Tile t = map.getTile(name);
         if (t != null) {
@@ -116,10 +136,26 @@ public class Controller {
         throw new IllegalArgumentException("There is no tile called " + name);
     }
 
-    //**********************************command functions**********************************
     /**
-     * Adds a player to the players.
+     * Getter for activePlayer.
+     * @return activePlayer
+     */
+    public Virologist getActivePlayer() {
+        return activePlayer;
+    }
+
+    /**
+     * Getter for players.
+     * @return players
+     */
+    public ArrayList<Virologist> getPlayers() {
+        return players;
+    }
+
+    /**
+     * Adds a new player to the game.
      * @param v The new player.
+     * @param tileName The name of the starting tile.
      */
     public void addPlayer(Virologist v, String tileName) {
         String existsMessage = "Player with that name already exists!";
@@ -137,6 +173,10 @@ public class Controller {
         v.setActiveTile(tile);
     }
 
+    /**
+     * Moves the player to another tile.
+     * @param t tile
+     */
     public void move(Tile t) {
         if (activePlayer.getNeighbours().contains(t)) {
             activePlayer.moveTo(t);
@@ -145,6 +185,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Collects the contents of the tile by the player.
+     */
     public void collect() {
         if (activePlayer.getActiveTile().getCollectableItem() != null) {
             activePlayer.pickUp();
@@ -154,6 +197,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Crafts the agent of the given genetic code by the player.
+     * @param code Genetic code to craft from.
+     */
     public void craft(GeneticCode code) {
         if (code.isCraftable(activePlayer.getInventory())) {
             activePlayer.craft(code);
@@ -162,6 +209,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Uses the given agent on the given player.
+     * @param agent The agent to use.
+     * @param v The player to use the agent on.
+     */
     public void use(Agent agent, Virologist v) {
         if (activePlayer.getCraftedAgents().contains(agent)) {
             if (activePlayer.getNearbyVirologists().contains(v)) {
@@ -176,6 +228,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Uses the given equipment on the given player.
+     * @param ue The equipment to use.
+     * @param v The player to use the equipment on.
+     */
     public void use(UsableEquipment ue, Virologist v) {
         if (activePlayer.getInventory().getUsableEquipments().contains(ue)) {
             if (activePlayer.getNearbyVirologists().contains(v)) {
@@ -190,6 +247,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Steals the given equipment from the given player.
+     * @param v The player to steal from.
+     * @param eq The equipment to be stolen.
+     */
     public void steal(Virologist v, Equipment eq) {
         if (v.getNearbyVirologistsToStealFrom().contains(v)) {
             activePlayer.steal(v, eq);
@@ -198,6 +260,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Drops the given equipment.
+     * @param eq The equipment to drop.
+     */
     public void drop(Equipment eq) {
         if (activePlayer.getInventory().getEquipments().contains(eq)) {
             activePlayer.drop(eq);
@@ -206,25 +272,26 @@ public class Controller {
         }
     }
 
+    /**
+     * Passes an action.
+     */
     public void pass() {
         activePlayer.pass();
     }
 
+    /**
+     * Force-ends the game, without anyone winning.
+     */
     public void endGame() {
         endOfGame = true;
         isWinner = false;
         activePlayer = null;
     }
 
+    /**
+     * Exits the program.
+     */
     public void quit() {
         System.exit(0);
-    }
-
-    public Virologist getActivePlayer() {
-        return activePlayer;
-    }
-
-    public ArrayList<Virologist> getPlayers() {
-        return players;
     }
 }

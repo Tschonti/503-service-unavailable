@@ -1,10 +1,8 @@
 package tiles;
 
-import java.util.ArrayList;
 import main.Collectable;
 import main.Inventory;
 import main.Resource;
-import main.ResourceType;
 
 /**
  * Warehouse field where virologists can pick up resources.

@@ -9,7 +9,7 @@ public class InfectedLaboratory extends Laboratory {
     /**
      * The Agent that infects everyone who moves to this tile.
      */
-    private final Agent infectable;
+    private final Agent infectiveAgent;
 
     /**
      * Constructor
@@ -20,7 +20,7 @@ public class InfectedLaboratory extends Laboratory {
      */
     public InfectedLaboratory(int id, String name, GeneticCode gc, Agent infect) {
         super(id, name, gc);
-        infectable = infect;
+        infectiveAgent = infect;
     }
 
     /**
@@ -31,6 +31,6 @@ public class InfectedLaboratory extends Laboratory {
      */
     public void addVirologist(Virologist player) {
         players.add(player);
-        infectable.use(null, player);
+        infectiveAgent.use(null, player);
     }
 }

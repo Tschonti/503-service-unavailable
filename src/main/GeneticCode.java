@@ -21,11 +21,16 @@ public class GeneticCode implements Collectable {
      */
     private final ArrayList<Resource> price;
 
+    /**
+     * Unique id of the genetic code.
+     */
     private final int id;
 
     /**
      * Constructor
-     * @param a The agent that can be crafted by learning this code.
+     * @param newId id
+     * @param a agent
+     * @param p price
      */
     public GeneticCode(int newId, Agent a, ArrayList<Resource> p) {
         id = newId;
@@ -34,8 +39,8 @@ public class GeneticCode implements Collectable {
     }
 
     /**
-     * Clones itself to the inventory it gets.
-     * @param inv The inventory, that will get the clone of this genetic code.
+     * Puts itself into the inventory it gets.
+     * @param inv The inventory, that will get this genetic code.
      */
     public void collect(Inventory inv) {
         boolean contains = false;
@@ -50,6 +55,10 @@ public class GeneticCode implements Collectable {
         }
     }
 
+    /**
+     * Clones this genetic code.
+     * @return The cloned genetic code.
+     */
     public Collectable cloneCollectable() {
         return new GeneticCode(id, agent.create(), price);
     }
@@ -93,14 +102,22 @@ public class GeneticCode implements Collectable {
      * Getter for price.
      * @return price
      */
-    public ArrayList<Resource> getPrice() {
+    public ArrayList<Resource> getPrice() { //TODO remove if not needed
         return price;
     }
 
+    /**
+     * Getter for the id.
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * toString method for genetic code.
+     * @return A string from the genetic code.
+     */
     @Override
     public String toString() {
         return "GeneticCode:" + agent + ", " + price + ", " + id;

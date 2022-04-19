@@ -1,7 +1,6 @@
 package agents;
 
 import java.util.ArrayList;
-import java.util.Random;
 import main.SRandom;
 import main.Virologist;
 import tiles.Tile;
@@ -44,7 +43,7 @@ public class VitusDanceVirus extends Agent {
     public void onTurnImpact(Virologist to) {
         while (to.getActionsLeft() != 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
-            to.moveTo(neighbours.get(new SRandom().nextRandom(neighbours.size() - 1)));
+            to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
     }
 }
