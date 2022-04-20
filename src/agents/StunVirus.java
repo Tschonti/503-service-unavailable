@@ -27,6 +27,7 @@ public class StunVirus extends Agent {
      * Creates an instance of a StunVirus.
      * @return StunVirus
      */
+    @Override
     public Agent create() {
         return new StunVirus();
     }
@@ -37,14 +38,28 @@ public class StunVirus extends Agent {
      * Makes the virologist miss his/her turn.
      * @param to the Virologist that is affected.
      */
+    @Override
     public void onTurnImpact(Virologist to) {
         while (to.getActionsLeft() > 0) {
             to.pass();
         }
     }
 
+    /**
+     * Returns true, because stunned players can be stolen from.
+     * @return true
+     */
     @Override
     public boolean allowStealing() {
         return true;
+    }
+
+    /**
+     * The Virus's toString. Used when playing in the Console.
+     * @return Name of the virus and rounds left of the virus.
+     */
+    @Override
+    public String toString() {
+        return "StunVirus: " + roundsLeft + " rounds left.";
     }
 }

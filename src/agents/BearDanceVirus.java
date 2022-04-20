@@ -7,35 +7,35 @@ import tiles.Tile;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
- * for it's time left in a Virologist's inventory.
+ * for its time left in a Virologist's inventory.
  */
-public class VitusDanceVirus extends Agent {
+public class BearDanceVirus extends Agent {
 
     /**
-     * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
+     * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
-    public VitusDanceVirus() {
-        super(3); //Rounds left of the Agent in the Virologist's Inventory
+    public BearDanceVirus() {
+        super(3);
     }
 
     /**
-     * VitusDanceVirus constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
+     * AmnesiaVirus constructor. Calls Abstract super's constructor, and sets roundLeft to rLeft.
      * @param rLeft number of turns until it expires.
      */
-    public VitusDanceVirus(int rLeft) {
+    public BearDanceVirus(int rLeft) {
         super(rLeft); //Rounds left of the Agent as an Effect on a Virologist.
     }
 
     /**
-     * Creates an instance of a VitusDanceVirus.
-     * @return VitusDanceVirus
+     * Creates an instance of an BearDanceVirus.
+     * @return BearDanceVirus
      */
     @Override
     public Agent create() {
-        return new VitusDanceVirus();
+        return new BearDanceVirus();
     }
 
-    /* Effect functions */
+
     /**
      * This function gets called at the beginning of an affected Virologist's turn.
      * Makes the virologist move randomly.
@@ -45,15 +45,28 @@ public class VitusDanceVirus extends Agent {
     public void onTurnImpact(Virologist to) {
         while (to.getActionsLeft() != 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
+            to.getActiveTile().destroyCollectable();
             to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
     }
+
+    /**
+     * Infects all Virologists on the same tile.
+     * @param to The virologist that is infecting.
+     */
+    @Override
+    public void infect(Virologist to) {
+        for (Virologist v : to.getActiveTile().getPlayers()) {
+            this.use(null, to);
+        }
+    }
+
     /**
      * The Virus's toString. Used when playing in the Console.
      * @return Name of the virus and rounds left of the virus.
      */
     @Override
     public String toString() {
-        return "VitusDanceVirus: " + roundsLeft + " rounds left.";
+        return "BearDanceVirus: " + roundsLeft + " rounds left.";
     }
 }

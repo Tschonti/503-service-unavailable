@@ -27,6 +27,7 @@ public class AmnesiaVirus extends Agent {
      * Creates an instance of an AmnesiaVirus.
      * @return AmnesiaVirus
      */
+    @Override
     public Agent create() {
         return new AmnesiaVirus();
     }
@@ -37,7 +38,17 @@ public class AmnesiaVirus extends Agent {
      * Makes the virologist forget all his learnt GeneticCodes.
      * @param to the Virologist that is affected.
      */
+    @Override
     public void onTurnImpact(Virologist to) {
         to.getInventory().getLearntCodes().clear();
+    }
+
+    /**
+     * The Virus's toString. Used when playing in the Console.
+     * @return Name of the virus and rounds left of the virus.
+     */
+    @Override
+    public String toString() {
+        return "AmnesiaVirus: " + roundsLeft + " rounds left.";
     }
 }

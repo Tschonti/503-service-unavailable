@@ -73,7 +73,7 @@ public class Map {
         tiles[26] = new EmptyTile(26, "Norway");
         tiles[27] = new EmptyTile(27, "Poland");
         tiles[28] = new EmptyTile(28, "Portugal");
-        tiles[29] = new InfectedLaboratory(29, "Romania", gcs[3], new BearVirus());
+        tiles[29] = new InfectedLaboratory(29, "Romania", gcs[3], new BearDanceVirus());
         tiles[30] = new EmptyTile(30, "Russia");
         tiles[31] = new EmptyTile(31, "SanMarino");
         tiles[32] = new Laboratory(32, "Serbia", gcs[4]);

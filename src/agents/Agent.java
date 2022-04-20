@@ -95,5 +95,9 @@ public abstract class Agent implements Effect {
         return roundsLeft == 0;
     }
 
+    /**
+     * This function gets called whenever a virus would infect a player. In most viruses it does nothing.
+     * @param v The Virologist that is infecting.
+     */
     public void infect(Virologist v) {}
 }

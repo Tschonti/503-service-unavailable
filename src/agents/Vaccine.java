@@ -27,6 +27,7 @@ public class Vaccine extends Agent {
      * Creates an instance of a Vaccine.
      * @return Vaccine
      */
+    @Override
     public Agent create() {
         return new Vaccine();
     }
@@ -39,7 +40,19 @@ public class Vaccine extends Agent {
      * @param from the Virologist that is trying to infect.
      * @param to the Virologist that is being infected.
      */
+    @Override
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         to.removeEffect(agent);
     }
+
+    /**
+     * The Virus's toString. Used when playing in the Console.
+     * @return Name of the virus and rounds left of the virus.
+     */
+
+    @Override
+    public String toString() {
+        return "Vaccine: " + roundsLeft + " rounds left.";
+    }
+
 }
