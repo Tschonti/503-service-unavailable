@@ -57,7 +57,6 @@ public class Virologist {
      */
     public void addEffect(Effect effect) {
         activeEffects.add(effect);
-        effect.onTurnImpact(this);
     }
 
     /**
@@ -65,8 +64,8 @@ public class Virologist {
      * @param effect Effect will be removed from the active effects.
      */
     public void removeEffect(Effect effect) {
-        effect.endTurnImpact(this);
         activeEffects.remove(effect);
+
     }
 
     /**
@@ -115,10 +114,10 @@ public class Virologist {
      * @param newTile The new tile where the virologist moves to.
      */
     public void moveTo(Tile newTile) {
+        actionsLeft--;
         activeTile.removeVirologist(this);
         activeTile = newTile;
         activeTile.addVirologist(this);
-        actionsLeft--;
     }
 
     /**
@@ -216,7 +215,9 @@ public class Virologist {
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
         //result.remove(this);
         return result;*/
-        return activeTile.getPlayers();
+        ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
+        result.remove(this);
+        return result;
         //TODO ez egy teljesen felesleges függvény
     }
 

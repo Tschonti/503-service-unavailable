@@ -21,6 +21,11 @@ public class Controller {
      * All the players in the game.
      */
     private final ArrayList<Virologist> players;
+    /**
+     * All the players in the game.
+     */
+    private final ArrayList<Virologist> infectedPlayers;
+
 
     /**
      * The map of the game.
@@ -54,6 +59,7 @@ public class Controller {
         activePlayer = null;
         map = new Map();
         players = new ArrayList<>();
+        infectedPlayers = new ArrayList<>();
         codes = map.createMap();
         view = newView;
         endOfGame = false;
@@ -72,12 +78,20 @@ public class Controller {
                 activePlayer.startTurn();
                 while (activePlayer.getActionsLeft() > 0) {
                     view.chooseAction();
+                    if(players.size() == infectedPlayers.size()) {
+                        endOfGame = true;
+                        activePlayer = null;
+                        isWinner = true;
+                    }
                     if (endOfGame) {
                         break;
                     }
                 }
                 if (!endOfGame) {
                     activePlayer.endTurn();
+                }
+                else{
+                    break;
                 }
             }
         }
@@ -168,9 +182,9 @@ public class Controller {
             }
         }
         Tile tile = getTileByName(tileName);
+        v.setActiveTile(tile);
         tile.addVirologist(v);
         players.add(v);
-        v.setActiveTile(tile);
     }
 
     /**
@@ -216,7 +230,7 @@ public class Controller {
      */
     public void use(Agent agent, Virologist v) {
         if (activePlayer.getCraftedAgents().contains(agent)) {
-            if (activePlayer.getNearbyVirologists().contains(v)) {
+            if (activePlayer.getActiveTile().getPlayers().contains(v)) {
                 activePlayer.useAgent(agent, v);
             } else {
                 throw new IllegalArgumentException(
@@ -293,5 +307,13 @@ public class Controller {
      */
     public void quit() {
         System.exit(0);
+    }
+
+    public void addInfected(Virologist v){
+        infectedPlayers.add(v);
+    }
+
+    public boolean isInfected(Virologist v){
+        return infectedPlayers.contains(v);
     }
 }

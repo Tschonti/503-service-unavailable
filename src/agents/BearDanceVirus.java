@@ -1,9 +1,12 @@
 package agents;
 
 import java.util.ArrayList;
+
+import main.Controller;
 import main.SRandom;
 import main.Virologist;
 import tiles.Tile;
+import main.Effect;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
@@ -15,7 +18,7 @@ public class BearDanceVirus extends Agent {
      * StunVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public BearDanceVirus() {
-        super(3);
+        super(100);
     }
 
     /**
@@ -43,10 +46,15 @@ public class BearDanceVirus extends Agent {
      */
     @Override
     public void onTurnImpact(Virologist to) {
-        while (to.getActionsLeft() != 0) {
+        if(!Virologist.getController().isInfected(to)) {
+            Virologist.getController().addInfected(to);
+        }
+        to.getActiveTile().destroyCollectable();
+        while (to.getActionsLeft() > 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
+            Tile newTile = neighbours.get(SRandom.nextRandom(neighbours.size() - 1));
+            to.moveTo(newTile);
             to.getActiveTile().destroyCollectable();
-            to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
     }
 
@@ -56,11 +64,17 @@ public class BearDanceVirus extends Agent {
      */
     @Override
     public void infect(Virologist to) {
-        for (Virologist v : to.getActiveTile().getPlayers()) {
-            if (to != v) {
+        for (Virologist v : to.getNearbyVirologists()) {
+            boolean infected = Virologist.getController().isInfected(v);
+            if (!infected) {
                 this.use(null, v);
             }
         }
+    }
+
+    @Override
+    public boolean decrement(Virologist v) {
+        return false;
     }
 
     /**
@@ -69,6 +83,6 @@ public class BearDanceVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "BearDanceVirus: " + roundsLeft + " rounds left";
+        return "BearDanceVirus";
     }
 }

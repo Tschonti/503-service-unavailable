@@ -98,9 +98,12 @@ public abstract class Tile {
      */
     public void addVirologist(Virologist player) {
         players.add(player);
-        players.forEach(p -> p.getActiveEffects().forEach(e -> e.infect(p)));
+        for (Effect e: player.getActiveEffects()) {
+            e.infect(player);
+        }
+        ArrayList<Virologist> pl = player.getNearbyVirologists();
+        pl.forEach(p -> p.getActiveEffects().forEach(e -> e.infect(p)));
     }
-
     /**
      * Removes the virologist from the players list.
      * Called when a virologist moves from this field.

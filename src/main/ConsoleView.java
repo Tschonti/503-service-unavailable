@@ -74,6 +74,7 @@ public class ConsoleView implements View {
      */
     public ConsoleView() {
         controller = new Controller(this);
+        Virologist.setController(controller);
         menu = new HashMap<>();
         menu.put("start", controller::gameLoop);
         menu.put("add", ConsoleView::add);
@@ -191,7 +192,8 @@ public class ConsoleView implements View {
      * @param winner
      */
     public void gameOver(Virologist winner) {
-        System.out.println("End of the game, winner: " + winner.getName());
+        System.out.println("End of the game, winner: " + (winner == null ? "Bears" : winner.getName()));
+
     }
 
     /**
@@ -313,7 +315,12 @@ public class ConsoleView implements View {
                 try {
                     virologist = controller.getPlayerByName(commandList[++i]);
                 } catch (IllegalArgumentException e) {
-                    tile = controller.getTileByName(commandList[i]);
+                    try {
+                        tile = controller.getTileByName(commandList[i]);
+                    }
+                    catch (IllegalArgumentException exception){
+                        throw new IllegalArgumentException("There is no Object called " + commandList[i]);
+                    }
                 }
             } else if (commandList[i].equals("--n")) {
                 while (++i < commandList.length && !commandList[i].contains("--")) {

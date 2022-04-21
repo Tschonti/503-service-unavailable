@@ -49,7 +49,8 @@ public abstract class Agent implements Effect {
             for (Effect e : activeEffects) {
                 e.counterImpact(this, from, to);
             }
-        } else {
+        }
+        else {
             this.onTurnImpact(from);
         }
     }
