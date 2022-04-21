@@ -49,6 +49,6 @@ public class AmnesiaVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "AmnesiaVirus: " + roundsLeft + " rounds left.";
+        return "AmnesiaVirus: " + roundsLeft + " rounds left";
     }
 }

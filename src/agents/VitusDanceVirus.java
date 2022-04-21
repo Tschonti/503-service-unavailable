@@ -54,6 +54,6 @@ public class VitusDanceVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "VitusDanceVirus: " + roundsLeft + " rounds left.";
+        return "VitusDanceVirus: " + roundsLeft + " rounds left";
     }
 }

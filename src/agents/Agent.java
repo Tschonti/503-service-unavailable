@@ -41,10 +41,14 @@ public abstract class Agent implements Effect {
      */
     public void use(Virologist from, Virologist to) {
         ArrayList<Effect> activeEffects = new ArrayList<>(to.getActiveEffects());
-        from.getInventory().removeCraftedAgent(this);
+        if (from != null) {
+            from.getInventory().removeCraftedAgent(this);
+        }
         to.addEffect(this);
-        if (from != to) for (Effect e : activeEffects) {
-            e.counterImpact(this, from, to);
+        if (from != to) {
+            for (Effect e : activeEffects) {
+                e.counterImpact(this, from, to);
+            }
         } else {
             this.onTurnImpact(from);
         }

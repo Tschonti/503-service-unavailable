@@ -110,7 +110,7 @@ public class ConsoleView implements View {
      */
     public void menu() {
         while (!quitMenu) {
-            writeMenu();
+            //writeMenu();
             try {
                 getNextLine();
                 Command toRun = menu.get(commandList[0]);

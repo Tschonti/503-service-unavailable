@@ -116,8 +116,8 @@ public class Virologist {
      */
     public void moveTo(Tile newTile) {
         activeTile.removeVirologist(this);
-        newTile.addVirologist(this);
         activeTile = newTile;
+        activeTile.addVirologist(this);
         actionsLeft--;
     }
 

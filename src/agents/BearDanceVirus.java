@@ -57,7 +57,9 @@ public class BearDanceVirus extends Agent {
     @Override
     public void infect(Virologist to) {
         for (Virologist v : to.getActiveTile().getPlayers()) {
-            this.use(null, to);
+            if (to != v) {
+                this.use(null, v);
+            }
         }
     }
 
@@ -67,6 +69,6 @@ public class BearDanceVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "BearDanceVirus: " + roundsLeft + " rounds left.";
+        return "BearDanceVirus: " + roundsLeft + " rounds left";
     }
 }

@@ -1,0 +1,26 @@
+add vmedve Moldova
+add v2 Albania
+add v3 Greece
+start
+pass
+pass
+collect
+move NorthMacedonia
+pass
+pass
+setNextRandom 0
+setNextRandom 0
+pass
+move Romania
+info --o vmedve --n 1 12
+collect
+craft Vaccine
+info --o v2 --n 1 9 10
+pass
+pass
+info --o vmedve --n 1 3
+info --o v3 --n 1 12
+info --o Greece  --n 1 5
+use Vaccine
+move Greece
+info --o v2 --n 1 12
