@@ -78,8 +78,6 @@ public class Controller {
                 activePlayer.startTurn();
                 while (activePlayer.getActionsLeft() > 0 && !endOfGame) {
                     view.chooseAction();
-                    System.out.println("Infected players:" );
-                    infectedPlayers.forEach(x->System.out.println("\t"+x.getName()));
                     if(players.size() == infectedPlayers.size()) {
                         endOfGame = true;
                         activePlayer = null;

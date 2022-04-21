@@ -81,7 +81,6 @@ public class Virologist {
     public void startTurn() {
         actionsLeft = Constants.numberOfActions;
         for(int i = 0; i<activeEffects.size(); i++){
-            System.out.println(getName()+" "+ activeEffects.get(i).toString()+ ", " + getActiveTile().getName());
             activeEffects.get(i).onTurnImpact(this);
         }
         /*
