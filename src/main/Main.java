@@ -17,18 +17,21 @@ public class Main {
      * @param args arguments
      */
     public static void main(String[] args) {
-        System.out.println(
-            ConsoleColor.BOLD.c +
-            "Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the\n" +
-            "outbreak and cure your fellow humans. Be aware! There are other Virologists among you \n" +
-            "that are not so friendly and attack you in humanity's last hours!\n" +
-            "Save our world, mighty traveller!" +
-            ConsoleColor.RESET.c
-        );
-
         if (args.length > 0 && args[0].equals("debug")) {
             debugMode = true;
         }
+        if(!debugMode) {
+            System.out.println(
+                    ConsoleColor.BOLD.c +
+                            "Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the\n" +
+                            "outbreak and cure your fellow humans. Be aware! There are other Virologists among you \n" +
+                            "that are not so friendly and attack you in humanity's last hours!\n" +
+                            "Save our world, mighty traveller!" +
+                            ConsoleColor.RESET.c
+            );
+        }
+
+
         ConsoleView consoleView = new ConsoleView();
         consoleView.menu();
     }

@@ -1,0 +1,27 @@
+Name:
+	v1
+Equipments:
+	Bag
+Name:
+	v1
+Resources:
+	AminoAcid: 200/300
+	Nucleotide: 0/300
+Name:
+	v1
+Resources:
+	AminoAcid: 300/300
+	Nucleotide: 0/300
+Name:
+	v1
+Actions left:
+	1/2
+Resources:
+	AminoAcid: 300/300
+	Nucleotide: 0/300
+Name:
+	v1
+Resources:
+	AminoAcid: 150/150
+	Nucleotide: 0/150
+Equipments:

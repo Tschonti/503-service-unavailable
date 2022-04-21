@@ -36,7 +36,7 @@ Name:
 Tile:
 	Bulgaria
 Genetic codes:
-	GeneticCode #6: agents.StunVirus@2957fcb0, [Nucleotide: 50]
+	GeneticCode #6: agents.StunVirus@51521cc1, [Nucleotide: 50]
 Name:
 	v2
 Equipments:
@@ -49,7 +49,7 @@ Resources:
 	AminoAcid: 100/150
 	Nucleotide: 50/150
 Usables:
-	agents.StunVirus@deb6432
+	agents.StunVirus@694f9431
 Name:
 	v1
 Actions left:
@@ -62,7 +62,25 @@ Name:
 Effects:
 	ProtectiveCloak
 	Bag
-	agents.StunVirus@deb6432
+	agents.StunVirus@694f9431
 Choose one:
 1. ProtectiveCloak
 2. Bag
+Name:
+	v1
+Resources:
+	AminoAcid: 150/150
+	Nucleotide: 50/150
+Equipments:
+	ProtectiveCloak
+Effects:
+	ProtectiveCloak
+Name:
+	v2
+Resources:
+	AminoAcid: 50/150
+	Nucleotide: 0/150
+Equipments:
+	Bag
+Effects:
+	Bag

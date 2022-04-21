@@ -1,0 +1,17 @@
+add v1 Slovenia
+start
+collect
+info --o v1 --n 1 11
+move Hungary
+move Serbia
+move NorthMacedonia
+move Greece
+collect
+collect
+info --o v1 --n 1 8
+collect
+info --o v1 --n 1 8
+collect
+info --o v1 --n 1 2 8
+drop Bag
+info --o v1 --n 1 8 11
