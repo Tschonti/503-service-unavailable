@@ -49,9 +49,9 @@ public class OutputGenerator {
 
     public static String generateCollectable(Virologist v) {
         Collectable c = v.getActiveTile().getCollectableItem();
-        StringBuilder s = new StringBuilder("Collectable:\n\t");
+        StringBuilder s = new StringBuilder("Collectable:\n");
         if (c != null) {
-            s.append(c).append("\n");
+            s.append("\t").append(c).append("\n");
         }
         return s.toString();
     }
@@ -121,9 +121,9 @@ public class OutputGenerator {
 
     public static String generateCollectable(Tile t) {
         Collectable c = t.getCollectableItem();
-        StringBuilder s = new StringBuilder("Collectable:\n\t");
+        StringBuilder s = new StringBuilder("Collectable:\n");
         if (c != null) {
-            s.append(c).append("\n");
+            s.append("\t").append(c).append("\n");
         }
         return s.toString();
     }

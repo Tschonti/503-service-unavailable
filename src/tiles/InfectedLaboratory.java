@@ -32,6 +32,12 @@ public class InfectedLaboratory extends Laboratory {
     @Override
     public void addVirologist(Virologist player) {
         players.add(player);
-        infectiveAgent.use(null, player);
+        boolean infected = Virologist.getController().isInfected(player);
+        if (!infected) {
+            infectiveAgent.use(null, player);
+            if (player.getActiveEffects().contains(infectiveAgent)) {
+                Virologist.getController().addInfected(player);
+            }
+        }
     }
 }

@@ -76,22 +76,21 @@ public class Controller {
             for (Virologist player : players) {
                 activePlayer = player;
                 activePlayer.startTurn();
-                while (activePlayer.getActionsLeft() > 0) {
+                while (activePlayer.getActionsLeft() > 0 && !endOfGame) {
                     view.chooseAction();
+                    System.out.println("Infected players:" );
+                    infectedPlayers.forEach(x->System.out.println("\t"+x.getName()));
                     if(players.size() == infectedPlayers.size()) {
                         endOfGame = true;
                         activePlayer = null;
                         isWinner = true;
                     }
-                    if (endOfGame) {
-                        break;
-                    }
                 }
-                if (!endOfGame) {
-                    activePlayer.endTurn();
-                }
-                else{
-                    break;
+                activePlayer.endTurn();
+                if(players.size() == infectedPlayers.size()) {
+                    endOfGame = true;
+                    activePlayer = null;
+                    isWinner = true;
                 }
             }
         }

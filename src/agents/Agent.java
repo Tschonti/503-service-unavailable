@@ -45,7 +45,7 @@ public abstract class Agent implements Effect {
             from.getInventory().removeCraftedAgent(this);
         }
         to.addEffect(this);
-        if (from != to) {
+        if(from != to) {
             for (Effect e : activeEffects) {
                 e.counterImpact(this, from, to);
             }

@@ -46,13 +46,10 @@ public class BearDanceVirus extends Agent {
      */
     @Override
     public void onTurnImpact(Virologist to) {
-        if(!Virologist.getController().isInfected(to)) {
-            Virologist.getController().addInfected(to);
-        }
         to.getActiveTile().destroyCollectable();
         while (to.getActionsLeft() > 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
-            Tile newTile = neighbours.get(SRandom.nextRandom(neighbours.size() - 1));
+            Tile newTile = neighbours.get(SRandom.nextRandom(neighbours.size()));
             to.moveTo(newTile);
             to.getActiveTile().destroyCollectable();
         }
@@ -68,6 +65,9 @@ public class BearDanceVirus extends Agent {
             boolean infected = Virologist.getController().isInfected(v);
             if (!infected) {
                 this.use(null, v);
+                if(v.getActiveEffects().contains(this)){
+                    Virologist.getController().addInfected(v);
+                }
             }
         }
     }
