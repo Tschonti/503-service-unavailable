@@ -79,6 +79,9 @@ public class Controller {
                 if (!endOfGame) {
                     activePlayer.endTurn();
                 }
+                else {
+                    break;
+                }
             }
         }
         if (isWinner) {

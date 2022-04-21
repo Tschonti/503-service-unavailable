@@ -1,0 +1,9 @@
+add v1 Bulgaria
+start
+collect
+info --o v1 --n 1 9 10
+move Greece
+collect
+info --o v1 --n 1 8
+craft StunVirus
+info --o v1 --n 1 8 9 10

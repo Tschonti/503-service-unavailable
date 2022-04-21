@@ -1,0 +1,33 @@
+add v1 Greece
+add v2 Slovenia
+start
+move Albania
+collect
+pass
+pass
+move Greece
+move Bulgaria
+pass
+pass
+collect
+move NorthMacedonia
+pass
+pass
+collect
+move Serbia
+pass
+pass
+collect
+craft Vaccine
+pass
+pass
+use Vaccine v1
+move Romania
+pass
+pass
+collect
+move Serbia
+pass
+pass
+move Montenegro
+collect

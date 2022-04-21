@@ -1,0 +1,36 @@
+Welcome to the Pandemic brave Virologist, let's start learning genetic codes to stop the
+outbreak and cure your fellow humans. Be aware! There are other Virologists among you 
+that are not so friendly and attack you in humanity's last hours!
+Save our world, mighty traveller!
+---------MENU---------
+start
+add <player> (<tile>)
+quit
+
+---------MENU---------
+start
+add <player> (<tile>)
+quit
+
+Players in lobby:
+1. v1
+
+Name:
+	v1
+Genetic codes:
+	GeneticCode #6: StunVirus: 3 rounds left., [Nucleotide: 50]
+Usables:
+Name:
+	v1
+Resources:
+	AminoAcid: 100/150
+	Nucleotide: 0/150
+You can't craft this!
+Name:
+	v1
+Resources:
+	AminoAcid: 100/150
+	Nucleotide: 0/150
+Genetic codes:
+	GeneticCode #6: StunVirus: 3 rounds left., [Nucleotide: 50]
+Usables:
