@@ -1,0 +1,34 @@
+add v1 BosniaAndHerzegovina
+add v2 Bulgaria
+add v3 Bulgaria
+add v4 Bulgaria
+start
+pass
+pass
+collect
+move NorthMacedonia
+collect
+move NorthMacedonia
+collect
+move NorthMacedonia
+collect
+move Montenegro
+Move Albania
+collect
+Move Albania
+collect
+Move Albania
+collect
+Move Albania
+pass
+craft StunVirus
+info --o v2 --n 1 9 10
+use StunVirus v1
+info --o v1 --n 1 12
+info --o v2 --n 1 10 12
+craft StunVirus
+use StunVirus v1
+info --o v1 --n 1 11
+craft StunVirus
+use StunVirus v1
+info --o v1 --n 1 11
