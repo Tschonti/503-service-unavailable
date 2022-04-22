@@ -1,0 +1,25 @@
+add v1 Croatia
+add v2 Serbia
+start
+collect
+move Serbia
+collect
+move Kosovo
+move Montenegro
+move Albania
+move Albania
+collect
+info --o v2 --n 1 8 9
+pass
+pass
+craft AmnesiaVirus
+info --o v2 --n 1 10
+setnextrandom 1
+use AmnesiaVirus v1
+info --o v1 --n 1 12
+pass
+pass
+setnextrandom 9999
+craft AmnesiaVirus
+use AmnesiaVirus v1
+info --o v1 --n 1 12
