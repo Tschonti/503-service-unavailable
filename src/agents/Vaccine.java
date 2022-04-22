@@ -52,7 +52,7 @@ public class Vaccine extends Agent {
 
     @Override
     public String toString() {
-        return "Vaccine: " + roundsLeft + " rounds left.";
+        return "Vaccine: " + roundsLeft + " rounds left";
     }
 
 }

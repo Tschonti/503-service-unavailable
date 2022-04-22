@@ -113,6 +113,7 @@ public class Inventory {
         if (pickedUpEquipments.size() < maxNumOfEquipments) {
             pickedUpEquipments.add(eq);
             virologist.addEffect(eq);
+            eq.onTurnImpact(virologist);
         } else {
             throw new IllegalStateException("You can't have more than " + maxNumOfEquipments + " equipments!");
         }
@@ -148,6 +149,7 @@ public class Inventory {
      * @return Whether the removal was successful.
      */
     public boolean removeEquipment(Equipment eq) { //TODO remove return value if not needed
+        eq.endTurnImpact(virologist);
         virologist.removeEffect(eq);
         return pickedUpEquipments.remove(eq);
     }

@@ -207,7 +207,7 @@ public class Map {
         borders.put(28, new ArrayList<>(Collections.singletonList(tiles[35])));
         borders.put(
             29,
-            new ArrayList<>(Arrays.asList(tiles[21], tiles[38], tiles[6], tiles[32], tiles[15]))
+            new ArrayList<>(Arrays.asList(tiles[6], tiles[21], tiles[38], tiles[32], tiles[15]))
         );
         borders.put(
             30,

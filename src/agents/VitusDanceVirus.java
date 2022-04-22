@@ -43,7 +43,7 @@ public class VitusDanceVirus extends Agent {
      */
     @Override
     public void onTurnImpact(Virologist to) {
-        while (to.getActionsLeft() != 0) {
+        while (to.getActionsLeft() > 0) {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
             to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
@@ -54,6 +54,6 @@ public class VitusDanceVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "VitusDanceVirus: " + roundsLeft + " rounds left.";
+        return "VitusDanceVirus: " + roundsLeft + " rounds left";
     }
 }

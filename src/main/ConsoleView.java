@@ -21,27 +21,27 @@ public class ConsoleView implements View {
     private final HashMap<String, Command> menu;
 
     /**
-     *
+     *  The commands of the menu
      */
     private final HashMap<String, Command> actions;
 
     /**
-     *
+     *  The actions that can be invoked during a game
      */
     private static String[] commandList;
 
     /**
-     *
+     *  The scanner that handles reading input
      */
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
-     *
+     *  True if the user has alredy quit.
      */
     private boolean quitMenu = false;
 
     /**
-     *
+     *  References to the methods of each info item of a virologist
      */
     private static final OutputGenerator.VirologistInfoItem[] virologistInfoItems = {
         OutputGenerator::generateName,
@@ -59,7 +59,7 @@ public class ConsoleView implements View {
     };
 
     /**
-     *
+     * References to the methods of each info item of a tile
      */
     private static final OutputGenerator.TileInfoItem[] tileInfoItems = {
         OutputGenerator::generateName,
@@ -74,6 +74,7 @@ public class ConsoleView implements View {
      */
     public ConsoleView() {
         controller = new Controller(this);
+        Virologist.setController(controller);
         menu = new HashMap<>();
         menu.put("start", controller::gameLoop);
         menu.put("add", ConsoleView::add);
@@ -96,7 +97,7 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
+     * Represents a command that can be invoked by the user
      */
     public interface Command {
         /**
@@ -110,7 +111,9 @@ public class ConsoleView implements View {
      */
     public void menu() {
         while (!quitMenu) {
-            writeMenu();
+            if (!Main.getDebugMode()) {
+                writeMenu();
+            }
             try {
                 getNextLine();
                 Command toRun = menu.get(commandList[0]);
@@ -134,15 +137,17 @@ public class ConsoleView implements View {
         System.out.println();
         if (!controller.getPlayers().isEmpty()) {
             System.out.println("Players in lobby:");
+            int i = 1;
             for (Virologist player : controller.getPlayers()) {
-                System.out.println("1. " + player.getName());
+                System.out.println(i + ". " + player.getName());
+                i++;
             }
             System.out.println();
         }
     }
 
     /**
-     *
+     *  Waits for an action command from the user then runs it
      */
     public void chooseAction() {
         while (true) {
@@ -162,9 +167,9 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
-     * @param list
-     * @return
+     *  Presents the user with a list of options and waits for their input
+     * @param list  The list of options o choose from
+     * @return  The index of the choice
      */
     public static int chooseOption(List<String> list) {
         System.out.println("Choose one:");
@@ -188,10 +193,11 @@ public class ConsoleView implements View {
 
     /**
      * Writes out the winner of the game.
-     * @param winner
+     * @param winner The winner virologist. If null, nobody has won, but the game is over
      */
     public void gameOver(Virologist winner) {
-        System.out.println("End of the game, winner: " + winner.getName());
+        System.out.println("End of the game, winner: " + (winner == null ? "Bears" : winner.getName()));
+
     }
 
     /**
@@ -299,7 +305,7 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
+     * Info action
      */
     private static void info() {
         int i = 1;
@@ -313,7 +319,12 @@ public class ConsoleView implements View {
                 try {
                     virologist = controller.getPlayerByName(commandList[++i]);
                 } catch (IllegalArgumentException e) {
-                    tile = controller.getTileByName(commandList[i]);
+                    try {
+                        tile = controller.getTileByName(commandList[i]);
+                    }
+                    catch (IllegalArgumentException exception){
+                        throw new IllegalArgumentException("There is no Object called " + commandList[i]);
+                    }
                 }
             } else if (commandList[i].equals("--n")) {
                 while (++i < commandList.length && !commandList[i].contains("--")) {
@@ -359,7 +370,7 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
+     * setNextRandom action
      */
     private static void setNextRandom() {
         parameterCountCheck(2, 2);
@@ -367,9 +378,9 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
-     * @param min
-     * @param max
+     * Checks wheter the correct number of paramaters have been given to the previous command.
+     * @param min Minimum number of paramters to accept
+     * @param max Maximum number of paramters to accept
      */
     private static void parameterCountCheck(int min, int max) {
         if (commandList.length > max) {
@@ -381,7 +392,8 @@ public class ConsoleView implements View {
     }
 
     /**
-     *
+     *  Reads the next line from the input and parses it.
+     *  If there are no more lines, it exits the program.
      */
     private void getNextLine() {
         if (scanner.hasNextLine()) {

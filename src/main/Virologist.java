@@ -57,7 +57,6 @@ public class Virologist {
      */
     public void addEffect(Effect effect) {
         activeEffects.add(effect);
-        effect.onTurnImpact(this);
     }
 
     /**
@@ -65,8 +64,8 @@ public class Virologist {
      * @param effect Effect will be removed from the active effects.
      */
     public void removeEffect(Effect effect) {
-        effect.endTurnImpact(this);
         activeEffects.remove(effect);
+
     }
 
     /**
@@ -81,9 +80,15 @@ public class Virologist {
      */
     public void startTurn() {
         actionsLeft = Constants.numberOfActions;
-        for (Effect e : activeEffects) {
-            e.onTurnImpact(this);
+        for(int i = 0; i<activeEffects.size(); i++){
+            activeEffects.get(i).onTurnImpact(this);
         }
+        /*
+        for (Effect e : activeEffects) {
+            System.out.println(getName()+" "+ e.toString());
+            e.onTurnImpact(this);
+        }*/
+
     }
 
     /**
@@ -115,10 +120,10 @@ public class Virologist {
      * @param newTile The new tile where the virologist moves to.
      */
     public void moveTo(Tile newTile) {
-        activeTile.removeVirologist(this);
-        newTile.addVirologist(this);
-        activeTile = newTile;
         actionsLeft--;
+        activeTile.removeVirologist(this);
+        activeTile = newTile;
+        activeTile.addVirologist(this);
     }
 
     /**
@@ -208,16 +213,14 @@ public class Virologist {
     }
 
     /**
-     * Returns the virologists that this virologist can touch.
-     * @return Virologists that this virologist can touch.
+     * Returns the virologists that are on the same tile as this virologist (excluding themselves).
+     * @return Virologists that are on the same tile
      */
     public ArrayList<Virologist> getNearbyVirologists() {
-        /*//Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
+        //Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
-        //result.remove(this);
-        return result;*/
-        return activeTile.getPlayers();
-        //TODO ez egy teljesen felesleges függvény
+        result.remove(this);
+        return result;
     }
 
     /**

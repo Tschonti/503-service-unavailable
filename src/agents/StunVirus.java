@@ -60,6 +60,6 @@ public class StunVirus extends Agent {
      */
     @Override
     public String toString() {
-        return "StunVirus: " + roundsLeft + " rounds left.";
+        return "StunVirus: " + roundsLeft + " rounds left";
     }
 }
