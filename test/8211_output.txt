@@ -1,0 +1,9 @@
+Name:
+	v2
+Genetic codes:
+	GeneticCode #25: Vaccine: 3 rounds left, [Nucleotide: 50]
+Invalid agent or equipment!
+Name:
+	v2
+Genetic codes:
+	GeneticCode #25: Vaccine: 3 rounds left, [Nucleotide: 50]

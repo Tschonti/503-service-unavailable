@@ -1,0 +1,10 @@
+Name:
+	v2
+Tile:
+	Montenegro
+Effects:
+	VitusDanceVirus: 2 rounds left
+Name:
+	v2
+Tile:
+	Hungary

@@ -1,0 +1,17 @@
+add v1 Albania
+add v2 Montenegro
+start
+collect
+move Montenegro
+pass
+pass
+collect
+craft VitusDanceVirus
+pass
+pass
+use VitusDanceVirus v2
+SetNextRandom 5
+SetNextRandom 7
+info --o v2 --n 1 3 12
+pass
+info --o v2 --n 1 3 
