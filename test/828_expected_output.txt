@@ -5,9 +5,9 @@ Effects:
 Name: 
 	v2
 Genetic codes: 
-	Vaccine Nucleotide 50
+	GeneticCode #25: Vaccine: 3 rounds left, [Nucleotide: 50]
 Usables: 
-	Vaccine 3
+	Vaccine: 2 rounds left
 Name: 
 	vmedve 
 Tile:  
@@ -19,7 +19,7 @@ Effects:
 Name:
 	Greece
 Collectable:
-	AminoAcid 0
 Name: 
 	v2
 Effects: 
+Vaccine: 1 rounds left

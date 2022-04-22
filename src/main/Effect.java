@@ -39,8 +39,8 @@ public interface Effect {
     boolean decrement(Virologist v);
 
     /**
-     * TODO
-     * @param v
+     * Infects all the virologists that are on the same tile as v with the effect.
+     * @param v The virologist whose neighbours will be infected
      */
     void infect(Virologist v);
 }

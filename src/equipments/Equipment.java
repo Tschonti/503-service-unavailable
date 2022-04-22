@@ -74,8 +74,9 @@ public abstract class Equipment implements Effect, Collectable {
     public abstract Collectable cloneCollectable();
 
     /**
-     * TODO
-     * @param v
+     * Infects all the virologists that are on the same tile as v with the effect.
+     * Since this feature doesn't exist on any of the equipments, it does nothing.
+     * @param v The virologist whose neighbours will be infected
      */
     public void infect(Virologist v) {}
 }

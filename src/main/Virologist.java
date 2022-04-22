@@ -213,18 +213,14 @@ public class Virologist {
     }
 
     /**
-     * Returns the virologists that this virologist can touch.
-     * @return Virologists that this virologist can touch.
+     * Returns the virologists that are on the same tile as this virologist (excluding themselves).
+     * @return Virologists that are on the same tile
      */
     public ArrayList<Virologist> getNearbyVirologists() {
-        /*//Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
-        ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
-        //result.remove(this);
-        return result;*/
+        //Virologist remove itself from the list. A new list is needed because of the references, and we don't want to remove this virologist from the tile's players
         ArrayList<Virologist> result = new ArrayList<>(activeTile.getPlayers());
         result.remove(this);
         return result;
-        //TODO ez egy teljesen felesleges függvény
     }
 
     /**

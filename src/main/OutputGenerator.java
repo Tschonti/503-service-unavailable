@@ -2,6 +2,10 @@ package main;
 
 import tiles.Tile;
 
+/**
+ * A class with methods that generate a string for the info command.
+ * There's a method for each info item.
+ */
 public class OutputGenerator {
 
     public interface VirologistInfoItem {
