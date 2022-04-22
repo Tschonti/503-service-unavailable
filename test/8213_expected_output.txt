@@ -1,0 +1,11 @@
+Name:
+	v1
+Effects:
+	Vaccine: 1 rounds left
+Name:
+	v1
+Effects:
+	Vaccine: 1 rounds left
+Name:
+	v2
+Usables:

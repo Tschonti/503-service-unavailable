@@ -12,7 +12,7 @@ public class AmnesiaVirus extends Agent {
      * AmnesiaVirus constructor. Calls Abstract super's constructor, and sets roundLeft to 3.
      */
     public AmnesiaVirus() {
-        super(1); //Rounds left of the Agent in the Virologist's Inventory
+        super(2); //Rounds left of the Agent in the Virologist's Inventory
     }
 
     /**

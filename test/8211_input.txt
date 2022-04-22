@@ -1,29 +1,19 @@
 add v1 Albania
 add v2 NorthMacedonia
-
 start
-
 collect
 move Kosovo
-
 collect
 move Kosovo
-
 move Serbia
 collect
-
 pass
 pass
-
 craft AmnesiaVirus
 move Kosovo
-
 pass
 pass
-
 info --o v2 --n 1 9
-
 use AmnesiaVirus v2
 pass
-
 info --o v2 --n 1 9

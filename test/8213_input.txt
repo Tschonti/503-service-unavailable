@@ -1,0 +1,18 @@
+add v1 Albania
+add v2 Albania
+start
+collect
+move NorthMacedonia
+collect
+move Montenegro
+collect
+craft Vaccine
+collect
+craft VitusDanceVirus
+use Vaccine v1
+move Kosovo
+info --o v1 --n 1 12
+move Kosovo
+use VitusDanceVirus v1
+info --o v1 --n 1 12
+info --o v2 --n 1 10
