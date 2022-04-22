@@ -22,6 +22,10 @@ public abstract class Agent implements Effect {
         roundsLeft = rLeft;
     }
 
+    /**
+     * Getter for the roundsLeft Attribute.
+     * @return returns the  roundLeft attributes value.
+     */
     public int getRoundsLeft() {
         return roundsLeft;
     }

@@ -36,6 +36,10 @@ public class ProtectiveCloak extends Equipment {
         return new ProtectiveCloak();
     }
 
+    /**
+     * The Equipment's toString. Used when playing in the Console.
+     * @return Name of the Equipment.
+     */
     @Override
     public String toString() {
         return "ProtectiveCloak";
