@@ -1,11 +1,11 @@
 package main;
 
+import static main.Constants.maxNumOfEquipments;
+
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
 import java.util.ArrayList;
-
-import static main.Constants.maxNumOfEquipments;
 
 /**
  * Every Virologist has an inventory and the other way around as well.
@@ -115,7 +115,9 @@ public class Inventory {
             virologist.addEffect(eq);
             eq.onTurnImpact(virologist);
         } else {
-            throw new IllegalStateException("You can't have more than " + maxNumOfEquipments + " equipments!");
+            throw new IllegalStateException(
+                "You can't have more than " + maxNumOfEquipments + " equipments!"
+            );
         }
     }
 

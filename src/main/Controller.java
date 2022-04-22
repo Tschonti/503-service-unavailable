@@ -26,7 +26,6 @@ public class Controller {
      */
     private final ArrayList<Virologist> infectedPlayers;
 
-
     /**
      * The map of the game.
      */
@@ -78,7 +77,7 @@ public class Controller {
                 activePlayer.startTurn();
                 while (!endOfGame && activePlayer.getActionsLeft() > 0) {
                     view.chooseAction();
-                    if(players.size() == infectedPlayers.size()) {
+                    if (players.size() == infectedPlayers.size()) {
                         endOfGame = true;
                         activePlayer = null;
                         isWinner = true;
@@ -88,7 +87,7 @@ public class Controller {
                     break;
                 }
                 activePlayer.endTurn();
-                if(players.size() == infectedPlayers.size()) {
+                if (players.size() == infectedPlayers.size()) {
                     endOfGame = true;
                     activePlayer = null;
                     isWinner = true;
@@ -313,11 +312,11 @@ public class Controller {
         System.exit(0);
     }
 
-    public void addInfected(Virologist v){
+    public void addInfected(Virologist v) {
         infectedPlayers.add(v);
     }
 
-    public boolean isInfected(Virologist v){
+    public boolean isInfected(Virologist v) {
         return infectedPlayers.contains(v);
     }
 }

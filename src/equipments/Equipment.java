@@ -58,7 +58,9 @@ public abstract class Equipment implements Effect, Collectable {
      * @param v The owner Virologist.
      * @return True, if the equipment is expired
      */
-    public boolean decrement(Virologist v) { return false;}
+    public boolean decrement(Virologist v) {
+        return false;
+    }
 
     /**
      * Decreases the value of the usesLeft variable.

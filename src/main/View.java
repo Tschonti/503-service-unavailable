@@ -8,13 +8,13 @@ public interface View {
     void menu();
 
     /**
-     *
+     * Method for handling player inputs.
      */
     void chooseAction();
 
     /**
-     *
-     * @param winner
+     * Method for the end of the game.
+     * @param winner The winner of the game.
      */
     void gameOver(Virologist winner);
 }

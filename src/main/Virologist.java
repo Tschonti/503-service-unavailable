@@ -65,7 +65,6 @@ public class Virologist {
      */
     public void removeEffect(Effect effect) {
         activeEffects.remove(effect);
-
     }
 
     /**
@@ -80,7 +79,7 @@ public class Virologist {
      */
     public void startTurn() {
         actionsLeft = Constants.numberOfActions;
-        for(int i = 0; i<activeEffects.size(); i++){
+        for (int i = 0; i < activeEffects.size(); i++) {
             activeEffects.get(i).onTurnImpact(this);
         }
         /*

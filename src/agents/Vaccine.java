@@ -53,5 +53,4 @@ public class Vaccine extends Agent {
     public String toString() {
         return "Vaccine: " + roundsLeft + " rounds left";
     }
-
 }

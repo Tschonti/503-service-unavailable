@@ -6,6 +6,7 @@ import equipments.Equipment;
  * A safehouse tile where players can pick up equipments.
  */
 public class Safehouse extends Tile {
+
     /**
      * Constructor
      * Sets to collectable equipment to be the one received as a parameter.

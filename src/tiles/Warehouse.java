@@ -6,6 +6,7 @@ import main.Resource;
  * Warehouse field where virologists can pick up resources.
  */
 public class Warehouse extends Tile {
+
     /**
      * Constructor that takes resource from parameter.
      * @param id Unique identifier of the tile.

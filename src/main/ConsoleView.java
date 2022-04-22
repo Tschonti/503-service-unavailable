@@ -3,20 +3,19 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import tiles.Tile;
-
 import java.util.*;
 import java.util.stream.Collectors;
+import tiles.Tile;
 
 public class ConsoleView implements View {
 
     /**
-     * Controller of the game.
+     *  Controller of the game.
      */
     static Controller controller;
 
     /**
-     *
+     *  HashMap for the commands and their strings.
      */
     private final HashMap<String, Command> menu;
 
@@ -26,12 +25,12 @@ public class ConsoleView implements View {
     private final HashMap<String, Command> actions;
 
     /**
-     *  The actions that can be invoked during a game
+     *  The actions that can be invoked during a game.
      */
     private static String[] commandList;
 
     /**
-     *  The scanner that handles reading input
+     *  The scanner that handles reading input.
      */
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -196,8 +195,9 @@ public class ConsoleView implements View {
      * @param winner The winner virologist. If null, nobody has won, but the game is over
      */
     public void gameOver(Virologist winner) {
-        System.out.println("End of the game, winner: " + (winner == null ? "Bears" : winner.getName()));
-
+        System.out.println(
+            "End of the game, winner: " + (winner == null ? "Bears" : winner.getName())
+        );
     }
 
     /**
@@ -257,7 +257,10 @@ public class ConsoleView implements View {
      */
     private static void craft() {
         parameterCountCheck(2, 2);
-        for (GeneticCode geneticCode: controller.getActivePlayer().getInventory().getLearntCodes()) {
+        for (GeneticCode geneticCode : controller
+            .getActivePlayer()
+            .getInventory()
+            .getLearntCodes()) {
             if (geneticCode.getAgent().toString().toLowerCase().contains(commandList[1])) {
                 controller.craft(geneticCode);
                 return;
@@ -288,8 +291,8 @@ public class ConsoleView implements View {
      */
     private static void drop() {
         parameterCountCheck(2, 2);
-        for(Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()){
-            if(equipment.toString().toLowerCase().contains(commandList[1])){
+        for (Equipment equipment : controller.getActivePlayer().getInventory().getEquipments()) {
+            if (equipment.toString().toLowerCase().contains(commandList[1])) {
                 controller.drop(equipment);
                 return;
             }
@@ -321,9 +324,10 @@ public class ConsoleView implements View {
                 } catch (IllegalArgumentException e) {
                     try {
                         tile = controller.getTileByName(commandList[i]);
-                    }
-                    catch (IllegalArgumentException exception){
-                        throw new IllegalArgumentException("There is no Object called " + commandList[i]);
+                    } catch (IllegalArgumentException exception) {
+                        throw new IllegalArgumentException(
+                            "There is no Object called " + commandList[i]
+                        );
                     }
                 }
             } else if (commandList[i].equals("--n")) {

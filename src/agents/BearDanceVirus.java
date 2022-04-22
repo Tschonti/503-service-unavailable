@@ -1,12 +1,9 @@
 package agents;
 
 import java.util.ArrayList;
-
-import main.Controller;
 import main.SRandom;
 import main.Virologist;
 import tiles.Tile;
-import main.Effect;
 
 /**
  * This class is responsible for its effect when it is applied to a Virologist. It is also responsible
@@ -38,7 +35,6 @@ public class BearDanceVirus extends Agent {
         return new BearDanceVirus();
     }
 
-
     /**
      * This function gets called at the beginning of an affected Virologist's turn.
      * Makes the virologist move randomly.
@@ -65,7 +61,7 @@ public class BearDanceVirus extends Agent {
             boolean infected = Virologist.getController().isInfected(v);
             if (!infected) {
                 this.use(null, v);
-                if(v.getActiveEffects().contains(this)){
+                if (v.getActiveEffects().contains(this)) {
                     Virologist.getController().addInfected(v);
                 }
             }

@@ -16,8 +16,6 @@ public class Axe extends Equipment implements UsableEquipment {
         usesLeft = 1;
     }
 
-
-
     /**
      * Creates a clone of itself, and puts it in the received inventory.
      * @param inv The Inventory, where the Equipment puts the clone.

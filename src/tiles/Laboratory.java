@@ -6,6 +6,7 @@ import main.GeneticCode;
  * A laboratory tile where virologists can learn genetic codes.
  */
 public class Laboratory extends Tile {
+
     /**
      * Constructor
      * Sets the code to be the one received as a parameter.
