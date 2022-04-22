@@ -40,6 +40,10 @@ public class Glove extends Equipment {
         return new Glove();
     }
 
+    /**
+     * The Equipment's toString. Used when playing in the Console.
+     * @return Name of the Equipment and uses left of the Equipment.
+     */
     @Override
     public String toString() {
         return "Glove: " + usesLeft + " uses left";

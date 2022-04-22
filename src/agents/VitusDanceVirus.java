@@ -48,8 +48,9 @@ public class VitusDanceVirus extends Agent {
             to.moveTo(neighbours.get(SRandom.nextRandom(neighbours.size() - 1)));
         }
     }
+
     /**
-     * The Virus's toString. Used when playing in the Console.
+     * The Agent's toString. Used when playing in the Console.
      * @return Name of the virus and rounds left of the virus.
      */
     @Override

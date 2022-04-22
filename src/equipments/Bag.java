@@ -44,6 +44,10 @@ public class Bag extends Equipment {
         return new Bag();
     }
 
+    /**
+     * The Equipment's toString. Used when playing in the Console.
+     * @return Name of the Equipment.
+     */
     @Override
     public String toString() {
         return "Bag";

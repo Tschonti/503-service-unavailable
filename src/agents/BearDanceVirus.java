@@ -78,8 +78,8 @@ public class BearDanceVirus extends Agent {
     }
 
     /**
-     * The Virus's toString. Used when playing in the Console.
-     * @return Name of the virus and rounds left of the virus.
+     * The Agent's toString. Used when playing in the Console.
+     * @return Name of the agent.
      */
     @Override
     public String toString() {
