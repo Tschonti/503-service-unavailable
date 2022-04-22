@@ -4,11 +4,11 @@ Resources:
 	AminoAcid: 0/150
 	Nucleotide: 100/150
 Genetic codes:
-	GeneticCode #32: agents.AmnesiaVirus@4ee285c6, [Nucleotide: 50]
+	GeneticCode #32: AmnesiaVirus: 1 rounds left, [Nucleotide: 50]
 Name:
 	v2
 Usables:
-	agents.AmnesiaVirus@573fd745
+	AmnesiaVirus: 1 rounds left
 Name:
 	v1
 Effects:
@@ -17,4 +17,4 @@ Name:
 	v1
 Effects:
 	ProtectiveCloak
-	agents.AmnesiaVirus@22927a81
+	AmnesiaVirus: 1 rounds left

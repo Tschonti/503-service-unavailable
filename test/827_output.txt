@@ -1,1 +1,25 @@
-You can't steal from v2!
+Name:
+	vmedve
+Effects:
+	BearDanceVirus
+Name:
+	v2
+Genetic codes:
+	GeneticCode #25: Vaccine: 3 rounds left, [Nucleotide: 50]
+Usables:
+	Vaccine: 2 rounds left
+Name:
+	vmedve
+Tile:
+	Greece
+Name:
+	v3
+Effects:
+	BearDanceVirus
+Name:
+	Greece
+Collectable:
+Name:
+	v2
+Effects:
+	Vaccine: 1 rounds left

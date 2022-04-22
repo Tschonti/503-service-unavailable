@@ -1,35 +1,4 @@
-add v1 Greece 
-add v2 Greece 
-start 
-collect 
-move Albania 
-info --o v1 --n 1 3 8
-collect 
-move Albania 
-collect 
-move NorthMacedonia 
-move Montenegro 
-move BosniaAndHerzegovina 
-move Bulgaria 
-collect
-info --o v1 --n 1 3 9
-move Croatia 
-collect
-info --o v2 --n 1 11 12
-craft StunVirus 
-info --o v1 --n 1 8 10 
-move Serbia 
-move Slovenia 
-collect 
-move Croatia 
-pass
-pass 
-move Croatia 
-setnextrandom 999
-use StunVirus v2 
-info --o v1 --n 1 2 6 10
-info --o v2 --n 1 12
-steal v2 
-1
-info --o v1 --n 1 8 11 12 
-info --o v2 --n 1 8 11 12 
+add v1 Greece
+add v2 Greece
+start
+steal v2

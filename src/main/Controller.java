@@ -84,14 +84,14 @@ public class Controller {
                         isWinner = true;
                     }
                 }
+                if (endOfGame) {
+                    break;
+                }
                 activePlayer.endTurn();
                 if(players.size() == infectedPlayers.size()) {
                     endOfGame = true;
                     activePlayer = null;
                     isWinner = true;
-                }
-                else {
-                    break;
                 }
             }
         }
