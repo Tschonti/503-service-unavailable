@@ -36,7 +36,7 @@ public class ConsoleView implements View {
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
-     *  True if the user has alredy quit.
+     *  True if the user has already quit.
      */
     private boolean quitMenu = false;
 
@@ -168,7 +168,7 @@ public class ConsoleView implements View {
 
     /**
      *  Presents the user with a list of options and waits for their input
-     * @param list  The list of options o choose from
+     * @param list  The list of options to choose from
      * @return  The index of the choice
      */
     public static int chooseOption(List<String> list) {
@@ -378,9 +378,9 @@ public class ConsoleView implements View {
     }
 
     /**
-     * Checks wheter the correct number of paramaters have been given to the previous command.
-     * @param min Minimum number of paramters to accept
-     * @param max Maximum number of paramters to accept
+     * Checks whether the correct number of parameters have been given to the previous command.
+     * @param min Minimum number of parameters to accept
+     * @param max Maximum number of parameters to accept
      */
     private static void parameterCountCheck(int min, int max) {
         if (commandList.length > max) {
