@@ -244,7 +244,7 @@ public class ConsoleView implements View {
             }
         }
         for (UsableEquipment ue : fromInv.getUsableEquipments()) {
-            if (ue.toString().contains(commandList[1])) {
+            if (ue.toString().toLowerCase().contains(commandList[1])) {
                 controller.use(ue, to);
                 return;
             }

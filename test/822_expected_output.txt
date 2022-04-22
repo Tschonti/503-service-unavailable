@@ -1,0 +1,18 @@
+Name:
+    v1
+Usables:
+    Axe: 1 uses left
+Equipments:
+    Axe: 1 uses left
+    ProtectiveCloak
+Name:
+    v2
+Effects:
+    BearDanceVirus
+Name:
+    v1
+Virologists on the same Tile:
+Usables:
+Effects:
+	Axe: 0 uses left
+	ProtectiveCloak

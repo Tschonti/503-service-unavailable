@@ -1,7 +1,7 @@
 Name:
     v2
 Genetic codes:
-    GeneticCode #6: StunVirus: 3 rounds left., [Nucleotide: 50]
+    GeneticCode #6: StunVirus: 3 rounds left, [Nucleotide: 50]
 Usables:
     StunVirus: 3 rounds left
 Name:
@@ -12,11 +12,11 @@ Name:
     v2
 Usables:
 Effects:
-    StunVirus 3
+    StunVirus: 2 rounds left
 Name:
     v1
 Equipments:
-Glove
+    Glove: 1 uses left
 Name:
     v1
 Equipments:
