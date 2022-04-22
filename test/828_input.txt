@@ -1,0 +1,4 @@
+add v1 Bulgaria
+start
+collect
+craft StunVirus
