@@ -76,7 +76,7 @@ public class Controller {
             for (Virologist player : players) {
                 activePlayer = player;
                 activePlayer.startTurn();
-                while (activePlayer.getActionsLeft() > 0 && !endOfGame) {
+                while (!endOfGame && activePlayer.getActionsLeft() > 0) {
                     view.chooseAction();
                     if(players.size() == infectedPlayers.size()) {
                         endOfGame = true;
@@ -92,6 +92,7 @@ public class Controller {
                     endOfGame = true;
                     activePlayer = null;
                     isWinner = true;
+                    break;
                 }
             }
         }
@@ -121,6 +122,9 @@ public class Controller {
      */
     public void removeVirologist(Virologist v) {
         players.remove(v);
+        if (isInfected(v)) {
+            infectedPlayers.remove(v);
+        }
     }
 
     /**

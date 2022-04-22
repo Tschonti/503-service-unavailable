@@ -102,7 +102,7 @@ public class Map {
                     tiles[37],
                     tiles[18],
                     tiles[16],
-                    tiles[33]
+                    tiles[34]
                 )
             )
         );

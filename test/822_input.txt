@@ -1,0 +1,21 @@
+add v1 Austria
+add v2 Bulgaria
+start
+collect
+move Slovenia
+pass
+pass
+move Croatia
+collect
+info --o v1 --n 1 10 11
+pass
+pass
+move Serbia
+pass
+pass
+move Romania
+info --o v2 --n 1 12
+setNextRandom 1
+move Romania
+use Axe v2
+info --o v1 --n 1 5 10 12
