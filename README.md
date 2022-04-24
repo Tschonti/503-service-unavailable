@@ -9,6 +9,13 @@ Group assignment at uni to create a basic game in JAVA
 - [Jónás Jurásek](https://github.com/J0NAS12)
 - [Zsombor Kászonyi](https://github.com/Moonlander1)
 
+## Compile
+Compiling requires JDK 1.8!
+Run `compiled/compile.bat`. Note that this requires the JDK's bin folder to be set in the Path variable. The commands in this file generate the class files in the `compiled` directory and a `.jar` file in the root directory.
+
+## Test
+There are various test cases described in the documentation. Each of them have a `.bat` file in the `test` directory, which start the `.jar` file, read input from a text file, write to another, and then compare the two.
+
 ## How to use Prettier
 - Install all npm packeges with \
 `npm i`
