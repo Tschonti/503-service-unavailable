@@ -1,0 +1,22 @@
+@startuml
+hide footbox
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceMessageAlign center
+
+mainframe geneticCodePaint
+
+participant "gW: GraphicsView" as gW
+participant "v: Virologist" as v
+participant "gc: GeneticCode" as gc
+participant "oGc: ObservableGeneticCode" as oGc
+
+ gW -> v++: getCraftables()
+    return craftables
+    loop for all gc: craftables
+        gW -> gc++: getObservable()
+        return oGc
+        gW -> oGc++: onPaint()
+        return gcComponent
+    end
+@enduml

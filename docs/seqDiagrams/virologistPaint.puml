@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe virologistPaint
+
+participant "gW: GraphicsView" as gW
+participant "activePlayer: Virologist" as v
+participant "oaV: ObservableVirologist" as oaV
+participant "otherPlayer: Virologist" as v2
+participant "ooV: ObservableVirologist" as ooV
+
+gW -> v ++:getObservable()
+return oV
+gW -> oaV ++: onPaint()
+return vComponent
+
+gW -> v ++: getNearbyVirologists()
+return virologists
+gW -> v ++: getNearbyVirologistsToStealFrom()
+return virologistsToStealFrom
+
+loop for all v in virologists
+    gW -> v2 ++: getObservable()
+    return ooV
+    gW -> ooV ++: onPaint()
+    return tNComponent
+end
+
+@enduml

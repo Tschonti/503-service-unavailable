@@ -1,0 +1,33 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Graphics
+
+participant "controller: Controller" as c
+participant "gW: GraphicsView" as gW
+participant "activePlayer: Virologist" as v
+participant "oV:ObservableVirologist" as oV
+participant "activeTile: Tile" as t
+participant "neighbour: Tile" as nb
+participant "aPInv: Inventory" as aPInv
+
+
+
+c -> gW ++: Paint()
+    gW -> c ++: getActivePlayer()
+    return activePlayer
+
+    ref over gW :virologistPaint
+    ref over gW :tilePaint
+
+    gW -> v ++: getInventory()
+    return aPInv
+    ref over gW : equipmentPaint
+    ref over gW : agentPaint
+    ref over gW : resourcePaint
+    ref over gW : geneticCodePaint
+return
+
+@enduml

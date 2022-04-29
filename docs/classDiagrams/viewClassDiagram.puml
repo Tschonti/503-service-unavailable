@@ -1,0 +1,89 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+
+together {
+    interface IObservable {
+        + onPaint(): JComponent
+    }
+
+    class ObservableAgent implements IObservable{
+        + onPaint(): JComponent
+    }
+    ObservableAgent "-agent" -- "#view" Agent
+
+    class ObservableEquipment implements IObservable{
+        + onPaint(): JComponent
+    }
+    ObservableEquipment "-equipment" -- "#view" Equipment
+
+    class ObservableTile implements IObservable{
+        + onPaint(): JComponent
+    }
+    ObservableTile "-tile" -- "#view" Tile
+
+    class ObservableVirologist implements IObservable{
+        + onPaint(): JComponent
+    }
+    ObservableVirologist "-virologist" -- "-view" Virologist
+
+    class ObservableResource implements IObservable{
+        + onPaint(): JComponent
+    }
+    ObservableResource "-resource" -- "-view" Resource
+
+    class ObservableGeneticCode implements IObservable {
+        + onPaint(): JComponent
+    }
+    ObservableGeneticCode "-gc" -- "-view" GeneticCode
+}
+
+abstract class Agent {
+    ...
+}
+
+class Resource {
+    ...
+}
+
+class Virologist {
+    ...
+}
+
+abstract class Equipment {
+    ...
+}
+
+abstract class Tile {
+    ...
+}
+
+class GeneticCode {
+    ...
+}
+
+Virologist ..> Agent
+Equipment ..> Agent
+Virologist "-players, 0..*" -- "-activeTile, 1" Tile
+
+class Controller {
+    ...
+}
+
+Controller "-controller" -- "-players, 2..M" Virologist
+Controller  "-controller" -- "-view, 1" GraphicsView
+
+class GraphicsView {
+    +paint()
+    +onPassClick()
+    +onMoveClick()
+    +onUseClick()
+    +onRobClick()
+    +onDropClick()
+    +onCollectClick()
+    +onCraftClick()
+
+}
+
+@enduml

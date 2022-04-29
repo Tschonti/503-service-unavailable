@@ -1,0 +1,32 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe tilePaint
+
+participant "gW: GraphicsView" as gW
+participant "activePlayer: Virologist" as v
+participant "activeTile: Tile" as at
+participant "obTile: ObservableTile" as obTile
+participant "n: Tile" as n
+participant "obN: ObservableTile" as obN
+
+gW -> v ++: getActiveTile()
+return activeTile
+gW -> at ++: getObservable()
+return obTile
+gW -> obTile ++: onPaint()
+return tComponent
+
+gW -> at ++: getNeighbours()
+return neighbours
+
+loop for all n in neighbours
+    gW -> n ++: getObservable()
+    return obN
+    gW -> obN ++: onPaint()
+    return tNComponent
+end
+
+
+@enduml

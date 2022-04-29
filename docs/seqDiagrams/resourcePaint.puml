@@ -1,0 +1,22 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe resourcePaint
+
+participant "gW: GraphicsView" as gW
+participant "aPInv: Inventory" as i
+participant "res: Resource" as res
+participant "obRes: ObservableResource" as obRes
+
+gW -> i ++: getResources()
+return resources
+loop for all resources
+    gW -> res ++: getObservable()
+    return obRes
+    gW -> obRes ++: onPaint()
+    return rComponent
+end
+
+
+@enduml

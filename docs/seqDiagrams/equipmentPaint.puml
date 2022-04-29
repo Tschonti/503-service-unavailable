@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-
+hide footBox
+skinparam sequenceMessageAlign center
+
+mainframe equipmentPaint
+
+participant "gW: GraphicsView" as gW
+participant "aPInv: Inventory" as aPInv
+participant "e: Equipment" as e
+participant "oE: ObservableEquipment" as oE
+
+gW -> aPInv++: getEquipments()
+return eq
+loop for all e : Eq
+    gW -> e++: getObservable()
+    return oE
+    gW -> oE++: onPaint()
+    return eComponent
+end
+@enduml

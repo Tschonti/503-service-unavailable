@@ -1,0 +1,22 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe agentPaint
+
+participant "gW: GraphicsView" as gW
+participant "aPInv: Inventory" as i
+participant "a: Agent" as a
+participant "obA: ObservableAgent" as obA
+
+gW -> i ++: getResources()
+return agents
+loop for all agents
+    gW -> a ++: getObservable()
+    return obA
+    gW -> obA ++: onPaint()
+    return component
+end
+
+
+@enduml
