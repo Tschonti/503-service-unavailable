@@ -1,7 +1,10 @@
 package main;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -16,7 +19,7 @@ public class GraphicsView implements View{
 
     public GraphicsView() {
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        menu.setSize(350, 400);
+        menu.setSize(550, 400);
         menu.setLocation(550, 50);
         menu.setTitle("Virologist game");
         menu.setResizable(true);
@@ -56,10 +59,21 @@ public class GraphicsView implements View{
 
     public void generateMenu() {
         JLabel title = new JLabel("Virologist game");
-
         title.setFont(comicSans);
+        try {
+            title = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\title.png"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         JLabel credits = new JLabel("Developed by service_unavailable");
         credits.setFont(comicSans);
+        try {
+            credits = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\credits.png"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         JButton startButton = new JButton("Start");
         startButton.setFont(comicSans);
