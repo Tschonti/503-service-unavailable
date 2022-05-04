@@ -12,7 +12,10 @@ import java.util.ArrayList;
  */
 public class GeneticCode implements Collectable {
 
-    ObservableGeneticCode obsGeneticCode;
+    /**
+     * Observable for the genetic code.
+     */
+    private final ObservableGeneticCode obsGeneticCode;
 
     /**
      * The agent that can be crafted from this genetic code.
@@ -41,6 +44,14 @@ public class GeneticCode implements Collectable {
         id = newId;
         agent = a;
         price = p;
+    }
+
+    /**
+     * Getter for ObservableGeneticCode.
+     * @return ObservableGeneticCode
+     */
+    public ObservableGeneticCode getObsGeneticCode() {
+        return obsGeneticCode;
     }
 
     /**

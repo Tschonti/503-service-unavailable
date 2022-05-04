@@ -3,12 +3,24 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import java.util.ArrayList;
+
+import observables.ObservableVirologist;
 import tiles.Tile;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
  */
 public class Virologist {
+
+    /**
+     * Observable for the virologist.
+     */
+    private final ObservableVirologist obsVirologist;
+
+    /**
+     * Path for the image of the virologist.
+     */
+    private final String imagePath;
 
     /**
      * The number of actions remaining in current round.
@@ -45,10 +57,28 @@ public class Virologist {
      * @param name Virologist's unique name.
      */
     public Virologist(String name) {
+        imagePath = "resources\\virologist.png";
+        obsVirologist = new ObservableVirologist(this);
         actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
         this.name = name;
+    }
+
+    /**
+     * Getter for imagePath.
+     * @return imagePath
+     */
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * Getter for ObservableVirologist
+     * @return ObservableVirologist
+     */
+    public ObservableVirologist getObsVirologist() {
+        return obsVirologist;
     }
 
     /**
