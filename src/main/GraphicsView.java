@@ -33,7 +33,7 @@ public class GraphicsView {
         game.setTitle("Virologist game");
         game.setResizable(true);
         game.setLayout(new BorderLayout());
-        generateGame();
+
     }
 
     public void generateGame() {
@@ -55,6 +55,11 @@ public class GraphicsView {
 
         game.add(menuBar);
         game.setJMenuBar(menuBar);
+
+        //TODO funny, delete later
+        for (Virologist player : controller.getPlayers()) {
+            game.add(player.getObsVirologist().onPaint(), BorderLayout.CENTER);
+        }
     }
 
     public void generateMenu() {
@@ -79,6 +84,8 @@ public class GraphicsView {
         startButton.setFont(comicSans);
         startButton.addActionListener(e -> {
             menu.setVisible(false);
+            generateGame();
+
             game.setVisible(true);
             System.out.println("TODO START"); //TODO
         });

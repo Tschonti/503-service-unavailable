@@ -3,9 +3,12 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import java.util.ArrayList;
+import java.util.Random;
 
 import observables.ObservableVirologist;
 import tiles.Tile;
+
+import static main.Constants.numOfVirPics;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
@@ -57,7 +60,8 @@ public class Virologist {
      * @param name Virologist's unique name.
      */
     public Virologist(String name) {
-        imagePath = "resources\\virologist.png";
+        int num = (SRandom.nextRandom(numOfVirPics)+1);
+        imagePath = "resources\\virologist" +  num  + ".png" ;
         obsVirologist = new ObservableVirologist(this);
         actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();

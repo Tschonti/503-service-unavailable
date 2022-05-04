@@ -19,4 +19,9 @@ public class Constants {
      * Max number of equipments that a player can hold at once.
      */
     public static int maxNumOfEquipments = 3;
+
+    /**
+     * Number of virologist pictures
+     */
+    public static  int numOfVirPics = 2;
 }
