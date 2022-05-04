@@ -27,8 +27,11 @@ public class Main {
             );
         }
 
-        ConsoleView consoleView = new ConsoleView();
-        consoleView.menu();
+        //ConsoleView consoleView = new ConsoleView();
+        //consoleView.menu();
+
+        new GraphicsView();
+
     }
 
     /**
