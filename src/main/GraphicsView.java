@@ -8,14 +8,14 @@ import java.io.IOException;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-public class GraphicsView implements View{
+public class GraphicsView {
 
-    Controller controller = new Controller(this);
+    private final Controller controller = new Controller(this);
 
-    JFrame menu = new JFrame();
-    JFrame game = new JFrame();
+    private final JFrame menu = new JFrame();
+    private final JFrame game = new JFrame();
 
-    Font comicSans = new Font("Comic Sans MS", Font.PLAIN, 18);
+    private final Font comicSans = new Font("Comic Sans MS", Font.PLAIN, 18);
 
     public GraphicsView() {
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -132,21 +132,6 @@ public class GraphicsView implements View{
         menuPanel.add(credits, BorderLayout.SOUTH);
 
         menu.add(menuPanel);
-
-    }
-
-    @Override
-    public void menu() {
-
-    }
-
-    @Override
-    public void chooseAction() {
-
-    }
-
-    @Override
-    public void gameOver(Virologist winner) {
 
     }
 }

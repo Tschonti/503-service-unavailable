@@ -72,7 +72,7 @@ public class ConsoleView implements View {
      * Constructor
      */
     public ConsoleView() {
-        controller = new Controller(this);
+        //controller = new Controller(this);
         Virologist.setController(controller);
         menu = new HashMap<>();
         menu.put("start", controller::gameLoop);

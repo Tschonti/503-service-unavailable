@@ -49,12 +49,12 @@ public class Controller {
     /**
      * The view for the game.
      */
-    private final View view;
+    private final GraphicsView view;
 
     /**
      * Constructor
      */
-    public Controller(View newView) {
+    public Controller(GraphicsView newView) {
         activePlayer = null;
         map = new Map();
         players = new ArrayList<>();
@@ -76,7 +76,7 @@ public class Controller {
                 activePlayer = player;
                 activePlayer.startTurn();
                 while (!endOfGame && activePlayer.getActionsLeft() > 0) {
-                    view.chooseAction();
+                    //view.chooseAction(); //TODO
                     if (players.size() == infectedPlayers.size()) {
                         endOfGame = true;
                         activePlayer = null;
@@ -96,7 +96,7 @@ public class Controller {
             }
         }
         if (isWinner) {
-            view.gameOver(activePlayer);
+            //view.gameOver(activePlayer); TODO
         }
         activePlayer = null;
         players.clear();

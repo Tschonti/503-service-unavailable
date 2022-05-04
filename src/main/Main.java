@@ -15,7 +15,7 @@ public class Main {
      * @param args arguments
      */
     public static void main(String[] args) {
-        if (args.length > 0 && args[0].equals("debug")) {
+        /*if (args.length > 0 && args[0].equals("debug")) {
             debugMode = true;
         }
         if (!debugMode) {
@@ -25,7 +25,7 @@ public class Main {
                 "that are not so friendly and attack you in humanity's last hours!\n" +
                 "Save our world, mighty traveller!"
             );
-        }
+        }*/
 
         //ConsoleView consoleView = new ConsoleView();
         //consoleView.menu();
