@@ -1,6 +1,8 @@
 package main;
 
 import agents.*;
+import observables.ObservableGeneticCode;
+
 import java.util.ArrayList;
 
 /**
@@ -9,6 +11,8 @@ import java.util.ArrayList;
  * A Virologist can win the game by collecting all genetic codes.
  */
 public class GeneticCode implements Collectable {
+
+    ObservableGeneticCode obsGeneticCode;
 
     /**
      * The agent that can be crafted from this genetic code.
@@ -33,6 +37,7 @@ public class GeneticCode implements Collectable {
      * @param p price
      */
     public GeneticCode(int newId, Agent a, ArrayList<Resource> p) {
+        obsGeneticCode = new ObservableGeneticCode(this);
         id = newId;
         agent = a;
         price = p;
