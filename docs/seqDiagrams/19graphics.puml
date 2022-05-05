@@ -1,0 +1,31 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+
+mainframe Graphics
+
+participant "controller: Controller" as c
+participant "gW: GraphicsView" as gW
+participant "activePlayer: Virologist" as v
+participant "aPInv: Inventory" as aPInv
+participant "e: Equipment" as e
+participant "oE: ObservableEquipment" as oE
+
+
+c -> gW ++: chooseAction()
+    gW -> c ++: getActivePlayer()
+    return activePlayer
+    gW -> v ++: getInventory()
+    return
+    gW -> aPInv++: getEquipments()
+    return eq
+    loop
+        gW -> e++: getObservable()
+        return oE
+        gW -> oE++: onPaint()
+        return
+    end
+return
+
+@enduml
