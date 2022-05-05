@@ -2,9 +2,11 @@ package main;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -15,16 +17,30 @@ public class GraphicsView {
     private final JFrame menu = new JFrame();
     private final JFrame game = new JFrame();
 
-    private final Font comicSans = new Font("Comic Sans MS", Font.PLAIN, 18);
+    public static void setUIFont(FontUIResource f) {
+        Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource) {
+                Font font = new Font(f.getFontName(), Font.PLAIN, f.getSize());
+                UIManager.put(key, new FontUIResource(font));
+            }
+        }
+    }
 
     public GraphicsView() {
+        setUIFont(new FontUIResource(new Font("Comic Sans MS", Font.PLAIN, 18)));
+
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
         menu.setSize(550, 400);
         menu.setLocation(550, 50);
+
         menu.setTitle("Virologist game");
         menu.setResizable(true);
         menu.setLayout(new BorderLayout());
         generateMenu();
+
         menu.setVisible(true);
 
         game.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,7 +80,6 @@ public class GraphicsView {
 
     public void generateMenu() {
         JLabel title = new JLabel("Virologist game");
-        title.setFont(comicSans);
         try {
             title = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\title.png"))));
         } catch (IOException e) {
@@ -73,7 +88,6 @@ public class GraphicsView {
 
 
         JLabel credits = new JLabel("Developed by service_unavailable");
-        credits.setFont(comicSans);
         try {
             credits = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\credits.png"))));
         } catch (IOException e) {
@@ -81,16 +95,19 @@ public class GraphicsView {
         }
 
         JButton startButton = new JButton("Start");
-        startButton.setFont(comicSans);
         startButton.addActionListener(e -> {
-            menu.setVisible(false);
-            generateGame();
+            if (controller.getPlayers().size() < 2) { //TODO controller
+                JFrame errorFrame = new JFrame();
+                JOptionPane.showMessageDialog(errorFrame, "At least 2 players are needed!", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                menu.setVisible(false);
+                generateGame();
+                game.setVisible(true);
+            }
 
-            game.setVisible(true);
             System.out.println("TODO START"); //TODO
         });
         JButton quitButton = new JButton("Quit");
-        quitButton.setFont(comicSans);
         quitButton.addActionListener(e -> System.exit(0));
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -99,20 +116,36 @@ public class GraphicsView {
 
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
+        textArea.setAutoscrolls(true);
+        JScrollPane textAreaScroll = new JScrollPane(textArea,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+        );
+        textAreaScroll.setPreferredSize(new Dimension(300,300));
+
+
 
         JLabel nameLabel = new JLabel("Name:");
-        JTextField nameInput = new JTextField("write here");
-        nameInput.setToolTipText("write here");
+        JTextField nameInput = new JTextField("", 10);
+        nameInput.setToolTipText("Write a name");
         nameInput.setEditable(true);
         nameInput.setSize(500,200);
         JButton addButton = new JButton("Add");
         addButton.addActionListener(e -> {
-            controller.addPlayer(new Virologist(nameInput.getText()), "Hungary");
-            textArea.append(nameInput.getText()+'\n');
-            SwingUtilities.updateComponentTreeUI(menu);
-            System.out.println("TODO ADD");
+            try {
+                if (nameInput.getText().trim().equals("")) { //TODO controller
+                    throw new IllegalArgumentException("Give the player a name!");
+                }
+                controller.addPlayer(new Virologist(nameInput.getText()), "Hungary");
+                textArea.append(nameInput.getText()+'\n');
+                nameInput.setText("");
+                nameInput.requestFocus();
+                SwingUtilities.updateComponentTreeUI(menu);
+            } catch (Exception ex) {
+                JFrame errorFrame = new JFrame();
+                JOptionPane.showMessageDialog(errorFrame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }); //TODO
-        addButton.setFont(comicSans);
         addButton.setSize(100, 50);
 
         JPanel getNewPlayerPanel = new JPanel(new FlowLayout());
@@ -122,12 +155,9 @@ public class GraphicsView {
         getNewPlayerPanel.add(nameInput);
         getNewPlayerPanel.add(addButton);
 
-
-
-
         JPanel addPlayerPanel = new JPanel(new BorderLayout());
         addPlayerPanel.add(getNewPlayerPanel, BorderLayout.NORTH);
-        addPlayerPanel.add(textArea, BorderLayout.CENTER);
+        addPlayerPanel.add(textAreaScroll, BorderLayout.CENTER);
 
         JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.add(buttonPanel, BorderLayout.EAST);
