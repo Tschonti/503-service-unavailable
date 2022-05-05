@@ -69,41 +69,29 @@ public class Controller {
      * The main loop, in which the actual game runs.
      * It manages rounds, events and actions.
      */
-    public void gameLoop() {
+    public void gameStart() {
         endOfGame = players.isEmpty();
-        while (!endOfGame) {
-            for (Virologist player : players) {
-                activePlayer = player;
-                activePlayer.startTurn();
-                while (!endOfGame && activePlayer.getActionsLeft() > 0) {
-                    //view.chooseAction(); //TODO
-                    if (players.size() == infectedPlayers.size()) {
-                        endOfGame = true;
-                        activePlayer = null;
-                        isWinner = true;
-                    }
-                }
-                if (endOfGame) {
-                    break;
-                }
-                activePlayer.endTurn();
-                if (players.size() == infectedPlayers.size()) {
-                    endOfGame = true;
-                    activePlayer = null;
-                    isWinner = true;
-                    break;
-                }
-            }
-        }
-        if (isWinner) {
-            //view.gameOver(activePlayer); TODO
-        }
-        activePlayer = null;
-        players.clear();
-        endOfGame = false;
-        isWinner = false;
+        activePlayer = players.get(0);
+        activePlayer.startTurn();
     }
 
+    public void actionHappened(){
+        if (players.size() == infectedPlayers.size()) {
+            endOfGame = true;
+            activePlayer = null;
+            isWinner = false;
+        }
+
+        if(endOfGame){
+            view.gameOver(activePlayer);
+        }
+        //TODO ha van olyan játékos aki nem tud lépni, akkor így szerintem átugorja
+        while(activePlayer.getActionsLeft()==0){
+            activePlayer.endTurn();
+            activePlayer = players.get(players.indexOf(activePlayer) + 1 % players.size());
+            activePlayer.startTurn();
+        }
+    }
     /**
      * Checks, if this player has collected all the genetic codes.
      * @param v The virologist (player) we check.
@@ -200,6 +188,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You can't move to this tile!");
         }
+        actionHappened();
     }
 
     /**
@@ -212,6 +201,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("There is nothing to collect in this tile");
         }
+        actionHappened();
     }
 
     /**
@@ -224,6 +214,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You can't craft this!");
         }
+        actionHappened();
     }
 
     /**
@@ -243,6 +234,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You don't have this agent!");
         }
+        actionHappened();
     }
 
     /**
@@ -262,6 +254,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You don't have this UsableEquipment!");
         }
+        actionHappened();
     }
 
     /**
@@ -275,6 +268,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You can't steal from " + v.getName() + "!");
         }
+        actionHappened();
     }
 
     /**
@@ -287,6 +281,7 @@ public class Controller {
         } else {
             throw new IllegalArgumentException("You don't have this equipment!");
         }
+        actionHappened();
     }
 
     /**
@@ -294,6 +289,7 @@ public class Controller {
      */
     public void pass() {
         activePlayer.pass();
+        actionHappened();
     }
 
     /**
@@ -303,6 +299,7 @@ public class Controller {
         endOfGame = true;
         isWinner = false;
         activePlayer = null;
+        players.clear();
     }
 
     /**

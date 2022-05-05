@@ -44,6 +44,7 @@ public class GraphicsView {
         gameOverMenuItem.addActionListener(e -> {
             game.setVisible(false);
             menu.setVisible(true);
+            controller.endGame();
         });
         jMenu.add(gameOverMenuItem);
         menuBar.add(jMenu);
@@ -140,5 +141,10 @@ public class GraphicsView {
 
         menu.add(menuPanel);
 
+    }
+
+    //TODO
+    public void gameOver(Virologist winner) {
+        System.out.println("Lol vége van a játéknak xd");
     }
 }

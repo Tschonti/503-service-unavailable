@@ -75,7 +75,7 @@ public class ConsoleView implements View {
         //controller = new Controller(this);
         Virologist.setController(controller);
         menu = new HashMap<>();
-        menu.put("start", controller::gameLoop);
+        menu.put("start", controller::gameStart);
         menu.put("add", ConsoleView::add);
         menu.put("quit", () -> quitMenu = true);
 
