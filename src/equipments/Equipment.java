@@ -5,6 +5,7 @@ import main.Collectable;
 import main.Effect;
 import main.Inventory;
 import main.Virologist;
+import observables.ObservableEquipment;
 
 /**
  * An abstract class, which is the parent of all the different Equipments in the game.
@@ -15,6 +16,26 @@ public abstract class Equipment implements Effect, Collectable {
      * How many times the Equipment can be used without breaking down.
      */
     protected int usesLeft;
+
+    /**
+     * Observable for the equipment.
+     */
+    private final ObservableEquipment view;
+
+    /**
+     * Constructor
+     */
+    public Equipment() {
+        view = new ObservableEquipment(this);
+    }
+
+    /**
+     * Getter for the view of the equipment
+     * @return The view observing this equipment
+     */
+    public ObservableEquipment getView() {
+        return view;
+    }
 
     /**
      * Creates a clone of itself, and puts it in the received inventory.

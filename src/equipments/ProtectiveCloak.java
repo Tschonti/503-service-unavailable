@@ -13,7 +13,9 @@ public class ProtectiveCloak extends Equipment {
     /**
      * Constructor
      */
-    public ProtectiveCloak() {}
+    public ProtectiveCloak() {
+        super();
+    }
 
     /**
      * The ProtectiveCloaks impact in case of a Virologist throws an Agent on another Virologist.

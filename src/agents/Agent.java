@@ -3,6 +3,7 @@ package agents;
 import java.util.ArrayList;
 import main.Effect;
 import main.Virologist;
+import observables.ObservableAgent;
 
 /**
  * This abstract class represents a basic Agent. The more specific agents extend this class.
@@ -15,11 +16,17 @@ public abstract class Agent implements Effect {
     protected int roundsLeft;
 
     /**
+     * Observable for the agent.
+     */
+    private final ObservableAgent view;
+
+    /**
      * Agent constructor.
      * @param rLeft sets roundLeft attribute to this param.
      */
     public Agent(int rLeft) {
         roundsLeft = rLeft;
+        view = new ObservableAgent(this);
     }
 
     /**
@@ -108,4 +115,12 @@ public abstract class Agent implements Effect {
      * @param v The Virologist that is infecting.
      */
     public void infect(Virologist v) {}
+
+    /**
+     * Getter for the view of the virologist
+     * @return The view observing this agent
+     */
+    public ObservableAgent getView() {
+        return view;
+    }
 }

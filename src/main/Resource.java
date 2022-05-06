@@ -1,5 +1,7 @@
 package main;
 
+import observables.ObservableResource;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,10 @@ public class Resource implements Collectable {
     private final ResourceType type;
 
     /**
+     * Observable for the resource.
+     */
+    private final ObservableResource view;
+    /**
      * Constructor
      * @param a Amount of the Resource.
      * @param t Type of the Resource.
@@ -25,6 +31,7 @@ public class Resource implements Collectable {
     public Resource(int a, ResourceType t) {
         amount = a;
         type = t;
+        view = new ObservableResource(this);
     }
 
     /**
@@ -67,6 +74,14 @@ public class Resource implements Collectable {
      */
     public ResourceType getType() {
         return type;
+    }
+
+    /**
+     * Getter for the view of the resource
+     * @return The view observing this resource
+     */
+    public ObservableResource getView() {
+        return view;
     }
 
     /**

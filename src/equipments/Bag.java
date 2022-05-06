@@ -12,7 +12,9 @@ public class Bag extends Equipment {
     /**
      * Constructor
      */
-    public Bag() {}
+    public Bag() {
+        super();
+    }
 
     /**
      * The Bags impact at the start of the Virologists turn.
