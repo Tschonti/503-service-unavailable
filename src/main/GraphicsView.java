@@ -18,6 +18,9 @@ public class GraphicsView {
     private final JFrame menu = new JFrame();
     private final JFrame game = new JFrame();
 
+    JTextField nameInput;
+    JTextArea textArea;
+
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
         while (keys.hasMoreElements()) {
@@ -45,7 +48,7 @@ public class GraphicsView {
         menu.setVisible(true);
 
         game.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        game.setSize(400, 400);
+        game.setSize(800, 800);
         game.setLocation(550, 50);
         game.setTitle("Virologist game");
         game.setResizable(true);
@@ -60,6 +63,9 @@ public class GraphicsView {
         JMenuItem gameOverMenuItem = new JMenuItem("Menu");
         gameOverMenuItem.addActionListener(e -> {
             game.setVisible(false);
+            nameInput.setText("");
+            textArea.setText("");
+            SwingUtilities.updateComponentTreeUI(menu);
             menu.setVisible(true);
             controller.endGame();
         });
@@ -73,94 +79,34 @@ public class GraphicsView {
 
         game.add(menuBar);
         game.setJMenuBar(menuBar);
-/*
-        JPanel gamePanel = new JPanel();
-        gamePanel.setSize(new Dimension(400, 400));
-        GroupLayout layout = new GroupLayout(gamePanel);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-        gamePanel.setLayout(layout);
 
-        JLabel neighboursLabel = new JLabel("Neighbours");
-        JLabel resourcesLabel = new JLabel("Resources");
-        JLabel effectsLabel = new JLabel("Effects");
-        JLabel useablesLabel = new JLabel("Useables");
-
-        JLabel nameLabel = new JLabel("Name");
-        JLabel actionsLeftLabel = new JLabel("Actions left");
-        JLabel virologistLabel = new JLabel("ASDASD");
-        try {
-            virologistLabel = new JLabel(new ImageIcon(ImageIO.read(new File(controller.getPlayers().get(0).getImagePath()))));
-            virologistLabel.setSize(200, 200);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JLabel tileLabel = new JLabel("Tile name");
-
-        JLabel geneticsLabel = new JLabel("Genetic codes");
-        JLabel actionsLabel = new JLabel("Actions");
-
-        //Oszloponkent
-        layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(neighboursLabel)
-                        .addComponent(resourcesLabel)
-                        .addComponent(effectsLabel)
-                        .addComponent(useablesLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(nameLabel)
-                        .addComponent(actionsLeftLabel)
-                        .addComponent(virologistLabel)
-                        .addComponent(tileLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(geneticsLabel)
-                        .addComponent(actionsLabel)
-                ))
-        );
-        //Soronkent
-        layout.setVerticalGroup(layout.createSequentialGroup()
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(neighboursLabel)
-                        .addComponent(nameLabel)
-                        .addComponent(geneticsLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(actionsLeftLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(resourcesLabel)
-                        .addComponent(virologistLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(effectsLabel)
-                ))
-                .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(useablesLabel)
-                        .addComponent(tileLabel)
-                        .addComponent(actionsLabel)
-                ))
-        );
-        game.add(gamePanel, BorderLayout.CENTER);
-*/
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.X_AXIS));
 
-        JLabel neighboursLabel = new JLabel("Neighbours", SwingConstants.CENTER);
-        JLabel resourcesLabel = new JLabel("Resources", SwingConstants.CENTER);
-        JLabel effectsLabel = new JLabel("Effects", SwingConstants.CENTER);
-        JLabel useablesLabel = new JLabel("Useables", SwingConstants.CENTER);
+        JLabel neighboursLabel = new JLabel("Neighbours");
+        neighboursLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel resourcesLabel = new JLabel("Resources");
+        resourcesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel effectsLabel = new JLabel("Effects");
+        effectsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel useablesLabel = new JLabel("Useables");
+        useablesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JLabel nameLabel = new JLabel("Name", SwingConstants.CENTER);
-        JLabel actionsLeftLabel = new JLabel("Actions left", SwingConstants.CENTER);
-        JLabel virologistLabel = new JLabel("ASDASD", SwingConstants.CENTER);
-        try {
+        Virologist fisrtPlayer = controller.getPlayers().get(0);
+
+        JLabel nameLabel = (JLabel) fisrtPlayer.getObsVirologistName().onPaint();
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel actionsLeftLabel = (JLabel) fisrtPlayer.getObsVirologistActions().onPaint();
+        actionsLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel virologistLabel = (JLabel) fisrtPlayer.getObsVirologistPicture().onPaint();
+        virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        virologistLabel.setPreferredSize(new Dimension(100,100));
+        /*try {
             virologistLabel = new JLabel(new ImageIcon(ImageIO.read(new File(controller.getPlayers().get(0).getImagePath()))), SwingConstants.CENTER);
             virologistLabel.setSize(200, 200);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         JLabel tileLabel = new JLabel("Tile name", SwingConstants.CENTER);
 
         JLabel geneticsLabel = new JLabel("Genetic codes", SwingConstants.CENTER);
@@ -251,7 +197,7 @@ public class GraphicsView {
         buttonPanel.add(startButton, BorderLayout.NORTH);
         buttonPanel.add(quitButton, BorderLayout.SOUTH);
 
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setAutoscrolls(true);
         JScrollPane textAreaScroll = new JScrollPane(textArea,
@@ -263,7 +209,7 @@ public class GraphicsView {
 
 
         JLabel nameLabel = new JLabel("Name:");
-        JTextField nameInput = new JTextField("", 10);
+        nameInput = new JTextField("", 10);
         nameInput.setToolTipText("Write a name");
         nameInput.setEditable(true);
         nameInput.setSize(500,200);

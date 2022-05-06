@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import observables.ObservableVirologist;
+import observables.ObservableVirologistActions;
+import observables.ObservableVirologistName;
+import observables.ObservableVirologistPicture;
 import tiles.Tile;
 
 import static main.Constants.numOfVirPics;
@@ -18,7 +21,22 @@ public class Virologist {
     /**
      * Observable for the virologist.
      */
-    private final ObservableVirologist obsVirologist;
+    private final ObservableVirologist obsVirologist;  //TODO delete later if not needed
+
+    /**
+     * Observable for the name of the virologist.
+     */
+    private final ObservableVirologistName obsVirologistName;
+
+    /**
+     * Observable for the actions of the virologist.
+     */
+    private final ObservableVirologistActions obsVirologistActions;
+
+    /**
+     * Observable for the picture of the virologist.
+     */
+    private final ObservableVirologistPicture obsVirologistPicture;
 
     /**
      * Path for the image of the virologist.
@@ -63,6 +81,9 @@ public class Virologist {
         int num = (SRandom.nextRandom(numOfVirPics)+1);
         imagePath = "resources\\virologist" +  num  + ".png" ;
         obsVirologist = new ObservableVirologist(this);
+        obsVirologistName = new ObservableVirologistName(this);
+        obsVirologistActions = new ObservableVirologistActions(this);
+        obsVirologistPicture = new ObservableVirologistPicture(this);
         actionsLeft = Constants.numberOfActions;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
@@ -83,6 +104,30 @@ public class Virologist {
      */
     public ObservableVirologist getObsVirologist() {
         return obsVirologist;
+    }
+
+    /**
+     * Getter for ObservableVirologistName
+     * @return ObservableVirologistName
+     */
+    public ObservableVirologistName getObsVirologistName() {
+        return obsVirologistName;
+    }
+
+    /**
+     * Getter for ObservableVirologistActions
+     * @return ObservableVirologistActions
+     */
+    public ObservableVirologistActions getObsVirologistActions() {
+        return obsVirologistActions;
+    }
+
+    /**
+     * Getter for ObservableVirologistPicture
+     * @return ObservableVirologistPicture
+     */
+    public ObservableVirologistPicture getObsVirologistPicture() {
+        return obsVirologistPicture;
     }
 
     /**
