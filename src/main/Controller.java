@@ -67,7 +67,7 @@ public class Controller {
 
     /**
      * The main loop, in which the actual game runs.
-     * It manages rounds, events and actions.
+     * It manages rounds, events and actions. TODO ezt átírni
      */
     public void gameStart() {
         endOfGame = players.isEmpty();

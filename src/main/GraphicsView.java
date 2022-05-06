@@ -92,13 +92,13 @@ public class GraphicsView {
         JLabel useablesLabel = new JLabel("Useables");
         useablesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        Virologist fisrtPlayer = controller.getPlayers().get(0);
+        Virologist activePlayer = controller.getActivePlayer();
 
-        JLabel nameLabel = (JLabel) fisrtPlayer.getObsVirologistName().onPaint();
+        JLabel nameLabel = (JLabel) activePlayer.getObsVirologistName().onPaint();
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel actionsLeftLabel = (JLabel) fisrtPlayer.getObsVirologistActions().onPaint();
+        JLabel actionsLeftLabel = (JLabel) activePlayer.getObsVirologistActions().onPaint();
         actionsLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel virologistLabel = (JLabel) fisrtPlayer.getObsVirologistPicture().onPaint();
+        JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
         virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
         virologistLabel.setPreferredSize(new Dimension(100,100));
         /*try {
@@ -107,7 +107,11 @@ public class GraphicsView {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        JLabel tileLabel = new JLabel("Tile name", SwingConstants.CENTER);
+        JLabel tileLabel = (JLabel) activePlayer.getActiveTile().getNameView().onPaint();
+        JLabel tileTypeLabel = (JLabel) activePlayer.getActiveTile().getTypeView().onPaint();
+        tileLabel.setText("Active tile: " + tileLabel.getText() + ", " + tileTypeLabel.getText());
+        tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         JLabel geneticsLabel = new JLabel("Genetic codes", SwingConstants.CENTER);
         JLabel actionsLabel = new JLabel("Actions", SwingConstants.CENTER);
@@ -184,6 +188,7 @@ public class GraphicsView {
                 JOptionPane.showMessageDialog(errorFrame, "At least 2 players are needed!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 menu.setVisible(false);
+                controller.gameStart();
                 generateGame();
                 game.setVisible(true);
             }
@@ -207,7 +212,7 @@ public class GraphicsView {
         textAreaScroll.setPreferredSize(new Dimension(300,300));
 
 
-
+        Virologist.setController(controller);
         JLabel nameLabel = new JLabel("Name:");
         nameInput = new JTextField("", 10);
         nameInput.setToolTipText("Write a name");

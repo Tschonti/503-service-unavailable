@@ -4,6 +4,8 @@ import agents.Agent;
 import main.GeneticCode;
 import main.Virologist;
 
+import java.awt.*;
+
 public class InfectedLaboratory extends Laboratory {
 
     /**
@@ -19,7 +21,7 @@ public class InfectedLaboratory extends Laboratory {
      * @param infect The Agent that infects everyone who moves to this tile
      */
     public InfectedLaboratory(int id, String name, GeneticCode gc, Agent infect) {
-        super(id, name, gc);
+        super(id, name, gc, Color.RED);
         infectiveAgent = infect;
     }
 

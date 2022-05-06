@@ -1,5 +1,6 @@
 package tiles;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +8,8 @@ import main.Collectable;
 import main.Effect;
 import main.Inventory;
 import main.Virologist;
+import observables.ObservableTileName;
+import observables.ObservableTileType;
 
 /**
  * Abstract class for the fields of the game.
@@ -37,16 +40,21 @@ public abstract class Tile {
      */
     protected Collectable collectable = null;
 
+    private final ObservableTileName nameView;
+    private final ObservableTileType typeView;
+
     /**
      * Constructor
      * @param id Unique identifier of the tile.
      * @param name Name of the tile.
      */
-    public Tile(int id, String name) {
+    public Tile(int id, String name, Color c) {
         this.id = id;
         this.name = name;
         players = new ArrayList<>();
         neighbours = new ArrayList<>();
+        nameView = new ObservableTileName(this, c);
+        typeView = new ObservableTileType(this, c);
     }
 
     /**
@@ -55,8 +63,8 @@ public abstract class Tile {
      * @param name Name of the tile.
      * @param c The collectable that can be picked up from this tile
      */
-    public Tile(int id, String name, Collectable c) {
-        this(id, name);
+    public Tile(int id, String name, Collectable c, Color col) {
+        this(id, name, col);
         collectable = c;
     }
 
@@ -144,6 +152,14 @@ public abstract class Tile {
         return neighbours;
     }
 
+    public ObservableTileName getNameView() {
+        return nameView;
+    }
+
+    public ObservableTileType getTypeView() {
+        return typeView;
+    }
+
     /**
      * Adds a tile as a neighbour to this tile.
      * @param t Tile to be added as neighbour.
@@ -158,13 +174,5 @@ public abstract class Tile {
      */
     public ArrayList<Virologist> getPlayers() {
         return players;
-    }
-
-    /**
-     * This is how the object will appear in the ConsoleView
-     * @return the name of the tile
-     */
-    public String toString() {
-        return name;
     }
 }

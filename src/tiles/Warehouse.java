@@ -1,5 +1,6 @@
 package tiles;
 
+import java.awt.*;
 import main.Resource;
 
 /**
@@ -14,7 +15,7 @@ public class Warehouse extends Tile {
      * @param collectable The resource that can be picked up from this tile
      */
     public Warehouse(int id, String name, Resource collectable) {
-        super(id, name, collectable);
+        super(id, name, collectable, Color.CYAN);
     }
 
     /**

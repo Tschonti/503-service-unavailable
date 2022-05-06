@@ -2,6 +2,8 @@ package tiles;
 
 import equipments.Equipment;
 
+import java.awt.*;
+
 /**
  * A safehouse tile where players can pick up equipments.
  */
@@ -15,6 +17,6 @@ public class Safehouse extends Tile {
      * @param eq Equipment on the tile.
      */
     public Safehouse(int id, String name, Equipment eq) {
-        super(id, name, eq);
+        super(id, name, eq, Color.GREEN);
     }
 }
