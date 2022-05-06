@@ -13,6 +13,7 @@ public class Glove extends Equipment {
      * Constructor
      */
     public Glove() {
+        super();
         usesLeft = 3;
     }
 

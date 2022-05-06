@@ -13,6 +13,7 @@ public class Axe extends Equipment implements UsableEquipment {
      * Constructor
      */
     public Axe() {
+        super();
         usesLeft = 1;
     }
 
