@@ -1,5 +1,10 @@
 package main;
 
+import agents.Agent;
+import equipments.Equipment;
+import equipments.UsableEquipment;
+import tiles.Tile;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -7,6 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Objects;
 
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -20,6 +26,14 @@ public class GraphicsView {
 
     JTextField nameInput;
     JTextArea textArea;
+
+    JComboBox<Object> moveOptions;
+    JComboBox<Object> usableOptions;
+    JComboBox<Object> robOptions;
+    JComboBox<Object> dropOptions;
+    JComboBox<Object> craftOptions;
+    JComboBox<Object> playerOptions;
+    JComboBox<Object> stealEqOptions;
 
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -263,5 +277,54 @@ public class GraphicsView {
     //TODO
     public void gameOver(Virologist winner) {
         System.out.println("Lol vége van a játéknak xd");
+    }
+
+    /**
+     * A Controllertől elkéri az soron lévő játékost, és annak összes birtokolt objektumától elkéri a megjelenítőjét.
+     */
+    public void Paint() {
+        moveOptions   = new JComboBox<>(controller.getActivePlayer().getActiveTile().getNeighbours().toArray());
+        usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
+        dropOptions   = new JComboBox<>(controller.getActivePlayer().getInventory().getEquipments().toArray());
+        craftOptions  = new JComboBox<>(controller.getActivePlayer().getInventory().getLearntCodes().toArray());
+        robOptions    = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayersToStealFrom().toArray());
+        Virologist stolenFrom = (Virologist)robOptions.getSelectedItem();
+        if(stolenFrom != null)
+            stealEqOptions = new JComboBox<>(stolenFrom.getInventory().getEquipments().toArray());
+    }
+
+    public void onPassClick() {
+        controller.pass();
+    }
+
+    public void onMoveClick() {
+        controller.move((Tile)moveOptions.getSelectedItem());
+    }
+
+    public void onUseClick() {
+        usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
+        Object selected = usableOptions.getSelectedItem();
+        if(selected instanceof Agent)
+            controller.use((Agent)selected, (Virologist)playerOptions.getSelectedItem());
+        else if(selected instanceof UsableEquipment)
+            controller.use((UsableEquipment) selected, (Virologist)playerOptions.getSelectedItem());
+    }
+
+    public void onRobClick() {
+        robOptions = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayersToStealFrom().toArray());
+        controller.steal((Virologist) robOptions.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
+    }
+
+    public void onDropClick() {
+        controller.drop((Equipment) dropOptions.getSelectedItem());
+    }
+
+    public void onCollectClick() {
+        controller.collect();
+    }
+
+    public void onCraftClick() {
+        if(craftOptions.getSelectedItem() != null)
+            controller.craft((GeneticCode)(craftOptions.getSelectedItem()));
     }
 }
