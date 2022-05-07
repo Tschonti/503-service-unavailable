@@ -12,9 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.Objects;
 
-import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class GraphicsView {
@@ -32,7 +30,7 @@ public class GraphicsView {
     JComboBox<Object> robOptions;
     JComboBox<Object> dropOptions;
     JComboBox<Object> craftOptions;
-    JComboBox<Object> playerOptions;
+    JComboBox<Object> castOnOptions;
     JComboBox<Object> stealEqOptions;
 
     public static void setUIFont(FontUIResource f) {
@@ -287,6 +285,7 @@ public class GraphicsView {
         usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
         dropOptions   = new JComboBox<>(controller.getActivePlayer().getInventory().getEquipments().toArray());
         craftOptions  = new JComboBox<>(controller.getActivePlayer().getInventory().getLearntCodes().toArray());
+        castOnOptions = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayers().toArray());
         robOptions    = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayersToStealFrom().toArray());
         Virologist stolenFrom = (Virologist)robOptions.getSelectedItem();
         if(stolenFrom != null)
@@ -305,9 +304,9 @@ public class GraphicsView {
         usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
         Object selected = usableOptions.getSelectedItem();
         if(selected instanceof Agent)
-            controller.use((Agent)selected, (Virologist)playerOptions.getSelectedItem());
+            controller.use((Agent)selected, (Virologist) castOnOptions.getSelectedItem());
         else if(selected instanceof UsableEquipment)
-            controller.use((UsableEquipment) selected, (Virologist)playerOptions.getSelectedItem());
+            controller.use((UsableEquipment) selected, (Virologist) castOnOptions.getSelectedItem());
     }
 
     public void onRobClick() {
