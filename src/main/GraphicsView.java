@@ -1,8 +1,7 @@
 package main;
 
-import agents.Agent;
-import equipments.Equipment;
 import equipments.UsableEquipment;
+import observables.*;
 import tiles.Tile;
 
 import javax.imageio.ImageIO;
@@ -27,10 +26,10 @@ public class GraphicsView {
 
     JComboBox<Object> moveOptions;
     JComboBox<Object> usableOptions;
+    JComboBox<Object> usableOnOptions;
     JComboBox<Object> robOptions;
     JComboBox<Object> dropOptions;
     JComboBox<Object> craftOptions;
-    JComboBox<Object> castOnOptions;
     JComboBox<Object> stealEqOptions;
 
     public static void setUIFont(FontUIResource f) {
@@ -128,6 +127,41 @@ public class GraphicsView {
         JLabel geneticsLabel = new JLabel("Genetic codes", SwingConstants.CENTER);
         JLabel actionsLabel = new JLabel("Actions", SwingConstants.CENTER);
 
+        JPanel actionsPanel = new JPanel();
+
+        moveOptions     = new JComboBox<>();
+        usableOnOptions = new JComboBox<>();
+        usableOptions   = new JComboBox<>();
+        robOptions      = new JComboBox<>();
+        stealEqOptions  = new JComboBox<>();
+        dropOptions     = new JComboBox<>();
+        craftOptions    = new JComboBox<>();
+        fillComboBoxes();
+
+        JButton passButton = new JButton("Pass");
+        JButton moveButton = new JButton("Move");
+        JButton useButton = new JButton("Use");
+        JButton robButton = new JButton("Rob");
+        JButton dropButton = new JButton("Drop");
+        JButton collectButton = new JButton("Collect");
+        JButton craftButton = new JButton("Craft");
+
+        actionsPanel.add(passButton);
+        actionsPanel.add(moveButton);
+        actionsPanel.add(moveOptions);
+        actionsPanel.add(useButton);
+        actionsPanel.add(usableOnOptions);
+        actionsPanel.add(usableOptions);
+        actionsPanel.add(usableOptions);
+        actionsPanel.add(robButton);
+        actionsPanel.add(robOptions);
+        actionsPanel.add(stealEqOptions);
+        actionsPanel.add(dropButton);
+        actionsPanel.add(dropOptions);
+        actionsPanel.add(collectButton);
+        actionsPanel.add(craftButton);
+        actionsPanel.add(craftOptions);
+
 
         JPanel leftPanel = new JPanel();
         leftPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -163,6 +197,7 @@ public class GraphicsView {
         rightPanel.setLayout(new GridLayout(2, 1));
         rightPanel.add(geneticsLabel);
         rightPanel.add(actionsLabel);
+        rightPanel.add(actionsPanel);
         gamePanel.add(rightPanel);
 
         gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -277,19 +312,46 @@ public class GraphicsView {
         System.out.println("Lol vége van a játéknak xd");
     }
 
+    private void fillComboBoxes() {
+        Virologist ap = controller.getActivePlayer();
+        Tile at = ap.getActiveTile();
+        Inventory aInv = ap.getInventory();
+        moveOptions.removeAllItems();
+        at.getNeighbours().stream().map(t -> ((JLabel)t.getNameView().onPaint()).getText()).forEach(v -> moveOptions.addItem(v));
+
+        usableOptions.removeAllItems();
+        aInv.getUsableEquipments().stream().map(u -> ((JLabel)u.getView().onPaint()).getText()).forEach(v -> usableOptions.addItem(v));
+        aInv.getCraftedAgents().stream().map(u -> ((JLabel)u.getView().onPaint()).getText()).forEach(v -> usableOptions.addItem(v));
+
+        usableOnOptions.removeAllItems();
+        at.getPlayers().stream().map(v -> ((JLabel)v.getObsVirologistName().onPaint()).getText()).forEach(v -> usableOnOptions.addItem(v));
+
+        robOptions.removeAllItems();
+        at.getPlayersToStealFrom().stream().map(v -> ((JLabel)v.getObsVirologistName().onPaint()).getText()).forEach(v -> robOptions.addItem(v));
+
+        stealEqOptions.removeAllItems();
+        if (robOptions.getSelectedItem() != null) {
+            Virologist stolenFrom = ((ObservableVirologistName)robOptions.getSelectedItem()).getVirologist();
+            if(stolenFrom != null)
+                stolenFrom.getInventory().getEquipments().stream().map(e -> ((JLabel)e.getView().onPaint()).getText()).forEach(v -> stealEqOptions.addItem(v));
+                stealEqOptions.setEnabled(true);
+        } else {
+            stealEqOptions.setEnabled(false);
+        }
+
+        dropOptions.removeAllItems();
+        aInv.getEquipments().stream().map(e -> ((JLabel)e.getView().onPaint()).getText()).forEach(v -> dropOptions.addItem(v));
+
+        craftOptions.removeAllItems();
+        aInv.getLearntCodes().stream().map(gc -> ((JLabel)gc.getObsGeneticCode().onPaint()).getText()).forEach(v -> craftOptions.addItem(v));
+    }
+
     /**
      * A Controllertől elkéri az soron lévő játékost, és annak összes birtokolt objektumától elkéri a megjelenítőjét.
      */
     public void Paint() {
-        moveOptions   = new JComboBox<>(controller.getActivePlayer().getActiveTile().getNeighbours().toArray());
-        usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
-        dropOptions   = new JComboBox<>(controller.getActivePlayer().getInventory().getEquipments().toArray());
-        craftOptions  = new JComboBox<>(controller.getActivePlayer().getInventory().getLearntCodes().toArray());
-        castOnOptions = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayers().toArray());
-        robOptions    = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayersToStealFrom().toArray());
-        Virologist stolenFrom = (Virologist)robOptions.getSelectedItem();
-        if(stolenFrom != null)
-            stealEqOptions = new JComboBox<>(stolenFrom.getInventory().getEquipments().toArray());
+
+
     }
 
     public void onPassClick() {
@@ -297,25 +359,33 @@ public class GraphicsView {
     }
 
     public void onMoveClick() {
-        controller.move((Tile)moveOptions.getSelectedItem());
+        if (moveOptions.getSelectedItem() != null) {
+            controller.move(((ObservableTileName)moveOptions.getSelectedItem()).getTile());
+        }
     }
 
     public void onUseClick() {
-        usableOptions = new JComboBox<>(controller.getActivePlayer().getInventory().getUsableEquipments().toArray());
-        Object selected = usableOptions.getSelectedItem();
-        if(selected instanceof Agent)
-            controller.use((Agent)selected, (Virologist) castOnOptions.getSelectedItem());
-        else if(selected instanceof UsableEquipment)
-            controller.use((UsableEquipment) selected, (Virologist) castOnOptions.getSelectedItem());
+        if (usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null) {
+            Object selected = usableOptions.getSelectedItem();
+            Virologist v = ((ObservableVirologistName) usableOnOptions.getSelectedItem()).getVirologist();
+            if(selected instanceof ObservableAgent)
+                controller.use(((ObservableAgent) selected).getAgent(), v);
+            else if(selected instanceof ObservableEquipment)
+                controller.use((UsableEquipment) ((ObservableEquipment) selected).getEquipment(), v);
+        }
+
     }
 
     public void onRobClick() {
-        robOptions = new JComboBox<>(controller.getActivePlayer().getActiveTile().getPlayersToStealFrom().toArray());
-        controller.steal((Virologist) robOptions.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
+        if (robOptions.getSelectedItem() != null && stealEqOptions.getSelectedItem() != null) { //TODO equipment ugye lehet null, ezt valahogy kezelni majd
+            controller.steal(((ObservableVirologistName) robOptions.getSelectedItem()).getVirologist(), ((ObservableEquipment) stealEqOptions.getSelectedItem()).getEquipment());
+        }
     }
 
     public void onDropClick() {
-        controller.drop((Equipment) dropOptions.getSelectedItem());
+        if (dropOptions.getSelectedItem() != null) {
+            controller.drop(((ObservableEquipment) dropOptions.getSelectedItem()).getEquipment());
+        }
     }
 
     public void onCollectClick() {
@@ -324,6 +394,6 @@ public class GraphicsView {
 
     public void onCraftClick() {
         if(craftOptions.getSelectedItem() != null)
-            controller.craft((GeneticCode)(craftOptions.getSelectedItem()));
+            controller.craft(((ObservableGeneticCode) craftOptions.getSelectedItem()).getCode());
     }
 }
