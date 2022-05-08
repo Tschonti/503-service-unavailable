@@ -10,6 +10,7 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -67,6 +68,78 @@ public class GraphicsView {
 
     }
 
+    private JComponent getGeneticCodesView() {
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Genetic codes:"));
+        ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
+        for (int i = 0; i < codes.size(); i++) {
+            p.add(codes.get(i).getObsGeneticCode().onPaint());
+        }
+        return p;
+    }
+
+    private JComponent getNeighboursVirologists() {
+        ArrayList<Virologist> virologists = new ArrayList<>();
+        Tile t = controller.getActivePlayer().getActiveTile();
+        virologists.addAll(t.getPlayers());
+        virologists.remove(controller.getActivePlayer());
+
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Virologist on your tile:"));
+        for (int i = 0; i < virologists.size(); i++) {
+            p.add(virologists.get(i).getObsVirologistName().onPaint());
+        }
+        return p;
+    }
+
+
+    private JComponent getResources() {
+        ArrayList<Resource> resources = new ArrayList<>();
+
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Resources:"));
+
+        resources.addAll(controller.getActivePlayer().getInventory().getResources());
+        for (int i = 0; i < resources.size(); i++) {
+            p.add(resources.get(i).getView().onPaint());
+        }
+        return p;
+    }
+
+
+    private JComponent getEffects() {
+        ArrayList<Effect> effects = new ArrayList<>();
+        effects.addAll(controller.getActivePlayer().getActiveEffects());
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Active effects:"));
+
+        for (int i = 0; i < effects.size(); i++) {
+            p.add(effects.get(i).getView().onPaint());
+        }
+        return p;
+    }
+
+    private JComponent getUseables() {
+        ArrayList<UsableEquipment> useables = new ArrayList<>();
+        useables.addAll(controller.getActivePlayer().getInventory().getUsableEquipments());
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Useables:"));
+
+        for (int i = 0; i < useables.size(); i++) {
+            p.add(useables.get(i).getView().onPaint());
+        }
+        return p;
+    }
     public void generateGame() {
         JMenuBar menuBar = new JMenuBar();
         JMenu jMenu = new JMenu("File");
@@ -94,14 +167,10 @@ public class GraphicsView {
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.X_AXIS));
 
-        JLabel neighboursLabel = new JLabel("Neighbours");
-        neighboursLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel resourcesLabel = new JLabel("Resources");
-        resourcesLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel effectsLabel = new JLabel("Effects");
-        effectsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel useablesLabel = new JLabel("Useables");
-        useablesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JComponent neighboursLabel = getNeighboursVirologists();
+        JComponent resourcesLabel = getResources();
+        JComponent effectsLabel = getEffects();
+        JComponent useablesLabel = getUseables();
 
         Virologist activePlayer = controller.getActivePlayer();
 
@@ -124,10 +193,10 @@ public class GraphicsView {
         tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 
-        JLabel geneticsLabel = new JLabel("Genetic codes", SwingConstants.CENTER);
-        JLabel actionsLabel = new JLabel("Actions", SwingConstants.CENTER);
+        JComponent geneticsLabel = getGeneticCodesView();
 
         JPanel actionsPanel = new JPanel();
+        actionsPanel.setLayout(new BoxLayout(actionsPanel, BoxLayout.Y_AXIS));
 
         moveOptions     = new JComboBox<>();
         usableOnOptions = new JComboBox<>();
@@ -146,22 +215,48 @@ public class GraphicsView {
         JButton collectButton = new JButton("Collect");
         JButton craftButton = new JButton("Craft");
 
-        actionsPanel.add(passButton);
-        actionsPanel.add(moveButton);
-        actionsPanel.add(moveOptions);
-        actionsPanel.add(useButton);
-        actionsPanel.add(usableOnOptions);
-        actionsPanel.add(usableOptions);
-        actionsPanel.add(usableOptions);
-        actionsPanel.add(robButton);
-        actionsPanel.add(robOptions);
-        actionsPanel.add(stealEqOptions);
-        actionsPanel.add(dropButton);
-        actionsPanel.add(dropOptions);
-        actionsPanel.add(collectButton);
-        actionsPanel.add(craftButton);
-        actionsPanel.add(craftOptions);
+        JPanel firstLineActions = new JPanel();
+        firstLineActions.setLayout(new FlowLayout());
+        firstLineActions.add(passButton);
+        actionsPanel.add(firstLineActions);
 
+        JPanel secondLineActions = new JPanel();
+        secondLineActions.setLayout(new FlowLayout());
+        secondLineActions.add(moveButton);
+        secondLineActions.add(moveOptions);
+        actionsPanel.add(secondLineActions);
+
+        JPanel thirdLineActions = new JPanel();
+        thirdLineActions.setLayout(new FlowLayout());
+        thirdLineActions.add(useButton, 2, 0);
+        thirdLineActions.add(usableOnOptions, 2, 1);
+        thirdLineActions.add(usableOptions, 2, 2);
+        actionsPanel.add(thirdLineActions);
+        //actionsPanel.add(usableOptions);
+
+        JPanel fourthLineActions = new JPanel();
+        fourthLineActions.setLayout(new FlowLayout());
+        fourthLineActions.add(robButton);
+        fourthLineActions.add(robOptions);
+        fourthLineActions.add(stealEqOptions);
+        actionsPanel.add(fourthLineActions);
+
+        JPanel fifthLineActions = new JPanel();
+        fifthLineActions.setLayout(new FlowLayout());
+        fifthLineActions.add(dropButton);
+        fifthLineActions.add(dropOptions);
+        actionsPanel.add(fifthLineActions);
+
+        JPanel sixthLineActions = new JPanel();
+        sixthLineActions.setLayout(new FlowLayout());
+        sixthLineActions.add(collectButton);
+        actionsPanel.add(sixthLineActions);
+
+        JPanel seventhLineActions = new JPanel();
+        seventhLineActions.setLayout(new FlowLayout());
+        seventhLineActions.add(craftButton);
+        seventhLineActions.add(craftOptions);
+        actionsPanel.add(seventhLineActions);
 
         JPanel leftPanel = new JPanel();
         leftPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -196,20 +291,12 @@ public class GraphicsView {
         rightPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         rightPanel.setLayout(new GridLayout(2, 1));
         rightPanel.add(geneticsLabel);
-        rightPanel.add(actionsLabel);
         rightPanel.add(actionsPanel);
         gamePanel.add(rightPanel);
 
         gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         gamePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         game.add(gamePanel, BorderLayout.CENTER);
-/*
-        //TODO funny, delete later
-        for (Virologist player : controller.getPlayers()) {
-            game.add(player.getObsVirologist().onPaint(), BorderLayout.CENTER);
-        }
-
- */
     }
 
     public void generateMenu() {
