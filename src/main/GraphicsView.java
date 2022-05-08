@@ -1,5 +1,7 @@
 package main;
 
+import agents.Agent;
+import equipments.Equipment;
 import equipments.UsableEquipment;
 import observables.*;
 import tiles.Tile;
@@ -25,13 +27,21 @@ public class GraphicsView {
     JTextField nameInput;
     JTextArea textArea;
 
-    JComboBox<Object> moveOptions;
-    JComboBox<Object> usableOptions;
-    JComboBox<Object> usableOnOptions;
-    JComboBox<Object> robOptions;
-    JComboBox<Object> dropOptions;
-    JComboBox<Object> craftOptions;
-    JComboBox<Object> stealEqOptions;
+    private JComboBox<Object> moveOptions;
+    private JComboBox<Object> usableOptions;
+    private JComboBox<Object> usableOnOptions;
+    private JComboBox<Object> stealFrom;
+    private JComboBox<Object> dropOptions;
+    private JComboBox<Object> craftOptions;
+    private JComboBox<Object> stealEqOptions;
+
+    private JButton passButton;
+    private JButton moveButton;
+    private JButton useButton;
+    private JButton robButton;
+    private JButton dropButton;
+    private JButton collectButton;
+    private JButton craftButton;
 
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -201,19 +211,28 @@ public class GraphicsView {
         moveOptions     = new JComboBox<>();
         usableOnOptions = new JComboBox<>();
         usableOptions   = new JComboBox<>();
-        robOptions      = new JComboBox<>();
+        stealFrom = new JComboBox<>();
         stealEqOptions  = new JComboBox<>();
         dropOptions     = new JComboBox<>();
         craftOptions    = new JComboBox<>();
-        fillComboBoxes();
 
-        JButton passButton = new JButton("Pass");
-        JButton moveButton = new JButton("Move");
-        JButton useButton = new JButton("Use");
-        JButton robButton = new JButton("Rob");
-        JButton dropButton = new JButton("Drop");
-        JButton collectButton = new JButton("Collect");
-        JButton craftButton = new JButton("Craft");
+        passButton = new JButton("Pass");
+        moveButton = new JButton("Move");
+        useButton = new JButton("Use");
+        robButton = new JButton("Rob");
+        dropButton = new JButton("Drop");
+        collectButton = new JButton("Collect");
+        craftButton = new JButton("Craft");
+
+        passButton.addActionListener(e -> onPassClick());
+        moveButton.addActionListener(e -> onMoveClick());
+        useButton.addActionListener(e -> onUseClick());
+        robButton.addActionListener(e -> onRobClick());
+        dropButton.addActionListener(e -> onDropClick());
+        collectButton.addActionListener(e -> onCollectClick());
+        craftButton.addActionListener(e -> onCraftClick());
+
+        fillComboBoxes();
 
         JPanel firstLineActions = new JPanel();
         firstLineActions.setLayout(new FlowLayout());
@@ -237,7 +256,7 @@ public class GraphicsView {
         JPanel fourthLineActions = new JPanel();
         fourthLineActions.setLayout(new FlowLayout());
         fourthLineActions.add(robButton);
-        fourthLineActions.add(robOptions);
+        fourthLineActions.add(stealFrom);
         fourthLineActions.add(stealEqOptions);
         actionsPanel.add(fourthLineActions);
 
@@ -404,41 +423,45 @@ public class GraphicsView {
         Tile at = ap.getActiveTile();
         Inventory aInv = ap.getInventory();
         moveOptions.removeAllItems();
-        at.getNeighbours().stream().map(t -> ((JLabel)t.getNameView().onPaint()).getText()).forEach(v -> moveOptions.addItem(v));
+        at.getNeighbours().forEach(v -> moveOptions.addItem(v));
 
         usableOptions.removeAllItems();
-        aInv.getUsableEquipments().stream().map(u -> ((JLabel)u.getView().onPaint()).getText()).forEach(v -> usableOptions.addItem(v));
-        aInv.getCraftedAgents().stream().map(u -> ((JLabel)u.getView().onPaint()).getText()).forEach(v -> usableOptions.addItem(v));
+        aInv.getUsableEquipments().forEach(v -> usableOptions.addItem(v));
+        aInv.getCraftedAgents().forEach(v -> usableOptions.addItem(v));
 
         usableOnOptions.removeAllItems();
-        at.getPlayers().stream().map(v -> ((JLabel)v.getObsVirologistName().onPaint()).getText()).forEach(v -> usableOnOptions.addItem(v));
+        at.getPlayers().forEach(v -> usableOnOptions.addItem(v));
+        useButton.setEnabled(usableOptions.getItemCount() > 0 && usableOnOptions.getItemCount() > 0);
 
-        robOptions.removeAllItems();
-        at.getPlayersToStealFrom().stream().map(v -> ((JLabel)v.getObsVirologistName().onPaint()).getText()).forEach(v -> robOptions.addItem(v));
+        stealFrom.removeAllItems();
+        at.getPlayersToStealFrom().forEach(v -> stealFrom.addItem(v));
+        robButton.setEnabled(stealFrom.getItemCount() > 0);
 
         stealEqOptions.removeAllItems();
-        if (robOptions.getSelectedItem() != null) {
-            Virologist stolenFrom = ((ObservableVirologistName)robOptions.getSelectedItem()).getVirologist();
+        if (stealFrom.getSelectedItem() != null) {
+            Virologist stolenFrom = (Virologist) stealFrom.getSelectedItem();
             if(stolenFrom != null)
-                stolenFrom.getInventory().getEquipments().stream().map(e -> ((JLabel)e.getView().onPaint()).getText()).forEach(v -> stealEqOptions.addItem(v));
+                stolenFrom.getInventory().getEquipments().forEach(v -> stealEqOptions.addItem(v));
                 stealEqOptions.setEnabled(true);
         } else {
             stealEqOptions.setEnabled(false);
         }
 
         dropOptions.removeAllItems();
-        aInv.getEquipments().stream().map(e -> ((JLabel)e.getView().onPaint()).getText()).forEach(v -> dropOptions.addItem(v));
+        aInv.getEquipments().forEach(v -> dropOptions.addItem(v));
+        dropButton.setEnabled(dropOptions.getItemCount() > 0);
 
         craftOptions.removeAllItems();
-        aInv.getLearntCodes().stream().map(gc -> ((JLabel)gc.getObsGeneticCode().onPaint()).getText()).forEach(v -> craftOptions.addItem(v));
+        aInv.getLearntCodes().forEach(v -> craftOptions.addItem(v));
+        craftButton.setEnabled(craftOptions.getItemCount() > 0);
+
     }
 
     /**
      * A Controllertől elkéri az soron lévő játékost, és annak összes birtokolt objektumától elkéri a megjelenítőjét.
      */
     public void Paint() {
-
-
+        fillComboBoxes();
     }
 
     public void onPassClick() {
@@ -447,31 +470,41 @@ public class GraphicsView {
 
     public void onMoveClick() {
         if (moveOptions.getSelectedItem() != null) {
-            controller.move(((ObservableTileName)moveOptions.getSelectedItem()).getTile());
+            Tile selected = (Tile)moveOptions.getSelectedItem();
+            controller.move(selected);
+        } else {
+            throw new IllegalArgumentException("No tile selected!");
         }
     }
 
     public void onUseClick() {
         if (usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null) {
             Object selected = usableOptions.getSelectedItem();
-            Virologist v = ((ObservableVirologistName) usableOnOptions.getSelectedItem()).getVirologist();
-            if(selected instanceof ObservableAgent)
-                controller.use(((ObservableAgent) selected).getAgent(), v);
-            else if(selected instanceof ObservableEquipment)
-                controller.use((UsableEquipment) ((ObservableEquipment) selected).getEquipment(), v);
+            Virologist v = (Virologist) usableOnOptions.getSelectedItem();
+            if(selected instanceof Agent)
+                controller.use(((Agent) selected), v);
+            else if(selected instanceof UsableEquipment)
+                controller.use((UsableEquipment) selected, v);
+            else
+                throw new IllegalArgumentException("Invalid item selected selected!");
+        } else {
+            throw new IllegalArgumentException("No virologist or item selected!");
         }
-
     }
 
     public void onRobClick() {
-        if (robOptions.getSelectedItem() != null && stealEqOptions.getSelectedItem() != null) { //TODO equipment ugye lehet null, ezt valahogy kezelni majd
-            controller.steal(((ObservableVirologistName) robOptions.getSelectedItem()).getVirologist(), ((ObservableEquipment) stealEqOptions.getSelectedItem()).getEquipment());
+        if (stealFrom.getSelectedItem() != null && stealEqOptions.getSelectedItem() != null) { //TODO equipment ugye lehet null, ezt valahogy kezelni majd
+            controller.steal((Virologist) stealFrom.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
+        } else {
+            throw new IllegalArgumentException("No virologist selected!");
         }
     }
 
     public void onDropClick() {
         if (dropOptions.getSelectedItem() != null) {
-            controller.drop(((ObservableEquipment) dropOptions.getSelectedItem()).getEquipment());
+            controller.drop((Equipment) dropOptions.getSelectedItem());
+        } else {
+            throw new IllegalArgumentException("No equipment selected!");
         }
     }
 
@@ -480,7 +513,10 @@ public class GraphicsView {
     }
 
     public void onCraftClick() {
-        if(craftOptions.getSelectedItem() != null)
-            controller.craft(((ObservableGeneticCode) craftOptions.getSelectedItem()).getCode());
+        if(craftOptions.getSelectedItem() != null) {
+            controller.craft((GeneticCode) craftOptions.getSelectedItem());
+        } else {
+            throw new IllegalArgumentException("No genetic code selected!");
+        }
     }
 }

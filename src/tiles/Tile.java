@@ -175,4 +175,8 @@ public abstract class Tile {
     public ArrayList<Virologist> getPlayers() {
         return players;
     }
+
+    public String toString() {
+        return name;
+    }
 }

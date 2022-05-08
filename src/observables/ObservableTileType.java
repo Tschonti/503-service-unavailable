@@ -36,7 +36,7 @@ public class ObservableTileType implements IObservable {
      */
     @Override
     public JComponent onPaint() {
-        JLabel res = new JLabel(tile.toString().split("@")[0].split("\\.")[1]);
+        JLabel res = new JLabel(tile.getClass().getName());
         res.setForeground(color);
         return res;
     }
