@@ -152,6 +152,7 @@ public class GraphicsView {
         for (int i = 0; i < usables.size(); i++) {
             p.add(usables.get(i).getView().onPaint());
         }
+        controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
     public void generateGame() {
