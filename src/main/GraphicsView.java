@@ -83,7 +83,7 @@ public class GraphicsView {
         p.add(new JLabel("Genetic codes:"));
         ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
         for (int i = 0; i < codes.size(); i++) {
-            p.add(codes.get(i).getObsGeneticCode().onPaint());
+            p.add(codes.get(i).getView().onPaint());
         }
         return p;
     }
@@ -149,6 +149,32 @@ public class GraphicsView {
         controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
+
+    private JComponent getCollectable() {
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p.add(new JLabel("Collectable:"));
+
+        Collectable c = controller.getActivePlayer().getActiveTile().getCollectableItem();
+        if (c != null) {
+            JLabel label = (JLabel) c.getView().onPaint();
+            String str = label.getText();
+            if (str.contains("#")) {
+                str = str.substring(0, str.indexOf("#") - 1);
+            }
+            if (str.contains(":")) {
+                str = str.substring(0, str.indexOf(":"));
+            }
+            p.add(new JLabel(str));
+        }
+        else {
+            p.add(new JLabel("-"));
+        }
+        return p;
+
+    }
+
     public void generateGame() {
         game = new JFrame();
 
@@ -199,6 +225,8 @@ public class GraphicsView {
         JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
         virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
         virologistLabel.setPreferredSize(new Dimension(100,100));
+
+        JComponent collectableLabel = getCollectable();
         /*try {
             virologistLabel = new JLabel(new ImageIcon(ImageIO.read(new File(controller.getPlayers().get(0).getImagePath()))), SwingConstants.CENTER);
             virologistLabel.setSize(200, 200);
@@ -307,10 +335,13 @@ public class GraphicsView {
         virologistLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
         tileLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         tileLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        collectableLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        collectableLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
         middlePanel.add(nameLabel);
         middlePanel.add(actionsLeftLabel);
         middlePanel.add(virologistLabel);
         middlePanel.add(tileLabel);
+        middlePanel.add(collectableLabel);
         gamePanel.add(middlePanel);
 
         rightPanel = new JPanel();
@@ -324,6 +355,7 @@ public class GraphicsView {
         gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         gamePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         game.add(gamePanel, BorderLayout.CENTER);
+        game.pack();
     }
 
     public void generateMenu() {
@@ -403,6 +435,7 @@ public class GraphicsView {
                 nameInput.setText("");
                 nameInput.requestFocus();
                 SwingUtilities.updateComponentTreeUI(menu);
+                game.pack();
             } catch (Exception ex) {
                 errorFrame(ex.getMessage());
             }
@@ -430,6 +463,7 @@ public class GraphicsView {
         menuPanel.add(credits, BorderLayout.SOUTH);
 
         menu.add(menuPanel);
+        menu.pack();
     }
 
     private void errorFrame(String text){
@@ -446,6 +480,7 @@ public class GraphicsView {
         nameInput.setText("");
         textArea.setText("");
         SwingUtilities.updateComponentTreeUI(menu);
+        game.pack();
         menu.setVisible(true);
         controller.endGame();
 
@@ -470,6 +505,8 @@ public class GraphicsView {
         tileLabel.setText("Active tile: " + tileLabel.getText() + ", " + tileTypeLabel.getText());
         tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        JComponent collectableLabel = getCollectable();
+
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         nameLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
         actionsLeftLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -478,11 +515,14 @@ public class GraphicsView {
         virologistLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
         tileLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         tileLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        collectableLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        collectableLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         middlePanel.add(activePlayer.getObsVirologistName().onPaint());
         middlePanel.add(actionsLeftLabel);
         middlePanel.add(virologistLabel);
         middlePanel.add(tileLabel);
+        middlePanel.add(collectableLabel);
     }
 
     private void fillComboBoxes() {
@@ -556,6 +596,7 @@ public class GraphicsView {
 
         fillComboBoxes();
         SwingUtilities.updateComponentTreeUI(game);
+        game.pack();
     }
 
     public void onPassClick() {

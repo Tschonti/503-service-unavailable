@@ -120,7 +120,7 @@ public abstract class Agent implements Effect {
     public void infect(Virologist v) {}
 
     /**
-     * Getter for the view of the virologist
+     * Getter for the view of the agent
      * @return The view observing this agent
      */
     public ObservableAgent getView() {

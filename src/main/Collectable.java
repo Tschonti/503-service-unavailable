@@ -1,5 +1,8 @@
 package main;
 
+import observables.IObservable;
+import observables.ObservableAgent;
+
 /**
  * Interface for all things that can be collected by virologists.
  */
@@ -15,4 +18,10 @@ public interface Collectable {
      * @return A clone of this collectable.
      */
     Collectable cloneCollectable();
+
+    /**
+     * Getter for the view of the collectables
+     * @return The view observing this agent
+     */
+    IObservable getView();
 }

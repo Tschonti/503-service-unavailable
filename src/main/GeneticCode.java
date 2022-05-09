@@ -50,7 +50,7 @@ public class GeneticCode implements Collectable {
      * Getter for ObservableGeneticCode.
      * @return ObservableGeneticCode
      */
-    public ObservableGeneticCode getObsGeneticCode() {
+    public ObservableGeneticCode getView() {
         return obsGeneticCode;
     }
 
