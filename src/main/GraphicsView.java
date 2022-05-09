@@ -21,7 +21,8 @@ public class GraphicsView {
     private final Controller controller = new Controller(this);
 
     private final JFrame menu = new JFrame();
-    private JFrame game;
+    private final JFrame game = new JFrame();
+    private final JFrame help = new JFrame();
 
     JTextField nameInput;
     JTextArea textArea;
@@ -176,8 +177,6 @@ public class GraphicsView {
     }
 
     public void generateGame() {
-        game = new JFrame();
-
         game.setDefaultCloseOperation(EXIT_ON_CLOSE);
         game.setSize(1200, 800);
         game.setLocation(550, 50);
@@ -195,6 +194,7 @@ public class GraphicsView {
             textArea.setText("");
             SwingUtilities.updateComponentTreeUI(menu);
             menu.setVisible(true);
+            help.setVisible(false);
             controller.endGame();
         });
         jMenu.add(gameOverMenuItem);
@@ -359,6 +359,22 @@ public class GraphicsView {
     }
 
     public void generateMenu() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu helpMenu = new JMenu("File");
+        JMenuItem helpMenuItem = new JMenuItem("Help");
+        helpMenuItem.addActionListener(e -> {
+            game.setVisible(false);
+            menu.setVisible(false);
+            generateHelp();
+            SwingUtilities.updateComponentTreeUI(help);
+            help.setVisible(true);
+        });
+        helpMenu.add(helpMenuItem);
+        menuBar.add(helpMenu);
+        menu.add(menuBar);
+        menu.setJMenuBar(menuBar);
+
+
         JLabel title = new JLabel("Virologist game");
         try {
             title = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\title.png"))));
@@ -464,6 +480,60 @@ public class GraphicsView {
 
         menu.add(menuPanel);
         menu.pack();
+    }
+
+    public void generateHelp() {
+        JPanel helpPanel = new JPanel();
+        helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.Y_AXIS));
+
+        JLabel titleLabel = new JLabel("How to play");
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+
+        helpPanel.add(titleLabel);
+
+        JLabel menuLabel = new JLabel("How to start the game");
+        menuLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+
+        JLabel menuTextLabel = new JLabel("<html>" +
+                " - You can add the name of the virologist after the Name: box." +
+                "<br>" +
+                " - You can add the player one by one with the Add button" +
+                "<br>" +
+                " - You can start the game with the Start button" +
+                "<br>" +
+                " - To start the game at least 2 player is required" +
+                "<br>" +
+                " - You can close the game with the Quit button" +
+                "</html>");
+
+        helpPanel.add(menuLabel);
+        helpPanel.add(menuTextLabel);
+
+        JLabel gameLabel = new JLabel("How to play");
+        gameLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+
+        JLabel gameTextLabel = new JLabel("<html>" +
+                " - Players have 2 actions in every round" +
+                "<br>" +
+                " - All button represents an action" +
+                "<br>" +
+                " - Only the available action's buttons are active" +
+                "<br>" +
+                " - If there are options to how to perform the action, you can select it from dropdown lists" +
+                "</html>");
+        helpPanel.add(gameLabel);
+        helpPanel.add(gameTextLabel);
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            help.setVisible(false);
+            game.setVisible(false);
+            menu.setVisible(true);
+        });
+        helpPanel.add(backButton);
+
+        help.add(helpPanel);
+        help.pack();
     }
 
     private void errorFrame(String text){
