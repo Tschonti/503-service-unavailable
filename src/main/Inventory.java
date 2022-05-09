@@ -199,6 +199,10 @@ public class Inventory {
         if (eq != null) {
             v2Inv.removeEquipment(eq);
             addEquipment(eq);
+            try{
+                v2Inv.removeUsableEquipment((UsableEquipment) eq);
+                addUsableEquipment((UsableEquipment) eq);
+            }catch (Exception e){}
         }
         ArrayList<Resource> inv2Resources = v2Inv.getResources();
         for (Resource res : inv2Resources) {

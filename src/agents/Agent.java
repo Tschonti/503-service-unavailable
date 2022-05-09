@@ -60,6 +60,9 @@ public abstract class Agent implements Effect {
             for (Effect e : activeEffects) {
                 e.counterImpact(this, from, to);
             }
+            if(to.getActiveEffects().contains(this)){
+                onTurnImpact(to);
+            }
         } else {
             this.onTurnImpact(from);
         }

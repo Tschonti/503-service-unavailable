@@ -227,8 +227,8 @@ public class Virologist {
      * @param v Virologist to use the agent on.
      */
     public void useAgent(Agent agent, Virologist v) {
-        agent.use(this, v);
         actionsLeft--;
+        agent.use(this, v);
     }
 
     /**
