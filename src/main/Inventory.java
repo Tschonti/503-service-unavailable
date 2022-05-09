@@ -93,6 +93,9 @@ public class Inventory {
             resToAdd = new Resource(0, res.getType());
         }
         int added = resToAdd.addAmount(maxResourceAmount, res.getAmount());
+        if (added == 0 && res.getAmount() > 0) {
+            throw new IllegalStateException("You don't have any space in your inventory!");
+        }
 
         return new Resource(added, res.getType());
     }
@@ -199,6 +202,10 @@ public class Inventory {
         if (eq != null) {
             v2Inv.removeEquipment(eq);
             addEquipment(eq);
+            try{
+                v2Inv.removeUsableEquipment((UsableEquipment) eq);
+                addUsableEquipment((UsableEquipment) eq);
+            }catch (Exception e){}
         }
         ArrayList<Resource> inv2Resources = v2Inv.getResources();
         for (Resource res : inv2Resources) {

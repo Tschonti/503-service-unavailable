@@ -39,9 +39,7 @@ public class Resource implements Collectable {
      * @param inv Inventory to add the resource.
      */
     public void collect(Inventory inv) {
-        //A clone will be collected
-        Resource newR = new Resource(amount, type);
-        inv.addResource(newR);
+        inv.addResource(this);
     }
 
     /**

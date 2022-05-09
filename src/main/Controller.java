@@ -34,7 +34,7 @@ public class Controller {
     /**
      * All the genetic codes in the game.
      */
-    private final GeneticCode[] codes;
+    private GeneticCode[] codes;
 
     /**
      * True, if the game is over.
@@ -81,17 +81,20 @@ public class Controller {
             activePlayer = null;
             isWinner = false;
         }
-
         if(endOfGame){
             view.gameOver(activePlayer);
+            return;
         }
-        //TODO ha van olyan játékos aki nem tud lépni, akkor így szerintem átugorja
-        view.Paint();
-        while(activePlayer.getActionsLeft()==0){
+        while(activePlayer.getActionsLeft()<=0){
             activePlayer.endTurn();
-            activePlayer = players.get(players.indexOf(activePlayer) + 1 % players.size());
+            activePlayer = players.get((players.indexOf(activePlayer) + 1) % players.size());
             activePlayer.startTurn();
+            if (players.size() == infectedPlayers.size()) {
+                view.gameOver(null);
+                return;
+            }
         }
+        view.Paint();
     }
     /**
      * Checks, if this player has collected all the genetic codes.
@@ -227,6 +230,7 @@ public class Controller {
         if (activePlayer.getCraftedAgents().contains(agent)) {
             if (activePlayer.getActiveTile().getPlayers().contains(v)) {
                 activePlayer.useAgent(agent, v);
+
             } else {
                 throw new IllegalArgumentException(
                     "You can't use this agent on " + v.getName() + "!"
@@ -297,10 +301,12 @@ public class Controller {
      * Force-ends the game, without anyone winning.
      */
     public void endGame() {
-        endOfGame = true;
+        endOfGame = false;
         isWinner = false;
         activePlayer = null;
         players.clear();
+        infectedPlayers.clear();
+        codes = map.createMap();
     }
 
     /**

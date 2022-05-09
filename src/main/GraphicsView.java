@@ -3,7 +3,6 @@ package main;
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import observables.*;
 import tiles.Tile;
 
 import javax.imageio.ImageIO;
@@ -12,21 +11,26 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.*;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import static main.Constants.numOfVirPics;
 
 public class GraphicsView {
 
     private final Controller controller = new Controller(this);
 
     private final JFrame menu = new JFrame();
-    private final JFrame game = new JFrame();
+    private JFrame game;
 
     JTextField nameInput;
     JTextArea textArea;
 
+    private JPanel leftPanel;
+    JPanel middlePanel;
+    private JPanel rightPanel;
+
+    JPanel actionsPanel;
     private JComboBox<Object> moveOptions;
     private JComboBox<Object> usableOptions;
     private JComboBox<Object> usableOnOptions;
@@ -42,6 +46,8 @@ public class GraphicsView {
     private JButton dropButton;
     private JButton collectButton;
     private JButton craftButton;
+
+    private HashSet<Integer> imageNumbers = new HashSet<>();
 
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -68,14 +74,6 @@ public class GraphicsView {
         generateMenu();
 
         menu.setVisible(true);
-
-        game.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        game.setSize(800, 800);
-        game.setLocation(550, 50);
-        game.setTitle("Virologist game");
-        game.setResizable(true);
-        game.setLayout(new BorderLayout());
-
     }
 
     private JComponent getGeneticCodesView() {
@@ -108,16 +106,16 @@ public class GraphicsView {
 
 
     private JComponent getResources() {
-        ArrayList<Resource> resources = new ArrayList<>();
-
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Resources:"));
 
-        resources.addAll(controller.getActivePlayer().getInventory().getResources());
-        for (int i = 0; i < resources.size(); i++) {
-            p.add(resources.get(i).getView().onPaint());
+        ArrayList<Resource> resources = new ArrayList<>(controller.getActivePlayer().getInventory().getResources());
+        for (Resource resource : resources) {
+            JLabel jl = (JLabel) resource.getView().onPaint();
+            jl.setText(jl.getText() + "/" + controller.getActivePlayer().getInventory().getMaxResourceAmount());
+            p.add(jl);
         }
         return p;
     }
@@ -137,20 +135,30 @@ public class GraphicsView {
         return p;
     }
 
-    private JComponent getUseables() {
-        ArrayList<UsableEquipment> useables = new ArrayList<>();
-        useables.addAll(controller.getActivePlayer().getInventory().getUsableEquipments());
+    private JComponent getUsables() {
+        ArrayList<UsableEquipment> usables = new ArrayList<>();
+        usables.addAll(controller.getActivePlayer().getInventory().getUsableEquipments());
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Useables:"));
+        p.add(new JLabel("Usables:"));
 
-        for (int i = 0; i < useables.size(); i++) {
-            p.add(useables.get(i).getView().onPaint());
+        for (int i = 0; i < usables.size(); i++) {
+            p.add(usables.get(i).getView().onPaint());
         }
+        controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
     public void generateGame() {
+        game = new JFrame();
+
+        game.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        game.setSize(1200, 800);
+        game.setLocation(550, 50);
+        game.setTitle("Virologist game");
+        game.setResizable(true);
+        game.setLayout(new BorderLayout());
+
         JMenuBar menuBar = new JMenuBar();
         JMenu jMenu = new JMenu("File");
 
@@ -180,7 +188,7 @@ public class GraphicsView {
         JComponent neighboursLabel = getNeighboursVirologists();
         JComponent resourcesLabel = getResources();
         JComponent effectsLabel = getEffects();
-        JComponent useablesLabel = getUseables();
+        JComponent usablesLabel = getUsables();
 
         Virologist activePlayer = controller.getActivePlayer();
 
@@ -205,7 +213,7 @@ public class GraphicsView {
 
         JComponent geneticsLabel = getGeneticCodesView();
 
-        JPanel actionsPanel = new JPanel();
+        actionsPanel = new JPanel();
         actionsPanel.setLayout(new BoxLayout(actionsPanel, BoxLayout.Y_AXIS));
 
         moveOptions     = new JComboBox<>();
@@ -277,17 +285,17 @@ public class GraphicsView {
         seventhLineActions.add(craftOptions);
         actionsPanel.add(seventhLineActions);
 
-        JPanel leftPanel = new JPanel();
+        leftPanel = new JPanel();
         leftPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         leftPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         leftPanel.setLayout(new GridLayout(5, 1));
         leftPanel.add(neighboursLabel);
         leftPanel.add(resourcesLabel);
         leftPanel.add(effectsLabel);
-        leftPanel.add(useablesLabel);
+        leftPanel.add(usablesLabel);
         gamePanel.add(leftPanel);
 
-        JPanel middlePanel = new JPanel();
+        middlePanel = new JPanel();
         middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         middlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         middlePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -305,7 +313,7 @@ public class GraphicsView {
         middlePanel.add(tileLabel);
         gamePanel.add(middlePanel);
 
-        JPanel rightPanel = new JPanel();
+        rightPanel = new JPanel();
         rightPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rightPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         rightPanel.setLayout(new GridLayout(2, 1));
@@ -337,8 +345,9 @@ public class GraphicsView {
         JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> {
             if (controller.getPlayers().size() < 2) { //TODO controller
-                JFrame errorFrame = new JFrame();
-                JOptionPane.showMessageDialog(errorFrame, "At least 2 players are needed!", "Error", JOptionPane.ERROR_MESSAGE);
+                //JFrame errorFrame = new JFrame();
+                //JOptionPane.showMessageDialog(errorFrame, "At least 2 players are needed!", "Error", JOptionPane.ERROR_MESSAGE);
+                errorFrame("At least 2 players are needed!");
             } else {
                 menu.setVisible(false);
                 controller.gameStart();
@@ -377,14 +386,25 @@ public class GraphicsView {
                 if (nameInput.getText().trim().equals("")) { //TODO controller
                     throw new IllegalArgumentException("Give the player a name!");
                 }
-                controller.addPlayer(new Virologist(nameInput.getText()), "Hungary");
+                int imgNum = -1;
+                while (imageNumbers.size() < numOfVirPics) {
+                    imgNum = (SRandom.nextRandom(numOfVirPics)+1);
+                    if (!imageNumbers.contains(imgNum)) {
+                        imageNumbers.add(imgNum);
+                        break;
+                    }
+                }
+                if (imageNumbers.size() == numOfVirPics) {
+                    imageNumbers.clear();
+                }
+                controller.addPlayer(new Virologist(nameInput.getText(), "resources\\virologist" +  imgNum  + ".png" ), "Hungary");
+                controller.getPlayers().forEach(x->System.out.println(x.getName()));
                 textArea.append(nameInput.getText()+'\n');
                 nameInput.setText("");
                 nameInput.requestFocus();
                 SwingUtilities.updateComponentTreeUI(menu);
             } catch (Exception ex) {
-                JFrame errorFrame = new JFrame();
-                JOptionPane.showMessageDialog(errorFrame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                errorFrame(ex.getMessage());
             }
         }); //TODO
         addButton.setSize(100, 50);
@@ -410,12 +430,59 @@ public class GraphicsView {
         menuPanel.add(credits, BorderLayout.SOUTH);
 
         menu.add(menuPanel);
+    }
 
+    private void errorFrame(String text){
+        JFrame errorFrame = new JFrame();
+        JOptionPane.showMessageDialog(errorFrame, text, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     //TODO
     public void gameOver(Virologist winner) {
         System.out.println("Lol vége van a játéknak xd");
+        errorFrame("Lol vége van xd, nyert:" + (winner == null ?  "Medvék " : winner.getName()));
+
+        game.setVisible(false);
+        nameInput.setText("");
+        textArea.setText("");
+        SwingUtilities.updateComponentTreeUI(menu);
+        menu.setVisible(true);
+        controller.endGame();
+
+    }
+
+    private void updateMiddlePanel(){
+        middlePanel.removeAll();
+        Virologist activePlayer = controller.getActivePlayer();
+
+        JLabel nameLabel = (JLabel) activePlayer.getObsVirologistName().onPaint();
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JLabel actionsLeftLabel = (JLabel) activePlayer.getObsVirologistActions().onPaint();
+        actionsLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
+        virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        virologistLabel.setPreferredSize(new Dimension(100,100));
+
+        JLabel tileLabel = (JLabel) activePlayer.getActiveTile().getNameView().onPaint();
+        JLabel tileTypeLabel = (JLabel) activePlayer.getActiveTile().getTypeView().onPaint();
+        tileLabel.setText("Active tile: " + tileLabel.getText() + ", " + tileTypeLabel.getText());
+        tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nameLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        actionsLeftLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        actionsLeftLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        virologistLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        virologistLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        tileLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tileLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        middlePanel.add(activePlayer.getObsVirologistName().onPaint());
+        middlePanel.add(actionsLeftLabel);
+        middlePanel.add(virologistLabel);
+        middlePanel.add(tileLabel);
     }
 
     private void fillComboBoxes() {
@@ -426,15 +493,25 @@ public class GraphicsView {
         at.getNeighbours().forEach(v -> moveOptions.addItem(v));
 
         usableOptions.removeAllItems();
+        usableOnOptions.removeAllItems();
+
         aInv.getUsableEquipments().forEach(v -> usableOptions.addItem(v));
         aInv.getCraftedAgents().forEach(v -> usableOptions.addItem(v));
-
-        usableOnOptions.removeAllItems();
         at.getPlayers().forEach(v -> usableOnOptions.addItem(v));
-        useButton.setEnabled(usableOptions.getItemCount() > 0 && usableOnOptions.getItemCount() > 0);
+
+        boolean useBool = (usableOptions.getItemCount() > 0);
+
+        if (!useBool) {
+            usableOptions.removeAllItems();
+            usableOnOptions.removeAllItems();
+        }
+        usableOnOptions.setEnabled(useBool);
+        usableOptions.setEnabled(useBool);
+        useButton.setEnabled(useBool);
 
         stealFrom.removeAllItems();
         at.getPlayersToStealFrom().forEach(v -> stealFrom.addItem(v));
+        stealFrom.setEnabled(stealFrom.getItemCount() > 0);
         robButton.setEnabled(stealFrom.getItemCount() > 0);
 
         stealEqOptions.removeAllItems();
@@ -449,10 +526,14 @@ public class GraphicsView {
 
         dropOptions.removeAllItems();
         aInv.getEquipments().forEach(v -> dropOptions.addItem(v));
+        dropOptions.setEnabled(dropOptions.getItemCount() > 0);
         dropButton.setEnabled(dropOptions.getItemCount() > 0);
+
+        collectButton.setEnabled(at.getCollectableItem() != null);
 
         craftOptions.removeAllItems();
         aInv.getLearntCodes().forEach(v -> craftOptions.addItem(v));
+        craftOptions.setEnabled(craftOptions.getItemCount() > 0);
         craftButton.setEnabled(craftOptions.getItemCount() > 0);
 
     }
@@ -461,7 +542,20 @@ public class GraphicsView {
      * A Controllertől elkéri az soron lévő játékost, és annak összes birtokolt objektumától elkéri a megjelenítőjét.
      */
     public void Paint() {
+        leftPanel.removeAll();
+        leftPanel.add(getNeighboursVirologists());
+        leftPanel.add(getResources());
+        leftPanel.add(getEffects());
+        leftPanel.add(getUsables());
+
+        updateMiddlePanel();
+
+        rightPanel.removeAll();
+        rightPanel.add(getGeneticCodesView());
+        rightPanel.add(actionsPanel);
+
         fillComboBoxes();
+        SwingUtilities.updateComponentTreeUI(game);
     }
 
     public void onPassClick() {
@@ -478,22 +572,26 @@ public class GraphicsView {
     }
 
     public void onUseClick() {
-        if (usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null) {
-            Object selected = usableOptions.getSelectedItem();
-            Virologist v = (Virologist) usableOnOptions.getSelectedItem();
-            if(selected instanceof Agent)
-                controller.use(((Agent) selected), v);
-            else if(selected instanceof UsableEquipment)
-                controller.use((UsableEquipment) selected, v);
-            else
-                throw new IllegalArgumentException("Invalid item selected selected!");
-        } else {
-            throw new IllegalArgumentException("No virologist or item selected!");
+        try {
+            if (usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null) {
+                Object selected = usableOptions.getSelectedItem();
+                Virologist v = (Virologist) usableOnOptions.getSelectedItem();
+                if (selected instanceof Agent)
+                    controller.use(((Agent) selected), v);
+                else if (selected instanceof UsableEquipment)
+                    controller.use((UsableEquipment) selected, v);
+                else
+                    throw new IllegalArgumentException("Invalid item selected selected!");
+            } else {
+                throw new IllegalArgumentException("No virologist or item selected!");
+            }
+        }catch (Exception e){
+            errorFrame(e.getMessage());
         }
     }
 
     public void onRobClick() {
-        if (stealFrom.getSelectedItem() != null && stealEqOptions.getSelectedItem() != null) { //TODO equipment ugye lehet null, ezt valahogy kezelni majd
+        if (stealFrom.getSelectedItem() != null) {
             controller.steal((Virologist) stealFrom.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
         } else {
             throw new IllegalArgumentException("No virologist selected!");
@@ -509,14 +607,22 @@ public class GraphicsView {
     }
 
     public void onCollectClick() {
-        controller.collect();
+        try {
+            controller.collect();
+        }catch (Exception e){
+            errorFrame(e.getMessage());
+        }
     }
 
     public void onCraftClick() {
-        if(craftOptions.getSelectedItem() != null) {
-            controller.craft((GeneticCode) craftOptions.getSelectedItem());
-        } else {
-            throw new IllegalArgumentException("No genetic code selected!");
+        try {
+            if (craftOptions.getSelectedItem() != null) {
+                controller.craft((GeneticCode) craftOptions.getSelectedItem());
+            } else {
+                throw new IllegalArgumentException("No genetic code selected!");
+            }
+        }catch(Exception e){
+            errorFrame(e.getMessage());
         }
     }
 }

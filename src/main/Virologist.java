@@ -77,9 +77,8 @@ public class Virologist {
      * Constructor
      * @param name Virologist's unique name.
      */
-    public Virologist(String name) {
-        int num = (SRandom.nextRandom(numOfVirPics)+1);
-        imagePath = "resources\\virologist" +  num  + ".png" ;
+    public Virologist(String name, String imgPath) {
+        imagePath = imgPath;
         obsVirologist = new ObservableVirologist(this);
         obsVirologistName = new ObservableVirologistName(this);
         obsVirologistActions = new ObservableVirologistActions(this);
@@ -227,8 +226,8 @@ public class Virologist {
      * @param v Virologist to use the agent on.
      */
     public void useAgent(Agent agent, Virologist v) {
-        agent.use(this, v);
         actionsLeft--;
+        agent.use(this, v);
     }
 
     /**

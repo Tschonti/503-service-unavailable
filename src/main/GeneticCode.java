@@ -59,16 +59,12 @@ public class GeneticCode implements Collectable {
      * @param inv The inventory, that will get this genetic code.
      */
     public void collect(Inventory inv) {
-        boolean contains = false;
         for (GeneticCode gc : inv.getLearntCodes()) {
             if (gc.getId() == id) {
-                contains = true;
-                break;
+                throw new IllegalStateException("You've already learnt this code!");
             }
         }
-        if (!contains) {
-            inv.addGeneticCode(this);
-        }
+        inv.addGeneticCode(this);
     }
 
     /**
