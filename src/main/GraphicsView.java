@@ -153,7 +153,7 @@ public class GraphicsView {
         game = new JFrame();
 
         game.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        game.setSize(800, 800);
+        game.setSize(1200, 800);
         game.setLocation(550, 50);
         game.setTitle("Virologist game");
         game.setResizable(true);
@@ -493,15 +493,25 @@ public class GraphicsView {
         at.getNeighbours().forEach(v -> moveOptions.addItem(v));
 
         usableOptions.removeAllItems();
+        usableOnOptions.removeAllItems();
+
         aInv.getUsableEquipments().forEach(v -> usableOptions.addItem(v));
         aInv.getCraftedAgents().forEach(v -> usableOptions.addItem(v));
-
-        usableOnOptions.removeAllItems();
         at.getPlayers().forEach(v -> usableOnOptions.addItem(v));
-        useButton.setEnabled(usableOptions.getItemCount() > 0 && usableOnOptions.getItemCount() > 0);
+
+        boolean useBool = (usableOptions.getItemCount() > 0);
+
+        if (!useBool) {
+            usableOptions.removeAllItems();
+            usableOnOptions.removeAllItems();
+        }
+        usableOnOptions.setEnabled(useBool);
+        usableOptions.setEnabled(useBool);
+        useButton.setEnabled(useBool);
 
         stealFrom.removeAllItems();
         at.getPlayersToStealFrom().forEach(v -> stealFrom.addItem(v));
+        stealFrom.setEnabled(stealFrom.getItemCount() > 0);
         robButton.setEnabled(stealFrom.getItemCount() > 0);
 
         stealEqOptions.removeAllItems();
@@ -516,12 +526,14 @@ public class GraphicsView {
 
         dropOptions.removeAllItems();
         aInv.getEquipments().forEach(v -> dropOptions.addItem(v));
+        dropOptions.setEnabled(dropOptions.getItemCount() > 0);
         dropButton.setEnabled(dropOptions.getItemCount() > 0);
 
         collectButton.setEnabled(at.getCollectableItem() != null);
 
         craftOptions.removeAllItems();
         aInv.getLearntCodes().forEach(v -> craftOptions.addItem(v));
+        craftOptions.setEnabled(craftOptions.getItemCount() > 0);
         craftButton.setEnabled(craftOptions.getItemCount() > 0);
 
     }
