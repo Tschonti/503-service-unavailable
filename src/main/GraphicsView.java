@@ -106,16 +106,16 @@ public class GraphicsView {
 
 
     private JComponent getResources() {
-        ArrayList<Resource> resources = new ArrayList<>();
-
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Resources:"));
 
-        resources.addAll(controller.getActivePlayer().getInventory().getResources());
-        for (int i = 0; i < resources.size(); i++) {
-            p.add(resources.get(i).getView().onPaint());
+        ArrayList<Resource> resources = new ArrayList<>(controller.getActivePlayer().getInventory().getResources());
+        for (Resource resource : resources) {
+            JLabel jl = (JLabel) resource.getView().onPaint();
+            jl.setText(jl.getText() + "/" + controller.getActivePlayer().getInventory().getMaxResourceAmount());
+            p.add(jl);
         }
         return p;
     }
@@ -555,6 +555,7 @@ public class GraphicsView {
         rightPanel.add(actionsPanel);
 
         fillComboBoxes();
+        SwingUtilities.updateComponentTreeUI(game);
     }
 
     public void onPassClick() {
@@ -590,7 +591,7 @@ public class GraphicsView {
     }
 
     public void onRobClick() {
-        if (stealFrom.getSelectedItem() != null && stealEqOptions.getSelectedItem() != null) { //TODO equipment ugye lehet null, ezt valahogy kezelni majd
+        if (stealFrom.getSelectedItem() != null) {
             controller.steal((Virologist) stealFrom.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
         } else {
             throw new IllegalArgumentException("No virologist selected!");

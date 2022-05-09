@@ -93,6 +93,9 @@ public class Inventory {
             resToAdd = new Resource(0, res.getType());
         }
         int added = resToAdd.addAmount(maxResourceAmount, res.getAmount());
+        if (added == 0 && res.getAmount() > 0) {
+            throw new IllegalStateException("You don't have any space in your inventory!");
+        }
 
         return new Resource(added, res.getType());
     }
