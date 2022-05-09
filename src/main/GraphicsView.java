@@ -11,17 +11,17 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.*;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import static main.Constants.numOfVirPics;
 
 public class GraphicsView {
 
     private final Controller controller = new Controller(this);
 
     private final JFrame menu = new JFrame();
-    private final JFrame game = new JFrame();
+    private JFrame game;
 
     JTextField nameInput;
     JTextArea textArea;
@@ -46,6 +46,8 @@ public class GraphicsView {
     private JButton dropButton;
     private JButton collectButton;
     private JButton craftButton;
+
+    private HashSet<Integer> imageNumbers = new HashSet<>();
 
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -72,14 +74,6 @@ public class GraphicsView {
         generateMenu();
 
         menu.setVisible(true);
-
-        game.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        game.setSize(800, 800);
-        game.setLocation(550, 50);
-        game.setTitle("Virologist game");
-        game.setResizable(true);
-        game.setLayout(new BorderLayout());
-
     }
 
     private JComponent getGeneticCodesView() {
@@ -156,6 +150,15 @@ public class GraphicsView {
         return p;
     }
     public void generateGame() {
+        game = new JFrame();
+
+        game.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        game.setSize(800, 800);
+        game.setLocation(550, 50);
+        game.setTitle("Virologist game");
+        game.setResizable(true);
+        game.setLayout(new BorderLayout());
+
         JMenuBar menuBar = new JMenuBar();
         JMenu jMenu = new JMenu("File");
 
@@ -383,7 +386,18 @@ public class GraphicsView {
                 if (nameInput.getText().trim().equals("")) { //TODO controller
                     throw new IllegalArgumentException("Give the player a name!");
                 }
-                controller.addPlayer(new Virologist(nameInput.getText()), "Hungary");
+                int imgNum = -1;
+                while (imageNumbers.size() < numOfVirPics) {
+                    imgNum = (SRandom.nextRandom(numOfVirPics)+1);
+                    if (!imageNumbers.contains(imgNum)) {
+                        imageNumbers.add(imgNum);
+                        break;
+                    }
+                }
+                if (imageNumbers.size() == numOfVirPics) {
+                    imageNumbers.clear();
+                }
+                controller.addPlayer(new Virologist(nameInput.getText(), "resources\\virologist" +  imgNum  + ".png" ), "Hungary");
                 controller.getPlayers().forEach(x->System.out.println(x.getName()));
                 textArea.append(nameInput.getText()+'\n');
                 nameInput.setText("");

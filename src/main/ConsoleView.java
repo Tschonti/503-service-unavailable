@@ -205,7 +205,7 @@ public class ConsoleView implements View {
      */
     public static void add() {
         parameterCountCheck(2, 3);
-        Virologist virologist = new Virologist(commandList[1]);
+        Virologist virologist = new Virologist(commandList[1], "resources\\virologist" +  1  + ".png");
         if (commandList.length == 3) {
             controller.addPlayer(virologist, commandList[2]);
         } else {
