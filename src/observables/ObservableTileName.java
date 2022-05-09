@@ -40,4 +40,8 @@ public class ObservableTileName implements IObservable {
         res.setForeground(color);
         return res;
     }
+
+    public Tile getTile() {
+        return tile;
+    }
 }

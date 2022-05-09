@@ -30,4 +30,8 @@ public class ObservableGeneticCode implements IObservable {
     public JComponent onPaint() {
         return new JLabel(code.toString());
     }
+
+    public GeneticCode getCode() {
+        return code;
+    }
 }

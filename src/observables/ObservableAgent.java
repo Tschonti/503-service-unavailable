@@ -30,4 +30,8 @@ public class ObservableAgent implements IObservable {
     public JComponent onPaint() {
         return new JLabel(agent.toString());
     }
+
+    public Agent getAgent() {
+        return agent;
+    }
 }

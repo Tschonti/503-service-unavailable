@@ -30,4 +30,8 @@ public class ObservableVirologistName implements IObservable {
     public JComponent onPaint() {
         return new JLabel(virologist.getName());
     }
+
+    public Virologist getVirologist() {
+        return virologist;
+    }
 }

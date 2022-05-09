@@ -86,6 +86,7 @@ public class Controller {
             view.gameOver(activePlayer);
         }
         //TODO ha van olyan játékos aki nem tud lépni, akkor így szerintem átugorja
+        view.Paint();
         while(activePlayer.getActionsLeft()==0){
             activePlayer.endTurn();
             activePlayer = players.get(players.indexOf(activePlayer) + 1 % players.size());

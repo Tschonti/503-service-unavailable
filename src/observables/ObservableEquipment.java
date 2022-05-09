@@ -30,4 +30,8 @@ public class ObservableEquipment implements IObservable {
     public JComponent onPaint() {
         return new JLabel(equipment.toString());
     }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
 }
