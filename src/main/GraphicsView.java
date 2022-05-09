@@ -48,7 +48,7 @@ public class GraphicsView {
     private JButton collectButton;
     private JButton craftButton;
 
-    private HashSet<Integer> imageNumbers = new HashSet<>();
+    private final HashSet<Integer> imageNumbers = new HashSet<>();
 
     public static void setUIFont(FontUIResource f) {
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -65,6 +65,8 @@ public class GraphicsView {
     public GraphicsView() {
         setUIFont(new FontUIResource(new Font("Comic Sans MS", Font.PLAIN, 18)));
 
+        help.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        help.setLocation(550, 50);
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
         menu.setSize(550, 400);
         menu.setLocation(550, 50);
@@ -82,26 +84,29 @@ public class GraphicsView {
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Genetic codes:"));
-        ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
+
+        controller.getActivePlayer().getInventory().getLearntCodes().forEach(c->p.add(c.getView().onPaint()));
+        /*ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
+        codes.forEach(c->p.add(c.getView().onPaint()));
         for (int i = 0; i < codes.size(); i++) {
             p.add(codes.get(i).getView().onPaint());
-        }
+        }*/
         return p;
     }
 
     private JComponent getNeighboursVirologists() {
-        ArrayList<Virologist> virologists = new ArrayList<>();
         Tile t = controller.getActivePlayer().getActiveTile();
-        virologists.addAll(t.getPlayers());
+        ArrayList<Virologist> virologists = new ArrayList<>(t.getPlayers());
         virologists.remove(controller.getActivePlayer());
 
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Virologist on your tile:"));
-        for (int i = 0; i < virologists.size(); i++) {
+        virologists.forEach(v->p.add(v.getObsVirologistName().onPaint()));
+        /*for (int i = 0; i < virologists.size(); i++) {
             p.add(virologists.get(i).getObsVirologistName().onPaint());
-        }
+        }*/
         return p;
     }
 
@@ -123,30 +128,31 @@ public class GraphicsView {
 
 
     private JComponent getEffects() {
-        ArrayList<Effect> effects = new ArrayList<>();
-        effects.addAll(controller.getActivePlayer().getActiveEffects());
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Active effects:"));
-
+        controller.getActivePlayer().getActiveEffects().forEach(e->p.add(e.getView().onPaint()));
+         /*ArrayList<Effect> effects = new ArrayList<>(controller.getActivePlayer().getActiveEffects());
+        effects.forEach(e->p.add(e.getView().onPaint()));
         for (int i = 0; i < effects.size(); i++) {
             p.add(effects.get(i).getView().onPaint());
-        }
+        }*/
         return p;
     }
 
     private JComponent getUsables() {
-        ArrayList<UsableEquipment> usables = new ArrayList<>();
-        usables.addAll(controller.getActivePlayer().getInventory().getUsableEquipments());
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(new JLabel("Usables:"));
 
+        controller.getActivePlayer().getInventory().getUsableEquipments().forEach(u->p.add(u.getView().onPaint()));
+        /*ArrayList<UsableEquipment> usables = new ArrayList<>(controller.getActivePlayer().getInventory().getUsableEquipments());
+        usables.forEach(u->p.add(u.getView().onPaint()));
         for (int i = 0; i < usables.size(); i++) {
             p.add(usables.get(i).getView().onPaint());
-        }
+        }*/
         controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
