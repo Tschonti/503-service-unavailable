@@ -441,6 +441,9 @@ public class GraphicsView {
                 if (nameInput.getText().trim().equals("")) { //TODO controller
                     throw new IllegalArgumentException("Give the player a name!");
                 }
+                if (controller.getPlayers().size()>=8){
+                    throw new IllegalArgumentException("Maximum 8 players can play the game!");
+                }
                 int imgNum = -1;
                 while (imageNumbers.size() < numOfVirPics) {
                     imgNum = (SRandom.nextRandom(numOfVirPics)+1);
