@@ -21,8 +21,8 @@ public class GraphicsView {
     private final Controller controller = new Controller(this);
 
     private final JFrame menu = new JFrame();
-    private final JFrame game = new JFrame();
     private final JFrame help = new JFrame();
+    private JFrame game;
 
     JTextField nameInput;
     JTextArea textArea;
@@ -183,6 +183,7 @@ public class GraphicsView {
     }
 
     public void generateGame() {
+        game = new JFrame();
         game.setDefaultCloseOperation(EXIT_ON_CLOSE);
         game.setSize(1200, 800);
         game.setLocation(550, 50);
@@ -457,7 +458,6 @@ public class GraphicsView {
                 nameInput.setText("");
                 nameInput.requestFocus();
                 SwingUtilities.updateComponentTreeUI(menu);
-                game.pack();
             } catch (Exception ex) {
                 errorFrame(ex.getMessage());
             }
