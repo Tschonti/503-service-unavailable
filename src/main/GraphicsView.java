@@ -7,7 +7,10 @@ import tiles.Tile;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -79,11 +82,25 @@ public class GraphicsView {
         menu.setVisible(true);
     }
 
+    private void comboBoxInit(JComboBox<Object> box) {
+        box.setForeground(new Color(39, 55,115));
+        box.setBackground(new Color(141, 208, 186));
+        box.setBorder(new LineBorder(new Color(39, 55,115), 2));
+    }
+
+    private void buttonInit(JButton b) {
+        b.setForeground(new Color(39, 55,115));
+        b.setBackground(new Color(251, 248, 190));
+        b.setBorder(new LineBorder(new Color(39, 55,115), 2));
+    }
+
     private JComponent getGeneticCodesView() {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Genetic codes:"));
+        JLabel gcLabel = new JLabel("Genetic codes:");
+        gcLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(gcLabel);
 
         controller.getActivePlayer().getInventory().getLearntCodes().forEach(c->p.add(c.getView().onPaint()));
         /*ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
@@ -102,7 +119,9 @@ public class GraphicsView {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Virologist on your tile:"));
+        JLabel neighLabel = new JLabel("Virologist on your tile:");
+        neighLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(neighLabel);
         virologists.forEach(v->p.add(v.getObsVirologistName().onPaint()));
         /*for (int i = 0; i < virologists.size(); i++) {
             p.add(virologists.get(i).getObsVirologistName().onPaint());
@@ -110,12 +129,13 @@ public class GraphicsView {
         return p;
     }
 
-
     private JComponent getResources() {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Resources:"));
+        JLabel resLabel = new JLabel("Resources:");
+        resLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(resLabel);
 
         ArrayList<Resource> resources = new ArrayList<>(controller.getActivePlayer().getInventory().getResources());
         for (Resource resource : resources) {
@@ -126,12 +146,13 @@ public class GraphicsView {
         return p;
     }
 
-
     private JComponent getEffects() {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Active effects:"));
+        JLabel aeLabel = new JLabel("Active effects:");
+        aeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(aeLabel);
         controller.getActivePlayer().getActiveEffects().forEach(e->p.add(e.getView().onPaint()));
          /*ArrayList<Effect> effects = new ArrayList<>(controller.getActivePlayer().getActiveEffects());
         effects.forEach(e->p.add(e.getView().onPaint()));
@@ -145,7 +166,9 @@ public class GraphicsView {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Usables:"));
+        JLabel usablesLabel = new JLabel("Usables:");
+        usablesLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(usablesLabel);
 
         controller.getActivePlayer().getInventory().getUsableEquipments().forEach(u->p.add(u.getView().onPaint()));
         /*ArrayList<UsableEquipment> usables = new ArrayList<>(controller.getActivePlayer().getInventory().getUsableEquipments());
@@ -161,7 +184,9 @@ public class GraphicsView {
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
-        p.add(new JLabel("Collectable:"));
+        JLabel colLabel = new JLabel("Collectable:");
+        colLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        p.add(colLabel);
 
         Collectable c = controller.getActivePlayer().getActiveTile().getCollectableItem();
         if (c != null) {
@@ -253,10 +278,18 @@ public class GraphicsView {
         moveOptions     = new JComboBox<>();
         usableOnOptions = new JComboBox<>();
         usableOptions   = new JComboBox<>();
-        stealFrom = new JComboBox<>();
+        stealFrom       = new JComboBox<>();
         stealEqOptions  = new JComboBox<>();
         dropOptions     = new JComboBox<>();
         craftOptions    = new JComboBox<>();
+
+        comboBoxInit(moveOptions);
+        comboBoxInit(usableOnOptions);
+        comboBoxInit(usableOptions);
+        comboBoxInit(stealFrom);
+        comboBoxInit(stealEqOptions);
+        comboBoxInit(dropOptions);
+        comboBoxInit(craftOptions);
 
         passButton = new JButton("Pass");
         moveButton = new JButton("Move");
@@ -265,6 +298,14 @@ public class GraphicsView {
         dropButton = new JButton("Drop");
         collectButton = new JButton("Collect");
         craftButton = new JButton("Craft");
+
+        buttonInit(passButton);
+        buttonInit(moveButton);
+        buttonInit(useButton);
+        buttonInit(robButton);
+        buttonInit(dropButton);
+        buttonInit(collectButton);
+        buttonInit(craftButton);
 
         passButton.addActionListener(e -> onPassClick());
         moveButton.addActionListener(e -> onMoveClick());
