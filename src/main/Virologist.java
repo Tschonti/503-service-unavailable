@@ -83,7 +83,7 @@ public class Virologist {
         obsVirologistName = new ObservableVirologistName(this);
         obsVirologistActions = new ObservableVirologistActions(this);
         obsVirologistPicture = new ObservableVirologistPicture(this);
-        actionsLeft = Constants.numberOfActions;
+        actionsLeft = 0;
         activeEffects = new ArrayList<>();
         inventory = new Inventory(this);
         this.name = name;
@@ -160,12 +160,6 @@ public class Virologist {
         for (int i = 0; i < activeEffects.size(); i++) {
             activeEffects.get(i).onTurnImpact(this);
         }
-        /*
-        for (Effect e : activeEffects) {
-            System.out.println(getName()+" "+ e.toString());
-            e.onTurnImpact(this);
-        }*/
-
     }
 
     /**

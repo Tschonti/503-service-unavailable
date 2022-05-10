@@ -106,11 +106,8 @@ public abstract class Tile {
      */
     public void addVirologist(Virologist player) {
         players.add(player);
-        System.out.println("Na most " + player.getName() +" nem kapja meg a magáét!"+  getName());
-        player
-            .getActiveTile()
-            .getPlayers()
-            .forEach(p -> p.getActiveEffects().forEach(e -> e.infect(p)));
+        ArrayList<Virologist> virologists = new ArrayList<>(player.getActiveTile().getPlayers());
+        virologists.forEach(p -> p.getActiveEffects().forEach(e -> e.infect(p)));
     }
 
     /**
