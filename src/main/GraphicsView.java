@@ -7,7 +7,6 @@ import tiles.Tile;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -82,20 +81,43 @@ public class GraphicsView {
         menu.setVisible(true);
     }
 
-    private void comboBoxInit(JComboBox<Object> box) {
+    private void comboBoxInit(JComboBox<Object> box, int howMany) {
         box.setForeground(new Color(39, 55,115));
         box.setBackground(new Color(141, 208, 186));
         box.setBorder(new LineBorder(new Color(39, 55,115), 2));
+        if(howMany <= 1)
+            box.setPreferredSize(new Dimension(145, 35));
+        if(howMany == 2)
+            box.setPreferredSize(new Dimension(70, 35));
     }
 
     private void buttonInit(JButton b) {
         b.setForeground(new Color(39, 55,115));
-        b.setBackground(new Color(251, 248, 190));
+        b.setBackground(new Color(141, 208, 186));
         b.setBorder(new LineBorder(new Color(39, 55,115), 2));
+        b.setPreferredSize(new Dimension(70, 35));
+        b.setUI(new MetalButtonUI() {
+            protected Color getDisabledTextColor() {
+                return new Color(200, 10, 10);
+            }
+        });
+    }
+
+    private void enableButton(boolean enabled, JButton b) {
+        if(enabled) {
+            b.setBackground(new Color(141, 208, 186));
+            b.setBorder(new LineBorder(new Color(39, 55,115), 2));
+        }
+        else {
+            b.setBackground(new Color(39, 55, 115));
+            b.setBorder(new LineBorder(new Color(120, 0,0), 2));
+        }
+        b.setEnabled(enabled);
     }
 
     private JComponent getGeneticCodesView() {
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel gcLabel = new JLabel("Genetic codes:");
@@ -117,6 +139,7 @@ public class GraphicsView {
         virologists.remove(controller.getActivePlayer());
 
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel neighLabel = new JLabel("Virologist on your tile:");
@@ -131,6 +154,7 @@ public class GraphicsView {
 
     private JComponent getResources() {
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel resLabel = new JLabel("Resources:");
@@ -148,6 +172,7 @@ public class GraphicsView {
 
     private JComponent getEffects() {
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel aeLabel = new JLabel("Active effects:");
@@ -164,6 +189,7 @@ public class GraphicsView {
 
     private JComponent getUsables() {
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel usablesLabel = new JLabel("Usables:");
@@ -182,6 +208,7 @@ public class GraphicsView {
 
     private JComponent getCollectable() {
         JPanel p = new JPanel();
+        p.setBackground(new Color(251, 248, 190));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel colLabel = new JLabel("Collectable:");
@@ -240,6 +267,7 @@ public class GraphicsView {
         game.setJMenuBar(menuBar);
 
         JPanel gamePanel = new JPanel();
+        gamePanel.setBackground(new Color(251, 248, 190));
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.X_AXIS));
 
         JComponent neighboursLabel = getNeighboursVirologists();
@@ -250,8 +278,10 @@ public class GraphicsView {
         Virologist activePlayer = controller.getActivePlayer();
 
         JLabel nameLabel = (JLabel) activePlayer.getObsVirologistName().onPaint();
+        nameLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel actionsLeftLabel = (JLabel) activePlayer.getObsVirologistActions().onPaint();
+        actionsLeftLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         actionsLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
         virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -273,6 +303,7 @@ public class GraphicsView {
         JComponent geneticsLabel = getGeneticCodesView();
 
         actionsPanel = new JPanel();
+        actionsPanel.setBackground(new Color(251, 248, 190));
         actionsPanel.setLayout(new BoxLayout(actionsPanel, BoxLayout.Y_AXIS));
 
         moveOptions     = new JComboBox<>();
@@ -283,13 +314,13 @@ public class GraphicsView {
         dropOptions     = new JComboBox<>();
         craftOptions    = new JComboBox<>();
 
-        comboBoxInit(moveOptions);
-        comboBoxInit(usableOnOptions);
-        comboBoxInit(usableOptions);
-        comboBoxInit(stealFrom);
-        comboBoxInit(stealEqOptions);
-        comboBoxInit(dropOptions);
-        comboBoxInit(craftOptions);
+        comboBoxInit(moveOptions    ,1);
+        comboBoxInit(usableOnOptions,2);
+        comboBoxInit(usableOptions  ,2);
+        comboBoxInit(stealFrom      ,2);
+        comboBoxInit(stealEqOptions ,2);
+        comboBoxInit(dropOptions    ,1);
+        comboBoxInit(craftOptions   ,1);
 
         passButton = new JButton("Pass");
         moveButton = new JButton("Move");
@@ -318,18 +349,21 @@ public class GraphicsView {
         fillComboBoxes();
 
         JPanel firstLineActions = new JPanel();
-        firstLineActions.setLayout(new FlowLayout());
+        firstLineActions.setBackground(new Color(251, 248, 190));
+        firstLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         firstLineActions.add(passButton);
         actionsPanel.add(firstLineActions);
 
         JPanel secondLineActions = new JPanel();
-        secondLineActions.setLayout(new FlowLayout());
+        secondLineActions.setBackground(new Color(251, 248, 190));
+        secondLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         secondLineActions.add(moveButton);
         secondLineActions.add(moveOptions);
         actionsPanel.add(secondLineActions);
 
         JPanel thirdLineActions = new JPanel();
-        thirdLineActions.setLayout(new FlowLayout());
+        thirdLineActions.setBackground(new Color(251, 248, 190));
+        thirdLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         thirdLineActions.add(useButton, 2, 0);
         thirdLineActions.add(usableOnOptions, 2, 1);
         thirdLineActions.add(usableOptions, 2, 2);
@@ -337,30 +371,35 @@ public class GraphicsView {
         //actionsPanel.add(usableOptions);
 
         JPanel fourthLineActions = new JPanel();
-        fourthLineActions.setLayout(new FlowLayout());
+        fourthLineActions.setBackground(new Color(251, 248, 190));
+        fourthLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         fourthLineActions.add(robButton);
         fourthLineActions.add(stealFrom);
         fourthLineActions.add(stealEqOptions);
         actionsPanel.add(fourthLineActions);
 
         JPanel fifthLineActions = new JPanel();
-        fifthLineActions.setLayout(new FlowLayout());
+        fifthLineActions.setBackground(new Color(251, 248, 190));
+        fifthLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         fifthLineActions.add(dropButton);
         fifthLineActions.add(dropOptions);
         actionsPanel.add(fifthLineActions);
 
         JPanel sixthLineActions = new JPanel();
-        sixthLineActions.setLayout(new FlowLayout());
+        sixthLineActions.setBackground(new Color(251, 248, 190));
+        sixthLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         sixthLineActions.add(collectButton);
         actionsPanel.add(sixthLineActions);
 
         JPanel seventhLineActions = new JPanel();
-        seventhLineActions.setLayout(new FlowLayout());
+        seventhLineActions.setBackground(new Color(251, 248, 190));
+        seventhLineActions.setLayout(new FlowLayout(FlowLayout.LEFT));
         seventhLineActions.add(craftButton);
         seventhLineActions.add(craftOptions);
         actionsPanel.add(seventhLineActions);
 
         leftPanel = new JPanel();
+        leftPanel.setBackground(new Color(251, 248, 190));
         leftPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         leftPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         leftPanel.setLayout(new GridLayout(5, 1));
@@ -371,6 +410,7 @@ public class GraphicsView {
         gamePanel.add(leftPanel);
 
         middlePanel = new JPanel();
+        middlePanel.setBackground(new Color(251, 248, 190));
         middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         middlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         middlePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -391,12 +431,18 @@ public class GraphicsView {
         middlePanel.add(collectableLabel);
         gamePanel.add(middlePanel);
 
+        JPanel space = new JPanel();
+        space.setBackground(new Color(251, 248, 190));
+        space.setPreferredSize(new Dimension(30,10));
+
         rightPanel = new JPanel();
+        rightPanel.setBackground(new Color(251, 248, 190));
         rightPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rightPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
-        rightPanel.setLayout(new GridLayout(2, 1));
-        rightPanel.add(geneticsLabel);
-        rightPanel.add(actionsPanel);
+        rightPanel.setLayout(new BorderLayout());
+        rightPanel.add(BorderLayout.NORTH, geneticsLabel);
+        rightPanel.add(BorderLayout.CENTER, space);
+        rightPanel.add(BorderLayout.SOUTH , actionsPanel);
         gamePanel.add(rightPanel);
 
         gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -664,12 +710,12 @@ public class GraphicsView {
         }
         usableOnOptions.setEnabled(useBool);
         usableOptions.setEnabled(useBool);
-        useButton.setEnabled(useBool);
+        enableButton(useBool,useButton);
 
         stealFrom.removeAllItems();
         at.getPlayersToStealFrom().forEach(v -> stealFrom.addItem(v));
         stealFrom.setEnabled(stealFrom.getItemCount() > 0);
-        robButton.setEnabled(stealFrom.getItemCount() > 0);
+        enableButton(stealFrom.getItemCount() > 0, robButton);
 
         stealEqOptions.removeAllItems();
         if (stealFrom.getSelectedItem() != null) {
@@ -684,14 +730,15 @@ public class GraphicsView {
         dropOptions.removeAllItems();
         aInv.getEquipments().forEach(v -> dropOptions.addItem(v));
         dropOptions.setEnabled(dropOptions.getItemCount() > 0);
-        dropButton.setEnabled(dropOptions.getItemCount() > 0);
+        enableButton(dropOptions.getItemCount() > 0, dropButton);
 
         collectButton.setEnabled(at.getCollectableItem() != null);
+        enableButton(at.getCollectableItem() != null, collectButton);
 
         craftOptions.removeAllItems();
         aInv.getLearntCodes().forEach(v -> craftOptions.addItem(v));
         craftOptions.setEnabled(craftOptions.getItemCount() > 0);
-        craftButton.setEnabled(craftOptions.getItemCount() > 0);
+        enableButton(craftOptions.getItemCount() > 0, craftButton);
 
     }
 
@@ -708,8 +755,11 @@ public class GraphicsView {
         updateMiddlePanel();
 
         rightPanel.removeAll();
-        rightPanel.add(getGeneticCodesView());
-        rightPanel.add(actionsPanel);
+
+        int numOfCodes = controller.getActivePlayer().getInventory().getLearntCodes().size();
+        getGeneticCodesView().setPreferredSize(new Dimension(getGeneticCodesView().getWidth(),70 + numOfCodes * 40));
+        rightPanel.add(BorderLayout.NORTH, getGeneticCodesView());
+        rightPanel.add(BorderLayout.SOUTH, actionsPanel);
 
         fillComboBoxes();
         SwingUtilities.updateComponentTreeUI(game);
