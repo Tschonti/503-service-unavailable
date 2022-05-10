@@ -370,7 +370,7 @@ public class GraphicsView {
         JMenu helpMenu = new JMenu("File");
         JMenuItem helpMenuItem = new JMenuItem("Help");
         helpMenuItem.addActionListener(e -> {
-            game.setVisible(false);
+            //game.setVisible(false);
             menu.setVisible(false);
             generateHelp();
             SwingUtilities.updateComponentTreeUI(help);
@@ -536,7 +536,7 @@ public class GraphicsView {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             help.setVisible(false);
-            game.setVisible(false);
+            //game.setVisible(false);
             menu.setVisible(true);
         });
         helpPanel.add(backButton);
