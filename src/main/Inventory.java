@@ -125,14 +125,6 @@ public class Inventory {
     }
 
     /**
-     * Removes the genetic code from learntCodes.
-     * @param gc The genetic code to be removed from this inventory.
-     */
-    public void removeGeneticCode(GeneticCode gc) { //TODO remove if not needed
-        learntCodes.remove(gc);
-    }
-
-    /**
      * Removes the resource from resources.
      * @param res The resource to be removed from this inventory.
      */
@@ -151,14 +143,13 @@ public class Inventory {
     /**
      * Removes the equipment from pickedUpEquipments and its effect from the virologist.
      * @param eq The equipment to be removed from this inventory.
-     * @return Whether the removal was successful.
      */
-    public boolean removeEquipment(Equipment eq) { //TODO remove return value if not needed
+    public void removeEquipment(Equipment eq) {
         if(virologist.getController().getActivePlayer() == virologist) {
             eq.endTurnImpact(virologist);
         }
         virologist.removeEffect(eq);
-        return pickedUpEquipments.remove(eq);
+        pickedUpEquipments.remove(eq);
     }
 
     /**

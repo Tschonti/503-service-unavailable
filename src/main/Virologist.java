@@ -17,12 +17,6 @@ import static main.Constants.numOfVirPics;
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
  */
 public class Virologist {
-
-    /**
-     * Observable for the virologist.
-     */
-    private final ObservableVirologist obsVirologist;  //TODO delete later if not needed
-
     /**
      * Observable for the name of the virologist.
      */
@@ -79,7 +73,6 @@ public class Virologist {
      */
     public Virologist(String name, String imgPath) {
         imagePath = imgPath;
-        obsVirologist = new ObservableVirologist(this);
         obsVirologistName = new ObservableVirologistName(this);
         obsVirologistActions = new ObservableVirologistActions(this);
         obsVirologistPicture = new ObservableVirologistPicture(this);
@@ -95,14 +88,6 @@ public class Virologist {
      */
     public String getImagePath() {
         return imagePath;
-    }
-
-    /**
-     * Getter for ObservableVirologist
-     * @return ObservableVirologist
-     */
-    public ObservableVirologist getObsVirologist() {
-        return obsVirologist;
     }
 
     /**

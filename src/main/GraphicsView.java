@@ -125,11 +125,6 @@ public class GraphicsView {
         p.add(gcLabel);
 
         controller.getActivePlayer().getInventory().getLearntCodes().forEach(c->p.add(c.getView().onPaint()));
-        /*ArrayList<GeneticCode> codes = controller.getActivePlayer().getInventory().getLearntCodes();
-        codes.forEach(c->p.add(c.getView().onPaint()));
-        for (int i = 0; i < codes.size(); i++) {
-            p.add(codes.get(i).getView().onPaint());
-        }*/
         return p;
     }
 
@@ -146,9 +141,6 @@ public class GraphicsView {
         neighLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(neighLabel);
         virologists.forEach(v->p.add(v.getObsVirologistName().onPaint()));
-        /*for (int i = 0; i < virologists.size(); i++) {
-            p.add(virologists.get(i).getObsVirologistName().onPaint());
-        }*/
         return p;
     }
 
@@ -179,11 +171,6 @@ public class GraphicsView {
         aeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(aeLabel);
         controller.getActivePlayer().getActiveEffects().forEach(e->p.add(e.getView().onPaint()));
-         /*ArrayList<Effect> effects = new ArrayList<>(controller.getActivePlayer().getActiveEffects());
-        effects.forEach(e->p.add(e.getView().onPaint()));
-        for (int i = 0; i < effects.size(); i++) {
-            p.add(effects.get(i).getView().onPaint());
-        }*/
         return p;
     }
 
@@ -197,11 +184,6 @@ public class GraphicsView {
         p.add(usablesLabel);
 
         controller.getActivePlayer().getInventory().getUsableEquipments().forEach(u->p.add(u.getView().onPaint()));
-        /*ArrayList<UsableEquipment> usables = new ArrayList<>(controller.getActivePlayer().getInventory().getUsableEquipments());
-        usables.forEach(u->p.add(u.getView().onPaint()));
-        for (int i = 0; i < usables.size(); i++) {
-            p.add(usables.get(i).getView().onPaint());
-        }*/
         controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
@@ -289,12 +271,6 @@ public class GraphicsView {
         virologistLabel.setPreferredSize(new Dimension(100,100));
 
         JComponent collectableLabel = getCollectable();
-        /*try {
-            virologistLabel = new JLabel(new ImageIcon(ImageIO.read(new File(controller.getPlayers().get(0).getImagePath()))), SwingConstants.CENTER);
-            virologistLabel.setSize(200, 200);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         JLabel tileLabel = (JLabel) activePlayer.getActiveTile().getNameView().onPaint();
         JLabel tileTypeLabel = (JLabel) activePlayer.getActiveTile().getTypeView().onPaint();
         tileLabel.setText("Active tile: " + tileLabel.getText() + ", " + tileTypeLabel.getText());
@@ -486,9 +462,7 @@ public class GraphicsView {
 
         JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> {
-            if (controller.getPlayers().size() < 2) { //TODO controller
-                //JFrame errorFrame = new JFrame();
-                //JOptionPane.showMessageDialog(errorFrame, "At least 2 players are needed!", "Error", JOptionPane.ERROR_MESSAGE);
+            if (controller.getPlayers().size() < 2) {
                 errorFrame("At least 2 players are needed!");
             } else {
                 menu.setVisible(false);
@@ -496,8 +470,6 @@ public class GraphicsView {
                 generateGame();
                 game.setVisible(true);
             }
-
-            System.out.println("TODO START"); //TODO
         });
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> System.exit(0));
@@ -525,7 +497,7 @@ public class GraphicsView {
         JButton addButton = new JButton("Add");
         addButton.addActionListener(e -> {
             try {
-                if (nameInput.getText().trim().equals("")) { //TODO controller
+                if (nameInput.getText().trim().equals("")) {
                     throw new IllegalArgumentException("Give the player a name!");
                 }
                 if (controller.getPlayers().size()>=8){
@@ -551,7 +523,7 @@ public class GraphicsView {
             } catch (Exception ex) {
                 errorFrame(ex.getMessage());
             }
-        }); //TODO
+        });
         addButton.setSize(100, 50);
 
         JPanel getNewPlayerPanel = new JPanel(new FlowLayout());
@@ -637,10 +609,13 @@ public class GraphicsView {
         JOptionPane.showMessageDialog(errorFrame, text, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    //TODO
+    private void infoFrame(String text){
+        JFrame infoFrame = new JFrame();
+        JOptionPane.showMessageDialog(infoFrame, text, "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void gameOver(Virologist winner) {
-        System.out.println("Lol vége van a játéknak xd");
-        errorFrame("Lol vége van xd, nyert:" + (winner == null ?  "Medvék " : winner.getName()));
+        infoFrame("Game over, winner: " + (winner == null ?  "Bears" : winner.getName()));
 
         game.setVisible(false);
         nameInput.setText("");
@@ -746,7 +721,7 @@ public class GraphicsView {
     }
 
     /**
-     * A Controllertől elkéri az soron lévő játékost, és annak összes birtokolt objektumától elkéri a megjelenítőjét.
+     * Gets the active player from the controller and paints its inventory to the screen.
      */
     public void Paint() {
         leftPanel.removeAll();

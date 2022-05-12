@@ -111,14 +111,6 @@ public class GeneticCode implements Collectable {
     }
 
     /**
-     * Getter for price.
-     * @return price
-     */
-    public ArrayList<Resource> getPrice() { //TODO remove if not needed
-        return price;
-    }
-
-    /**
      * Getter for the id.
      * @return id
      */

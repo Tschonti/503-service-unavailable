@@ -30,22 +30,6 @@ public abstract class Agent implements Effect {
     }
 
     /**
-     * Getter for the roundsLeft Attribute.
-     * @return returns the  roundLeft attributes value.
-     */
-    public int getRoundsLeft() {
-        return roundsLeft;
-    }
-
-    /**
-     * Setter for the roundsLeft Attribute.
-     * @param rLeft sets roundLeft attribute to this param.
-     */
-    public void setRoundsLeft(int rLeft) {
-        roundsLeft = rLeft;
-    }
-
-    /**
      * Using an Agent to infect another Virologist.
      * @param from the Virologist that is trying to infect.
      * @param to the Virologist that is being infected.
