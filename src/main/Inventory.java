@@ -154,7 +154,9 @@ public class Inventory {
      * @return Whether the removal was successful.
      */
     public boolean removeEquipment(Equipment eq) { //TODO remove return value if not needed
-        eq.endTurnImpact(virologist);
+        if(virologist.getController().getActivePlayer() == virologist) {
+            eq.endTurnImpact(virologist);
+        }
         virologist.removeEffect(eq);
         return pickedUpEquipments.remove(eq);
     }
