@@ -1,9 +1,8 @@
 package observables;
 
-import tiles.Tile;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import tiles.Tile;
 
 /**
  * Observable for the name of the tiles.

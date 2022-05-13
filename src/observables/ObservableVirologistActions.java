@@ -1,10 +1,9 @@
 package observables;
 
-import main.Virologist;
+import static main.Constants.numberOfActions;
 
 import javax.swing.*;
-
-import static main.Constants.numberOfActions;
+import main.Virologist;
 
 /**
  * Observable for the actions of the virologist.

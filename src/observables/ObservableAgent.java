@@ -1,7 +1,6 @@
 package observables;
 
 import agents.Agent;
-
 import javax.swing.*;
 
 /**

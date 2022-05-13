@@ -1,8 +1,7 @@
 package main;
 
-import observables.ObservableResource;
-
 import java.util.ArrayList;
+import observables.ObservableResource;
 
 /**
  * This class represents the Resources in the game. It can be collected by virologists from warehouses.
@@ -23,6 +22,7 @@ public class Resource implements Collectable {
      * Observable for the resource.
      */
     private final ObservableResource view;
+
     /**
      * Constructor
      * @param a Amount of the Resource.

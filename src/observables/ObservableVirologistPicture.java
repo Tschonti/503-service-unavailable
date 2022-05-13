@@ -1,12 +1,11 @@
 package observables;
 
-import main.Virologist;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import main.Virologist;
 
 /**
  * Observable for the picture of the virologist.

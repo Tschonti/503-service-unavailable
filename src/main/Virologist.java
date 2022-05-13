@@ -2,17 +2,17 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
+import java.util.ArrayList;
 import observables.ObservableVirologistActions;
 import observables.ObservableVirologistName;
 import observables.ObservableVirologistPicture;
 import tiles.Tile;
 
-import java.util.ArrayList;
-
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
  */
 public class Virologist {
+
     /**
      * Observable for the name of the virologist.
      */

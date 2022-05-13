@@ -1,22 +1,21 @@
 package main;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import static main.Constants.numOfVirPics;
+
 import agents.Agent;
 import equipments.Equipment;
 import equipments.UsableEquipment;
-import tiles.Tile;
-
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.MetalButtonUI;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-import static main.Constants.numOfVirPics;
+import tiles.Tile;
 
 public class GraphicsView {
 
@@ -82,35 +81,34 @@ public class GraphicsView {
     }
 
     private void comboBoxInit(JComboBox<Object> box, int howMany) {
-        box.setForeground(new Color(39, 55,115));
+        box.setForeground(new Color(39, 55, 115));
         box.setBackground(new Color(141, 208, 186));
-        box.setBorder(new LineBorder(new Color(39, 55,115), 2));
-        if(howMany <= 1)
-            box.setPreferredSize(new Dimension(313, 35));
-        if(howMany == 2)
-            box.setPreferredSize(new Dimension(154, 35));
+        box.setBorder(new LineBorder(new Color(39, 55, 115), 2));
+        if (howMany <= 1) box.setPreferredSize(new Dimension(313, 35));
+        if (howMany == 2) box.setPreferredSize(new Dimension(154, 35));
     }
 
     private void buttonInit(JButton b) {
-        b.setForeground(new Color(39, 55,115));
+        b.setForeground(new Color(39, 55, 115));
         b.setBackground(new Color(141, 208, 186));
-        b.setBorder(new LineBorder(new Color(39, 55,115), 2));
+        b.setBorder(new LineBorder(new Color(39, 55, 115), 2));
         b.setPreferredSize(new Dimension(70, 35));
-        b.setUI(new MetalButtonUI() {
-            protected Color getDisabledTextColor() {
-                return new Color(200, 10, 10);
+        b.setUI(
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(200, 10, 10);
+                }
             }
-        });
+        );
     }
 
     private void enableButton(boolean enabled, JButton b) {
-        if(enabled) {
+        if (enabled) {
             b.setBackground(new Color(141, 208, 186));
-            b.setBorder(new LineBorder(new Color(39, 55,115), 2));
-        }
-        else {
+            b.setBorder(new LineBorder(new Color(39, 55, 115), 2));
+        } else {
             b.setBackground(new Color(39, 55, 115));
-            b.setBorder(new LineBorder(new Color(120, 0,0), 2));
+            b.setBorder(new LineBorder(new Color(120, 0, 0), 2));
         }
         b.setEnabled(enabled);
     }
@@ -124,7 +122,11 @@ public class GraphicsView {
         gcLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(gcLabel);
 
-        controller.getActivePlayer().getInventory().getLearntCodes().forEach(c->p.add(c.getView().onPaint()));
+        controller
+            .getActivePlayer()
+            .getInventory()
+            .getLearntCodes()
+            .forEach(c -> p.add(c.getView().onPaint()));
         return p;
     }
 
@@ -140,7 +142,7 @@ public class GraphicsView {
         JLabel neighLabel = new JLabel("Virologist on your tile:");
         neighLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(neighLabel);
-        virologists.forEach(v->p.add(v.getObsVirologistName().onPaint()));
+        virologists.forEach(v -> p.add(v.getObsVirologistName().onPaint()));
         return p;
     }
 
@@ -153,10 +155,16 @@ public class GraphicsView {
         resLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(resLabel);
 
-        ArrayList<Resource> resources = new ArrayList<>(controller.getActivePlayer().getInventory().getResources());
+        ArrayList<Resource> resources = new ArrayList<>(
+            controller.getActivePlayer().getInventory().getResources()
+        );
         for (Resource resource : resources) {
             JLabel jl = (JLabel) resource.getView().onPaint();
-            jl.setText(jl.getText() + "/" + controller.getActivePlayer().getInventory().getMaxResourceAmount());
+            jl.setText(
+                jl.getText() +
+                "/" +
+                controller.getActivePlayer().getInventory().getMaxResourceAmount()
+            );
             p.add(jl);
         }
         return p;
@@ -170,7 +178,7 @@ public class GraphicsView {
         JLabel aeLabel = new JLabel("Active effects:");
         aeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(aeLabel);
-        controller.getActivePlayer().getActiveEffects().forEach(e->p.add(e.getView().onPaint()));
+        controller.getActivePlayer().getActiveEffects().forEach(e -> p.add(e.getView().onPaint()));
         return p;
     }
 
@@ -183,7 +191,11 @@ public class GraphicsView {
         usablesLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         p.add(usablesLabel);
 
-        controller.getActivePlayer().getInventory().getUsableEquipments().forEach(u->p.add(u.getView().onPaint()));
+        controller
+            .getActivePlayer()
+            .getInventory()
+            .getUsableEquipments()
+            .forEach(u -> p.add(u.getView().onPaint()));
         controller.getActivePlayer().getCraftedAgents().forEach(a -> p.add(a.getView().onPaint()));
         return p;
     }
@@ -208,12 +220,10 @@ public class GraphicsView {
                 str = str.substring(0, str.indexOf(":"));
             }
             p.add(new JLabel(str));
-        }
-        else {
+        } else {
             p.add(new JLabel("-"));
         }
         return p;
-
     }
 
     public void generateGame() {
@@ -268,7 +278,7 @@ public class GraphicsView {
         actionsLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
         virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        virologistLabel.setPreferredSize(new Dimension(100,100));
+        virologistLabel.setPreferredSize(new Dimension(100, 100));
 
         JComponent collectableLabel = getCollectable();
         JLabel tileLabel = (JLabel) activePlayer.getActiveTile().getNameView().onPaint();
@@ -276,28 +286,27 @@ public class GraphicsView {
         tileLabel.setText("Active tile: " + tileLabel.getText() + ", " + tileTypeLabel.getText());
         tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-
         JComponent geneticsLabel = getGeneticCodesView();
 
         actionsPanel = new JPanel();
         actionsPanel.setBackground(new Color(251, 248, 190));
         actionsPanel.setLayout(new BoxLayout(actionsPanel, BoxLayout.Y_AXIS));
 
-        moveOptions     = new JComboBox<>();
+        moveOptions = new JComboBox<>();
         usableOnOptions = new JComboBox<>();
-        usableOptions   = new JComboBox<>();
-        stealFrom       = new JComboBox<>();
-        stealEqOptions  = new JComboBox<>();
-        dropOptions     = new JComboBox<>();
-        craftOptions    = new JComboBox<>();
+        usableOptions = new JComboBox<>();
+        stealFrom = new JComboBox<>();
+        stealEqOptions = new JComboBox<>();
+        dropOptions = new JComboBox<>();
+        craftOptions = new JComboBox<>();
 
-        comboBoxInit(moveOptions    ,1);
-        comboBoxInit(usableOnOptions,2);
-        comboBoxInit(usableOptions  ,2);
-        comboBoxInit(stealFrom      ,2);
-        comboBoxInit(stealEqOptions ,2);
-        comboBoxInit(dropOptions    ,1);
-        comboBoxInit(craftOptions   ,1);
+        comboBoxInit(moveOptions, 1);
+        comboBoxInit(usableOnOptions, 2);
+        comboBoxInit(usableOptions, 2);
+        comboBoxInit(stealFrom, 2);
+        comboBoxInit(stealEqOptions, 2);
+        comboBoxInit(dropOptions, 1);
+        comboBoxInit(craftOptions, 1);
 
         passButton = new JButton("Pass");
         moveButton = new JButton("Move");
@@ -410,7 +419,7 @@ public class GraphicsView {
 
         JPanel space = new JPanel();
         space.setBackground(new Color(251, 248, 190));
-        space.setPreferredSize(new Dimension(30,10));
+        space.setPreferredSize(new Dimension(30, 10));
 
         rightPanel = new JPanel();
         rightPanel.setBackground(new Color(251, 248, 190));
@@ -419,7 +428,7 @@ public class GraphicsView {
         rightPanel.setLayout(new BorderLayout());
         rightPanel.add(BorderLayout.NORTH, geneticsLabel);
         rightPanel.add(BorderLayout.CENTER, space);
-        rightPanel.add(BorderLayout.SOUTH , actionsPanel);
+        rightPanel.add(BorderLayout.SOUTH, actionsPanel);
         gamePanel.add(rightPanel);
 
         gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -444,14 +453,12 @@ public class GraphicsView {
         menu.add(menuBar);
         menu.setJMenuBar(menuBar);
 
-
         JLabel title = new JLabel("Virologist game");
         try {
             title = new JLabel(new ImageIcon(ImageIO.read(new File("resources\\title.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         JLabel credits = new JLabel("Developed by service_unavailable");
         try {
@@ -481,31 +488,31 @@ public class GraphicsView {
         textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setAutoscrolls(true);
-        JScrollPane textAreaScroll = new JScrollPane(textArea,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+        JScrollPane textAreaScroll = new JScrollPane(
+            textArea,
+            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
         );
-        textAreaScroll.setPreferredSize(new Dimension(300,300));
-
+        textAreaScroll.setPreferredSize(new Dimension(300, 300));
 
         Virologist.setController(controller);
         JLabel nameLabel = new JLabel("Name:");
         nameInput = new JTextField("", 10);
         nameInput.setToolTipText("Write a name");
         nameInput.setEditable(true);
-        nameInput.setSize(500,200);
+        nameInput.setSize(500, 200);
         JButton addButton = new JButton("Add");
         addButton.addActionListener(e -> {
             try {
                 if (nameInput.getText().trim().equals("")) {
                     throw new IllegalArgumentException("Give the player a name!");
                 }
-                if (controller.getPlayers().size()>=8){
+                if (controller.getPlayers().size() >= 8) {
                     throw new IllegalArgumentException("Maximum 8 players can play the game!");
                 }
                 int imgNum = -1;
                 while (imageNumbers.size() < numOfVirPics) {
-                    imgNum = (SRandom.nextRandom(numOfVirPics)+1);
+                    imgNum = (SRandom.nextRandom(numOfVirPics) + 1);
                     if (!imageNumbers.contains(imgNum)) {
                         imageNumbers.add(imgNum);
                         break;
@@ -514,9 +521,12 @@ public class GraphicsView {
                 if (imageNumbers.size() == numOfVirPics) {
                     imageNumbers.clear();
                 }
-                controller.addPlayer(new Virologist(nameInput.getText(), "resources\\virologist" +  imgNum  + ".png" ), "Hungary");
-                controller.getPlayers().forEach(x->System.out.println(x.getName()));
-                textArea.append(nameInput.getText()+'\n');
+                controller.addPlayer(
+                    new Virologist(nameInput.getText(), "resources\\virologist" + imgNum + ".png"),
+                    "Hungary"
+                );
+                controller.getPlayers().forEach(x -> System.out.println(x.getName()));
+                textArea.append(nameInput.getText() + '\n');
                 nameInput.setText("");
                 nameInput.requestFocus();
                 SwingUtilities.updateComponentTreeUI(menu);
@@ -542,7 +552,7 @@ public class GraphicsView {
         centerPanel.add(addPlayerPanel, BorderLayout.WEST);
 
         JPanel menuPanel = new JPanel(new BorderLayout());
-        menuPanel.add(title,  BorderLayout.NORTH);
+        menuPanel.add(title, BorderLayout.NORTH);
         menuPanel.add(centerPanel, BorderLayout.CENTER);
         menuPanel.add(credits, BorderLayout.SOUTH);
 
@@ -562,17 +572,19 @@ public class GraphicsView {
         JLabel menuLabel = new JLabel("How to start the game");
         menuLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 
-        JLabel menuTextLabel = new JLabel("<html>" +
-                " - You can add the name of the virologist after the Name: box." +
-                "<br>" +
-                " - You can add the player one by one with the Add button" +
-                "<br>" +
-                " - You can start the game with the Start button" +
-                "<br>" +
-                " - To start the game at least 2 player is required" +
-                "<br>" +
-                " - You can close the game with the Quit button" +
-                "</html>");
+        JLabel menuTextLabel = new JLabel(
+            "<html>" +
+            " - You can add the name of the virologist after the Name: box." +
+            "<br>" +
+            " - You can add the player one by one with the Add button" +
+            "<br>" +
+            " - You can start the game with the Start button" +
+            "<br>" +
+            " - To start the game at least 2 player is required" +
+            "<br>" +
+            " - You can close the game with the Quit button" +
+            "</html>"
+        );
 
         helpPanel.add(menuLabel);
         helpPanel.add(menuTextLabel);
@@ -580,15 +592,17 @@ public class GraphicsView {
         JLabel gameLabel = new JLabel("How to play");
         gameLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 
-        JLabel gameTextLabel = new JLabel("<html>" +
-                " - Players have 2 actions in every round" +
-                "<br>" +
-                " - All button represents an action" +
-                "<br>" +
-                " - Only the available action's buttons are active" +
-                "<br>" +
-                " - If there are options to how to perform the action, you can select it from dropdown lists" +
-                "</html>");
+        JLabel gameTextLabel = new JLabel(
+            "<html>" +
+            " - Players have 2 actions in every round" +
+            "<br>" +
+            " - All button represents an action" +
+            "<br>" +
+            " - Only the available action's buttons are active" +
+            "<br>" +
+            " - If there are options to how to perform the action, you can select it from dropdown lists" +
+            "</html>"
+        );
         helpPanel.add(gameLabel);
         helpPanel.add(gameTextLabel);
 
@@ -604,18 +618,18 @@ public class GraphicsView {
         help.pack();
     }
 
-    private void errorFrame(String text){
+    private void errorFrame(String text) {
         JFrame errorFrame = new JFrame();
         JOptionPane.showMessageDialog(errorFrame, text, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    private void infoFrame(String text){
+    private void infoFrame(String text) {
         JFrame infoFrame = new JFrame();
         JOptionPane.showMessageDialog(infoFrame, text, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void gameOver(Virologist winner) {
-        infoFrame("Game over, winner: " + (winner == null ?  "Bears" : winner.getName()));
+        infoFrame("Game over, winner: " + (winner == null ? "Bears" : winner.getName()));
 
         game.setVisible(false);
         nameInput.setText("");
@@ -624,10 +638,9 @@ public class GraphicsView {
         game.pack();
         menu.setVisible(true);
         controller.endGame();
-
     }
 
-    private void updateMiddlePanel(){
+    private void updateMiddlePanel() {
         middlePanel.removeAll();
         Virologist activePlayer = controller.getActivePlayer();
 
@@ -639,7 +652,7 @@ public class GraphicsView {
 
         JLabel virologistLabel = (JLabel) activePlayer.getObsVirologistPicture().onPaint();
         virologistLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        virologistLabel.setPreferredSize(new Dimension(100,100));
+        virologistLabel.setPreferredSize(new Dimension(100, 100));
 
         JLabel tileLabel = (JLabel) activePlayer.getActiveTile().getNameView().onPaint();
         JLabel tileTypeLabel = (JLabel) activePlayer.getActiveTile().getTypeView().onPaint();
@@ -688,7 +701,7 @@ public class GraphicsView {
         }
         usableOnOptions.setEnabled(useBool);
         usableOptions.setEnabled(useBool);
-        enableButton(useBool,useButton);
+        enableButton(useBool, useButton);
 
         stealFrom.removeAllItems();
         at.getPlayersToStealFrom().forEach(v -> stealFrom.addItem(v));
@@ -698,9 +711,11 @@ public class GraphicsView {
         stealEqOptions.removeAllItems();
         if (stealFrom.getSelectedItem() != null) {
             Virologist stolenFrom = (Virologist) stealFrom.getSelectedItem();
-            if(stolenFrom != null)
-                stolenFrom.getInventory().getEquipments().forEach(v -> stealEqOptions.addItem(v));
-                stealEqOptions.setEnabled(true);
+            if (stolenFrom != null) stolenFrom
+                .getInventory()
+                .getEquipments()
+                .forEach(v -> stealEqOptions.addItem(v));
+            stealEqOptions.setEnabled(true);
         } else {
             stealEqOptions.setEnabled(false);
         }
@@ -717,7 +732,6 @@ public class GraphicsView {
         aInv.getLearntCodes().forEach(v -> craftOptions.addItem(v));
         craftOptions.setEnabled(craftOptions.getItemCount() > 0);
         enableButton(craftOptions.getItemCount() > 0, craftButton);
-
     }
 
     /**
@@ -736,7 +750,10 @@ public class GraphicsView {
             rightPanel.removeAll();
 
             int numOfCodes = controller.getActivePlayer().getInventory().getLearntCodes().size();
-            getGeneticCodesView().setPreferredSize(new Dimension(getGeneticCodesView().getWidth(), 70 + numOfCodes * 40));
+            getGeneticCodesView()
+                .setPreferredSize(
+                    new Dimension(getGeneticCodesView().getWidth(), 70 + numOfCodes * 40)
+                );
             rightPanel.add(BorderLayout.NORTH, getGeneticCodesView());
             rightPanel.add(BorderLayout.SOUTH, actionsPanel);
 
@@ -754,7 +771,7 @@ public class GraphicsView {
 
     public void onMoveClick() {
         if (moveOptions.getSelectedItem() != null) {
-            Tile selected = (Tile)moveOptions.getSelectedItem();
+            Tile selected = (Tile) moveOptions.getSelectedItem();
             controller.move(selected);
         } else {
             throw new IllegalArgumentException("No tile selected!");
@@ -764,26 +781,31 @@ public class GraphicsView {
 
     public void onUseClick() {
         try {
-            if (usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null) {
+            if (
+                usableOnOptions.getSelectedItem() != null && usableOptions.getSelectedItem() != null
+            ) {
                 Object selected = usableOptions.getSelectedItem();
                 Virologist v = (Virologist) usableOnOptions.getSelectedItem();
-                if (selected instanceof Agent)
-                    controller.use(((Agent) selected), v);
-                else if (selected instanceof UsableEquipment)
-                    controller.use((UsableEquipment) selected, v);
-                else
-                    throw new IllegalArgumentException("Invalid item selected selected!");
+                if (selected instanceof Agent) controller.use(((Agent) selected), v); else if (
+                    selected instanceof UsableEquipment
+                ) controller.use(
+                    (UsableEquipment) selected,
+                    v
+                ); else throw new IllegalArgumentException("Invalid item selected selected!");
             } else {
                 throw new IllegalArgumentException("No virologist or item selected!");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             errorFrame(e.getMessage());
         }
     }
 
     public void onRobClick() {
         if (stealFrom.getSelectedItem() != null) {
-            controller.steal((Virologist) stealFrom.getSelectedItem(), (Equipment) stealEqOptions.getSelectedItem());
+            controller.steal(
+                (Virologist) stealFrom.getSelectedItem(),
+                (Equipment) stealEqOptions.getSelectedItem()
+            );
         } else {
             throw new IllegalArgumentException("No virologist selected!");
         }
@@ -800,7 +822,7 @@ public class GraphicsView {
     public void onCollectClick() {
         try {
             controller.collect();
-        }catch (Exception e){
+        } catch (Exception e) {
             errorFrame(e.getMessage());
         }
     }
@@ -812,7 +834,7 @@ public class GraphicsView {
             } else {
                 throw new IllegalArgumentException("No genetic code selected!");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             errorFrame(e.getMessage());
         }
     }

@@ -145,7 +145,7 @@ public class Inventory {
      * @param eq The equipment to be removed from this inventory.
      */
     public void removeEquipment(Equipment eq) {
-        if(Virologist.getController().getActivePlayer() == virologist) {
+        if (Virologist.getController().getActivePlayer() == virologist) {
             eq.endTurnImpact(virologist);
         }
         virologist.removeEffect(eq);

@@ -1,8 +1,7 @@
 package observables;
 
-import main.Virologist;
-
 import javax.swing.*;
+import main.Virologist;
 
 /**
  * Observable for the name of the virologist.

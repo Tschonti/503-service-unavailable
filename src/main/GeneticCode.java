@@ -1,9 +1,8 @@
 package main;
 
 import agents.*;
-import observables.ObservableGeneticCode;
-
 import java.util.ArrayList;
+import observables.ObservableGeneticCode;
 
 /**
  * It is found in Laboratories and can be collected by Virologists.

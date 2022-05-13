@@ -1,7 +1,6 @@
 package tiles;
 
 import equipments.Equipment;
-
 import java.awt.*;
 
 /**

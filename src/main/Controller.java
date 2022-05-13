@@ -68,16 +68,16 @@ public class Controller {
         activePlayer.startTurn();
     }
 
-    public void actionHappened(){
+    public void actionHappened() {
         if (players.size() == infectedPlayers.size()) {
             endOfGame = true;
             activePlayer = null;
         }
-        if(endOfGame){
+        if (endOfGame) {
             view.gameOver(activePlayer);
             return;
         }
-        while(activePlayer.getActionsLeft()<=0){
+        while (activePlayer.getActionsLeft() <= 0) {
             activePlayer.endTurn();
             activePlayer = players.get((players.indexOf(activePlayer) + 1) % players.size());
             activePlayer.startTurn();
@@ -88,6 +88,7 @@ public class Controller {
         }
         view.Paint();
     }
+
     /**
      * Checks, if this player has collected all the genetic codes.
      * @param v The virologist (player) we check.
@@ -221,7 +222,6 @@ public class Controller {
         if (activePlayer.getCraftedAgents().contains(agent)) {
             if (activePlayer.getActiveTile().getPlayers().contains(v)) {
                 activePlayer.useAgent(agent, v);
-
             } else {
                 throw new IllegalArgumentException(
                     "You can't use this agent on " + v.getName() + "!"

@@ -1,8 +1,7 @@
 package tiles;
 
-import main.GeneticCode;
-
 import java.awt.*;
+import main.GeneticCode;
 
 /**
  * A laboratory tile where virologists can learn genetic codes.

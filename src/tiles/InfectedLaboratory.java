@@ -1,10 +1,9 @@
 package tiles;
 
 import agents.Agent;
+import java.awt.*;
 import main.GeneticCode;
 import main.Virologist;
-
-import java.awt.*;
 
 public class InfectedLaboratory extends Laboratory {
 

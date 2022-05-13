@@ -1,8 +1,7 @@
 package observables;
 
-import main.GeneticCode;
-
 import javax.swing.*;
+import main.GeneticCode;
 
 /**
  * Observable for the genetic code.

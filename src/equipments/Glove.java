@@ -26,8 +26,7 @@ public class Glove extends Equipment {
      */
     public void counterImpact(Agent agent, Virologist from, Virologist to) {
         to.removeEffect(agent);
-        if(from != null)
-            from.addEffect(agent);
+        if (from != null) from.addEffect(agent);
         durabilityDecreases();
         if (usesLeft == 0) {
             to.getInventory().removeEquipment(this);

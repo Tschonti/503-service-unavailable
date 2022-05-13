@@ -47,7 +47,7 @@ public class BearDanceVirus extends Agent {
             ArrayList<Tile> neighbours = to.getActiveTile().getNeighbours();
             Tile newTile = neighbours.get(SRandom.nextRandom(neighbours.size()));
             to.moveTo(newTile);
-            System.out.println(to.getName() +  " moved to " + newTile.getName());
+            System.out.println(to.getName() + " moved to " + newTile.getName());
             to.getActiveTile().destroyCollectable();
         }
     }

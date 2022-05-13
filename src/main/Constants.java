@@ -23,5 +23,5 @@ public class Constants {
     /**
      * Number of virologist pictures
      */
-    public static  int numOfVirPics = 11;
+    public static int numOfVirPics = 11;
 }

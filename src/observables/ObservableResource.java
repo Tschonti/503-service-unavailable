@@ -1,8 +1,7 @@
 package observables;
 
-import main.Resource;
-
 import javax.swing.*;
+import main.Resource;
 
 /**
  * Observable class for the resources.

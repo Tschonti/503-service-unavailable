@@ -1,7 +1,6 @@
 package observables;
 
 import equipments.Equipment;
-
 import javax.swing.*;
 
 /**
