@@ -86,9 +86,9 @@ public class GraphicsView {
         box.setBackground(new Color(141, 208, 186));
         box.setBorder(new LineBorder(new Color(39, 55,115), 2));
         if(howMany <= 1)
-            box.setPreferredSize(new Dimension(145, 35));
+            box.setPreferredSize(new Dimension(313, 35));
         if(howMany == 2)
-            box.setPreferredSize(new Dimension(70, 35));
+            box.setPreferredSize(new Dimension(154, 35));
     }
 
     private void buttonInit(JButton b) {
@@ -755,6 +755,7 @@ public class GraphicsView {
         } else {
             throw new IllegalArgumentException("No tile selected!");
         }
+        Paint();
     }
 
     public void onUseClick() {
