@@ -42,11 +42,6 @@ public class Controller {
     private boolean endOfGame;
 
     /**
-     * True, if the game ended by someone winning.
-     */
-    private boolean isWinner;
-
-    /**
      * The view for the game.
      */
     private final GraphicsView view;
@@ -62,7 +57,6 @@ public class Controller {
         codes = map.createMap();
         view = newView;
         endOfGame = false;
-        isWinner = false;
     }
 
     /**
@@ -78,7 +72,6 @@ public class Controller {
         if (players.size() == infectedPlayers.size()) {
             endOfGame = true;
             activePlayer = null;
-            isWinner = false;
         }
         if(endOfGame){
             view.gameOver(activePlayer);
@@ -102,7 +95,6 @@ public class Controller {
     public void checkWinner(Virologist v) {
         if (v.getInventory().getLearntCodes().size() == codes.length) {
             endOfGame = true;
-            isWinner = true;
         }
     }
 
@@ -301,7 +293,6 @@ public class Controller {
      */
     public void endGame() {
         endOfGame = false;
-        isWinner = false;
         activePlayer = null;
         players.clear();
         infectedPlayers.clear();
@@ -309,16 +300,18 @@ public class Controller {
     }
 
     /**
-     * Exits the program.
+     * Adds the virologist to the infected players.
+     * @param v virologist
      */
-    public void quit() {
-        System.exit(0);
-    }
-
     public void addInfected(Virologist v) {
         infectedPlayers.add(v);
     }
 
+    /**
+     * Returns true, if the virologist is infected.
+     * @param v virologist
+     * @return whether the virologist is infected
+     */
     public boolean isInfected(Virologist v) {
         return infectedPlayers.contains(v);
     }

@@ -59,14 +59,6 @@ public class Resource implements Collectable {
     }
 
     /**
-     * Setter for this resource's amount.
-     * @param amount Resource's amount.
-     */
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    /**
      * Getter for this resource's type.
      * @return Resource's type.
      */

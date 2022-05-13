@@ -127,14 +127,6 @@ public abstract class Tile {
     public void destroyCollectable() {}
 
     /**
-     * Getter for the ID.
-     * @return Unique identifier.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
      * Getter for the name.
      * @return Name of the tile.
      */

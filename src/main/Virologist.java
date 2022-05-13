@@ -2,15 +2,12 @@ package main;
 
 import agents.Agent;
 import equipments.Equipment;
-import java.util.ArrayList;
-import java.util.Random;
-
 import observables.ObservableVirologistActions;
 import observables.ObservableVirologistName;
 import observables.ObservableVirologistPicture;
 import tiles.Tile;
 
-import static main.Constants.numOfVirPics;
+import java.util.ArrayList;
 
 /**
  * This class represents the player. Virologist class responsible for their movements, inventories and actions.
@@ -141,8 +138,8 @@ public class Virologist {
      */
     public void startTurn() {
         actionsLeft = Constants.numberOfActions;
-        for (int i = 0; i < activeEffects.size(); i++) {
-            activeEffects.get(i).onTurnImpact(this);
+        for (Effect activeEffect : activeEffects) {
+            activeEffect.onTurnImpact(this);
         }
     }
 

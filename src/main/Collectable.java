@@ -1,7 +1,6 @@
 package main;
 
 import observables.IObservable;
-import observables.ObservableAgent;
 
 /**
  * Interface for all things that can be collected by virologists.

@@ -2,8 +2,6 @@ package main;
 
 import agents.Agent;
 import observables.IObservable;
-import observables.ObservableAgent;
-import observables.ObservableEquipment;
 
 /**
  * This interface is implemented by everything that has any kind of impact to the Virologist, who has it.

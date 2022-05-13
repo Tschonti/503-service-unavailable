@@ -31,6 +31,10 @@ public class ObservableGeneticCode implements IObservable {
         return new JLabel(code.toString());
     }
 
+    /**
+     * Getter for the genetic code.
+     * @return genetic code
+     */
     public GeneticCode getCode() {
         return code;
     }

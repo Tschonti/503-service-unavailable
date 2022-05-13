@@ -724,24 +724,28 @@ public class GraphicsView {
      * Gets the active player from the controller and paints its inventory to the screen.
      */
     public void Paint() {
-        leftPanel.removeAll();
-        leftPanel.add(getNeighboursVirologists());
-        leftPanel.add(getResources());
-        leftPanel.add(getEffects());
-        leftPanel.add(getUsables());
+        try {
+            leftPanel.removeAll();
+            leftPanel.add(getNeighboursVirologists());
+            leftPanel.add(getResources());
+            leftPanel.add(getEffects());
+            leftPanel.add(getUsables());
 
-        updateMiddlePanel();
+            updateMiddlePanel();
 
-        rightPanel.removeAll();
+            rightPanel.removeAll();
 
-        int numOfCodes = controller.getActivePlayer().getInventory().getLearntCodes().size();
-        getGeneticCodesView().setPreferredSize(new Dimension(getGeneticCodesView().getWidth(),70 + numOfCodes * 40));
-        rightPanel.add(BorderLayout.NORTH, getGeneticCodesView());
-        rightPanel.add(BorderLayout.SOUTH, actionsPanel);
+            int numOfCodes = controller.getActivePlayer().getInventory().getLearntCodes().size();
+            getGeneticCodesView().setPreferredSize(new Dimension(getGeneticCodesView().getWidth(), 70 + numOfCodes * 40));
+            rightPanel.add(BorderLayout.NORTH, getGeneticCodesView());
+            rightPanel.add(BorderLayout.SOUTH, actionsPanel);
 
-        fillComboBoxes();
-        SwingUtilities.updateComponentTreeUI(game);
-        game.pack();
+            fillComboBoxes();
+            SwingUtilities.updateComponentTreeUI(game);
+            game.pack();
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void onPassClick() {

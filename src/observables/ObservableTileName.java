@@ -41,6 +41,10 @@ public class ObservableTileName implements IObservable {
         return res;
     }
 
+    /**
+     * Getter for the tile.
+     * @return tile
+     */
     public Tile getTile() {
         return tile;
     }

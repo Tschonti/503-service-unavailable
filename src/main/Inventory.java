@@ -145,7 +145,7 @@ public class Inventory {
      * @param eq The equipment to be removed from this inventory.
      */
     public void removeEquipment(Equipment eq) {
-        if(virologist.getController().getActivePlayer() == virologist) {
+        if(Virologist.getController().getActivePlayer() == virologist) {
             eq.endTurnImpact(virologist);
         }
         virologist.removeEffect(eq);
@@ -195,10 +195,12 @@ public class Inventory {
         if (eq != null) {
             v2Inv.removeEquipment(eq);
             addEquipment(eq);
-            try{
+            try {
                 v2Inv.removeUsableEquipment((UsableEquipment) eq);
                 addUsableEquipment((UsableEquipment) eq);
-            }catch (Exception e){}
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         ArrayList<Resource> inv2Resources = v2Inv.getResources();
         for (Resource res : inv2Resources) {

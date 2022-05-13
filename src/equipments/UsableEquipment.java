@@ -14,5 +14,9 @@ public interface UsableEquipment {
      */
     void use(Virologist from, Virologist to);
 
+    /**
+     * Getter for the view.
+     * @return ObservableEquipment
+     */
     ObservableEquipment getView();
 }

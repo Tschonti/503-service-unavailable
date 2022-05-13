@@ -31,6 +31,10 @@ public class ObservableEquipment implements IObservable {
         return new JLabel(equipment.toString());
     }
 
+    /**
+     * Getter for the equipment.
+     * @return equipment
+     */
     public Equipment getEquipment() {
         return equipment;
     }

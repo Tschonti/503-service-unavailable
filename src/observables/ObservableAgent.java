@@ -31,6 +31,10 @@ public class ObservableAgent implements IObservable {
         return new JLabel(agent.toString());
     }
 
+    /**
+     * Getter fot the agent.
+     * @return agent
+     */
     public Agent getAgent() {
         return agent;
     }
