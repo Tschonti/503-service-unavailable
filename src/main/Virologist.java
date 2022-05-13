@@ -5,7 +5,6 @@ import equipments.Equipment;
 import java.util.ArrayList;
 import java.util.Random;
 
-import observables.ObservableVirologist;
 import observables.ObservableVirologistActions;
 import observables.ObservableVirologistName;
 import observables.ObservableVirologistPicture;

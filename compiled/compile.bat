@@ -1,2 +1,2 @@
-javac -d ./ ../src/agents/*.java ../src/equipments/*.java ../src/main/*.java ../src/tiles/*.java
-jar cfe ../prototype.jar main/Main agents/*.class equipments/*.class main/*.class tiles/*.class
+javac -d ./ ../src/agents/*.java ../src/equipments/*.java ../src/main/*.java ../src/tiles/*.java ../src/observables/*.java
+jar cfe ../virologist-game.jar main/Main agents/*.class equipments/*.class main/*.class tiles/*.class observables/*.class
